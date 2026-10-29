@@ -24,3 +24,7 @@ example/authenticator/build/*-tests
 example/authenticator/build/oracle_test.cj
 example/authenticator/build/frontend/
 .DS_Store
+
+/CoqMakefile
+/CoqMakefile.conf
+/.CoqMakefile.d

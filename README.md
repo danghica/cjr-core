@@ -25,4 +25,11 @@ Use `ARGS="--example NAME"` to restrict runtime tests or benchmarks. Examples wi
 
 ## Verification status
 
-Proofs were not revalidated during the repository split. Checked-in proof reports and build/verify.log are historical evidence. Current runtime validation is recorded separately in build/runtime-validation.json. Native tests do not establish proof validity or correctness of the extraction printer or compiler. Existing authenticator frontend proof gates remain enforced.
+**Proof validation passed on 2026-10-29** with Coq 8.20.1. All 22 local source modules compiled and passed `coqchk`; all 34/34 entries in the repository assumption audit reported **Closed under the global context**. The source scan rejects admissions, aborted proofs, and declared axioms.
+
+- [Complete verification log](build/verify.log), including build commands, kernel checking, assumption-audit output, timestamps, and exit status.
+- [Machine-readable proof record](build/proof-verification.json), including source SHA-256 fingerprints and pinned dependency commits.
+
+Reproduce with `make verify` after checking out the versions in `dependencies.lock.json`. Proof validation checks the CJR model and stated contracts; native extraction, compilation, external adapters, and machine-integer bounds retain their documented trust boundaries. Runtime checks remain separately recorded in [runtime-validation.json](build/runtime-validation.json).
+
+Proofs were not checked during the initial split; this record supersedes that earlier status for the source files it fingerprints. Imported readable-specification pages and historical benchmark records retain their original provenance.

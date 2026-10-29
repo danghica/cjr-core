@@ -981,3 +981,6 @@ Each repository gets offline HTML documentation, a PDF tutorial, and runtime ben
 
 Acceptance requires three separate repositories with complete HTML documentation, PDF tutorials, and reproducible runtime benchmark reports. Migration notes explicitly state that proofs were not revalidated.
 
+[2026-10-29T14:51:32+00:00]
+validate all the proofs and push the proof record and update the readmes 
+

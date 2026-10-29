@@ -15,4 +15,4 @@ depends: [
   "coq-iris" {= "4.4.0"}
 ]
 build: [[make "build"]]
-install: [[make "-f" "build/CoqMakefile" "install"]]
+install: [[make "-f" "CoqMakefile" "install"]]

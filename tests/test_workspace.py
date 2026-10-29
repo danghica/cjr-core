@@ -46,3 +46,37 @@ class WorkspaceTests(unittest.TestCase):
             for source in (root/folder).glob('*.v'):
                 for group in re.findall(r'From cjr\.examples Require(?: Import| Export)?\s+([\w\s]+)\.',source.read_text()):
                     for module in group.split():self.assertIn(module,owned,str(source)+': '+module)
+
+    def test_verify_records_build_failure_and_preserves_error(self):
+        from tools.project_tools.workspace import verify_proofs
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'dependencies.lock.json').write_text('{}')
+            with patch('tools.project_tools.workspace.proof_build',side_effect=RuntimeError('build failed')):
+                with self.assertRaisesRegex(RuntimeError,'build failed'):verify_proofs(root,{})
+            record=json.loads((root/'build/proof-verification.json').read_text())
+            self.assertEqual(record['status'],'failed')
+            self.assertEqual(record['exit_status'],1)
+            self.assertIn('exit status 1',(root/'build/verify.log').read_text())
+
+    def test_verify_requires_every_assumption_audit_to_close(self):
+        from tools.project_tools.workspace import verify_proofs
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'dependencies.lock.json').write_text('{}')
+            (root/'audit').mkdir();(root/'audit/assumptions.v').write_text('Print Assumptions example.\n')
+            (root/'example.v').write_text('Lemma example : True. Proof. exact I. Qed.\n')
+            with patch('tools.project_tools.workspace.proof_build',return_value=([],['example.v'])),patch('tools.project_tools.workspace.run',side_effect=['','Axioms: untrusted : True\n']),patch('subprocess.check_output',return_value='Coq test toolchain'):
+                with self.assertRaisesRegex(RuntimeError,'0/1'):verify_proofs(root,{})
+            self.assertEqual(json.loads((root/'build/proof-verification.json').read_text())['status'],'failed')
+
+    def test_verify_records_success_and_source_provenance(self):
+        from tools.project_tools.workspace import verify_proofs
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'dependencies.lock.json').write_text('{}')
+            (root/'audit').mkdir();(root/'audit/assumptions.v').write_text('Print Assumptions example.\n')
+            (root/'example.v').write_text('Lemma example : True. Proof. exact I. Qed.\n')
+            with patch('tools.project_tools.workspace.proof_build',return_value=([],['example.v'])),patch('tools.project_tools.workspace.run',side_effect=['','Closed under the global context\n']),patch('subprocess.check_output',return_value='Coq test toolchain'):
+                verify_proofs(root,{})
+            record=json.loads((root/'build/proof-verification.json').read_text())
+            self.assertEqual(record['status'],'passed')
+            self.assertEqual(record['closed'],1)
+            self.assertIn('example.v',record['sources'])

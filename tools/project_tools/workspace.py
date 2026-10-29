@@ -1,6 +1,6 @@
 """Build adapters for split CJR repositories. Runtime/report actions never check proofs."""
 from __future__ import annotations
-import argparse,csv,hashlib,html,json,os,re,shutil,subprocess,sys
+import argparse,csv,hashlib,html,json,os,re,shlex,shutil,subprocess,sys
 from pathlib import Path
 from datetime import datetime,timezone
 
@@ -48,35 +48,83 @@ def configure(root,deps):
             (example/'_CoqProject').write_text('\n'.join(local)+'\n')
     return [x for t in pairs for x in t],sources
 
+_VERIFY_LOG = None
+
 def run(args,root,**kwargs):
-    subprocess.run([str(a) for a in args],cwd=root,check=True,**kwargs)
+    command=[str(a) for a in args]
+    environment=os.environ.copy()
+    environment['PATH']=str(Path.home()/'.opam/default/bin')+os.pathsep+environment.get('PATH','')
+    kwargs.setdefault('env',environment)
+    if _VERIFY_LOG is None:
+        subprocess.run(command,cwd=root,check=True,**kwargs)
+        return ''
+    _VERIFY_LOG.write('Command: '+shlex.join(command)+'\n');_VERIFY_LOG.flush()
+    process=subprocess.Popen(command,cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,**kwargs)
+    output=[]
+    for line in process.stdout:
+        _VERIFY_LOG.write(line);_VERIFY_LOG.flush();print(line,end='',flush=True);output.append(line)
+    status=process.wait()
+    if status:raise subprocess.CalledProcessError(status,command)
+    return ''.join(output)
 
 def proof_build(root,deps,verify=False):
+    if verify:return verify_proofs(root,deps)
     for name,path in deps.items():
-        if name=='cjr-core' or name=='cjr-collections':run([sys.executable,path/'scripts/project.py','build'],path)
+        if name in ('cjr-core','cjr-collections'):run([sys.executable,path/'scripts/project.py','build'],path)
     flags,sources=configure(root,deps)
     (root/'build').mkdir(exist_ok=True)
     maker=shutil.which('coq_makefile') or str(Path.home()/'.opam/default/bin/coq_makefile')
-    run([maker,'-f','_CoqProject','-o','build/CoqMakefile'],root)
-    run(['make','-f','build/CoqMakefile','-j2'],root)
-    if not verify:return
+    run([maker,'-f','_CoqProject','-o','CoqMakefile'],root)
+    run(['make','-f','CoqMakefile','-j2'],root)
+    return flags,sources
+
+def verify_proofs(root,deps):
+    global _VERIFY_LOG
+    (root/'build').mkdir(exist_ok=True)
     started=datetime.now(timezone.utc).isoformat()
-    chunks=['make verify started: '+started+'\n']
-    try:
-        for p in [root/s for s in sources]:
-            source=p.read_text()
-            if re.search(r'\bAdmitted\.|^\s*Axiom\s',source,re.M):raise RuntimeError('Disallowed admission/axiom: '+str(p))
-        prefix=Path.home()/'.opam/default/bin'
-        for command in [[prefix/'coqchk',*flags,*[str(Path(s).with_suffix('.vo')) for s in sources]], [prefix/'coqc',*flags,'audit/assumptions.v']]:
-            proc=subprocess.run([str(a) for a in command],cwd=root,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-            chunks.append(proc.stdout)
-            if proc.returncode:raise RuntimeError('Proof validation failed')
-        expected=len(re.findall(r'Print Assumptions ',(root/'audit/assumptions.v').read_text()))
-        if chunks[-1].count('Closed under the global context')<expected:raise RuntimeError('Assumption audit did not close every listed theorem')
-        chunks.append('exit status 0\n')
-    except Exception:
-        chunks.append('exit status 1\n');raise
-    finally:(root/'build/verify.log').write_text(''.join(chunks))
+    record={'status':'failed','started_utc':started,'dependencies':json.loads((root/'dependencies.lock.json').read_text()),'coqchk':'not completed','assumptions':'not completed'}
+    status=1
+    with (root/'build/verify.log').open('w') as log:
+        _VERIFY_LOG=log
+        log.write('make verify started: '+started+'\n');log.flush()
+        try:
+            flags,sources=proof_build(root,deps)
+            record['sources']={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in [*sources,'audit/assumptions.v']}
+            record['modules_checked']=len(sources)
+            for name in sources:
+                source=(root/name).read_text()
+                # Ignore comments; reject proof bypasses in executable Rocq text.
+                depth=0;clean=[];i=0
+                while i<len(source):
+                    if source[i:i+2]=='(*':depth+=1;i+=2
+                    elif depth and source[i:i+2]=='*)':depth-=1;i+=2
+                    else:
+                        if not depth:clean.append(source[i])
+                        i+=1
+                if re.search(r'\b(?:Admitted|admit|Abort)\b|^\s*(?:(?:Local|Global)\s+)?Axioms?\s',''.join(clean),re.M):
+                    raise RuntimeError('Disallowed admission, aborted proof, or axiom: '+name)
+            prefix=Path.home()/'.opam/default/bin'
+            record['toolchain']=subprocess.check_output([str(prefix/'coqc'),'--version'],text=True).strip()
+            run([prefix/'coqchk','-silent',*flags,*[str(Path(name).with_suffix('.vo')) for name in sources]],root)
+            record['coqchk']='passed'
+            audit=run([prefix/'coqc',*flags,'audit/assumptions.v'],root)
+            (root/'build/assumptions.log').write_text(audit)
+            expected=len(re.findall(r'^Print Assumptions ',(root/'audit/assumptions.v').read_text(),re.M))
+            closed=audit.count('Closed under the global context')
+            record.update(expected_closed=expected,closed=closed)
+            if closed!=expected or re.search(r'^Axioms:|\bError:',audit,re.M):
+                raise RuntimeError(f'Assumption audit: {closed}/{expected} declarations closed')
+            record['assumptions']='all audited declarations closed under the global context'
+            record['status']='passed';status=0
+            print(f'Proof validation passed: {len(sources)} modules; {closed}/{expected} assumption audits closed.',flush=True)
+        except Exception as error:
+            record['error']=str(error);log.write('ERROR: '+str(error)+'\n');raise
+        finally:
+            finished=datetime.now(timezone.utc).isoformat();record['finished_utc']=finished;record['exit_status']=status
+            log.write(f'make verify finished: {finished} (exit status {status})\n');log.flush()
+            _VERIFY_LOG=None
+            record['verify_log_sha256']=hashlib.sha256((root/'build/verify.log').read_bytes()).hexdigest()
+            (root/'build/proof-verification.json').write_text(json.dumps(record,indent=2)+'\n')
 
 def extraction(root,deps):
     proof_build(root,deps)
@@ -91,8 +139,16 @@ def pages(root):
     cfg=json.loads((root/'repository.json').read_text())
     style='body{max-width:1100px;margin:3rem auto;padding:0 1.5rem;font:18px/1.6 system-ui;color:#172338;background:#fafbfe}a{color:#185a91}h1,h2{line-height:1.2}li{margin:.5rem 0}pre{white-space:pre-wrap;background:#eef2f8;padding:1rem}aside{border-left:4px solid #be8b27;padding:1rem;background:#fff5dc}table{border-collapse:collapse}td,th{padding:.4rem 1rem;border-bottom:1px solid #ddd;text-align:left}'
     docs=root/'docs';docs.mkdir(exist_ok=True);(docs/'style.css').write_text(style)
-    intro='<aside>Proofs were not revalidated during the split. Existing proof and readable-specification reports are historical snapshots. Runtime checks and new measurements are reported separately.</aside>'
+    proof_path=root/'build/proof-verification.json'
+    proof=json.loads(proof_path.read_text()) if proof_path.exists() else {}
+    fresh=(proof.get('status')=='passed' and proof.get('dependencies')==json.loads((root/'dependencies.lock.json').read_text()) and all((root/name).is_file() and hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in proof.get('sources',{}).items()))
+    if fresh:
+        intro=f'<aside><strong>Proof validation passed.</strong> {proof["modules_checked"]} modules kernel-checked; {proof["closed"]}/{proof["expected_closed"]} assumption audits closed. Recorded {html.escape(proof["finished_utc"])}. Read the repository README for the verification log and source fingerprints. Imported readable-specification pages remain historical snapshots.</aside>'
+    else:
+        intro='<aside>Current sources do not have a matching successful proof-validation record. Imported proof and readable-specification reports are historical snapshots. Runtime checks and measurements are reported separately.</aside>'
+
     links=['<li><a href="../paper/tutorial.pdf">Tutorial paper (PDF)</a> · <a href="../paper/tutorial.tex">LaTeX source</a></li>','<li><a href="../README.md">Setup and commands</a> · <a href="../dependencies.lock.json">Pinned dependencies</a></li>','<li><a href="../build/runtime-validation.json">Runtime validation</a></li>']
+    if proof_path.is_file():links.append('<li><a href="../build/proof-verification.json">Proof validation record</a> · <a href="../build/verify.log">Verification log</a></li>')
     for name in cfg['examples']:
         project=root/'example'/name
         entries=[]
