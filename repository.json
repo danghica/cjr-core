@@ -1,0 +1,9 @@
+{
+  "name": "cjr-core",
+  "examples": [
+    "misc",
+    "generics"
+  ],
+  "checkpoint": "e07ccfb365e019f440480d6357d0251187acc8da",
+  "proofs_revalidated": false
+}

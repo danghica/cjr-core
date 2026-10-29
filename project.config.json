@@ -1,0 +1,10 @@
+{
+  "name": "cjr-core",
+  "title": "cjr-core",
+  "index": "docs/index.html",
+  "css": "docs/style.css",
+  "artifacts": {
+    "docs": "generated/spec-html"
+  },
+  "links": []
+}

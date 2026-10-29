@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "example/list_rev/rocq/list_rev.v",
+      "errors": [],
+      "unsupported": [],
+      "declarations": 1
+    }
+  ],
+  "dependencies": {
+    "complete": false,
+    "roots": [
+      "cjr.examples.list_rev.reverse_spec"
+    ],
+    "source_issues": {
+      "example/list_rev/rocq/list_rev.v": []
+    },
+    "declarations": {
+      "cjr.examples.list_rev.reverse_spec": {
+        "depends_on": [],
+        "issues": [
+          "Project reference has no rendered declaration: cjr.examples.list_rev.call_reverse",
+          "Proof dependency coverage is incomplete: proof was not fully parsed or was aborted."
+        ]
+      }
+    }
+  },
+  "explanations": {
+    "model_selection": "CLI configured model",
+    "failures": 0,
+    "declarations": {
+      "cjr.examples.list_rev.reverse_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      }
+    }
+  }
+}

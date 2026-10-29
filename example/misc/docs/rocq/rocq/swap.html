@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rocq/swap.v — Rocq Readable</title><link rel="stylesheet" href="../style.css"></head>
+<body><main><header><div class="eyebrow">Rocq Readable · specification reference</div>
+<nav aria-label="Project"><a href="../index.html">Home</a> · <a href="../declarations.html">Index</a></nav>
+<h1>rocq/swap.v</h1><p class="meta">3 declarations · proofs omitted</p>
+<p class="notice">Indentation determines multiline scope. Brackets delimit scope only within a line.
+WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
+Rendering rules are presentation choices reviewed by their authors.</p></header><section class="panel dependency-diagram" data-scope="file" aria-labelledby="graph-heading">
+<h2 id="graph-heading">Dependency graph</h2>
+<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry.</p>
+<div class="graph-controls">
+<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="focus">Focused declaration</option></select></label>
+<label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
+<datalist id="graph-choices"></datalist>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+</div>
+<p id="graph-status" class="meta" aria-live="polite"></p>
+<div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
+<div class="graph-legend"><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
+<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
+<noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
+</section><script id="dependency-data" type="application/json">{"cjr.examples.swap.swap_aliased": {"dependencies": [], "file": "rocq/swap.v", "href": "#symbol-cbc86e02fe605145a735add2", "kind": "lemma", "label": "cjr.examples.swap.swap_aliased", "name": "swap_aliased"}, "cjr.examples.swap.swap_at": {"dependencies": [], "file": "rocq/swap.v", "href": "#symbol-462f8c16e61729f6da12efc8", "kind": "definition", "label": "cjr.examples.swap.swap_at", "name": "swap_at"}, "cjr.examples.swap.swap_wp": {"dependencies": ["cjr.examples.swap.swap_at"], "file": "rocq/swap.v", "href": "#symbol-30a2468dce5ab6dd9d6f109c", "kind": "lemma", "label": "cjr.examples.swap.swap_wp", "name": "swap_wp"}}</script><script>
+(() => {
+  const data = JSON.parse(document.getElementById('dependency-data').textContent);
+  const ids = Object.keys(data).sort();
+  const svg = document.getElementById('dependency-svg');
+  const mode = document.getElementById('graph-view');
+  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const search = document.getElementById('graph-focus');
+  const status = document.getElementById('graph-status');
+  const choices = document.getElementById('graph-choices');
+  const reverse = Object.fromEntries(ids.map(id => [id, []]));
+  for (const id of ids) {
+    for (const dependency of data[id].dependencies) reverse[dependency].push(id);
+    const option = document.createElement('option'); option.value = id;
+    option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
+  let focused = null;
+  function element(tag, attrs = {}, text = null) {
+    const node = document.createElementNS(ns, tag);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    if (text !== null) node.textContent = text;
+    return node;
+  }
+  function applyViewport() {
+    svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+  }
+  function fit() {
+    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
+    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
+    const h = w / aspect;
+    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    applyViewport();
+  }
+  function zoom(factor, x = .5, y = .5) {
+    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    viewport.x += viewport.width * (1 - factor) * x;
+    viewport.y += viewport.height * (1 - factor) * y;
+    viewport.width *= factor; viewport.height *= factor; applyViewport();
+  }
+  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  function layout(nodes, edges) {
+    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
+    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
+    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
+    const seen = new Set(), order = [];
+    for (const root of keys) {
+      const stack = [[root, false]];
+      while (stack.length) {
+        const [id, finished] = stack.pop();
+        if (finished) order.push(id);
+        else if (!seen.has(id)) {
+          seen.add(id); stack.push([id, true]);
+          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+        }
+      }
+    }
+    const component = new Map(), groups = [];
+    for (const root of order.reverse()) {
+      if (component.has(root)) continue;
+      const index = groups.length, members = [], stack = [root];
+      while (stack.length) {
+        const id = stack.pop();
+        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
+      }
+      groups.push(members.sort());
+    }
+    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
+    for (const [a, b] of edges) {
+      const from = component.get(a), to = component.get(b);
+      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
+    }
+    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
+    for (let next = 0; next < queue.length; next++) {
+      const from = queue[next];
+      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
+    }
+    const columns = [];
+    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
+    // A few barycentric sweeps reduce crossings without nondeterministic forces.
+    const positions = new Map();
+    for (let pass = 0; pass < 4; pass++) {
+      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
+      const sequence = pass % 2 ? [...columns].reverse() : columns;
+      for (const column of sequence) {
+        const neighbors = pass % 2 ? adjacency : incoming;
+        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
+        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
+      }
+    }
+    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
+    columns.forEach((column, col) => column.forEach((id, row) => {
+      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
+    }));
+    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+  }
+  function sourceColor(file) {
+    const parts = file.split('/');
+    if (parts.includes('spec')) return ['#edf5fc', '#bed8ee'];
+    if (parts.includes('algorithm')) return ['#edf8f4', '#b6dfd4'];
+    if (parts.includes('proof')) return ['#f5f0fb', '#d7c8ec'];
+    return ['#f3f6f8', '#d7dfe5'];
+  }
+  function declarationColor(kind) {
+    if (['lemma','theorem','corollary','proposition','fact','remark','example'].includes(kind)) return ['#f5f0fb','#d7c8ec'];
+    if (['inductive','coinductive','record','structure','class','variant','finite','cofinite','bifinite'].includes(kind)) return ['#edf5fc','#bed8ee'];
+    if (['definition','let','recursive function','corecursive function','instance'].includes(kind)) return ['#edf8f4','#b6dfd4'];
+    return ['#f3f6f8','#d7dfe5'];
+  }
+  function labelLines(label) {
+    const limit = mode.value === 'files' ? 18 : 29;
+    if (label.length <= limit) return [label];
+    const split = Math.max(label.lastIndexOf('_', limit - 1), label.lastIndexOf('/', limit - 1), limit - 8);
+    const remainder = label.slice(split);
+    return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
+  }
+  function render() {
+    let nodes = {}, edges = [], counts = new Map();
+    width = mode.value === 'files' ? 156 : local ? 220 : 244;
+    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
+    if (mode.value === 'files') {
+      for (const id of ids) {
+        const d = data[id], file = d.file;
+        if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
+        nodes[file].count++;
+        for (const dependency of d.dependencies) {
+          const other = data[dependency].file;
+          if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
+        }
+      }
+      edges = [...counts.keys()].map(key => JSON.parse(key));
+    } else {
+      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      for (const id of selected) nodes[id] = data[id];
+      for (const id of selected) for (const dependency of data[id].dependencies) {
+        if (selected.has(dependency)) edges.push([id, dependency]);
+      }
+    }
+    const drawing = layout(nodes, edges);
+    const padding = mode.value === 'files' ? 32 : 80;
+    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
+    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    svg.replaceChildren();
+    svg.setAttribute('tabindex', '0');
+    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
+    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
+    for (const [a, b] of edges) {
+      const from = drawing.points[a], to = drawing.points[b];
+      let d;
+      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
+      else if (to.x > from.x) {
+        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
+        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
+      } else {
+        const x = Math.max(from.x, to.x) + width + 50;
+        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
+      }
+      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const count = counts.get(JSON.stringify([a,b]));
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+    }
+    for (const [id, node] of Object.entries(nodes)) {
+      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
+      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
+      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
+      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
+      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
+      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      svg.append(link);
+    }
+    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    svg.parentElement.classList.toggle('graph-empty', !ids.length);
+    fit();
+  }
+  search.addEventListener('input', () => {
+    const value = search.value.trim();
+    const matches = ids.filter(id => id === value || data[id].name === value);
+    if (matches.length === 1) { focused = matches[0]; mode.value = 'focus'; render(); }
+    else if (!value) { focused = null; mode.value = local ? 'all' : 'files'; render(); }
+  });
+  mode.addEventListener('change', () => {
+    if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
+    render();
+  });
+  document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
+  document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
+  document.getElementById('graph-fit').addEventListener('click', fit);
+  svg.addEventListener('wheel', event => {
+    event.preventDefault(); const box = svg.getBoundingClientRect();
+    zoom(event.deltaY < 0 ? .9 : 1.1, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height);
+  }, {passive:false});
+  let drag = null;
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
+    drag = {x:event.clientX,y:event.clientY,startX:viewport.x,startY:viewport.y}; svg.setPointerCapture(event.pointerId);
+  });
+  svg.addEventListener('pointermove', event => {
+    if (!drag) return;
+    const scale = viewport.width / svg.clientWidth;
+    viewport.x = drag.startX - (event.clientX - drag.x) * scale;
+    viewport.y = drag.startY - (event.clientY - drag.y) * scale; applyViewport();
+  });
+  for (const type of ['pointerup','pointercancel','lostpointercapture']) svg.addEventListener(type, () => {drag = null;});
+  svg.addEventListener('keydown', event => {
+    if (!['+','=','-','0','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === '+' || event.key === '=') zoom(.8);
+    else if (event.key === '-') zoom(1.25);
+    else if (event.key === '0') fit();
+    else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
+  });
+  new ResizeObserver(fit).observe(svg);
+  render();
+})();
+</script><p class="notice">Incomplete rendering: 4 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-462f8c16e61729f6da12efc8"><h2>swap_at</h2><p class="meta">cjr.examples.swap.swap_at</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition swap_at:
+    parameter(<span id="symbol-462f8c16e61729f6da12efc8-binder-286">l1</span>, <span id="symbol-462f8c16e61729f6da12efc8-binder-289">l2</span>, type(<span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>))
+    type:
+        <span class="external" title="External or unresolved: cjr.lang.expr">expr</span>
+    body:
+        <span class="external" title="External or unresolved: cjr.lang.Let">let </span><span id="symbol-462f8c16e61729f6da12efc8-cangjie-binder-319">t</span><span class="external" title="External or unresolved: cjr.lang.Let"> = </span>(<span class="external" title="External or unresolved: cjr.lang.Load">unsafe {</span><span class="external" title="External or unresolved: cjr.lang.Load"> (</span><span class="external" title="External or unresolved: cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</span>(<a href="#symbol-462f8c16e61729f6da12efc8-binder-286">l1</a>)<span class="external" title="External or unresolved: cjr.lang.Load">).read() }</span>)
+        <span class="external" title="External or unresolved: cjr.lang.Store">unsafe {</span><span class="external" title="External or unresolved: cjr.lang.Store"> (</span><span class="external" title="External or unresolved: cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</span>(<a href="#symbol-462f8c16e61729f6da12efc8-binder-286">l1</a>)<span class="external" title="External or unresolved: cjr.lang.Store">).write(</span>
+            (
+                <span class="external" title="External or unresolved: cjr.lang.Load">unsafe {</span><span class="external" title="External or unresolved: cjr.lang.Load"> (</span><span class="external" title="External or unresolved: cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</span>(<a href="#symbol-462f8c16e61729f6da12efc8-binder-289">l2</a>)<span class="external" title="External or unresolved: cjr.lang.Load">).read() }</span>
+            )
+        <span class="external" title="External or unresolved: cjr.lang.Store">) }</span>
+        <span class="external" title="External or unresolved: cjr.lang.Store">unsafe {</span><span class="external" title="External or unresolved: cjr.lang.Store"> (</span><span class="external" title="External or unresolved: cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</span>(<a href="#symbol-462f8c16e61729f6da12efc8-binder-289">l2</a>)<span class="external" title="External or unresolved: cjr.lang.Store">).write(</span><a href="#symbol-462f8c16e61729f6da12efc8-cangjie-binder-319">t</a><span class="external" title="External or unresolved: cjr.lang.Store">) }</span></pre><section aria-label="Direct dependencies"><h3>Depends on</h3><p class="meta">No resolved project dependencies.</p></section><details><summary>Original declaration (proof-free)</summary><pre>Definition swap_at (l1 l2 : <span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>) : <span class="external" title="External or unresolved: cjr.lang.expr">expr</span> :=
+  <span class="external" title="External or unresolved: cjr.lang.Let">Let</span> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;t&quot;) (<span class="external" title="External or unresolved: cjr.lang.Load">Load</span> (<span class="external" title="External or unresolved: cjr.lang.Val">Val</span> (<span class="external" title="External or unresolved: cjr.lang.LitV">LitV</span> (<span class="external" title="External or unresolved: cjr.lang.LitPtr">LitPtr</span> <a href="#symbol-462f8c16e61729f6da12efc8-binder-286">l1</a>))))
+    (<span class="external" title="External or unresolved: cjr.lang.Seq">Seq</span>
+      (<span class="external" title="External or unresolved: cjr.lang.Store">Store</span> (<span class="external" title="External or unresolved: cjr.lang.Val">Val</span> (<span class="external" title="External or unresolved: cjr.lang.LitV">LitV</span> (<span class="external" title="External or unresolved: cjr.lang.LitPtr">LitPtr</span> <a href="#symbol-462f8c16e61729f6da12efc8-binder-286">l1</a>))) (<span class="external" title="External or unresolved: cjr.lang.Load">Load</span> (<span class="external" title="External or unresolved: cjr.lang.Val">Val</span> (<span class="external" title="External or unresolved: cjr.lang.LitV">LitV</span> (<span class="external" title="External or unresolved: cjr.lang.LitPtr">LitPtr</span> <a href="#symbol-462f8c16e61729f6da12efc8-binder-289">l2</a>)))))
+      (<span class="external" title="External or unresolved: cjr.lang.Store">Store</span> (<span class="external" title="External or unresolved: cjr.lang.Val">Val</span> (<span class="external" title="External or unresolved: cjr.lang.LitV">LitV</span> (<span class="external" title="External or unresolved: cjr.lang.LitPtr">LitPtr</span> <a href="#symbol-462f8c16e61729f6da12efc8-binder-289">l2</a>))) (<span class="external" title="External or unresolved: cjr.lang.Var">Var</span> &quot;t&quot;))).</pre></details></article><article id="symbol-30a2468dce5ab6dd9d6f109c"><h2>swap_wp</h2><p class="meta">cjr.examples.swap.swap_wp</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma swap_wp:
+    typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: cjr.primitive_laws.cjrGS">cjrGS</span>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+    typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span>(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span>, <span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</span>, <span id="symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</span>, type(<span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>))
+    parameter(<span id="symbol-30a2468dce5ab6dd9d6f109c-binder-550">v1</span>, type(_ (inferred)))
+    parameter(<span id="symbol-30a2468dce5ab6dd9d6f109c-binder-553">v2</span>, type(_ (inferred)))
+    statement:
+        <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x">consuming_implies</span>:
+            <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span>(<a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a>), <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-550">v1</a>)
+            <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;-∗&#x27;_x">consuming_implies</span>:
+                <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span>(<a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a>), <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-553">v2</a>)
+                <span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">wp_partial</span>:
+                    <a href="#symbol-462f8c16e61729f6da12efc8" title="cjr.examples.swap.swap_at">swap_at</a>(<a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a>, <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a>)
+                    post binder(_)
+                    postcondition:
+                        <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x">separately</span>:
+                            <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span>(<a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a>), <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-553">v2</a>)
+                            <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span>(<a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a>), <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-550">v1</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="swap.html#symbol-462f8c16e61729f6da12efc8">cjr.examples.swap.swap_at</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma swap_wp `{!<span class="external" title="External or unresolved: cjr.primitive_laws.cjrGS">cjrGS</span> Σ} `{!<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span> <span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span> Σ} (l1 l2 : <span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>) v1 v2 :
+  <span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-550">v1</a><span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x"> -∗ </span><span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-553">v2</a><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;-∗&#x27;_x"> -∗
+  </span><span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">WP </span><a href="#symbol-462f8c16e61729f6da12efc8" title="cjr.examples.swap.swap_at">swap_at</a> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a><span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;"> {{ </span>_<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">, </span><span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-539">l1</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-553">v2</a><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x"> ∗ </span><span class="external" title="External or unresolved: cjr.lang.RawId">RawId</span> <a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-542">l2</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-30a2468dce5ab6dd9d6f109c-binder-550">v1</a><span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;"> }}</span>.</pre></details></article><article id="symbol-cbc86e02fe605145a735add2"><h2>swap_aliased</h2><p class="meta">cjr.examples.swap.swap_aliased</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma swap_aliased:
+    typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: cjr.primitive_laws.cjrGS">cjrGS</span>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-cbc86e02fe605145a735add2-binder-1293">l</span>, type(<span class="external" title="External or unresolved: cjr.lang.raw_id">raw_id</span>))
+    parameter(<span id="symbol-cbc86e02fe605145a735add2-binder-1305">v1</span>, type(_ (inferred)))
+    parameter(<span id="symbol-cbc86e02fe605145a735add2-binder-1308">v2</span>, type(_ (inferred)))
+    statement:
+        <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x">consuming_implies</span>:
+            <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<a href="#symbol-cbc86e02fe605145a735add2-binder-1293">l</a>, <a href="#symbol-cbc86e02fe605145a735add2-binder-1305">v1</a>)
+            <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;-∗&#x27;_x">consuming_implies</span>:
+                <span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</span>(<a href="#symbol-cbc86e02fe605145a735add2-binder-1293">l</a>, <a href="#symbol-cbc86e02fe605145a735add2-binder-1308">v2</a>)
+                <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;False&#x27;">false_proposition</span></pre><section aria-label="Direct dependencies"><h3>Depends on</h3><p class="meta">No resolved project dependencies.</p></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma swap_aliased `{!<span class="external" title="External or unresolved: cjr.primitive_laws.cjrGS">cjrGS</span> Σ} (l : <span class="external" title="External or unresolved: cjr.lang.raw_id">raw_id</span>) v1 v2 :
+  <a href="#symbol-cbc86e02fe605145a735add2-binder-1293">l</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-cbc86e02fe605145a735add2-binder-1305">v1</a><span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x"> -∗ </span><a href="#symbol-cbc86e02fe605145a735add2-binder-1293">l</a><span class="external" title="External or unresolved: cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </span><a href="#symbol-cbc86e02fe605145a735add2-binder-1308">v2</a><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;-∗&#x27;_x"> -∗ </span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;False&#x27;">False</span>.</pre></details></article></main></body></html>

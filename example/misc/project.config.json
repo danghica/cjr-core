@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "docs": "docs/rocq",
+    "documentation": "docs/metadata.json",
+    "extracted": "extracted",
+    "renderer": "docs/rocq/report.json",
+    "test_report": "test/report.html",
+    "tests": "test/results/report.json"
+  },
+  "css": "docs/report.css",
+  "declaration_groups": [
+    {
+      "name": "Definitions and lemmas",
+      "pattern": ".*"
+    }
+  ],
+  "documentation_metadata": "docs/metadata.json",
+  "index": "index.html",
+  "link_check": "docs/link-check.json",
+  "links": [
+    {
+      "label": "Rendered Rocq and dependency diagrams",
+      "path": "docs/rocq/index.html"
+    },
+    {
+      "label": "Historical test results",
+      "path": "test/history.md"
+    }
+  ],
+  "name": "misc",
+  "title": "misc specifications and results"
+}

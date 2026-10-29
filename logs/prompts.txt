@@ -1,0 +1,983 @@
+[2026-10-09T07:44:05+00:00]
+lets add two small instrumentations: 1. the output of the make verify should be logged and committed to github.
+
+[2026-10-09T07:44:05+00:00]
+2. log my prompt in a text file with a time stamp.
+
+[2026-10-09T07:48:59+00:00]
+push everything to github
+
+[2026-10-09T07:53:08+00:00]
+in what directory is the galina printer that extracts cangjie?
+
+[2026-10-10T05:56:27+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Deterministic Rocq-to-HTML specification renderer
+
+## Summary
+
+Build a local Python CLI that renders Rocq declarations as programmer-readable pseudocode in static HTML, without proofs or generative methods.
+
+**The project boundary is the current working directory and its subdirectories.** Discover Rocq source files recursively within that boundary. All generated symbol links stay within the generated project documentation; external dependencies and libraries receive no links.
+
+Use coq-lsp 0.2.5+8.20 with the repository’s Coq 8.20.1. [Backend compatibility](https://opam.ocaml.org/packages/coq-lsp/coq-lsp.0.2.5%2B8.20/).
+
+## Discovery, parsing, and linking
+
+- Provide `rocq-readable build --output generated/spec-html`, with optional `--dictionary FILE`, `--learn`, and `--strict`.
+- Retain `rocq-readable render FILE --name DECLARATION --output FILE.html` for individual declarations.
+- Discover all `.v` files recursively, including files absent from `_CoqProject`. Exclude Git metadata and the output directory; do not follow directory symlinks outside the project root.
+- Use `_CoqProject` and `_RocqProject` for parsing configuration and load paths, rather than as source inventories. Apply the nearest ancestor configuration within the project boundary.
+- Use Rocq’s AST and document state for declaration boundaries, imports, scopes, notation, and local context. Earlier proofs may be checked to establish context; proof bodies never appear in output.
+- Render definition bodies, proposition statements, and named type declarations, including constructors and record fields.
+- Generate an index and one HTML page per source file, preserving relative directory structure and declaration order.
+- Build a symbol index before rendering. Assign stable anchors from qualified Rocq identities and link resolved occurrences to their generated declarations, including forward and recursive references.
+- Preserve symbol links through dictionary renaming. Link local variables to their binders without confusing them with global symbols.
+- External symbols remain readable, unlinked text. Do not generate pages for external libraries, dependency URLs, or external source links.
+- Unsupported declarations retain anchors and marked source representations. Report parsing failures per file and continue generating other pages; any failed file makes the build exit unsuccessfully.
+
+## Pseudocode and HTML
+
+- Render applications as calls; definitions as functions or predicates; and matches, conditionals, lambdas, quantifiers, and recursion as structured pseudocode.
+- Multiline scope uses four-space indentation and a colon, with **no enclosing scope brackets**. Dedentation closes the scope.
+- Use scope brackets only when the entire scoped expression occupies one line. Multiline calls use indented arguments without enclosing parentheses.
+- Retain brackets serving a data purpose, such as list literals, indexing, and tuples.
+- Preserve whitespace without automatic line wrapping; use horizontal scrolling on narrow screens.
+- Preserve binder order, explicit types, implicit markers, typeclass assumptions, and surrounding context.
+- Distinguish implication, resource-consuming implication, entailment, conjunction, separating conjunction, pure assertions, persistence, and later modalities.
+- Seed CJR/Iris rendering rules for ownership, block ownership, object fields, weakest preconditions, and big separating conjunctions. Preserve explicit WP options and postcondition binders; explain partial correctness.
+- Preserve unknown calls and mark unsupported syntax using original source. Do not automatically unfold predicates, simplify statements, or remove premises.
+- Produce escaped static HTML with local CSS, relative links, declaration navigation, and expandable proof-free source excerpts. Viewing requires no network connection.
+
+## Dictionary and interaction
+
+- Store a versioned JSON dictionary containing user-authored names and structured rendering templates.
+- Match parsed applications and notation nodes using available identity, scope, and argument-shape information; never perform global textual substitution.
+- Templates specify layout and placeholders rather than raw HTML. The renderer controls indentation, brackets, escaping, and links.
+- Preserve every matched argument and binder. Templates cannot execute code.
+- With `--learn`, show unfamiliar constructs and numbered placeholders, accept a rule, validate it, generate an HTML preview, and save after user acceptance.
+- Support skipping, replacing, and removing rules. Ordinary rendering never changes the dictionary.
+- Structural preservation is tested; arbitrary user wording remains a human-reviewed presentation choice.
+
+## Validation and defaults
+
+- Test representative CJR definitions and contracts, including swap, list, array, and most-frequent.
+- Verify recursive discovery includes unlisted `.v` files and excludes sources outside the directory boundary.
+- Check every generated internal link has a destination. Test cross-file references, recursion, renamed symbols, constructors, fields, and shadowed variables.
+- Confirm external-library occurrences are unlinked and no generated link leaves the documentation.
+- Test indentation-only multiline scopes, bracketed inline scopes, nested layouts, HTML escaping, and narrow-screen presentation.
+- Cover notation scopes, logical distinctions, unknown syntax, malformed dictionaries, backend failures, and dictionary save/reload.
+- Require deterministic output for identical sources, backend, and dictionary. Add a dedicated test target, usage documentation, and visual inspection of representative pages.
+- Initial delivery is CLI-driven static HTML with CJR/Iris vocabulary. Editor integration, browser rule editing, executable transformations, and formally verified rendering equivalence are deferred.
+
+[2026-10-10T07:00:00+00:00]
+push everything to github
+
+[2026-10-10T07:06:58+00:00]
+did you push the generated html docs? 
+
+[2026-10-10T07:36:59+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Verified quadtree example with an HTML report index
+
+## Summary
+
+Create a self-contained integer-point quadtree example under `quadtree/`, reusing the shared CJR/Iris framework and Gallina printer.
+
+The final deliverable is **`quadtree/index.html`**: an offline HTML index linking individual rendered definitions and lemmas, extracted Cangjie files, the test report, and the benchmark report.
+
+## Interface and algorithm
+
+- `make(depth)` creates an empty tree covering `[0, 2^depth) × [0, 2^depth)`, requiring `0 ≤ depth ≤ 30`.
+- `insert(tree, x, y)` returns `true` exactly when it adds a new in-bounds point. Duplicate or out-of-bounds insertion returns `false` and preserves the tree.
+- `contains(tree, x, y)` returns exact membership; out-of-bounds coordinates return `false`.
+- `range(tree, xmin, ymin, xmax, ymax)` returns a duplicate-free linked list of matching points. Rectangles are half-open; empty or reversed rectangles produce empty results. Result order is unspecified.
+- Nodes are empty leaves, single-point leaves, or four-child branches. Quadrants are lower-left, lower-right, upper-left, upper-right; midpoint coordinates belong to upper/right halves.
+- Splitting redistributes the existing point before inserting the new point. Distinct integer points separate before reaching unit cells.
+- Store node bounds and branch midpoints. Calculate subdivision sizes using a verified doubling helper and existing CJR arithmetic.
+- Range traversal prunes disjoint nodes and accumulates results without repeated concatenation.
+
+## Specification and verification
+
+Define a finite-set specification and executable Gallina reference model. For fixed domain \(D\), let \(I_p(S)\) insert an in-bounds point and \(Q_R(S)\) select points inside rectangle \(R\).
+
+Prove:
+
+- **Insertion commutativity:** \(I_p(I_q(S)) = I_q(I_p(S))\), including duplicate and rejected coordinates.
+- **Insertion idempotence:** \(I_p(I_p(S)) = I_p(S)\).
+- **Repeated-query idempotence:** repeated membership calls return the same Boolean; repeated range calls return equivalent duplicate-free lists while preserving the tree’s fields and structure.
+- **Range distribution over union:** \(Q_R(S \cup T) = Q_R(S) \cup Q_R(T)\), for trees sharing a domain. Union is specification-level set union, with overlapping points included once.
+- Subdivision coverage/disjointness, bounded depth, uniqueness, and exact operation semantics.
+
+Equality in insertion laws concerns represented point sets. Query results are compared as sets or permutations; fresh allocations are allowed.
+
+Define Iris ownership predicates for trees and result lists. Prove operation contracts and derive concrete operation-composition theorems validating the algebraic laws. Query contracts preserve the same structural tree model.
+
+Use `Int64` coordinates and query endpoints, and prove stored-bound and midpoint calculations stay within its limits. Verification must pass `coqchk` and assumption auditing without admissions or new axioms.
+
+## Directory layout and final HTML report
+
+Keep example-specific specification, algorithm, proofs, extraction entry point, generated code, tests, benchmarks, results, and documentation under `quadtree/`. Provide local `build`, `verify`, `extract`, `test`, `benchmark`, `docs`, and `report` targets.
+
+Root changes are limited to load paths, build/verification wiring, a README pointer, and required repository logs.
+
+The report index contains:
+
+- **Definitions and lemmas:** grouped by specification/model, algorithm, ownership predicates, correctness, and algebraic laws. Each entry links directly to its declaration anchor in a page generated by `rocq_readable`, with proofs omitted. Build this index from the renderer’s generated declaration navigation and stable anchors.
+- **Extracted Cangjie:** list every generated `.cj` file, linking both the original file and an escaped HTML source view. Extract implementation code directly from verified CJR definitions.
+- **Test report:** link an HTML report containing case results, randomized/algebraic validation summaries, compiler information, source hashes, and execution status.
+- **Benchmark report:** link an HTML report containing workload descriptions, timing summaries, local charts, comparison methodology, machine/compiler metadata, and downloadable raw CSV/JSON results.
+- **Verification summary:** show proof-checking and assumption-audit results, along with renderer errors or unsupported-syntax coverage.
+
+Use relative links, local CSS and chart assets, escaped content, and no network dependencies. All report destinations remain inside `quadtree/`.
+
+`make report` assembles the index after verification, extraction, documentation, tests, and benchmarks. Assembly fails if required artifacts are missing or recorded source hashes are stale. Keep generated HTML, extracted code, and report data in version control.
+
+## Tests, benchmarks, and acceptance
+
+Test empty trees, depth zero, domain boundaries, midpoint routing, duplicates, rejected coordinates, all quadrants, and deeply clustered points. Cover empty, reversed, disjoint, selective, overlapping, and whole-domain rectangles.
+
+Validate algebraic laws on the unchanged extracted code:
+
+- Insert point pairs in both orders and compare complete contents and membership.
+- Repeat queries and check equivalent results and unchanged tree contents.
+- Build trees representing \(S\), \(T\), and \(S \cup T\), then check range distribution with deduplicated result sets.
+- Run seeded randomized operation sequences and insertion-order permutations against an independent flat-set oracle.
+
+Compile and run using Cangjie 1.0.5, with configurable compiler and SDK paths.
+
+Benchmark extracted CJR against an independent native Cangjie quadtree with identical semantics and subdivision policy, plus a flat collection using hash-indexed membership and range scanning. Use uniform, clustered, and deeply coincident-prefix datasets at 256, 4,096, and 16,384 unique points. Measure construction/insertion, membership hits/misses, and empty, selective, broad, and whole-domain queries.
+
+Use two warmups, calibration toward 20 ms batches, seven trials across three processes, rotating implementation order, and allocation-aware repetition limits. Validate complete results outside timing and consume checked checksums inside measured batches. Save raw observations, medians/IQR, source hashes, compiler flags, machine metadata, and charts.
+
+Acceptance requires completed functional and algebraic proofs, reproducible extraction, passing runtime tests, measured benchmarks, and a complete HTML index whose file links and declaration anchors all resolve. Visually inspect the index and representative linked pages at desktop and narrow widths.
+
+Initial scope defers deletion, root expansion, and an executable union API.
+
+[2026-10-10T08:46:06+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Verified quadtree example with an HTML report index
+
+## Summary
+
+Create a self-contained integer-point quadtree example under `quadtree/`, reusing the shared CJR/Iris framework and Gallina printer.
+
+The final deliverable is **`quadtree/index.html`**: an offline HTML index linking individual rendered definitions and lemmas, extracted Cangjie files, the test report, and the benchmark report.
+
+## Interface and algorithm
+
+- `make(depth)` creates an empty tree covering `[0, 2^depth) × [0, 2^depth)`, requiring `0 ≤ depth ≤ 30`.
+- `insert(tree, x, y)` returns `true` exactly when it adds a new in-bounds point. Duplicate or out-of-bounds insertion returns `false` and preserves the tree.
+- `contains(tree, x, y)` returns exact membership; out-of-bounds coordinates return `false`.
+- `range(tree, xmin, ymin, xmax, ymax)` returns a duplicate-free linked list of matching points. Rectangles are half-open; empty or reversed rectangles produce empty results. Result order is unspecified.
+- Nodes are empty leaves, single-point leaves, or four-child branches. Quadrants are lower-left, lower-right, upper-left, upper-right; midpoint coordinates belong to upper/right halves.
+- Splitting redistributes the existing point before inserting the new point. Distinct integer points separate before reaching unit cells.
+- Store node bounds and branch midpoints. Calculate subdivision sizes using a verified doubling helper and existing CJR arithmetic.
+- Range traversal prunes disjoint nodes and accumulates results without repeated list concatenation.
+
+## Specification and verification
+
+Define a finite-set specification and executable Gallina reference model. For fixed domain D, let Iₚ(S) insert an in-bounds point and Qᵣ(S) select points inside rectangle R.
+
+Prove:
+
+- **Insertion commutativity:** Iₚ(Iᵩ(S)) = Iᵩ(Iₚ(S)), including duplicate and rejected coordinates.
+- **Insertion idempotence:** Iₚ(Iₚ(S)) = Iₚ(S).
+- **Repeated-query idempotence:** repeated membership calls return the same Boolean; repeated range calls return equivalent duplicate-free lists while preserving the tree’s fields and structure.
+- **Range distribution over union:** Qᵣ(S ∪ T) = Qᵣ(S) ∪ Qᵣ(T), for trees sharing a domain. Union is specification-level set union, with overlapping points included once.
+- Subdivision coverage/disjointness, bounded depth, uniqueness, and exact operation semantics.
+
+Equality in insertion laws concerns represented point sets. Query results are compared as sets or permutations; fresh allocations are allowed.
+
+Define Iris ownership predicates for trees and result lists. Prove constructor, insertion, membership, and range-query contracts, then derive operation-composition theorems connecting the concrete programs to the algebraic laws. Query contracts preserve the same structural tree model.
+
+Coordinates and query endpoints use `Int64`; prove stored-bound and midpoint calculations stay within its limits under the depth restriction. All proofs must close without admissions or new axioms.
+
+## Directory layout and build integration
+
+- Keep example-specific files under `quadtree/`, organized into `spec`, `algorithm`, `proof`, `extracted`, `test`, `benchmark`, `docs`, and `results`, with local configuration, Makefile, and README.
+- Generate Cangjie directly from verified CJR definitions using a local extraction entry point and the shared Gallina printer. Do not hand-edit generated implementation code.
+- Provide local `build`, `verify`, `extract`, `test`, `benchmark`, `docs`, and `report` targets.
+- Root changes are limited to load paths, build/verification wiring, a README pointer, and required repository logs.
+- Verification includes `coqchk`, assumption auditing, and checks against admissions or axioms.
+- Generate quadtree-specific offline HTML inside `quadtree/docs/`, with links confined to that documentation.
+- Initial scope defers deletion, root expansion, and an executable union API.
+
+## Tests, benchmarks, and acceptance
+
+Test empty trees, depth zero, domain boundaries, midpoint routing, duplicates, rejected coordinates, all quadrants, and deeply clustered points. Test empty, reversed, disjoint, selective, overlapping, and whole-domain rectangles.
+
+Validate algebraic laws on the unchanged extracted code:
+
+- Insert point pairs in both orders and compare complete contents and membership.
+- Repeat queries and check equivalent results and unchanged tree contents.
+- Build trees for S, T, and S ∪ T, then check range distribution using deduplicated result sets.
+- Run seeded randomized operation sequences and insertion-order permutations against an independent flat-set oracle.
+
+Compile and run using Cangjie 1.0.5, exposing compiler and SDK paths as runner options.
+
+Benchmark extracted CJR against an independent native Cangjie quadtree with identical semantics and subdivision policy, plus a flat collection using hash-indexed membership and range scanning. Use uniform, clustered, and deeply coincident-prefix datasets at 256, 4,096, and 16,384 unique points. Measure construction/insertion, membership hits/misses, and empty, selective, broad, and whole-domain range queries.
+
+Use two warmups, calibration toward 20 ms batches, seven trials across three processes, rotating implementation order, and allocation-aware repetition limits. Validate full results outside timing and consume checked checksums inside measured batches. Save raw observations, medians/IQR, source hashes, compiler flags, machine metadata, and charts.
+
+Acceptance requires completed functional and algebraic proofs, reproducible extraction, passing runtime tests, measured benchmarks, and a complete HTML index whose file links and declaration anchors all resolve. Visually inspect the index and representative linked pages at desktop and narrow widths.
+
+Initial scope defers deletion, root expansion, and an executable union API.
+
+[2026-10-10T13:18:56+00:00]
+push eerything including fnal report
+
+[2026-10-12T02:25:23+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Make documentation and benchmark tooling project-wide
+
+## Summary
+
+Move quadtree’s documentation and benchmark *tooling* into reusable project-level tools. Keep quadtree-specific proofs, extracted code, benchmark workloads and baselines, test cases, and report content in `quadtree/`. Migrate the existing root CJR benchmarks onto the same benchmark pipeline.
+
+## Implementation changes
+
+- Reuse `rocq-readable` as the shared Rocq renderer. Move report assembly, metadata generation, HTML source views, chart generation, and local-link checking into shared tools under `tools/`; remove the quadtree-specific scripts that perform these jobs.
+- Add project-level configuration for each example’s source files, artifact locations, report sections, and benchmark workloads. Shared tools read this configuration and write each example’s outputs within its directory.
+- Generalize the benchmark runner and reporting pipeline around a common measurement and results format. Adapt the existing CJR benchmarks and quadtree benchmark harnesses to it; keep benchmark implementations and workload descriptions with their respective examples.
+- Update root and example Make targets and documentation to invoke the shared tools. Preserve `quadtree/index.html` and its linked reports as the generated deliverable.
+
+## Test plan
+
+- Run both benchmark suites through the shared runner and check that each produces complete results and reports.
+- Build documentation and reports for both examples; verify declaration links, local assets, and generated source links resolve and stay within their project directories.
+- Run the existing renderer, verification, extraction, and runtime checks to catch regressions.
+
+## Assumptions
+
+- Benchmark protocols may differ by example when declared in project configuration, while the runner, result format, chart/report generation, and validation tools remain shared.
+- Quadtree’s report content and benchmark workloads remain example-specific; their generation mechanisms do not.
+
+[2026-10-12T03:16:54+00:00]
+we are going to work just on rock_readable now. the rendered definitions should be presented not only as a simple bullet list but as an indented bullet list with each list having a sublist of the definitions or lemmas it depends on. one definition or lemma can be a dependent of several other definitions or lemmas. the simple list should be on a separate page called Index reachable from the main page. additionally: each rendered definition or lemma should also include a plain english explanatory description obtain by querying an LLM model. 
+
+[2026-10-12T03:16:54+00:00]
+execute the plan then
+
+[2026-10-12T03:16:55+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Rocq Readable dependency navigation and English explanations
+
+## Summary
+
+Work only on `rocq-readable` and its documentation/tests. Add a nested dependency homepage, a separate flat **Index** page, and cached English explanations generated through the installed Codex CLI using each user’s own login.
+
+## Navigation and dependencies
+
+- Keep `index.html` as the homepage; move the flat declaration inventory to `declarations.html`, titled **Index**, with navigation between both pages and source pages.
+- Show expandable indented bullets on the homepage. Each entry links to its existing rendered declaration; its children are the declarations it depends on.
+- Include references from declaration types, bodies, binders, context, and proofs. Preserve proof omission in rendered pages.
+- Track declaration and proof ranges using Rocq AST spans. Resolve references using fresh `.glob` data and the existing LSP fallback, extended to proof references. Never infer dependencies from name spelling alone.
+- Normalize constructor/field dependencies to their containing rendered declaration. Deduplicate edges within a parent, while allowing shared dependencies under multiple parents.
+- Start with declarations having no dependents; include isolated entries and otherwise unreachable cyclic groups. Sort by qualified identity, stop expansion when a node repeats along the current path, and mark recursive references.
+- Expand branches lazily using an embedded graph and local JavaScript to avoid exponentially large HTML. Provide direct dependency links on declaration articles for access without JavaScript.
+- Record unresolved or incomplete dependency information in `report.json` and show a coverage notice.
+
+## English explanations
+
+- Add `--explanations auto|offline`, defaulting to `auto`, plus `--llm-model`, `--llm-timeout` (default 120 seconds), and `--explanation-cache`.
+- In automatic mode, reuse valid cached explanations and invoke `codex exec` for missing or changed entries when available. Offline mode uses only the cache.
+- Use saved CLI authentication and its configured model unless explicitly overridden. Do not read, copy, or store authentication credentials.
+- Run explanation requests sequentially, in an isolated temporary directory, with a read-only sandbox, no approval requests, and ephemeral sessions. Pass input through stdin using subprocess argument arrays.
+- Supply the proof-free declaration, rendered text, context, and direct dependency declarations. Request a short plain-English paragraph explaining meaning and important premises, including partial-correctness distinctions where relevant.
+- Validate structured responses and render descriptions as escaped plain text beneath each declaration heading, labelled **AI-generated explanation**.
+- Store a versioned JSON cache under the output directory by default. Key entries by declaration identity and a hash of supplied context, prompt version, and model selection; write cache updates atomically.
+- On unavailable explanations, render an explicit notice and record the reason. Failed attempted generation returns a nonzero status after producing the pages. Offline misses and an absent CLI remain reported omissions.
+- Keep credentials and raw CLI diagnostics out of generated artifacts. Document that model requests send declaration text and committed caches publish their explanation content.
+
+## Tests and acceptance
+
+- Test cross-file and proof-only dependencies, shared children, local shadowing, constructor/field ownership, disconnected entries, cycles, and incomplete resolution.
+- Audit all relative links and unique anchors; verify the homepage hierarchy and Index inventory cover every rendered declaration.
+- Mock Codex calls to test cache reuse/invalidation, offline operation, timeouts, malformed responses, HTML escaping, and partial failures without network access.
+- Preserve standalone rendering: include an explanation without modifying unrelated project pages; report unavailable proof dependency coverage when parsing stops before the proof.
+- Run `make readable-test` and inspect representative desktop/mobile output. Verify regeneration with unchanged cached inputs is deterministic.
+
+## Assumptions
+
+- “rock_readable” refers to the existing `rocq-readable` tool.
+- Codex CLI access replaces the initially discussed direct API backend.
+- Existing unrelated workspace changes remain untouched.
+- Prompt logging resumes when implementation is permitted, using exact unrecorded prompts and actual recording times.
+
+[2026-10-12T03:40:25+00:00]
+run the rocq_readable tool on the quad treee example
+
+[2026-10-12T05:40:37+00:00]
+the dependency hierarchy should also have a nicely rendered graph diagram of the dependencies
+
+[2026-10-12T05:56:02+00:00]
+run it on quad tree
+
+[2026-10-12T06:12:20+00:00]
+each file e.g. spec/model.v should also have a graph diagram at the top of the dependencies between included declarations and lemmas
+
+[2026-10-12T06:37:26+00:00]
+i want to change the directory structure. at the top there should be an example directory that should contain the following subdirectories: quadtree, array_list, list, list_rev, qsort, most_frequent, and misc (containing the small examples). each such directory should include all related files (definitions, spec, proofs, generated code, tests, benchmarks, report, rendered rocq files etc)
+
+[2026-10-12T06:37:26+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Organize all examples under `example/`
+
+## Summary
+
+Create nine directories under the singular top-level `example/`: `quadtree`, `array`, `array_list`, `list`, `list_rev`, `qsort`, `hash_map`, `most_frequent`, and `misc`. Move each example’s related assets together while preserving existing Rocq files, import names, and program behavior.
+
+## Directory organization
+
+- Move quadtree wholesale into `example/quadtree/`, preserving its existing internal structure.
+- For other examples, use `rocq/` for existing formal sources, `extracted/` for generated Cangjie and source views, `test/` for runtime tests/results, `benchmark/` for existing benchmarks/results, and `docs/` for rendered Rocq, diagrams, explanation caches, and example-specific documents.
+- Put arithmetic, structs, cells, swap, sum-block, class updates, framing, and vtables in `misc`, grouped within those same folders.
+- Place `hm_tactics.v` and hash-map scratch sources with `hash_map`; place `mf_memory.v` with `most_frequent`. Keep both quicksort implementations and their tests under `qsort`.
+- Give each example a README and local report entry point. Add an `example/index.html` linking all example reports. Do not invent benchmarks or results for examples that lack them.
+
+## Build, tooling, and documentation
+
+- Preserve `cjr.examples.*` and `cjr.quadtree.*` logical names through updated load-path mappings. Update root/local build configurations, installation paths, verification scans, scripts, and test fixtures.
+- Keep shared CJR libraries, tooling, tool tests, logs, and repository-wide documents at the root. Keep the shared printer and aggregate extraction driver with shared extraction tooling; route generated outputs into their owning example directories.
+- Preserve root commands such as `make cj`, `make readable`, `make benchmark`, and quadtree targets, making them dispatch to the relocated assets. Local example commands must resolve sibling dependencies through shared configuration.
+- Generate rendered Rocq pages inside each example, retaining dependency navigation, project and file graphs, declaration links, and cached English explanations. Update shared documentation hashing so it finds dependencies at their new locations.
+- Move example-specific papers and figures into the owning example’s documentation. Update the cross-example tutorial, aggregate reports, README links, and LaTeX inputs.
+- Partition existing combined benchmark measurements by example and rebuild their summaries/reports. Preserve original measurement dates and provenance; record relocation separately. Split historical test reporting similarly without presenting it as newly executed results.
+- Remove obsolete asset locations once references are migrated. Preserve unrelated workspace changes.
+
+## Verification
+
+- Check that every existing example asset has an owner, every configured source exists, and no active configuration references obsolete locations.
+- Run the Rocq build, `make verify`, extraction checks, existing runtime tests, `make readable-test`, and project-tool tests.
+- Compare generated Cangjie against pre-move output; relocation should preserve its contents.
+- Rebuild reports from retained measurements without rerunning timed benchmarks. Audit relative links, anchors, declaration coverage, and graph links.
+- Inspect representative desktop/mobile reports, including quadtree and a relocated example. Confirm unchanged explanation inputs reuse caches and regeneration is deterministic.
+- Rebuild affected papers where the required compiler is available.
+
+## Defaults
+
+- Existing combined definition/specification/proof files remain intact.
+- Shared dependencies are referenced rather than copied between examples.
+- Physical paths change; existing public Rocq import names remain compatible.
+- Prompt logging resumes when implementation is permitted, using exact unrecorded prompts and actual recording times.
+
+[2026-10-12T07:35:22+00:00]
+push to github
+
+[2026-10-12T07:41:09+00:00]
+refresh the rendered docs in the examples for list_rev to add generated english explanations
+
+[2026-10-12T07:57:58+00:00]
+the rocq_readable tool should have some custom syntax stored in an editable tool-global dictionary. to begin with equals(A, B) should be rendered as A=B; arrow(A, B) should be rendered as IF A THEN B; CJR  terms should be rendered as CANGJIE
+
+[2026-10-12T07:57:58+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Editable syntax for `rocq_readable`
+
+## Summary
+
+Extend the existing tool-global `renderings.json` dictionary to support custom syntax, with these defaults:
+
+- Equality: `A=B`.
+- Propositional implication: `IF A THEN B`.
+- Visible CJR expressions: readable Cangjie syntax, retaining symbolic helper references.
+
+## Implementation
+
+- Add an optional `template` field to rendering rules, using numbered placeholders such as `{0}={1}`. Support multiline templates with relative indentation. Preserve existing rules and `--dictionary` behavior.
+- Validate templates as plain text, require every argument exactly once, and reject malformed placeholders. Extend `--learn` to preview and save templates.
+- Render templates through the semantic document tree so argument links, binder anchors, HTML escaping, grouping, and indentation survive substitution. Preserve operator identity on displayed syntax.
+- Add semantic classification for arrows during backend preparation. Use isolated Rocq checks in the available declaration context; apply the implication template only when the arrow is established to be a proposition. Keep `arrow(A, B)` for function types and unclassified arrows, reporting classification gaps.
+- Seed Cangjie templates for literals, variables, calls, operators, bindings, assignments, sequencing, conditionals, loops, and pointer operations. Match resolved CJR identities and notation scopes rather than short names.
+- Use the repository’s existing Cangjie printer as the syntax reference. Add contextual handling for string identifiers and optional binders. Where stack operations, recursive closures, or aggregate layouts cannot be faithfully expressed without extraction metadata, retain a clearly marked CJR form with all arguments.
+- Document template editing, proposition-only implication, and Cangjie coverage.
+
+## Validation
+
+- Test dictionary validation, persistence, learning previews, and compatibility with existing rules.
+- Check exact equality and implication output, nested grouping, multiline formatting, escaping, and preserved links.
+- Test proposition arrows, function types, mixed nesting, and unavailable classification.
+- Exercise CJR constructors and notation in real Rocq declarations, including symbolic arguments and unsupported forms.
+- Run renderer tests and repository verification; render a representative example offline and inspect its HTML.
+
+## Assumptions
+
+- Translate visible syntax without unfolding helper definitions or reconstructing complete programs.
+- Use the existing shared dictionary; no separate configuration store is needed.
+- Keep original-source excerpts in Rocq syntax.
+- During implementation, log unrecorded human prompts using the repository’s logging script. Planning leaves repository files unchanged.
+
+[2026-10-12T08:21:54+00:00]
+refresh the rendered html files in list_rev
+
+[2026-10-12T08:23:53+00:00]
+why are the explanation notices unavailable in list_rev? fix
+
+[2026-10-12T08:34:52+00:00]
+push to github
+
+[2026-10-13T02:34:29+00:00]
+is there a deck of slides somewhere? 
+
+[2026-10-13T02:35:41+00:00]
+can you make a powerpoint-compatible slide deck? don't do it yet
+
+[2026-10-13T02:52:34+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# CJR PowerPoint deck
+
+## Deliverables and design
+
+Create `paper/slides/` containing an editable `cjr.pptx`, JavaScript rebuild source using `@oai/artifact-tool`, required assets, and rebuild instructions. Include speaker notes with explanations and source citations. No PDF deliverable.
+
+Use 28 widescreen slides for a 40–45 minute talk to programmers unfamiliar with formal methods. White backgrounds, restrained blue accents, large readable text, short code excerpts, and editable benchmark charts.
+
+## Slide sequence
+
+Preserve your topic order, expanding sections where needed:
+
+1. Title and central question: trusting agent-generated code.
+2. Trust and review as a bottleneck in agentic programming.
+3. Post-generation verification versus constructing verified programs.
+4. CompCert: an extracted, verified compiler and its semantic preservation theorem.
+5. CJR’s purpose: an algorithmically realistic Cangjie fragment.
+6. Supported features and deliberately limited convenience features.
+7. CJR syntax, with a small concrete program.
+8. Machine state and small-step semantics.
+9. Rocq, formerly Coq: proof terms and kernel checking.
+10. Rocq achievements: CompCert, Four Colour, and Feit–Thompson.
+11. Escape hatches and audits: admissions, axioms, dependency assumptions, and independent checking.
+12. Separation logic: ownership and separating conjunction.
+13. Local reasoning and the frame rule.
+14. Iris: mechanized logic, research profile, and representative applications.
+15. CJR adequacy: formal statement and plain-English interpretation.
+16. Guarantee boundaries: partial correctness, specifications, printer, compiler, and runtime.
+17. `cell.v`: allocation, write, read, and free.
+18. Cell proof: ownership at each step and the resulting guarantee.
+19. List representation and operation contracts.
+20. List benchmarks.
+21. In-place reversal, invariant, and double-reversal theorem.
+22. Reversal benchmarks.
+23. Hash map: probing, tombstones, growth, and contracts.
+24. Hash map benchmarks, including collision behaviour.
+25. Quadtree: subdivision, ownership, insertion, and range-query contracts.
+26. Quadtree benchmarks across uniform, clustered, and shared-prefix datasets.
+27. Rocq-readable: purpose and side-by-side source/rendered contract.
+28. Rocq-readable: dependency navigation, English explanations, and interpretation limits.
+
+## Evidence and benchmark work
+
+- Use current repository definitions, proofs, extracted programs, and recorded results as primary evidence. Verify external historical claims against authoritative sources and cite them in notes.
+- Explain CompCert’s success precisely: Rocq extraction produces the compiler implementation; semantic preservation establishes compiler correctness. Distinguish this from CJR’s syntax-directed emission.
+- Explain that kernel checking alone permits declared assumptions. Describe the repository’s actual assumption audits and independent checks without claiming they certify specification intent or target-code equivalence.
+- Reuse existing list, hash map, and quadtree measurements, retaining dates, baselines, units, uncertainty, and provenance. Label historical measurements.
+- Add a reversal benchmark under `example/list_rev/benchmark/`, integrated with the existing benchmark/report workflow. Compare extracted CJR reversal with an independently written native implementation of the equivalent singly linked algorithm.
+- Measure reversal at 256, 4096, and 16384 elements using three processes and seven trials per process, warmup and calibration, rotating implementation order, and median/IQR reporting. Build lists outside timing; repeatedly reverse existing lists and consume a checksum. Validate full sequence reversal and double reversal outside timing.
+- Keep all factual qualifications that affect interpretation, including differences between baselines and proof coverage.
+
+## Validation and acceptance
+
+- Check reversal correctness for empty, singleton, duplicate-containing, and larger lists. Run the benchmark and retain raw results and machine/compiler metadata.
+- Run relevant repository checks, including `make verify`, after benchmark integration.
+- Render and inspect all 28 slides for clipping, overlap, readable code, equations, chart labels, and consistency.
+- Confirm text and charts remain editable and speaker notes survive PPTX export.
+- Rebuild the deck from its saved source and confirm every requested topic appears in order.
+- Make no commits or pushes. Defer repository mutations, including prompt-log updates, until execution mode permits them.
+
+[2026-10-13T03:18:19+00:00]
+commit and push
+
+[2026-10-13T06:00:47+00:00]
+is this correct cangjie: let frozen = 1
+var n = 3
+while (0 < n) {
+    n = n - 1
+}
+if (n <= 0) { 0 } else { n }
+
+
+[2026-10-13T06:03:00+00:00]
+whats the rocq cjr syntax for this fragment? 
+
+[2026-10-13T06:09:10+00:00]
+does cjr need a model of garbage collection?
+
+[2026-10-13T06:09:56+00:00]
+does cangjie have byte-level layout
+
+[2026-10-13T06:14:40+00:00]
+what about the coq checker flags, where are they defined?
+
+[2026-10-13T06:16:16+00:00]
+what is -q ?
+
+[2026-10-13T06:16:55+00:00]
+explain thiese flags: 
+
+[2026-10-13T06:18:54+00:00]
+what is -arg -w
+
+[2026-10-13T06:20:03+00:00]
+what is verify_assumptions.v
+
+[2026-10-13T07:01:43+00:00]
+refresh the extracted cell.html definitions including the LLM generated explanations. dont do anything else
+
+[2026-10-13T07:15:23+00:00]
+write this in algebraic notation: Lemma cons_then_tail_spec (x : Z) xs (p : val_cjr) :
+    is_list xs p -∗
+    WP cons_then_tail x p {{ v, ⌜ v = p ⌝ ∗ is_list xs v }}.
+
+[2026-10-13T07:24:28+00:00]
+what file is it in? 
+
+[2026-10-13T07:24:50+00:00]
+how about the rocq definition fo the data strcuture
+
+[2026-10-13T07:59:35+00:00]
+what is the native implementation of quadtrees used for the benchmarks?
+
+[2026-10-14T02:24:37+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Verified AES-IGE with proved algebraic properties
+
+## Summary
+
+Create `example/aes_ige` containing AES-128/192/256 encryption and decryption, verified IGE processing over separate buffers, extracted Cangjie, tests, benchmarks, and an offline report. Prove both implementation correctness and the key algebraic properties of the specification.
+
+## Implementation and interfaces
+
+- Model AES according to FIPS 197, using byte-valued integers, column-major state layout, concrete key expansion, and 10/12/14-round cipher loops.
+- Add integer XOR and bitwise AND primitives to CJR, including semantics, WP rules, notation, extraction support, and correspondence tests. Use addition and masking for byte doubling.
+- Implement the AES transformations and their inverses. Prove the S-box tables agree with the finite-field specification.
+- Expose key expansion into a caller-owned 240-byte schedule buffer, returning the round count or zero for invalid key length. Provide block encryption/decryption and IGE encryption/decryption using reusable caller-owned workspace.
+- Require disjoint input/output, IV, schedule, and workspace buffers. Preserve input and schedule. Reject invalid round counts and negative or non-block-aligned message lengths before modifying output or IV.
+- Use a mutable 32-byte IV ordered as previous ciphertext followed by previous plaintext. Empty input succeeds and preserves the IV. Exclude padding, in-place operation, and bidirectional IGE.
+
+## Specification and algebraic proofs
+
+State and prove these properties independently of the embedded implementation, for every supported key size and valid input:
+
+- **AES inverse laws:** `decrypt(k, encrypt(k, b)) = b` and `encrypt(k, decrypt(k, b)) = b`.
+- **AES bijectivity:** derive injectivity and surjectivity of encryption and decryption from the inverse laws.
+- **Transformation inverse laws:** prove both compositions for SubBytes/InvSubBytes, ShiftRows/InvShiftRows, and MixColumns/InvMixColumns. Prove applying AddRoundKey twice with the same round key is identity.
+- **Byte-XOR laws:** prove associativity, commutativity, zero identity, self-cancellation, and byte-range closure, supporting AES and IGE cancellation arguments.
+- **IGE inverse laws:** encryption followed by decryption, and decryption followed by encryption, recover the original message when both operations start from the same initial IV. Prove that the corresponding final IVs agree.
+- **IGE bijectivity:** for a fixed key, initial IV, and block count, derive injectivity and surjectivity on messages of that length.
+- **Length and range preservation:** AES preserves block size; IGE preserves message length; outputs and final IV remain byte-valued.
+- **Empty-message identity:** both IGE directions return the empty message and unchanged IV.
+- **Chunk composition:** processing `xs ++ ys` equals processing `xs`, then `ys` with the returned IV, for both encryption and decryption. Prove equality of concatenated outputs and final IV.
+
+Define pure IGE operations as returning `(output, finalIV)` so the stateful laws are explicit. Round-trip laws reset to the original IV before the inverse operation; they do not reuse the mutated final IV.
+
+## Implementation proofs and integration
+
+- Separate the mathematical model, embedded programs, and proofs within the example.
+- Prove Iris refinement contracts for helpers, key expansion, AES blocks, and complete IGE loops, including ownership, bounds, preservation, and IV updates.
+- Derive implementation-level round-trip and chunk-composition contracts from refinement and the pure algebraic theorems.
+- Use concrete AES throughout; introduce no admissions or assumed cipher correctness.
+- Integrate build load paths, extraction, test/report dispatch, and the examples index. Audit the public correctness contracts and algebraic theorems with `Print Assumptions` and kernel checks.
+
+## Validation and report
+
+- Test AES known-answer vectors for every key size, OpenSSL IGE vectors, and independently generated AES-192/256 IGE fixtures with recorded provenance.
+- Test both inverse compositions, chunk composition, empty and multi-block messages, high-bit bytes, final IV equality, rejected lengths, and memory preservation.
+- Run full `make verify`, runtime regression suites, extraction checks, and report link checks. Prove machine-range bounds for AES arithmetic and indexing.
+- Benchmark encryption/decryption at 16 bytes, 1 KiB, and 64 KiB for every key size; measure key expansion separately. Use three processes, seven samples per process, warm-up, and checked checksums.
+- Produce the existing-style offline report with rendered specifications, dependency diagrams, proof narrative, test provenance, and benchmark charts. Give each algebraic law its statement, assumptions, proof explanation, and implementation consequence.
+- State that the verified guarantees cover functional correctness and memory safety; constant-time behavior and cryptographic security proofs remain outside scope.
+- Preserve existing prompt-log changes and resume exact prompt logging when implementation mode begins.
+
+[2026-10-14T04:01:03+00:00]
+do it
+
+[2026-10-14T05:22:21+00:00]
+why is openssl so much faster? 
+
+[2026-10-14T05:24:32+00:00]
+add this explanations to aes_ige/benchmark/results/report.html and note them as possible causes not definitive
+
+[2026-10-14T05:26:10+00:00]
+push to github
+
+[2026-10-14T05:48:55+00:00]
+refresh the paper and the readme to add the new operators (bitwise operators) and a section on aes encryption. 
+
+[2026-10-14T05:53:52+00:00]
+push to githubm
+
+[2026-10-14T05:58:34+00:00]
+why did you not finish the correctness proof?
+
+[2026-10-14T06:16:20+00:00]
+continue , finish the remaining proofs. 
+
+[2026-10-15T03:10:12+00:00]
+what is the lemma proving the implementation correct for linked lists? 
+
+[2026-10-15T03:15:15+00:00]
+what are the key implementation lemmas for hash maps? 
+
+[2026-10-15T03:19:06+00:00]
+what are the key quadtree correctness lemmas? 
+
+[2026-10-15T03:21:44+00:00]
+what are the main aes correctness lemmas? 
+
+[2026-10-15T03:50:08+00:00]
+express this logically in iris using wp: Lemma cell_adequate Σ `{!cjrGpreS Σ} :
+  adequate NotStuck cell state_init (λ v _, v = LitV LitUnit).
+
+
+[2026-10-15T06:21:56+00:00]
+render with coq_readable: Lemma reverse_spec (xs : list Z)
+                   (l : val_cjr) :
+  is_list xs l -∗
+  WP call_reverse l
+    {{ v, is_list (rev xs) v }}.
+
+
+[2026-10-15T06:27:18+00:00]
+explain in simple english
+
+[2026-10-15T07:58:15+00:00]
+update the readme of the project with all the examples and the correct paths. do not add full paths to the table. 
+
+[2026-10-15T08:00:03+00:00]
+push to github. do not run the coq validation this time. 
+
+[2026-10-15T08:01:51+00:00]
+the extracted code to rocq ration is strangely low. why? 
+
+[2026-10-15T08:04:01+00:00]
+what definitions are relvant for s-box functions? 
+
+[2026-10-15T08:04:50+00:00]
+what rocq file contains the code extracted into the s-box cangjie function? 
+
+[2026-10-15T08:06:42+00:00]
+what is the cangjie flie? 
+
+[2026-10-15T08:07:58+00:00]
+is aesSbox extracted by the standard Galina script or is it a one-off?
+
+[2026-10-15T08:08:52+00:00]
+what is a sbox_table? 
+
+[2026-10-15T08:09:36+00:00]
+why is it hardcoded? 
+
+[2026-10-15T08:10:04+00:00]
+'same fixed substitution' for all implementations ? 
+
+[2026-10-15T08:13:42+00:00]
+what other popular languages other than cangjie can cjr be extracted as? 
+
+[2026-10-15T08:20:36+00:00]
+when was the four color theorem and feith-0thomson proved in coq?
+
+[2026-10-15T08:21:24+00:00]
+when did compcert start? 
+
+[2026-10-15T08:24:22+00:00]
+does the adequacy result prove no memory leaks?
+
+[2026-10-15T09:15:03+00:00]
+can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)
+
+[2026-10-15T09:17:45+00:00]
+how does it compare to cjr? 
+
+[2026-10-16T02:21:30+00:00]
+do cjr arithmetic operations deal with overflow and underflow? 
+
+[2026-10-16T02:36:18+00:00]
+add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. 
+
+[2026-10-16T05:37:11+00:00]
+
+# Response annotations:
+Each item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index="N"}`, where N is its one-based array position (for example, `:codex-annotation{index="1"}`). Do not use unstructured annotation labels.
+<response-annotations>
+[{"text":"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.","annotation":"explain this","source":{"messageId":"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422","startOffset":170,"endOffset":243}}]
+</response-annotations>
+
+## My request:
+explain this
+
+[2026-10-16T05:39:35+00:00]
+
+# Response annotations:
+Each item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index="N"}`, where N is its one-based array position (for example, `:codex-annotation{index="1"}`). Do not use unstructured annotation labels.
+<response-annotations>
+[{"text":"Capacity-spaced lookups: 38–658× faster.","source":{"messageId":"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422","startOffset":130,"endOffset":170}}]
+</response-annotations>
+
+## My request:
+explain 
+
+[2026-10-16T05:40:44+00:00]
+explain **Hashmap_Build_Scan data in the benchmark report**\
+
+[2026-10-16T05:43:41+00:00]
+it is suspicious that the data points for cjr and std are identical. justify
+
+[2026-10-16T05:45:48+00:00]
+refresh all the documentation (pdf report and readmes)
+
+[2026-10-16T07:29:35+00:00]
+by looking at the timestamps on the coq files and the verification log, is the verification log to date? 
+
+[2026-10-16T07:36:26+00:00]
+push to github without rerunning the proof verification script
+
+[2026-10-27T09:16:05+00:00]
+create a plan first
+
+[2026-10-27T09:18:59+00:00]
+open the file with the plan
+
+[2026-10-27T09:33:20+00:00]
+execute up to milestone 2. do not go beyond milestone 2. 
+
+[2026-10-27T11:35:22+00:00]
+process the authenticator rocq files with rocq-readable
+
+[2026-10-27T11:36:25+00:00]
+process the rocq files with the rocq-readable tool 
+
+[2026-10-27T11:41:15+00:00]
+why did codex explanations fail? identify and fix the problem? 
+
+[2026-10-27T11:42:14+00:00]
+Allow sending source to Codex
+
+[2026-10-27T12:51:55+00:00]
+push to github
+
+[2026-10-27T13:02:54+00:00]
+what is the api of the core? 
+
+[2026-10-27T13:12:31+00:00]
+write a html documentation for the API. for each function describe the purpose, the arguments, the return value and the side-effects. include links to the lemmas that mention it. place it in the example/authenticator/docs directory
+
+[2026-10-27T13:17:43+00:00]
+links to lemmas are broken : file:///Users/danghica/cjr/example/authenticator/docs/rocq/example/authenticator/rocq/accounts.html#symbol-ede488ec21b2fd58bff055fb
+
+[2026-10-27T13:22:10+00:00]
+the links should be to the documentations produced by rocq-readable in the docs/rocq repository
+
+[2026-10-27T13:23:23+00:00]
+links like this seem to not work with error 'cannot open file' file:///Users/danghica/cjr/example/authenticator/docs/rocq/example/authenticator/rocq/accounts.html#symbol-1ec95e7929ba8b7d9b5e891c diagnose and not fix
+
+[2026-10-27T13:24:43+00:00]
+ok. it works now. 
+
+[2026-10-27T13:26:51+00:00]
+use the same graphical visual conventions as rocq-readable so there is a consistent look
+
+[2026-10-27T14:49:24+00:00]
+open the plan
+
+[2026-10-27T14:50:24+00:00]
+add a 'help' command to the cli. do not generate code yet
+
+[2026-10-27T15:04:41+00:00]
+also for the plan: the core of the app should be in a 'core' directory, cli in a 'cli' and ui in a 'ui' directory. drop the cliver interface. 
+
+[2026-10-27T15:06:28+00:00]
+complete the project sticking carefully to the hexagonal architecture, with ports and adapters carefully identified. 
+
+[2026-10-27T15:07:59+00:00]
+Finish all core proofs first
+
+[2026-10-27T16:36:13+00:00]
+Use parallel proof agents
+
+[2026-10-28T08:39:19+00:00]
+file:///Users/danghica/cjr/example/authenticator/docs/architecture.md is markdown and not html so it doesn't render well. all docs html
+
+[2026-10-28T08:44:19+00:00]
+ add documentation entries for cli and ui full apps. these documentations should have user instructions and the description of the architecture (hexagonal) including architectural diagrams in a standard architectural diagrammatic format. 
+
+[2026-10-28T08:52:58+00:00]
+where are the binaries stored? 
+
+[2026-10-28T08:53:51+00:00]
+move the build directory inside the authenticator directory so the app is more self contained. update makefiles and docs
+
+[2026-10-28T08:57:22+00:00]
+push everything to github
+
+[2026-10-28T09:37:10+00:00]
+how can i serve a html page directly from github without cloning? 
+
+[2026-10-28T09:39:24+00:00]
+what setting? github has so many 'settings' 
+
+[2026-10-28T09:40:50+00:00]
+what is the url to the served authenticator/docs/index.html now? 
+
+[2026-10-28T09:41:53+00:00]
+not found 404
+
+[2026-10-28T09:43:20+00:00]
+do not run the proof validations again
+
+[2026-10-28T13:37:04+00:00]
+extend cjr, the formalisation of cjr, the iris framework with parametric polymorphism which can be extracted into cangjie generics. 
+
+[2026-10-28T13:37:04+00:00]
+
+# Selected text:
+
+## Selection 1: /Users/danghica/.codex/plans/01a182b4-2f2e-72a1-b16d-c694a9445c15/01a182b4-ddb3-79c1-97ef-0d694367f013/PLAN.md (line 25)
+## Validation
+
+
+## Selection 2: /Users/danghica/.codex/plans/01a182b4-2f2e-72a1-b16d-c694a9445c15/01a182b4-ddb3-79c1-97ef-0d694367f013/PLAN.md (line 25)
+Validation
+
+## My request:
+will the extended cjr and logic be a superset of the existing logic? will existing examples still compile ?
+
+[2026-10-28T13:37:04+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Parametric polymorphism for CJR
+
+## Summary
+
+Add an explicitly parameterised source language that supports generic functions, classes, structs, and methods. Erase it into the existing CJR operational language for Iris verification, and print it directly as Cangjie generics.
+
+Demonstrate the extension with generic identity, `Pair<A, B>`, and `Box<T>` with `map<U>`.
+
+## Implementation
+
+- Add structured source types for primitives, type variables, named type applications, and function types. Define scoped type parameters, substitution, instantiation, and well-formedness checks.
+- Add generic declarations and source expressions with explicit declaration references, constructor names, receiver types, and type arguments. Support rank-one polymorphism and callbacks with monomorphic function types.
+- Define erasure into existing CJR expressions: type arguments disappear, named calls resolve to existing function terms, and constructors and fields resolve to their declared layouts. Preserve evaluation order and existing recursive-function behavior.
+- Prove that type instantiation preserves erasure and that erasure commutes with supported term substitution. Express generic weakest preconditions through erasure and derive safety using existing CJR adequacy.
+- Extend extraction with a structured generic printing path. Use explicit references rather than body equality or field-count heuristics. Reject unresolved names, unbound type variables, incorrect arities, and unsupported forms with actionable diagnostics.
+- Preserve existing extraction interfaces and monomorphic examples. Add the generic example to aggregate extraction, runtime testing, documentation, and the assumption audit.
+
+## Examples and proof obligations
+
+- **Identity:** prove that the same implementation returns its input uniformly for any element representation.
+- **Pair:** prove construction and projections for independently parameterised components.
+- **Box:** prove construction, reading, and `map<U>`, with a callback contract relating input and output representations. State ownership requirements explicitly; do not assume arbitrary Iris resources can be duplicated.
+- Instantiate examples with `Int64`, `Bool`, and nested generic values. Include a method whose own type parameter differs from its class parameter.
+
+## Validation
+
+- Check substitution, nested instantiation, type-parameter scoping, and erasure laws in Rocq.
+- Test extraction failures for invalid references and arities, and disambiguation of declarations with identical bodies or layouts.
+- Compile and execute generated generic examples using the repository’s Cangjie 1.0.5 toolchain.
+- Run existing runtime suites and extraction regressions, then `make verify`; audit the new public proof results without admissions or added axioms.
+- Update the README and tutorial to explain generic syntax, Iris contracts, erasure, and extraction’s remaining trust boundary.
+
+## Assumptions and boundaries
+
+- Keep the current untyped runtime and existing proofs stable. This extension provides uniform Iris specifications, not a general typing-soundness or relational-parametricity theorem.
+- Defer interface bounds, inheritance, higher-rank polymorphism, generic raw-memory allocation, and migration of existing containers.
+- During implementation, record outstanding human prompts exactly through the repository logging helper, without duplicating existing entries. Preserve existing log changes and refresh the verification log.
+
+[2026-10-29T08:26:11+00:00]
+did you update the pdf tutorial? 
+
+[2026-10-29T08:30:00+00:00]
+
+# Diff comments:
+
+## User Comment 1
+File: pdf:cjr-tutorial.pdf
+Side: R
+Lines: 1
+PDF path: /Users/danghica/cjr/paper/cjr-tutorial.pdf
+PDF page: 8/223
+PDF annotation: region at top-left (77, 82) sized 392x12 on 612x792 page; coordinates use top-left page origin; bottom-left PDF drawing rect is (77, 698) sized 392x12; selection kind: text; selected text: "// types used below: Int64, Float64, Bool, Unit, struct, class, CPointer<T>"
+Annotated PDF screenshot: attached as a labeled image for Comment 1
+Comment:
+the figure on page 8 does not show any generics in the types. make sure it does.
+
+## My request:
+
+The next image shows PDF page 8 at the time of Comment 1. The selected region is outlined in blue and marked by comment marker 1.
+
+[2026-10-29T08:31:55+00:00]
+i have noticed several points int he tutorial pdf where generic types should be discussed but they are not. revise the pdf tutorial carefully to make sure generics are discussed, including their logical treatment and examples. 
+
+[2026-10-29T09:00:54+00:00]
+explain section 6.3 in more detail in the pdf. illustrate the concepts with simple examples. give more intuition. 
+
+[2026-10-29T09:16:42+00:00]
+keep the arrays example in place. add polymorphic arrays as a separate example. specify and prove correct by adapting the definition of monomorphic arrays. benchmark against the monomorphic array example. 
+
+[2026-10-29T10:33:31+00:00]
+continue
+
+[2026-10-29T11:20:41+00:00]
+in section 13.6 comparison with monomorphic, why is polymorphic faster? 
+
+[2026-10-29T11:25:48+00:00]
+reorganize the polymorphic array example so that the functions are methods of the polyarray class. keep everything else the same but refresh the proofs. 
+
+[2026-10-29T13:57:36+00:00]
+this repo is too large, we need to refactor it as follows: 1. the cjr framework and the small examples in misc. 2. arrays, array lists, polymorphic arrays, qsort,  most_frequent, hash_maps, quadtrees. 3. aes encryption-decryption and the authenticator app.  
+For each repo create a separate documentation (HTML) and tutorial paper (PDF) and benchmarks. Locally they should be in 3 separate directories matching the repositories, housed int he current cjr directory. 
+
+[2026-10-29T13:57:36+00:00]
+rocq_readable stays only in cjr-core
+
+[2026-10-29T13:57:36+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Split CJR into three local repositories
+
+## Summary
+
+Create three new Git repositories under `/Users/danghica/cjr`:
+
+- **cjr-core**: framework, extraction printers, shared development tools, `rocq_readable`, `misc`, and introductory generics.
+- **cjr-collections**: arrays, array lists, polymorphic arrays, linked lists, list reversal, quicksort, most-frequent, hash maps, and quadtrees.
+- **cjr-crypto**: AES encryption/decryption and IGE, plus the authenticator core, CLI, and macOS UI.
+
+Each repository gets offline HTML documentation, a PDF tutorial, and runtime benchmarks. Skip proof validation throughout the migration.
+
+## Preserve and separate
+
+- Record outstanding exact human prompts using the existing logging script, without duplicate entries.
+- First commit the current repository, including new source work, prompt history, and the existing verification log. Do not run proof validation or refresh that log.
+- Initialize three fresh Git repositories and record the original checkpoint commit in their migration notes. Do not create remotes or push.
+- Preserve source files, fixtures, extracted Cangjie, benchmark history, and required documentation assets; exclude compiled objects, binaries, and caches.
+- After confirming migration completeness, remove the original working-tree copies from the parent repository. Retain a lightweight workspace guide, migration records, and historical logs. The checkpoint preserves the monolith.
+
+## Dependencies and tooling
+
+- Retain `example/<name>` within each child repository to reduce path changes.
+- Collections depends on core; crypto depends on core and collections. Pin dependency commit IDs, use sibling checkouts by default, and support `CJR_CORE_DIR` and `CJR_COLLECTIONS_DIR` overrides.
+- **Keep `rocq_readable` exclusively in cjr-core**, including its implementation, launcher, packaging, renderer resources, and tests. Collections and crypto invoke that copy through their core dependency; neither contains a copied or vendored renderer.
+- Keep other shared development tooling and extraction printers in core. Make tooling accept the consuming repository’s root and example inventory.
+- Keep arrays and their shared proof tactics in collections. Split extraction drivers and assumption audits by repository, removing circular dependencies and preserving logical module names where possible.
+- Provide consistent `build`, `extract`, `test`, `verify`, `docs`, `paper`, `benchmark`, and `report` targets. Separate runtime and document tasks from proof compilation.
+
+## Documentation and benchmarks
+
+- Each repository owns its documentation content, configuration, generated HTML, and explanation caches. Give each a `docs/index.html` linking setup instructions, specifications, tests, benchmarks, and its PDF tutorial.
+- Split the tutorial into three independently readable papers with editable LaTeX sources and `paper/tutorial.pdf` outputs. Add missing quadtree and authenticator explanations; preserve qualifications about proof coverage and target-language limitations.
+- During migration, relocate existing specification HTML and caches, repair navigation, and avoid invoking proof-checking renderer backends. Future regeneration uses the renderer in core.
+- Preserve historical benchmark measurements and provenance. Run fresh collections and AES benchmarks.
+- Add core benchmarks for arithmetic, swap, block summation, and generic callbacks against equivalent handwritten Cangjie.
+- Add authenticator benchmarks for SHA-1, HMAC, HOTP/TOTP, Base32 decoding, and account-session operations using deterministic synthetic inputs.
+- Produce raw samples, medians/IQR, provenance, charts, and HTML reports. Generate each paper’s benchmark material from its repository’s results.
+
+## Validation and completion
+
+- Confirm every original source and fixture has a destination, including uncommitted generics work.
+- Check that only core contains the `rocq_readable` implementation and that consumers resolve it through their pinned dependency.
+- Run applicable tooling tests, Cangjie runtime tests, benchmark correctness checks, and frontend checks that do not trigger proof validation.
+- Build and visually inspect all three PDFs; check HTML links, offline navigation, dependency resolution, and execution without the former monolithic layout.
+- Do not run proof compilation, `coqchk`, assumption audits, or proof-checking documentation backends. Preserve existing frontend proof gates and report any validation they prevent.
+- Commit each completed child repository and record its commit ID in the parent workspace.
+
+Acceptance requires three separate repositories with complete HTML documentation, PDF tutorials, and reproducible runtime benchmark reports. Migration notes explicitly state that proofs were not revalidated.
+

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project specifications — Rocq Readable</title><link rel="stylesheet" href="style.css"></head>
+<body><main><header><div class="eyebrow">Rocq Readable</div><h1>Project specifications</h1>
+<nav aria-label="Project"><a href="index.html">Home</a> · <a href="declarations.html">Index</a></nav>
+<p class="meta">2 source files · 71 declarations · proofs omitted</p>
+<p class="notice">Sources are discovered beneath the invocation directory. Symbol links remain within these generated files; library references are unlinked.</p></header>
+<section class="panel dependency-diagram" data-scope="project" aria-labelledby="graph-heading">
+<h2 id="graph-heading">Dependency graph</h2>
+<p class="notice">Arrows point toward dependencies. The overview groups files containing declarations and shows cross-file links. Choose a declaration to see its direct dependencies and dependents. Click a node to open its documentation.</p>
+<div class="graph-controls">
+<label>View<select id="graph-view"><option value="files">Source files</option><option value="all">All declarations</option><option value="focus">Focused declaration</option></select></label>
+<label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
+<datalist id="graph-choices"></datalist>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+</div>
+<p id="graph-status" class="meta" aria-live="polite"></p>
+<div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
+<div class="graph-legend"><span style="--swatch:#bed8ee">Specifications</span><span style="--swatch:#b6dfd4">Algorithms</span><span style="--swatch:#d7c8ec">Proofs</span><span style="--swatch:#d7dfe5">Other sources</span></div>
+<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Coverage limits are the same as in the hierarchy.</p>
+<noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
+</section><section class="panel"><h2>Dependency hierarchy</h2><p class="notice">Expand an entry to see what it depends on. Shared dependencies appear under each parent. The <a href="declarations.html">Index</a> lists every declaration.</p><ul class="dependency-tree"><li><details data-identity="cjr.examples.generic_examples.box_construct_spec" data-path="[&quot;cjr.examples.generic_examples.box_construct_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-691101b5866c58d02e1a81ff">cjr.examples.generic_examples.box_construct_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.box_get_spec" data-path="[&quot;cjr.examples.generic_examples.box_get_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-59872929a2402236642609c8">cjr.examples.generic_examples.box_get_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.box_map_spec" data-path="[&quot;cjr.examples.generic_examples.box_map_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-040ab615e31fbba59adea572">cjr.examples.generic_examples.box_map_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.generic_main_adequate" data-path="[&quot;cjr.examples.generic_examples.generic_main_adequate&quot;]"><summary><a href="rocq/generic_examples.html#symbol-34de7e108954696fd3929e50">cjr.examples.generic_examples.generic_main_adequate</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.generic_program_valid" data-path="[&quot;cjr.examples.generic_examples.generic_program_valid&quot;]"><summary><a href="rocq/generic_examples.html#symbol-e1215e19b41d0bc19f215e22">cjr.examples.generic_examples.generic_program_valid</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.pair_construct_spec" data-path="[&quot;cjr.examples.generic_examples.pair_construct_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-155128ba795b029f4ddb477b">cjr.examples.generic_examples.pair_construct_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.pair_first_spec" data-path="[&quot;cjr.examples.generic_examples.pair_first_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-6f06ed6c57b8f65caeab8eed">cjr.examples.generic_examples.pair_first_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_examples.pair_second_spec" data-path="[&quot;cjr.examples.generic_examples.pair_second_spec&quot;]"><summary><a href="rocq/generic_examples.html#symbol-ba24e6cce380daba56efe7b5">cjr.examples.generic_examples.pair_second_spec</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.declaration_shadowing_rejected" data-path="[&quot;cjr.examples.generic_tests.declaration_shadowing_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-ffc8b8b1b6e2b89b3169e276">cjr.examples.generic_tests.declaration_shadowing_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.duplicate_declaration_rejected" data-path="[&quot;cjr.examples.generic_tests.duplicate_declaration_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-85df8be1ccdd0c054d899ca6">cjr.examples.generic_tests.duplicate_declaration_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.forward_reference_rejected" data-path="[&quot;cjr.examples.generic_tests.forward_reference_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-5de4eaf71d06ac8dfec5068b">cjr.examples.generic_tests.forward_reference_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.identical_bodies_have_distinct_references" data-path="[&quot;cjr.examples.generic_tests.identical_bodies_have_distinct_references&quot;]"><summary><a href="rocq/generic_tests.html#symbol-f25e2ba542e43d26fdb29819">cjr.examples.generic_tests.identical_bodies_have_distinct_references</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names" data-path="[&quot;cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names&quot;]"><summary><a href="rocq/generic_tests.html#symbol-a3fde8fd168c95b4753f1035">cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.internal_binder_rejected" data-path="[&quot;cjr.examples.generic_tests.internal_binder_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-d4bf3dd712cd1dce0b7c58cd">cjr.examples.generic_tests.internal_binder_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.invalid_constructor_arity_rejected" data-path="[&quot;cjr.examples.generic_tests.invalid_constructor_arity_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-061469d1271e9762374acf53">cjr.examples.generic_tests.invalid_constructor_arity_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.invalid_field_rejected" data-path="[&quot;cjr.examples.generic_tests.invalid_field_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-b50e83529b12c0f0f204efdc">cjr.examples.generic_tests.invalid_field_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.invalid_method_type_arity_rejected" data-path="[&quot;cjr.examples.generic_tests.invalid_method_type_arity_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-c6e0fb303a8417d3b49fd38f">cjr.examples.generic_tests.invalid_method_type_arity_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer" data-path="[&quot;cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer&quot;]"><summary><a href="rocq/generic_tests.html#symbol-b09a036ea02246de44a02890">cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.map_erasure_uniform" data-path="[&quot;cjr.examples.generic_tests.map_erasure_uniform&quot;]"><summary><a href="rocq/generic_tests.html#symbol-4562608a177acdb715181ee9">cjr.examples.generic_tests.map_erasure_uniform</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.method_parameter_shadowing_rejected" data-path="[&quot;cjr.examples.generic_tests.method_parameter_shadowing_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-9f8a57ed54642c1cf5c357b7">cjr.examples.generic_tests.method_parameter_shadowing_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.nested_type_substitution" data-path="[&quot;cjr.examples.generic_tests.nested_type_substitution&quot;]"><summary><a href="rocq/generic_tests.html#symbol-b059efccdc892d250d30af0c">cjr.examples.generic_tests.nested_type_substitution</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.nested_type_well_formed" data-path="[&quot;cjr.examples.generic_tests.nested_type_well_formed&quot;]"><summary><a href="rocq/generic_tests.html#symbol-853ea6e82c24939c340ffded">cjr.examples.generic_tests.nested_type_well_formed</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.nominal_type_arity_rejected" data-path="[&quot;cjr.examples.generic_tests.nominal_type_arity_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-66f0a01276280e1ce3015da7">cjr.examples.generic_tests.nominal_type_arity_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.recursive_reference_is_bound" data-path="[&quot;cjr.examples.generic_tests.recursive_reference_is_bound&quot;]"><summary><a href="rocq/generic_tests.html#symbol-6546f1534f9a3c4bbaf3751a">cjr.examples.generic_tests.recursive_reference_is_bound</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.simultaneous_type_substitution" data-path="[&quot;cjr.examples.generic_tests.simultaneous_type_substitution&quot;]"><summary><a href="rocq/generic_tests.html#symbol-546a3881968736a35262dac8">cjr.examples.generic_tests.simultaneous_type_substitution</a></summary></details></li><li><a href="rocq/generic_tests.html#symbol-a579ae1388ea45b6958ebf62">cjr.examples.generic_tests.source_substitution_respects_shadowing</a></li><li><details data-identity="cjr.examples.generic_tests.unbound_local_rejected" data-path="[&quot;cjr.examples.generic_tests.unbound_local_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-f9f494e3e76ec81069d0407a">cjr.examples.generic_tests.unbound_local_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.unbound_type_rejected" data-path="[&quot;cjr.examples.generic_tests.unbound_type_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-3e6611f022ebb3e0249351ca">cjr.examples.generic_tests.unbound_type_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.unknown_reference_rejected" data-path="[&quot;cjr.examples.generic_tests.unknown_reference_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-4742ec19cb5d1d089e47501a">cjr.examples.generic_tests.unknown_reference_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.wrong_type_arity_rejected" data-path="[&quot;cjr.examples.generic_tests.wrong_type_arity_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-661d9eae6371f8a1bbcc62f1">cjr.examples.generic_tests.wrong_type_arity_rejected</a></summary></details></li><li><details data-identity="cjr.examples.generic_tests.wrong_value_arity_rejected" data-path="[&quot;cjr.examples.generic_tests.wrong_value_arity_rejected&quot;]"><summary><a href="rocq/generic_tests.html#symbol-1be56ee6d9b7f159f3aec665">cjr.examples.generic_tests.wrong_value_arity_rejected</a></summary></details></li></ul><noscript><p>Enable JavaScript to expand the hierarchy. Every declaration page also lists direct dependencies.</p></noscript></section><script id="dependency-data" type="application/json">{"cjr.examples.generic_examples.box_construct_spec": {"dependencies": ["cjr.examples.generic_examples.box_rep", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-691101b5866c58d02e1a81ff", "kind": "lemma", "label": "cjr.examples.generic_examples.box_construct_spec", "name": "box_construct_spec"}, "cjr.examples.generic_examples.box_get_body": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ac3a20de998a4d35456c0462", "kind": "definition", "label": "cjr.examples.generic_examples.box_get_body", "name": "box_get_body"}, "cjr.examples.generic_examples.box_get_fn": {"dependencies": ["cjr.examples.generic_examples.box_get_body", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-10bf6f4f3bf0e5dd9b6fd7bf", "kind": "definition", "label": "cjr.examples.generic_examples.box_get_fn", "name": "box_get_fn"}, "cjr.examples.generic_examples.box_get_spec": {"dependencies": ["cjr.examples.generic_examples.box_rep", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-59872929a2402236642609c8", "kind": "lemma", "label": "cjr.examples.generic_examples.box_get_spec", "name": "box_get_spec"}, "cjr.examples.generic_examples.box_layout": {"dependencies": ["cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-bdf59d0d76d06fdb5d0705c3", "kind": "definition", "label": "cjr.examples.generic_examples.box_layout", "name": "box_layout"}, "cjr.examples.generic_examples.box_map_body": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.tT", "cjr.examples.generic_examples.tU"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-c210a38da7315ae148d184e5", "kind": "definition", "label": "cjr.examples.generic_examples.box_map_body", "name": "box_map_body"}, "cjr.examples.generic_examples.box_map_fn": {"dependencies": ["cjr.examples.generic_examples.box_map_body", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.tT", "cjr.examples.generic_examples.tU"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-228c6a2851ae6c018ea484d6", "kind": "definition", "label": "cjr.examples.generic_examples.box_map_fn", "name": "box_map_fn"}, "cjr.examples.generic_examples.box_map_spec": {"dependencies": ["cjr.examples.generic_examples.box_rep", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-040ab615e31fbba59adea572", "kind": "lemma", "label": "cjr.examples.generic_examples.box_map_spec", "name": "box_map_spec"}, "cjr.examples.generic_examples.box_rep": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ac594b5635cd0f9407bf586d", "kind": "definition", "label": "cjr.examples.generic_examples.box_rep", "name": "box_rep"}, "cjr.examples.generic_examples.box_ty": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-c161525c5fd3113c09575d07", "kind": "definition", "label": "cjr.examples.generic_examples.box_ty", "name": "box_ty"}, "cjr.examples.generic_examples.first_body": {"dependencies": ["cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-08be3e809157689e66bedca6", "kind": "definition", "label": "cjr.examples.generic_examples.first_body", "name": "first_body"}, "cjr.examples.generic_examples.first_fn": {"dependencies": ["cjr.examples.generic_examples.first_body", "cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-191511540da5a9d621f359a8", "kind": "definition", "label": "cjr.examples.generic_examples.first_fn", "name": "first_fn"}, "cjr.examples.generic_examples.generic_functions": {"dependencies": ["cjr.examples.generic_examples.box_get_fn", "cjr.examples.generic_examples.box_map_fn", "cjr.examples.generic_examples.first_fn", "cjr.examples.generic_examples.identity_again_fn", "cjr.examples.generic_examples.identity_fn", "cjr.examples.generic_examples.make_box_fn", "cjr.examples.generic_examples.make_pair_fn", "cjr.examples.generic_examples.positive_box_fn", "cjr.examples.generic_examples.recursive_fn", "cjr.examples.generic_examples.second_fn", "cjr.examples.generic_examples.strict_and_fn"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-68f5e8e2f78068ff0326854e", "kind": "definition", "label": "cjr.examples.generic_examples.generic_functions", "name": "generic_functions"}, "cjr.examples.generic_examples.generic_layouts": {"dependencies": ["cjr.examples.generic_examples.box_layout", "cjr.examples.generic_examples.other_box_layout", "cjr.examples.generic_examples.other_pair_layout", "cjr.examples.generic_examples.pair_layout"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6f41dc79760bf16b02affc7e", "kind": "definition", "label": "cjr.examples.generic_examples.generic_layouts", "name": "generic_layouts"}, "cjr.examples.generic_examples.generic_main": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-35251116682e682b50b866c6", "kind": "definition", "label": "cjr.examples.generic_examples.generic_main", "name": "generic_main"}, "cjr.examples.generic_examples.generic_main_adequate": {"dependencies": ["cjr.examples.generic_examples.generic_main_wp", "cjr.examples.generic_examples.generic_program"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-34de7e108954696fd3929e50", "kind": "lemma", "label": "cjr.examples.generic_examples.generic_main_adequate", "name": "generic_main_adequate"}, "cjr.examples.generic_examples.generic_main_wp": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_main", "cjr.examples.generic_examples.generic_runtime", "cjr.examples.generic_examples.identity_spec"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-8d04bbb9daba5c3b4bec478c", "kind": "lemma", "label": "cjr.examples.generic_examples.generic_main_wp", "name": "generic_main_wp"}, "cjr.examples.generic_examples.generic_program": {"dependencies": ["cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_main"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-cfb4dc650539fa9af5bd4729", "kind": "definition", "label": "cjr.examples.generic_examples.generic_program", "name": "generic_program"}, "cjr.examples.generic_examples.generic_program_valid": {"dependencies": ["cjr.examples.generic_examples.generic_program"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-e1215e19b41d0bc19f215e22", "kind": "example", "label": "cjr.examples.generic_examples.generic_program_valid", "name": "generic_program_valid"}, "cjr.examples.generic_examples.generic_runtime": {"dependencies": ["cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ce84d06e00d889efd30da252", "kind": "definition", "label": "cjr.examples.generic_examples.generic_runtime", "name": "generic_runtime"}, "cjr.examples.generic_examples.identity_again_fn": {"dependencies": ["cjr.examples.generic_examples.identity_body", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-d06e43ba6dbe03f940c41a69", "kind": "definition", "label": "cjr.examples.generic_examples.identity_again_fn", "name": "identity_again_fn"}, "cjr.examples.generic_examples.identity_body": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6a116817958b68aa46b2e07f", "kind": "definition", "label": "cjr.examples.generic_examples.identity_body", "name": "identity_body"}, "cjr.examples.generic_examples.identity_fn": {"dependencies": ["cjr.examples.generic_examples.identity_body", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-bba45faab2afa1c6232c521c", "kind": "definition", "label": "cjr.examples.generic_examples.identity_fn", "name": "identity_fn"}, "cjr.examples.generic_examples.identity_spec": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ca53fcaae28a73d2bc8752b6", "kind": "lemma", "label": "cjr.examples.generic_examples.identity_spec", "name": "identity_spec"}, "cjr.examples.generic_examples.make_box_fn": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-df35fe0688dc64bbf67d2188", "kind": "definition", "label": "cjr.examples.generic_examples.make_box_fn", "name": "make_box_fn"}, "cjr.examples.generic_examples.make_pair_body": {"dependencies": ["cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-7111188922b77f4de047b7eb", "kind": "definition", "label": "cjr.examples.generic_examples.make_pair_body", "name": "make_pair_body"}, "cjr.examples.generic_examples.make_pair_fn": {"dependencies": ["cjr.examples.generic_examples.make_pair_body", "cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6fbcdf9015df8558dd0b26e8", "kind": "definition", "label": "cjr.examples.generic_examples.make_pair_fn", "name": "make_pair_fn"}, "cjr.examples.generic_examples.other_box_layout": {"dependencies": ["cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-07d227786a84933e7ae12a5f", "kind": "definition", "label": "cjr.examples.generic_examples.other_box_layout", "name": "other_box_layout"}, "cjr.examples.generic_examples.other_pair_layout": {"dependencies": ["cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-4bd647c09bc7361595ed0070", "kind": "definition", "label": "cjr.examples.generic_examples.other_pair_layout", "name": "other_pair_layout"}, "cjr.examples.generic_examples.pair_construct_spec": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime", "cjr.examples.generic_examples.pair_rep", "cjr.examples.generic_examples.pair_ty"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-155128ba795b029f4ddb477b", "kind": "lemma", "label": "cjr.examples.generic_examples.pair_construct_spec", "name": "pair_construct_spec"}, "cjr.examples.generic_examples.pair_first_spec": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime", "cjr.examples.generic_examples.pair_rep"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6f06ed6c57b8f65caeab8eed", "kind": "lemma", "label": "cjr.examples.generic_examples.pair_first_spec", "name": "pair_first_spec"}, "cjr.examples.generic_examples.pair_layout": {"dependencies": ["cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-3c16bc31fa9dd4dda06a0bfb", "kind": "definition", "label": "cjr.examples.generic_examples.pair_layout", "name": "pair_layout"}, "cjr.examples.generic_examples.pair_rep": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ec6d581f5fb446e4a7b9478c", "kind": "definition", "label": "cjr.examples.generic_examples.pair_rep", "name": "pair_rep"}, "cjr.examples.generic_examples.pair_second_spec": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime", "cjr.examples.generic_examples.pair_rep"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-ba24e6cce380daba56efe7b5", "kind": "lemma", "label": "cjr.examples.generic_examples.pair_second_spec", "name": "pair_second_spec"}, "cjr.examples.generic_examples.pair_ty": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-cb8b1e4c9ae37031cecf87c1", "kind": "definition", "label": "cjr.examples.generic_examples.pair_ty", "name": "pair_ty"}, "cjr.examples.generic_examples.positive_box_body": {"dependencies": ["cjr.examples.generic_examples.box_ty"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-40ed01bb68cbade1275c3e7f", "kind": "definition", "label": "cjr.examples.generic_examples.positive_box_body", "name": "positive_box_body"}, "cjr.examples.generic_examples.positive_box_fn": {"dependencies": ["cjr.examples.generic_examples.positive_box_body"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-1aecb77f1c93780187a2f707", "kind": "definition", "label": "cjr.examples.generic_examples.positive_box_fn", "name": "positive_box_fn"}, "cjr.examples.generic_examples.recursive_body": {"dependencies": ["cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6880fa453f3e62549a978d5b", "kind": "definition", "label": "cjr.examples.generic_examples.recursive_body", "name": "recursive_body"}, "cjr.examples.generic_examples.recursive_fn": {"dependencies": ["cjr.examples.generic_examples.recursive_body", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-6c210a9ce05c9ed3af167d0f", "kind": "definition", "label": "cjr.examples.generic_examples.recursive_fn", "name": "recursive_fn"}, "cjr.examples.generic_examples.second_body": {"dependencies": ["cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-73c3cf2316db841ba2d51b8f", "kind": "definition", "label": "cjr.examples.generic_examples.second_body", "name": "second_body"}, "cjr.examples.generic_examples.second_fn": {"dependencies": ["cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.second_body", "cjr.examples.generic_examples.tA", "cjr.examples.generic_examples.tB"], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-23c0ab91cc8e06b649fb34d2", "kind": "definition", "label": "cjr.examples.generic_examples.second_fn", "name": "second_fn"}, "cjr.examples.generic_examples.strict_and_fn": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-3a5871fac4056da34cdec206", "kind": "definition", "label": "cjr.examples.generic_examples.strict_and_fn", "name": "strict_and_fn"}, "cjr.examples.generic_examples.tA": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-adee373bb3aff48336329e35", "kind": "definition", "label": "cjr.examples.generic_examples.tA", "name": "tA"}, "cjr.examples.generic_examples.tB": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-d81ce41e24b6245c1aa98307", "kind": "definition", "label": "cjr.examples.generic_examples.tB", "name": "tB"}, "cjr.examples.generic_examples.tT": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-e8dc4936dc580e449f615580", "kind": "definition", "label": "cjr.examples.generic_examples.tT", "name": "tT"}, "cjr.examples.generic_examples.tU": {"dependencies": [], "file": "rocq/generic_examples.v", "href": "rocq/generic_examples.html#symbol-e6476fb31caae0e29f03ee31", "kind": "definition", "label": "cjr.examples.generic_examples.tU", "name": "tU"}, "cjr.examples.generic_tests.declaration_shadowing_rejected": {"dependencies": ["cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-ffc8b8b1b6e2b89b3169e276", "kind": "example", "label": "cjr.examples.generic_tests.declaration_shadowing_rejected", "name": "declaration_shadowing_rejected"}, "cjr.examples.generic_tests.duplicate_declaration_rejected": {"dependencies": ["cjr.examples.generic_examples.identity_fn", "cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-85df8be1ccdd0c054d899ca6", "kind": "example", "label": "cjr.examples.generic_tests.duplicate_declaration_rejected", "name": "duplicate_declaration_rejected"}, "cjr.examples.generic_tests.expression_errors": {"dependencies": ["cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-34b4a0863eade066f6894476", "kind": "definition", "label": "cjr.examples.generic_tests.expression_errors", "name": "expression_errors"}, "cjr.examples.generic_tests.forward_reference_rejected": {"dependencies": ["cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-5de4eaf71d06ac8dfec5068b", "kind": "example", "label": "cjr.examples.generic_tests.forward_reference_rejected", "name": "forward_reference_rejected"}, "cjr.examples.generic_tests.identical_bodies_have_distinct_references": {"dependencies": ["cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-f25e2ba542e43d26fdb29819", "kind": "example", "label": "cjr.examples.generic_tests.identical_bodies_have_distinct_references", "name": "identical_bodies_have_distinct_references"}, "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names": {"dependencies": ["cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.pair_ty"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-a3fde8fd168c95b4753f1035", "kind": "example", "label": "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names", "name": "identical_layout_sizes_have_distinct_names"}, "cjr.examples.generic_tests.internal_binder_rejected": {"dependencies": ["cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-d4bf3dd712cd1dce0b7c58cd", "kind": "example", "label": "cjr.examples.generic_tests.internal_binder_rejected", "name": "internal_binder_rejected"}, "cjr.examples.generic_tests.invalid_constructor_arity_rejected": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-061469d1271e9762374acf53", "kind": "example", "label": "cjr.examples.generic_tests.invalid_constructor_arity_rejected", "name": "invalid_constructor_arity_rejected"}, "cjr.examples.generic_tests.invalid_field_rejected": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-b50e83529b12c0f0f204efdc", "kind": "example", "label": "cjr.examples.generic_tests.invalid_field_rejected", "name": "invalid_field_rejected"}, "cjr.examples.generic_tests.invalid_method_type_arity_rejected": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_functions", "cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-c6e0fb303a8417d3b49fd38f", "kind": "example", "label": "cjr.examples.generic_tests.invalid_method_type_arity_rejected", "name": "invalid_method_type_arity_rejected"}, "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer": {"dependencies": ["cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-b09a036ea02246de44a02890", "kind": "example", "label": "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer", "name": "legacy_embedding_rejected_by_generic_printer"}, "cjr.examples.generic_tests.map_erasure_uniform": {"dependencies": ["cjr.examples.generic_examples.box_map_body", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.generic_runtime"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-4562608a177acdb715181ee9", "kind": "example", "label": "cjr.examples.generic_tests.map_erasure_uniform", "name": "map_erasure_uniform"}, "cjr.examples.generic_tests.method_parameter_shadowing_rejected": {"dependencies": ["cjr.examples.generic_examples.box_get_body", "cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.tT", "cjr.examples.generic_tests.rejected"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-9f8a57ed54642c1cf5c357b7", "kind": "example", "label": "cjr.examples.generic_tests.method_parameter_shadowing_rejected", "name": "method_parameter_shadowing_rejected"}, "cjr.examples.generic_tests.nested_type_substitution": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.pair_ty", "cjr.examples.generic_examples.tT"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-b059efccdc892d250d30af0c", "kind": "example", "label": "cjr.examples.generic_tests.nested_type_substitution", "name": "nested_type_substitution"}, "cjr.examples.generic_tests.nested_type_well_formed": {"dependencies": ["cjr.examples.generic_examples.box_ty", "cjr.examples.generic_examples.generic_layouts", "cjr.examples.generic_examples.pair_ty"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-853ea6e82c24939c340ffded", "kind": "example", "label": "cjr.examples.generic_tests.nested_type_well_formed", "name": "nested_type_well_formed"}, "cjr.examples.generic_tests.nominal_type_arity_rejected": {"dependencies": ["cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-66f0a01276280e1ce3015da7", "kind": "example", "label": "cjr.examples.generic_tests.nominal_type_arity_rejected", "name": "nominal_type_arity_rejected"}, "cjr.examples.generic_tests.recursive_reference_is_bound": {"dependencies": ["cjr.examples.generic_examples.generic_layouts"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-6546f1534f9a3c4bbaf3751a", "kind": "example", "label": "cjr.examples.generic_tests.recursive_reference_is_bound", "name": "recursive_reference_is_bound"}, "cjr.examples.generic_tests.rejected": {"dependencies": [], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-c44c7424c195b882a4b39476", "kind": "definition", "label": "cjr.examples.generic_tests.rejected", "name": "rejected"}, "cjr.examples.generic_tests.simultaneous_type_substitution": {"dependencies": ["cjr.examples.generic_examples.tT", "cjr.examples.generic_examples.tU"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-546a3881968736a35262dac8", "kind": "example", "label": "cjr.examples.generic_tests.simultaneous_type_substitution", "name": "simultaneous_type_substitution"}, "cjr.examples.generic_tests.source_substitution_respects_shadowing": {"dependencies": [], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-a579ae1388ea45b6958ebf62", "kind": "example", "label": "cjr.examples.generic_tests.source_substitution_respects_shadowing", "name": "source_substitution_respects_shadowing"}, "cjr.examples.generic_tests.unbound_local_rejected": {"dependencies": ["cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-f9f494e3e76ec81069d0407a", "kind": "example", "label": "cjr.examples.generic_tests.unbound_local_rejected", "name": "unbound_local_rejected"}, "cjr.examples.generic_tests.unbound_type_rejected": {"dependencies": ["cjr.examples.generic_examples.tT", "cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-3e6611f022ebb3e0249351ca", "kind": "example", "label": "cjr.examples.generic_tests.unbound_type_rejected", "name": "unbound_type_rejected"}, "cjr.examples.generic_tests.unknown_reference_rejected": {"dependencies": ["cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-4742ec19cb5d1d089e47501a", "kind": "example", "label": "cjr.examples.generic_tests.unknown_reference_rejected", "name": "unknown_reference_rejected"}, "cjr.examples.generic_tests.wrong_type_arity_rejected": {"dependencies": ["cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-661d9eae6371f8a1bbcc62f1", "kind": "example", "label": "cjr.examples.generic_tests.wrong_type_arity_rejected", "name": "wrong_type_arity_rejected"}, "cjr.examples.generic_tests.wrong_value_arity_rejected": {"dependencies": ["cjr.examples.generic_tests.expression_errors"], "file": "rocq/generic_tests.v", "href": "rocq/generic_tests.html#symbol-1be56ee6d9b7f159f3aec665", "kind": "example", "label": "cjr.examples.generic_tests.wrong_value_arity_rejected", "name": "wrong_value_arity_rejected"}}</script><script>
+(() => {
+  const graph = JSON.parse(document.getElementById('dependency-data').textContent);
+  const tree = document.querySelector('.dependency-tree');
+  function entry(identity, path) {
+    const node = graph[identity];
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = node.href;
+    link.textContent = node.label;
+    const recursive = path.includes(identity);
+    if (node.dependencies.length && !recursive) {
+      const details = document.createElement('details');
+      details.dataset.identity = identity;
+      details.dataset.path = JSON.stringify([...path, identity]);
+      const summary = document.createElement('summary');
+      summary.append(link);
+      details.append(summary);
+      li.append(details);
+    } else {
+      li.append(link);
+      if (recursive) li.append(document.createTextNode(' (recursive reference)'));
+    }
+    return li;
+  }
+  tree.addEventListener('toggle', event => {
+    const details = event.target;
+    if (details.tagName !== 'DETAILS' || !details.open || details.dataset.loaded) return;
+    const children = document.createElement('ul');
+    const path = JSON.parse(details.dataset.path);
+    for (const child of graph[details.dataset.identity].dependencies) children.append(entry(child, path));
+    details.append(children);
+    details.dataset.loaded = 'true';
+  }, true);
+})();
+</script><script>
+(() => {
+  const data = JSON.parse(document.getElementById('dependency-data').textContent);
+  const ids = Object.keys(data).sort();
+  const svg = document.getElementById('dependency-svg');
+  const mode = document.getElementById('graph-view');
+  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const search = document.getElementById('graph-focus');
+  const status = document.getElementById('graph-status');
+  const choices = document.getElementById('graph-choices');
+  const reverse = Object.fromEntries(ids.map(id => [id, []]));
+  for (const id of ids) {
+    for (const dependency of data[id].dependencies) reverse[dependency].push(id);
+    const option = document.createElement('option'); option.value = id;
+    option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
+  let focused = null;
+  function element(tag, attrs = {}, text = null) {
+    const node = document.createElementNS(ns, tag);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    if (text !== null) node.textContent = text;
+    return node;
+  }
+  function applyViewport() {
+    svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+  }
+  function fit() {
+    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
+    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
+    const h = w / aspect;
+    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    applyViewport();
+  }
+  function zoom(factor, x = .5, y = .5) {
+    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    viewport.x += viewport.width * (1 - factor) * x;
+    viewport.y += viewport.height * (1 - factor) * y;
+    viewport.width *= factor; viewport.height *= factor; applyViewport();
+  }
+  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  function layout(nodes, edges) {
+    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
+    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
+    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
+    const seen = new Set(), order = [];
+    for (const root of keys) {
+      const stack = [[root, false]];
+      while (stack.length) {
+        const [id, finished] = stack.pop();
+        if (finished) order.push(id);
+        else if (!seen.has(id)) {
+          seen.add(id); stack.push([id, true]);
+          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+        }
+      }
+    }
+    const component = new Map(), groups = [];
+    for (const root of order.reverse()) {
+      if (component.has(root)) continue;
+      const index = groups.length, members = [], stack = [root];
+      while (stack.length) {
+        const id = stack.pop();
+        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
+      }
+      groups.push(members.sort());
+    }
+    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
+    for (const [a, b] of edges) {
+      const from = component.get(a), to = component.get(b);
+      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
+    }
+    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
+    for (let next = 0; next < queue.length; next++) {
+      const from = queue[next];
+      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
+    }
+    const columns = [];
+    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
+    // A few barycentric sweeps reduce crossings without nondeterministic forces.
+    const positions = new Map();
+    for (let pass = 0; pass < 4; pass++) {
+      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
+      const sequence = pass % 2 ? [...columns].reverse() : columns;
+      for (const column of sequence) {
+        const neighbors = pass % 2 ? adjacency : incoming;
+        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
+        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
+      }
+    }
+    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
+    columns.forEach((column, col) => column.forEach((id, row) => {
+      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
+    }));
+    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+  }
+  function sourceColor(file) {
+    const parts = file.split('/');
+    if (parts.includes('spec')) return ['#edf5fc', '#bed8ee'];
+    if (parts.includes('algorithm')) return ['#edf8f4', '#b6dfd4'];
+    if (parts.includes('proof')) return ['#f5f0fb', '#d7c8ec'];
+    return ['#f3f6f8', '#d7dfe5'];
+  }
+  function declarationColor(kind) {
+    if (['lemma','theorem','corollary','proposition','fact','remark','example'].includes(kind)) return ['#f5f0fb','#d7c8ec'];
+    if (['inductive','coinductive','record','structure','class','variant','finite','cofinite','bifinite'].includes(kind)) return ['#edf5fc','#bed8ee'];
+    if (['definition','let','recursive function','corecursive function','instance'].includes(kind)) return ['#edf8f4','#b6dfd4'];
+    return ['#f3f6f8','#d7dfe5'];
+  }
+  function labelLines(label) {
+    const limit = mode.value === 'files' ? 18 : 29;
+    if (label.length <= limit) return [label];
+    const split = Math.max(label.lastIndexOf('_', limit - 1), label.lastIndexOf('/', limit - 1), limit - 8);
+    const remainder = label.slice(split);
+    return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
+  }
+  function render() {
+    let nodes = {}, edges = [], counts = new Map();
+    width = mode.value === 'files' ? 156 : local ? 220 : 244;
+    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
+    if (mode.value === 'files') {
+      for (const id of ids) {
+        const d = data[id], file = d.file;
+        if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
+        nodes[file].count++;
+        for (const dependency of d.dependencies) {
+          const other = data[dependency].file;
+          if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
+        }
+      }
+      edges = [...counts.keys()].map(key => JSON.parse(key));
+    } else {
+      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      for (const id of selected) nodes[id] = data[id];
+      for (const id of selected) for (const dependency of data[id].dependencies) {
+        if (selected.has(dependency)) edges.push([id, dependency]);
+      }
+    }
+    const drawing = layout(nodes, edges);
+    const padding = mode.value === 'files' ? 32 : 80;
+    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
+    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    svg.replaceChildren();
+    svg.setAttribute('tabindex', '0');
+    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
+    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
+    for (const [a, b] of edges) {
+      const from = drawing.points[a], to = drawing.points[b];
+      let d;
+      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
+      else if (to.x > from.x) {
+        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
+        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
+      } else {
+        const x = Math.max(from.x, to.x) + width + 50;
+        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
+      }
+      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const count = counts.get(JSON.stringify([a,b]));
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+    }
+    for (const [id, node] of Object.entries(nodes)) {
+      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
+      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
+      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
+      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
+      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
+      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      svg.append(link);
+    }
+    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    svg.parentElement.classList.toggle('graph-empty', !ids.length);
+    fit();
+  }
+  search.addEventListener('input', () => {
+    const value = search.value.trim();
+    const matches = ids.filter(id => id === value || data[id].name === value);
+    if (matches.length === 1) { focused = matches[0]; mode.value = 'focus'; render(); }
+    else if (!value) { focused = null; mode.value = local ? 'all' : 'files'; render(); }
+  });
+  mode.addEventListener('change', () => {
+    if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
+    render();
+  });
+  document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
+  document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
+  document.getElementById('graph-fit').addEventListener('click', fit);
+  svg.addEventListener('wheel', event => {
+    event.preventDefault(); const box = svg.getBoundingClientRect();
+    zoom(event.deltaY < 0 ? .9 : 1.1, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height);
+  }, {passive:false});
+  let drag = null;
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
+    drag = {x:event.clientX,y:event.clientY,startX:viewport.x,startY:viewport.y}; svg.setPointerCapture(event.pointerId);
+  });
+  svg.addEventListener('pointermove', event => {
+    if (!drag) return;
+    const scale = viewport.width / svg.clientWidth;
+    viewport.x = drag.startX - (event.clientX - drag.x) * scale;
+    viewport.y = drag.startY - (event.clientY - drag.y) * scale; applyViewport();
+  });
+  for (const type of ['pointerup','pointercancel','lostpointercapture']) svg.addEventListener(type, () => {drag = null;});
+  svg.addEventListener('keydown', event => {
+    if (!['+','=','-','0','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === '+' || event.key === '=') zoom(.8);
+    else if (event.key === '-') zoom(1.25);
+    else if (event.key === '0') fit();
+    else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
+  });
+  new ResizeObserver(fit).observe(svg);
+  render();
+})();
+</script><section class="panel"><h2>Source files</h2><ul class="files"><li><a href="rocq/generic_examples.html">rocq/generic_examples.v</a> <span class="count">46 declarations</span></li><li><a href="rocq/generic_tests.html">rocq/generic_tests.v</a> <span class="count">25 declarations</span></li></ul></section></main></body></html>

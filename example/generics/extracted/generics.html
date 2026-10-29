@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>generics.cj</title><link rel="stylesheet" href="../docs/report.css"><main><header><div class="eyebrow">generics</div><h1>generics.cj</h1><a href="../index.html">Report index</a></header><pre>// Generated from checked CJR generic source; do not edit.
+public struct Pair&lt;A, B&gt; {
+public let first: A
+public let second: B
+public init(first: A, second: B) {
+this.first = first
+this.second = second
+}
+}
+public class Box&lt;T&gt; {
+public let value: T
+public init(value: T) {
+this.value = value
+}
+public func get(): T {
+let self = this
+return (({ cjrTypedValue: Box&lt;T&gt; =&gt; cjrTypedValue })(self)).value
+}
+public func map&lt;U&gt;(f: (T) -&gt; U): Box&lt;U&gt; {
+let self = this
+return Box&lt;U&gt;((f)((({ cjrTypedValue: Box&lt;T&gt; =&gt; cjrTypedValue })(self)).value))
+}
+}
+public struct OtherPair&lt;A, B&gt; {
+public let left: A
+public let right: B
+public init(left: A, right: B) {
+this.left = left
+this.right = right
+}
+}
+public class OtherBox&lt;T&gt; {
+public let item: T
+public init(item: T) {
+this.item = item
+}
+}
+public func genericId&lt;T&gt;(x: T): T {
+return x
+}
+public func genericIdAgain&lt;T&gt;(x: T): T {
+return x
+}
+public func firstOf&lt;A, B&gt;(p: Pair&lt;A, B&gt;): A {
+return (({ cjrTypedValue: Pair&lt;A, B&gt; =&gt; cjrTypedValue })(p)).first
+}
+public func secondOf&lt;A, B&gt;(p: Pair&lt;A, B&gt;): B {
+return (({ cjrTypedValue: Pair&lt;A, B&gt; =&gt; cjrTypedValue })(p)).second
+}
+public func repeatIdentity&lt;T&gt;(x: T, n: Int64): T {
+return if ((n  &lt;=  0)) { x } else { repeatIdentity&lt;T&gt;(x, (n  -  1)) }
+}
+public func makePair&lt;A, B&gt;(a: A, b: B): Pair&lt;A, B&gt; {
+return Pair&lt;A, B&gt;(a, b)
+}
+public func makeBox&lt;T&gt;(x: T): Box&lt;T&gt; {
+return Box&lt;T&gt;(x)
+}
+public func positiveBox(n: Int64): Bool {
+return ({ =&gt; 
+let b = Box&lt;Int64&gt;(n)
+(({ cjrTypedValue: Box&lt;Bool&gt; =&gt; cjrTypedValue })((({ cjrTypedValue: Box&lt;Int64&gt; =&gt; cjrTypedValue })(b)).map&lt;Bool&gt;({ x: Int64 =&gt; ({ cjrTypedValue: Bool =&gt; cjrTypedValue })((0  &lt;=  x)) }))).get()
+})()
+}
+public func strictAnd(f: (Unit) -&gt; Bool): Bool {
+return ({ cjrLeft: Bool, cjrRight: Bool =&gt; cjrLeft &amp;&amp; cjrRight })(false, (f)(()))
+}
+main() {
+genericId&lt;Int64&gt;(42)
+0
+}
+</pre><footer>Offline report. Links and assets stay within this project.</footer></main></html>

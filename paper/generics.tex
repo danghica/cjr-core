@@ -1,0 +1,308 @@
+\clearpage
+\section{Parametric polymorphism and conservative erasure}
+\label{sec:generics}
+
+This section puts the source language of Section~\ref{sec:generic-source}
+and the logic of Section~\ref{sec:generic-logic} to work. The checked
+definitions and proofs are in
+\path{example/generics/rocq/generic_examples.v}. The program defines
+\texttt{genericId<T>}, \texttt{Pair<A, B>}, and \texttt{Box<T>} with
+\texttt{get} and \texttt{map<U>}. The same definitions feed the generic
+printer. Each contract below is uniform in its element predicates and
+source type arguments; it is not a collection of integer-only proofs.
+
+\subsection{From a declaration to the program being proved}
+
+Identity is a particularly small example of a generic declaration:
+\begin{lstlisting}
+Definition identity_body := GEVar "x".
+Definition identity_fn :=
+  GFunction "genericId" None ["T"]
+    [("x", GTVar "T")] (GTVar "T") identity_body.
+\end{lstlisting}
+The declaration has no owner, binds one type parameter and one value
+parameter, and returns that value. Its source call is
+\texttt{GECall "genericId" [t] [GEVal v]}. Linking produces a recursive
+core value with an internal tuple parameter; its body projects argument
+zero and returns it. The annotations \texttt{T} and \texttt{t} are absent
+from that value. The printer instead retains them, producing
+\begin{lstlisting}
+public func genericId<T>(x: T): T {
+    return x
+}
+\end{lstlisting}
+Thus there are two uses of one structured source: erasure supplies the
+program for the Iris proof, and printing supplies the native generic
+declaration. The mathematical notation \(\GWpre\) below fixes
+\texttt{generic\_layouts} and \texttt{generic\_runtime}; source-like
+calls inside it abbreviate their explicit \texttt{gexpr} constructors.
+
+\subsection{Identity: one proof for every representation}
+
+For every predicate \(R:\mathsf{val}\to\mathsf{iProp}\,\Sigma\),
+type argument \(t\), and value \(v\), \texttt{identity\_spec} establishes
+\[
+R(v)\;\vdash\;
+\GWpre\,(\mathsf{genericId}\langle t\rangle(v))
+  \,\{w.\;\pure{w=v}\sep R(w)\}.
+\]
+The result is the exact input value, and the client's representation
+resource is returned. No persistence assumption on \(R\) is used.
+The proof script is short enough to display in full:
+\lstinputlisting[firstline=75,lastline=85]{example/generics/rocq/generic_examples.v}
+
+\texttt{wp\_generic\_pack\_acc} evaluates the internal argument tuple.
+\texttt{wp\_app} enters the linked function; \texttt{wp\_struct\_load}
+extracts its parameter, and \texttt{wp\_let} substitutes it. The final
+\texttt{iFrame} returns the untouched \(R(v)\). This explains the
+uniformity: the body neither inspects the element nor requires any facts
+about its representation. The theorem is also independent of whether
+\(t\) is \texttt{Int64}, \texttt{Bool}, or a nested named application.
+Well-formed source types and native typing are separate checks from this
+semantic statement about values.
+
+For example, one may take \(R(w)=\pure{w=42}\),
+\(R(w)=\pure{w=\mathsf{true}}\), or a predicate owning an object's
+fields. These are choices of logical predicates, not runtime type tests.
+The closed theorem \texttt{generic\_main\_adequate} applies this proof
+to the integer call returning 42, as described in
+Section~\ref{sec:generic-adequacy}.
+
+\subsection{Pairs: independent parameters and projection resources}
+
+\texttt{Pair<A, B>} is a struct with ordered fields \texttt{first: A}
+and \texttt{second: B}. Construction erases to a two-value tuple; no heap
+allocation is required. Its representation predicate is
+\[
+\mathsf{PairRep}(R,S,p)\;\triangleq\;
+\exists a,b.\;\pure{p=\langle a,b\rangle}\sep R(a)\sep S(b).
+\]
+The predicates \(R\) and \(S\) are independent, just like the type
+parameters \(A\) and \(B\). The constructor theorem is
+\path{pair_construct_spec}:
+\[
+R(a)\sep S(b)\;\vdash\;
+\GWpre\,(\mathsf{Pair}\langle t_a,t_b\rangle(a,b))
+  \,\{p.\;\mathsf{PairRep}(R,S,p)\}.
+\]
+The proof only evaluates the fields and packages the two owned predicates:
+\lstinputlisting[firstline=87,lastline=93]{example/generics/rocq/generic_examples.v}
+
+The source functions \texttt{firstOf<A, B>} and \texttt{secondOf<A, B>}
+project indexes zero and one of the explicitly named \texttt{Pair} layout.
+Their contracts are
+\[
+\begin{aligned}
+\mathsf{PairRep}(R,S,p)&\vdash
+ \GWpre\,(\mathsf{firstOf}\langle t_a,t_b\rangle(p))\\
+ &\qquad\{w.\;\exists b.\;\pure{p=\langle w,b\rangle}\sep R(w)\sep S(b)\},\\
+\mathsf{PairRep}(R,S,p)&\vdash
+ \GWpre\,(\mathsf{secondOf}\langle t_a,t_b\rangle(p))\\
+ &\qquad\{w.\;\exists a.\;\pure{p=\langle a,w\rangle}\sep R(a)\sep S(w)\}.
+\end{aligned}
+\]
+The equality identifies the returned component, and each component
+resource occurs once. In particular the first contract does not return
+\(\mathsf{PairRep}(R,S,p)\sep R(w)\), which would duplicate an arbitrary
+resource. The checked proof of the first projection is
+\lstinputlisting[firstline=97,lastline=109]{example/generics/rocq/generic_examples.v}
+The second proof uses the same argument at index one. Copying the struct
+value copies its stored values; it does not create another ownership
+permission for an object referenced by either value.
+
+\subsection{Boxes: allocation and reading}
+
+\texttt{Box<T>} is a final class with one immutable source field,
+\texttt{value: T}. Its runtime representation is an object reference.
+Writing \(o\ptso[0]v\) for \texttt{ObjId o} owning field zero, define
+\[
+\mathsf{BoxRep}(R,p)\;\triangleq\;
+\exists o,v.\;\pure{p=\mathsf{obj}(o)}\sep o\ptso[0]v\sep R(v).
+\]
+This owns both the box's field and whatever resources describe its
+element. The field's source immutability does not make either ownership
+predicate persistent in this Iris model.
+
+\texttt{box\_construct\_spec} and \texttt{box\_get\_spec} state
+\[
+\begin{aligned}
+R(v)&\vdash
+ \GWpre\,(\mathsf{Box}\langle t\rangle(v))
+   \,\{p.\;\mathsf{BoxRep}(R,p)\},\\
+\mathsf{BoxRep}(R,p)&\vdash
+ \GWpre\,(p.\mathsf{get}())\\
+ &\qquad\{w.\;\exists o.\;\pure{p=\mathsf{obj}(o)}
+      \sep o\ptso[0]w\sep R(w)\}.
+\end{aligned}
+\]
+Construction uses \texttt{wp\_new} to obtain the fresh field ownership and
+combines it with \(R(v)\). Reading uses \texttt{wp\_field\_load}, which
+returns that same field ownership. Neither operation duplicates \(R\).
+The implementation proofs are
+\lstinputlisting[firstline=125,lastline=145]{example/generics/rocq/generic_examples.v}
+
+\subsection{A type-changing method and its callback contract}
+\label{sec:generic-map}
+
+In \texttt{Box<T>.map<U>}, \texttt{T} is fixed by the receiver and
+\texttt{U} is chosen at the call. The callback has type \texttt{(T) -> U},
+and the result has type \texttt{Box<U>}. The method reads the old value,
+calls the callback once, and allocates a new box for its result.
+Its erased body, after parameter substitution, is
+\[
+ \mathsf{New}\;[]\;
+   [\mathsf{App}\;(\mathsf{Val}\;f)
+      \;(\mathsf{FieldLoad}\;(\mathsf{obj}(o))\;0)].
+\]
+For input and output predicates \(R,S\), the required callback contract is
+\[
+\mathsf{Callback}(R,S,f)\;\triangleq\;
+ \forall a.\;R(a)\wand\Wpre\,(f\,a)\,\{S\}.
+\]
+It provides one invocation, consuming the input resource and supplying the
+output resource. It does not assert that the callback is pure or that its
+contract is duplicable. The additional Coq premise
+\(\forall x,w.\;\mathsf{subst\_val}\;x\;w\;f=f\) requires a closed
+callback value, so unpacking the method's parameters cannot capture free
+variables in it.
+
+Under that premise, \texttt{box\_map\_spec} is
+\[
+\begin{aligned}
+o\ptso[0]v\sep R(v)\sep\mathsf{Callback}(R,S,f)
+ &\vdash \GWpre\,
+   (\mathsf{obj}(o).\mathsf{map}\langle u\rangle(f))\\
+ &\qquad\{p.\;o\ptso[0]v\sep\mathsf{BoxRep}(S,p)\}.
+\end{aligned}
+\]
+The old box keeps the same field value. Its element resource \(R(v)\)
+has gone to the callback; the result box receives \(S\). Thus the
+postcondition deliberately retains the old field, rather than asserting
+a second \(\mathsf{BoxRep}(R,\mathsf{obj}(o))\).
+
+The complete checked statement and proof make the ownership flow explicit:
+\lstinputlisting[firstline=150,lastline=179,basicstyle=\ttfamily\footnotesize]{example/generics/rocq/generic_examples.v}
+After tuple unpacking, \texttt{wp\_field\_load} obtains the element while
+preserving \texttt{Ho}, the old field assertion. The subproof supplied
+with \texttt{[HR Hf]} gives only the element resource and callback contract
+to the callback. \texttt{Ho} is framed across it. Finally,
+\texttt{wp\_new} creates \texttt{Ho'}, and the proof packages
+\texttt{Ho'} with \texttt{HS} into the result representation.
+
+For a concrete ownership example, let \(R=\mathsf{BoxRep}(P,-)\)
+describe an inner box and let the callback return that inner box unchanged,
+so \(S=R\). Mapping an outer box produces a new outer object containing
+the same inner reference. The inner field ownership is transferred to the
+new outer representation. The old outer field is still owned, but one
+cannot claim that both outer boxes separately own the same inner box.
+If \(R\) is persistent, such as a pure integer-value assertion, the usual
+Iris persistence rules allow it to be retained. That is an extra property
+of the chosen predicate, not an assumption hidden in \texttt{map}.
+
+\subsection{Concrete and nested instances}
+
+The runtime suite uses both primitive and nested types. The following
+fragments illustrate the calls made possible by the declarations:
+\begin{lstlisting}
+let n: Int64 = genericId<Int64>(42)
+let b: Bool = genericId<Bool>(true)
+let p = Pair<Int64, Bool>(8, true)
+let first: Int64 = firstOf<Int64, Bool>(p)
+let second: Bool = secondOf<Int64, Bool>(p)
+
+let source = Box<Int64>(5)
+let target: Box<Bool> = source.map<Bool>(
+    { x: Int64 => 0 <= x })
+
+let nested = genericId<Box<Pair<Int64, Bool>>>(
+    Box<Pair<Int64, Bool>>(p))
+let result: Box<Box<Bool>> = nested.map<Box<Bool>>(
+    { x: Pair<Int64, Bool> => Box<Bool>(x.second) })
+\end{lstlisting}
+Here the method parameter is instantiated to \texttt{Bool} in the first
+map and to \texttt{Box<Bool>} in the second; it differs from the receiver's
+parameter in both cases.
+
+One can express the nested representation by setting
+\(R_8(v)=\pure{v=8}\), \(R_{\mathsf{true}}(v)=\pure{v=\mathsf{true}}\),
+and \(P(p)=\mathsf{PairRep}(R_8,R_{\mathsf{true}},p)\).
+Then \(\mathsf{BoxRep}(P,b)\) describes the nested input box.
+For the last callback, take
+\(S(w)=\mathsf{BoxRep}(R_{\mathsf{true}},w)\): projecting the second
+component and allocating its Boolean box supplies the callback obligation.
+The map rule returns the outer field of the old box and
+\(\mathsf{BoxRep}(S,\mathit{result})\). This is how the uniform
+contracts can be composed; the particular native test is a runtime check,
+not a separately named closed adequacy theorem for this whole fragment.
+
+\texttt{repeatIdentity<T>} also exercises direct generic recursion.
+Its native tests instantiate it at integers, booleans, and pairs.
+The suite checks recursion and printing; this example does not supply a
+separate general termination proof for that function.
+
+\subsection{Generated source and extraction checks}
+\label{sec:generic-extraction}
+
+The emitted program below is read directly from the generated file.
+The small identity-lambda wrappers in field accesses force the native
+compiler to check the annotated receiver type. Similar wrappers check
+lambda result annotations. They are not used to select layouts by value:
+the source explicitly names the declaration and field index.
+\lstinputlisting{example/generics/extracted/generics.cj}
+
+The checked front end returns \texttt{Extracted} only after structural
+validation; otherwise \texttt{Rejected} contains diagnostics. It checks
+declaration names, type-variable scopes, type and value arities, named
+receiver layouts, field indexes, and supported forms. For example, the
+regression suite includes these failures:
+\begin{lstlisting}
+genericId with no type argument:
+  wrong type arity: genericId
+missing<Int64>(1), with no such declaration:
+  unresolved function (declare dependencies first): missing
+Box<Bool>() with no field argument:
+  wrong constructor arity: Box
+Box<T>.map<T> rebinding its owner's parameter:
+  invalid, shadowed, or duplicate type parameters
+\end{lstlisting}
+This listing shows diagnostics rather than runnable Cangjie source.
+Checking type compatibility of ordinary arguments and results is left
+to Cangjie compilation. Tests deliberately compile invalid receiver and
+lambda annotations and require rejection. Distinct declarations with
+identical bodies or equal-sized layouts have separate explicit references;
+the printer does not choose between them by inspecting those bodies or sizes.
+
+Evaluation order is part of this boundary. Calls and constructors keep
+left-to-right argument order; the receiver precedes method arguments.
+CJR's Boolean conjunction evaluates both operands, so the generic printer
+uses a helper call to preserve that evaluation before applying native
+\texttt{\&\&}. The \texttt{strictAnd} runtime case checks the right-hand
+callback's effect even when the left-hand value is false.
+
+\subsection{Validation and the scope of the guarantees}
+
+\path{example/generics/rocq/generic_tests.v} checks simultaneous and nested
+type substitution, type-parameter scopes, instantiation erasure, local
+substitution under binders, and extraction rejection cases in the Rocq
+kernel. \path{example/generics/test/generics_test.cj} supplies ten native
+test cases, including heterogeneous pairs, type-changing maps, nested
+instances, identical-body declarations, and direct recursion. Five
+compiler-rejection tests in \path{tests/test_generic_extraction.py}
+check unrelated receiver layouts, incorrect receiver type arguments, and
+incorrect lambda result types, buffer receiver annotations, and buffer
+write types against the Cangjie 1.0.5 toolchain. Section~\ref{sec:poly-arrays}
+extends the examples with managed polymorphic arrays and a paired benchmark.
+
+\texttt{make verify} includes the erasure laws, generic logic,
+representation contracts, and generic adequacy results in the assumption
+audit. \texttt{make test} includes the native generic and existing runtime
+suites. Existing monomorphic examples retain their original printer and
+proofs; the generic addition does not migrate their data structures.
+
+The result is uniform Iris specifications for the supplied implementations
+and safe execution of erased programs under their proved preconditions.
+There is no general typing-soundness or relational-parametricity theorem.
+The printer and native compiler remain in the translation trust boundary,
+and the unbounded-integer model still requires care at \texttt{Int64}
+boundaries. Interface bounds, inheritance, higher-rank polymorphism, and
+generic raw-memory allocation are outside the implemented source fragment.

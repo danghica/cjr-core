@@ -1,0 +1,7 @@
+-R ../../theories cjr
+-Q ../array/rocq cjr.examples
+-Q ../array_list/rocq cjr.examples
+-Q ../../tools/extraction/rocq cjr.examples
+-Q rocq cjr.examples
+rocq/generic_examples.v
+rocq/generic_tests.v

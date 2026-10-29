@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test report</title><link rel="stylesheet" href="../docs/report.css"><main><header><h1>Runtime test report</h1><a href="../index.html">Project index</a></header><p><span class="badge">passed</span> 11 reported test cases.</p><ul><li><span class="badge">passed</span> arith.signedMultiplication</li><li><span class="badge">passed</span> arith.signedDivision</li><li><span class="badge">passed</span> arith.sumOneReturnsOne</li><li><span class="badge">passed</span> cell.cellAllocatesWritesReadsAndFrees</li><li><span class="badge">passed</span> class_upd.classBumpReturnsTheRawWord</li><li><span class="badge">passed</span> frame_call.writeTouchesOnlyThePassedPointer</li><li><span class="badge">passed</span> struct_upd.bumpWritesTheField</li><li><span class="badge">passed</span> struct_upd.bumpKeepLeavesTheRawWord</li><li><span class="badge">passed</span> sum_block.sumAtReadsTheWrittenWord</li><li><span class="badge">passed</span> swap.swapExchangesTwoCells</li><li><span class="badge">passed</span> vtable.runAppliesTheStoredClosure</li></ul><h2>Run metadata</h2><pre>{
+  &quot;cases&quot;: [
+    &quot;arith.signedMultiplication&quot;,
+    &quot;arith.signedDivision&quot;,
+    &quot;arith.sumOneReturnsOne&quot;,
+    &quot;cell.cellAllocatesWritesReadsAndFrees&quot;,
+    &quot;class_upd.classBumpReturnsTheRawWord&quot;,
+    &quot;frame_call.writeTouchesOnlyThePassedPointer&quot;,
+    &quot;struct_upd.bumpWritesTheField&quot;,
+    &quot;struct_upd.bumpKeepLeavesTheRawWord&quot;,
+    &quot;sum_block.sumAtReadsTheWrittenWord&quot;,
+    &quot;swap.swapExchangesTwoCells&quot;,
+    &quot;vtable.runAppliesTheStoredClosure&quot;
+  ],
+  &quot;compiler&quot;: &quot;Cangjie Compiler: 1.0.5 (cjnative)\nTarget: aarch64-apple-darwin&quot;,
+  &quot;flags&quot;: [
+    &quot;--test&quot;,
+    &quot;-O2&quot;
+  ],
+  &quot;machine&quot;: {
+    &quot;machine&quot;: &quot;arm64&quot;,
+    &quot;node&quot;: &quot;Dans-Mac-mini.local&quot;,
+    &quot;processor&quot;: &quot;arm&quot;,
+    &quot;release&quot;: &quot;25.6.0&quot;,
+    &quot;system&quot;: &quot;Darwin&quot;,
+    &quot;version&quot;: &quot;Darwin Kernel Version 25.6.0: Fri Jul 31 19:11:03 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8132&quot;
+  },
+  &quot;sdk&quot;: &quot;macOS TAPI compatibility copy: arm64e.x1 removed, arm64e labels normalized to arm64&quot;,
+  &quot;status&quot;: &quot;passed&quot;
+}</pre><h2>Execution output</h2><pre>--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 266000 ns, RESULT:
+    TCS: ArithTests, time elapsed: 258000 ns, RESULT:
+    [ PASSED ] CASE: signedMultiplication (117000 ns)
+    [ PASSED ] CASE: signedDivision (4000 ns)
+    [ PASSED ] CASE: sumOneReturnsOne (1000 ns)
+Summary: TOTAL: 3
+    PASSED: 3, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 313000 ns, RESULT:
+    TCS: CellTests, time elapsed: 312000 ns, RESULT:
+    [ PASSED ] CASE: cellAllocatesWritesReadsAndFrees (142000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 307000 ns, RESULT:
+    TCS: ClassUpdTests, time elapsed: 306000 ns, RESULT:
+    [ PASSED ] CASE: classBumpReturnsTheRawWord (140000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 316000 ns, RESULT:
+    TCS: FrameCallTests, time elapsed: 316000 ns, RESULT:
+    [ PASSED ] CASE: writeTouchesOnlyThePassedPointer (145000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 318000 ns, RESULT:
+    TCS: StructUpdTests, time elapsed: 317000 ns, RESULT:
+    [ PASSED ] CASE: bumpWritesTheField (136000 ns)
+    [ PASSED ] CASE: bumpKeepLeavesTheRawWord (4000 ns)
+Summary: TOTAL: 2
+    PASSED: 2, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 312000 ns, RESULT:
+    TCS: SumBlockTests, time elapsed: 312000 ns, RESULT:
+    [ PASSED ] CASE: sumAtReadsTheWrittenWord (142000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 333000 ns, RESULT:
+    TCS: SwapTests, time elapsed: 332000 ns, RESULT:
+    [ PASSED ] CASE: swapExchangesTwoCells (151000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+TP: default, time elapsed: 308000 ns, RESULT:
+    TCS: VTableTests, time elapsed: 308000 ns, RESULT:
+    [ PASSED ] CASE: runAppliesTheStoredClosure (146000 ns)
+Summary: TOTAL: 1
+    PASSED: 1, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+</pre><h2>Downloads</h2><p><a href="results/report.json">report.json</a></p></main></html>

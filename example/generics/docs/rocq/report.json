@@ -1,0 +1,914 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "rocq/generic_examples.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR LitObj [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR StructV [requires runtime or layout metadata]",
+        "unclassified arrow at byte 7810"
+      ],
+      "declarations": 46
+    },
+    {
+      "file": "rocq/generic_tests.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR Struct [requires runtime or layout metadata]"
+      ],
+      "declarations": 25
+    }
+  ],
+  "dependencies": {
+    "complete": true,
+    "roots": [
+      "cjr.examples.generic_examples.box_construct_spec",
+      "cjr.examples.generic_examples.box_get_spec",
+      "cjr.examples.generic_examples.box_map_spec",
+      "cjr.examples.generic_examples.generic_main_adequate",
+      "cjr.examples.generic_examples.generic_program_valid",
+      "cjr.examples.generic_examples.pair_construct_spec",
+      "cjr.examples.generic_examples.pair_first_spec",
+      "cjr.examples.generic_examples.pair_second_spec",
+      "cjr.examples.generic_tests.declaration_shadowing_rejected",
+      "cjr.examples.generic_tests.duplicate_declaration_rejected",
+      "cjr.examples.generic_tests.forward_reference_rejected",
+      "cjr.examples.generic_tests.identical_bodies_have_distinct_references",
+      "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names",
+      "cjr.examples.generic_tests.internal_binder_rejected",
+      "cjr.examples.generic_tests.invalid_constructor_arity_rejected",
+      "cjr.examples.generic_tests.invalid_field_rejected",
+      "cjr.examples.generic_tests.invalid_method_type_arity_rejected",
+      "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer",
+      "cjr.examples.generic_tests.map_erasure_uniform",
+      "cjr.examples.generic_tests.method_parameter_shadowing_rejected",
+      "cjr.examples.generic_tests.nested_type_substitution",
+      "cjr.examples.generic_tests.nested_type_well_formed",
+      "cjr.examples.generic_tests.nominal_type_arity_rejected",
+      "cjr.examples.generic_tests.recursive_reference_is_bound",
+      "cjr.examples.generic_tests.simultaneous_type_substitution",
+      "cjr.examples.generic_tests.source_substitution_respects_shadowing",
+      "cjr.examples.generic_tests.unbound_local_rejected",
+      "cjr.examples.generic_tests.unbound_type_rejected",
+      "cjr.examples.generic_tests.unknown_reference_rejected",
+      "cjr.examples.generic_tests.wrong_type_arity_rejected",
+      "cjr.examples.generic_tests.wrong_value_arity_rejected"
+    ],
+    "source_issues": {
+      "rocq/generic_examples.v": [],
+      "rocq/generic_tests.v": []
+    },
+    "declarations": {
+      "cjr.examples.generic_examples.box_construct_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_rep",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_get_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_get_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_get_body",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_get_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_rep",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_layout": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_map_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.tT",
+          "cjr.examples.generic_examples.tU"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_map_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_map_body",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.tT",
+          "cjr.examples.generic_examples.tU"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_map_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_rep",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_rep": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.box_ty": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.first_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.first_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.first_body",
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_functions": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_get_fn",
+          "cjr.examples.generic_examples.box_map_fn",
+          "cjr.examples.generic_examples.first_fn",
+          "cjr.examples.generic_examples.identity_again_fn",
+          "cjr.examples.generic_examples.identity_fn",
+          "cjr.examples.generic_examples.make_box_fn",
+          "cjr.examples.generic_examples.make_pair_fn",
+          "cjr.examples.generic_examples.positive_box_fn",
+          "cjr.examples.generic_examples.recursive_fn",
+          "cjr.examples.generic_examples.second_fn",
+          "cjr.examples.generic_examples.strict_and_fn"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_layouts": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_layout",
+          "cjr.examples.generic_examples.other_box_layout",
+          "cjr.examples.generic_examples.other_pair_layout",
+          "cjr.examples.generic_examples.pair_layout"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_main": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_main_adequate": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_main_wp",
+          "cjr.examples.generic_examples.generic_program"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_main_wp": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_main",
+          "cjr.examples.generic_examples.generic_runtime",
+          "cjr.examples.generic_examples.identity_spec"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_program": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_main"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_program_valid": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_program"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.generic_runtime": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.identity_again_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.identity_body",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.identity_body": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.identity_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.identity_body",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.identity_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.make_box_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.make_pair_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.make_pair_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.make_pair_body",
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.other_box_layout": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.other_pair_layout": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_construct_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime",
+          "cjr.examples.generic_examples.pair_rep",
+          "cjr.examples.generic_examples.pair_ty"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_first_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime",
+          "cjr.examples.generic_examples.pair_rep"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_layout": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_rep": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_second_spec": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime",
+          "cjr.examples.generic_examples.pair_rep"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.pair_ty": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.positive_box_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.positive_box_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.positive_box_body"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.recursive_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.recursive_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.recursive_body",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.second_body": {
+        "depends_on": [
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.second_fn": {
+        "depends_on": [
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.second_body",
+          "cjr.examples.generic_examples.tA",
+          "cjr.examples.generic_examples.tB"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.strict_and_fn": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.tA": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.tB": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.tT": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_examples.tU": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.declaration_shadowing_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.duplicate_declaration_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.identity_fn",
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.expression_errors": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.forward_reference_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.identical_bodies_have_distinct_references": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.pair_ty"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.internal_binder_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.invalid_constructor_arity_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.invalid_field_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.invalid_method_type_arity_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_functions",
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer": {
+        "depends_on": [
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.map_erasure_uniform": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_map_body",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.generic_runtime"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.method_parameter_shadowing_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_get_body",
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.tT",
+          "cjr.examples.generic_tests.rejected"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.nested_type_substitution": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.pair_ty",
+          "cjr.examples.generic_examples.tT"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.nested_type_well_formed": {
+        "depends_on": [
+          "cjr.examples.generic_examples.box_ty",
+          "cjr.examples.generic_examples.generic_layouts",
+          "cjr.examples.generic_examples.pair_ty"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.nominal_type_arity_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.recursive_reference_is_bound": {
+        "depends_on": [
+          "cjr.examples.generic_examples.generic_layouts"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.rejected": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.simultaneous_type_substitution": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tT",
+          "cjr.examples.generic_examples.tU"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.source_substitution_respects_shadowing": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.unbound_local_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.unbound_type_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_examples.tT",
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.unknown_reference_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.wrong_type_arity_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      },
+      "cjr.examples.generic_tests.wrong_value_arity_rejected": {
+        "depends_on": [
+          "cjr.examples.generic_tests.expression_errors"
+        ],
+        "issues": []
+      }
+    }
+  },
+  "explanations": {
+    "model_selection": "CLI configured model",
+    "failures": 0,
+    "declarations": {
+      "cjr.examples.generic_examples.box_construct_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_get_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_get_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_get_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_layout": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_map_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_map_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_map_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_rep": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.box_ty": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.first_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.first_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_functions": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_layouts": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_main": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_main_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_main_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_program": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_program_valid": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.generic_runtime": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.identity_again_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.identity_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.identity_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.identity_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.make_box_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.make_pair_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.make_pair_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.other_box_layout": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.other_pair_layout": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_construct_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_first_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_layout": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_rep": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_second_spec": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.pair_ty": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.positive_box_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.positive_box_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.recursive_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.recursive_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.second_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.second_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.strict_and_fn": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.tA": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.tB": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.tT": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_examples.tU": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.declaration_shadowing_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.duplicate_declaration_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.expression_errors": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.forward_reference_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.identical_bodies_have_distinct_references": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.internal_binder_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.invalid_constructor_arity_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.invalid_field_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.invalid_method_type_arity_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.map_erasure_uniform": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.method_parameter_shadowing_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.nested_type_substitution": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.nested_type_well_formed": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.nominal_type_arity_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.recursive_reference_is_bound": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.simultaneous_type_substitution": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.source_substitution_respects_shadowing": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.unbound_local_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.unbound_type_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.unknown_reference_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.wrong_type_arity_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.generic_tests.wrong_value_arity_rejected": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      }
+    }
+  }
+}

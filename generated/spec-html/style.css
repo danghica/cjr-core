@@ -1,0 +1,45 @@
+/* Offline, indentation-preserving specification pages. */
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #203044; background: #f3f5f7; }
+body { margin: 0; overflow-wrap: anywhere; } main { max-width: 1080px; margin: auto; padding: 36px 24px 72px; }
+header { margin-bottom: 32px; border-bottom: 2px solid #183c52; padding-bottom: 20px; }
+.eyebrow { color: #42716c; text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 700; }
+h1 { font-size: 2rem; overflow-wrap: anywhere; } h2 { font-size: 1.25rem; margin-top: 0; }
+a { color: #006a75; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: #003e49; background: #e2f3ef; } a:focus-visible { outline: 2px solid #006a75; }
+article, .panel { background: white; padding: 24px; border: 1px solid #d8e1e5; border-radius: 8px; margin: 20px 0; }
+article:target, span:target { outline: 2px solid #67aaa0; scroll-margin-top: 20px; }
+pre { font: 14px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre; overflow-x: auto; tab-size: 4; }
+pre a { text-decoration-style: dotted; } .external { color: #526276; } .unsupported, .error { color: #94392c; }
+.meta, .notice { color: #586778; font-size: .9rem; } .notice { line-height: 1.5; }
+details { border-top: 1px solid #e1e7eb; padding-top: 12px; } summary { cursor: pointer; font-size: .85rem; color: #586778; }
+nav ul, .files { padding-left: 22px; line-height: 1.9; } .count { color: #586778; font-size: .85rem; }
+.dependency-tree, .dependency-tree ul { padding-left: 22px; line-height: 1.8; }
+.dependency-tree li { overflow-wrap: anywhere; }
+.dependency-tree details { border: 0; padding: 0; }
+.dependency-tree summary { font-size: 1rem; }
+.explanation { line-height: 1.65; }
+.explanation-label { font-size: .8rem; font-weight: 700; color: #42716c; }
+@media(max-width: 600px) { main { padding: 20px 12px; } article { padding: 16px; } h1 { font-size: 1.5rem; } }
+
+.graph-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 18px 0 12px; }
+.graph-controls label { display: grid; gap: 5px; font-size: .85rem; color: #586778; }
+.graph-controls input, .graph-controls select, .graph-controls button { font: inherit; border: 1px solid #c7d7dd; border-radius: 6px; padding: 9px 12px; background: white; color: #203044; }
+.graph-controls input { width: 280px; max-width: 100%; box-sizing: border-box; }
+.graph-controls button { cursor: pointer; }
+.graph-controls button:hover { background: #e2f3ef; }
+.graph-zoom { display: flex; gap: 6px; }
+.graph-viewport { height: 550px; overflow: hidden; border: 1px solid #d8e1e5; border-radius: 8px; background: #f8fafc; }
+.graph-viewport.graph-empty { height: 120px; }
+.graph-viewport svg { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.graph-viewport svg:active { cursor: grabbing; }
+.graph-edge { fill: none; stroke: #9eb0c2; stroke-width: 1.5; opacity: .65; }
+.graph-node rect { stroke-width: 1.5; }
+.graph-node text { font: 600 13px system-ui, sans-serif; fill: #203044; }
+.graph-node .graph-caption { font-size: 11px; font-weight: 400; fill: #586778; }
+.graph-node:hover rect, .graph-node:focus-visible rect { stroke: #006a75; stroke-width: 3; }
+.graph-node.graph-selected rect { stroke: #006a75; stroke-width: 3; }
+.graph-node { cursor: pointer; }
+.graph-node:hover { background: none; }
+.graph-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: .8rem; color: #586778; margin: 12px 0; }
+.graph-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; background: var(--swatch); }
+@media(max-width:600px) { .dependency-diagram { padding: 16px; } .graph-viewport { height: 420px; } .graph-controls label { max-width: 100%; } }

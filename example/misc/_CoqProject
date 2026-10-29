@@ -1,0 +1,25 @@
+-R ../../theories cjr
+-Q ../../example/array/rocq cjr.examples
+-Q ../../example/array_list/rocq cjr.examples
+-Q ../../example/list/rocq cjr.examples
+-Q ../../example/list_rev/rocq cjr.examples
+-Q ../../example/qsort/rocq cjr.examples
+-Q ../../example/hash_map/rocq cjr.examples
+-Q ../../example/most_frequent/rocq cjr.examples
+-Q ../../example/misc/rocq cjr.examples
+-Q ../../tools/extraction/rocq cjr.examples
+-Q ../../example/quadtree cjr.quadtree
+-arg -w
+-arg +admitted-proof
+-arg -w
+-arg +deprecated-syntactic-definition
+-arg -w
+-arg +fragile-hint-constr
+rocq/arith.v
+rocq/struct_upd.v
+rocq/cell.v
+rocq/swap.v
+rocq/sum_block.v
+rocq/class_upd.v
+rocq/frame_call.v
+rocq/vtable.v

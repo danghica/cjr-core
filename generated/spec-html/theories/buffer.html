@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>theories/buffer.v — Rocq Readable</title><link rel="stylesheet" href="../style.css"></head>
+<body><main><header><div class="eyebrow">Rocq Readable · specification reference</div>
+<nav aria-label="Project"><a href="../index.html">Home</a> · <a href="../declarations.html">Index</a></nav>
+<h1>theories/buffer.v</h1><p class="meta">8 declarations · proofs omitted</p>
+<p class="notice">Indentation determines multiline scope. Brackets delimit scope only within a line.
+WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
+Rendering rules are presentation choices reviewed by their authors.</p></header><section class="panel dependency-diagram" data-scope="file" aria-labelledby="graph-heading">
+<h2 id="graph-heading">Dependency graph</h2>
+<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry.</p>
+<div class="graph-controls">
+<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="focus">Focused declaration</option></select></label>
+<label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
+<datalist id="graph-choices"></datalist>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+</div>
+<p id="graph-status" class="meta" aria-live="polite"></p>
+<div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
+<div class="graph-legend"><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
+<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
+<noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
+</section><script id="dependency-data" type="application/json">{"cjr.buffer.buffer_fill_body": {"dependencies": [], "file": "theories/buffer.v", "href": "#symbol-8f9685ea8e92796f0b8beca3", "kind": "definition", "label": "cjr.buffer.buffer_fill_body", "name": "buffer_fill_body"}, "cjr.buffer.buffer_fill_closed": {"dependencies": ["cjr.buffer.buffer_fill_body", "cjr.buffer.buffer_fill_val", "cjr.buffer.closed_val"], "file": "theories/buffer.v", "href": "#symbol-91766b3552afebeb3f213ed4", "kind": "lemma", "label": "cjr.buffer.buffer_fill_closed", "name": "buffer_fill_closed"}, "cjr.buffer.buffer_fill_val": {"dependencies": ["cjr.buffer.buffer_fill_body"], "file": "theories/buffer.v", "href": "#symbol-81a6244b5b4ad5b12d67407c", "kind": "definition", "label": "cjr.buffer.buffer_fill_val", "name": "buffer_fill_val"}, "cjr.buffer.buffer_make_body": {"dependencies": ["cjr.buffer.buffer_fill_val"], "file": "theories/buffer.v", "href": "#symbol-ce607b65a1504a8dcf38fef3", "kind": "definition", "label": "cjr.buffer.buffer_make_body", "name": "buffer_make_body"}, "cjr.buffer.buffer_make_closed": {"dependencies": ["cjr.buffer.buffer_fill_closed", "cjr.buffer.buffer_fill_val", "cjr.buffer.buffer_make_body", "cjr.buffer.buffer_make_val", "cjr.buffer.closed_val"], "file": "theories/buffer.v", "href": "#symbol-7c9bb42cc8e404cdf06fca34", "kind": "lemma", "label": "cjr.buffer.buffer_make_closed", "name": "buffer_make_closed"}, "cjr.buffer.buffer_make_val": {"dependencies": ["cjr.buffer.buffer_make_body"], "file": "theories/buffer.v", "href": "#symbol-c6f078c0b259511891a5c9d2", "kind": "definition", "label": "cjr.buffer.buffer_make_val", "name": "buffer_make_val"}, "cjr.buffer.closed_lit": {"dependencies": ["cjr.buffer.closed_val"], "file": "theories/buffer.v", "href": "#symbol-fe45ab94e7b6b152d71de9fc", "kind": "lemma", "label": "cjr.buffer.closed_lit", "name": "closed_lit"}, "cjr.buffer.closed_val": {"dependencies": [], "file": "theories/buffer.v", "href": "#symbol-c33fff3c1bbcf3dc53049bd1", "kind": "definition", "label": "cjr.buffer.closed_val", "name": "closed_val"}}</script><script>
+(() => {
+  const data = JSON.parse(document.getElementById('dependency-data').textContent);
+  const ids = Object.keys(data).sort();
+  const svg = document.getElementById('dependency-svg');
+  const mode = document.getElementById('graph-view');
+  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const search = document.getElementById('graph-focus');
+  const status = document.getElementById('graph-status');
+  const choices = document.getElementById('graph-choices');
+  const reverse = Object.fromEntries(ids.map(id => [id, []]));
+  for (const id of ids) {
+    for (const dependency of data[id].dependencies) reverse[dependency].push(id);
+    const option = document.createElement('option'); option.value = id;
+    option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
+  let focused = null;
+  function element(tag, attrs = {}, text = null) {
+    const node = document.createElementNS(ns, tag);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    if (text !== null) node.textContent = text;
+    return node;
+  }
+  function applyViewport() {
+    svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+  }
+  function fit() {
+    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
+    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
+    const h = w / aspect;
+    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    applyViewport();
+  }
+  function zoom(factor, x = .5, y = .5) {
+    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    viewport.x += viewport.width * (1 - factor) * x;
+    viewport.y += viewport.height * (1 - factor) * y;
+    viewport.width *= factor; viewport.height *= factor; applyViewport();
+  }
+  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  function layout(nodes, edges) {
+    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
+    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
+    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
+    const seen = new Set(), order = [];
+    for (const root of keys) {
+      const stack = [[root, false]];
+      while (stack.length) {
+        const [id, finished] = stack.pop();
+        if (finished) order.push(id);
+        else if (!seen.has(id)) {
+          seen.add(id); stack.push([id, true]);
+          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+        }
+      }
+    }
+    const component = new Map(), groups = [];
+    for (const root of order.reverse()) {
+      if (component.has(root)) continue;
+      const index = groups.length, members = [], stack = [root];
+      while (stack.length) {
+        const id = stack.pop();
+        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
+      }
+      groups.push(members.sort());
+    }
+    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
+    for (const [a, b] of edges) {
+      const from = component.get(a), to = component.get(b);
+      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
+    }
+    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
+    for (let next = 0; next < queue.length; next++) {
+      const from = queue[next];
+      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
+    }
+    const columns = [];
+    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
+    // A few barycentric sweeps reduce crossings without nondeterministic forces.
+    const positions = new Map();
+    for (let pass = 0; pass < 4; pass++) {
+      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
+      const sequence = pass % 2 ? [...columns].reverse() : columns;
+      for (const column of sequence) {
+        const neighbors = pass % 2 ? adjacency : incoming;
+        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
+        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
+      }
+    }
+    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
+    columns.forEach((column, col) => column.forEach((id, row) => {
+      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
+    }));
+    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+  }
+  function sourceColor(file) {
+    const parts = file.split('/');
+    if (parts.includes('spec')) return ['#edf5fc', '#bed8ee'];
+    if (parts.includes('algorithm')) return ['#edf8f4', '#b6dfd4'];
+    if (parts.includes('proof')) return ['#f5f0fb', '#d7c8ec'];
+    return ['#f3f6f8', '#d7dfe5'];
+  }
+  function declarationColor(kind) {
+    if (['lemma','theorem','corollary','proposition','fact','remark','example'].includes(kind)) return ['#f5f0fb','#d7c8ec'];
+    if (['inductive','coinductive','record','structure','class','variant','finite','cofinite','bifinite'].includes(kind)) return ['#edf5fc','#bed8ee'];
+    if (['definition','let','recursive function','corecursive function','instance'].includes(kind)) return ['#edf8f4','#b6dfd4'];
+    return ['#f3f6f8','#d7dfe5'];
+  }
+  function labelLines(label) {
+    const limit = mode.value === 'files' ? 18 : 29;
+    if (label.length <= limit) return [label];
+    const split = Math.max(label.lastIndexOf('_', limit - 1), label.lastIndexOf('/', limit - 1), limit - 8);
+    const remainder = label.slice(split);
+    return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
+  }
+  function render() {
+    let nodes = {}, edges = [], counts = new Map();
+    width = mode.value === 'files' ? 156 : local ? 220 : 244;
+    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
+    if (mode.value === 'files') {
+      for (const id of ids) {
+        const d = data[id], file = d.file;
+        if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
+        nodes[file].count++;
+        for (const dependency of d.dependencies) {
+          const other = data[dependency].file;
+          if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
+        }
+      }
+      edges = [...counts.keys()].map(key => JSON.parse(key));
+    } else {
+      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      for (const id of selected) nodes[id] = data[id];
+      for (const id of selected) for (const dependency of data[id].dependencies) {
+        if (selected.has(dependency)) edges.push([id, dependency]);
+      }
+    }
+    const drawing = layout(nodes, edges);
+    const padding = mode.value === 'files' ? 32 : 80;
+    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
+    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    svg.replaceChildren();
+    svg.setAttribute('tabindex', '0');
+    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
+    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
+    for (const [a, b] of edges) {
+      const from = drawing.points[a], to = drawing.points[b];
+      let d;
+      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
+      else if (to.x > from.x) {
+        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
+        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
+      } else {
+        const x = Math.max(from.x, to.x) + width + 50;
+        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
+      }
+      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const count = counts.get(JSON.stringify([a,b]));
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+    }
+    for (const [id, node] of Object.entries(nodes)) {
+      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
+      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
+      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
+      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
+      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
+      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      svg.append(link);
+    }
+    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    svg.parentElement.classList.toggle('graph-empty', !ids.length);
+    fit();
+  }
+  search.addEventListener('input', () => {
+    const value = search.value.trim();
+    const matches = ids.filter(id => id === value || data[id].name === value);
+    if (matches.length === 1) { focused = matches[0]; mode.value = 'focus'; render(); }
+    else if (!value) { focused = null; mode.value = local ? 'all' : 'files'; render(); }
+  });
+  mode.addEventListener('change', () => {
+    if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
+    render();
+  });
+  document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
+  document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
+  document.getElementById('graph-fit').addEventListener('click', fit);
+  svg.addEventListener('wheel', event => {
+    event.preventDefault(); const box = svg.getBoundingClientRect();
+    zoom(event.deltaY < 0 ? .9 : 1.1, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height);
+  }, {passive:false});
+  let drag = null;
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
+    drag = {x:event.clientX,y:event.clientY,startX:viewport.x,startY:viewport.y}; svg.setPointerCapture(event.pointerId);
+  });
+  svg.addEventListener('pointermove', event => {
+    if (!drag) return;
+    const scale = viewport.width / svg.clientWidth;
+    viewport.x = drag.startX - (event.clientX - drag.x) * scale;
+    viewport.y = drag.startY - (event.clientY - drag.y) * scale; applyViewport();
+  });
+  for (const type of ['pointerup','pointercancel','lostpointercapture']) svg.addEventListener(type, () => {drag = null;});
+  svg.addEventListener('keydown', event => {
+    if (!['+','=','-','0','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === '+' || event.key === '=') zoom(.8);
+    else if (event.key === '-') zoom(1.25);
+    else if (event.key === '0') fit();
+    else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
+  });
+  new ResizeObserver(fit).observe(svg);
+  render();
+})();
+</script><p class="notice">Incomplete rendering: 35 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-c33fff3c1bbcf3dc53049bd1"><h2>closed_val</h2><p class="meta">cjr.buffer.closed_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition closed_val:
+    parameter(<span id="symbol-c33fff3c1bbcf3dc53049bd1-binder-298">v</span>, type(<a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
+    type:
+        Prop
+    body:
+        <span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:&#x27;∀&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">forall</span>:
+            binders:
+                parameter(<span id="symbol-c33fff3c1bbcf3dc53049bd1-binder-321">x</span>, type(_ (inferred)))
+                parameter(<span id="symbol-c33fff3c1bbcf3dc53049bd1-binder-323">w</span>, type(_ (inferred)))
+            <a href="lang.html#symbol-212f6f0c49235110d4191e50" title="cjr.lang.subst_val">subst_val</a>(<a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-321">x</a>, <a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-323">w</a>, <a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-298">v</a>)<span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x">=</span><a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-298">v</a></pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="lang.html#symbol-212f6f0c49235110d4191e50">cjr.lang.subst_val</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition closed_val (v : <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>) : Prop := <span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:&#x27;∀&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">∀ </span>x w<span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:&#x27;∀&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">, </span><a href="lang.html#symbol-212f6f0c49235110d4191e50" title="cjr.lang.subst_val">subst_val</a> <a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-321">x</a> <a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-323">w</a> <a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-298">v</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x"> = </span><a href="#symbol-c33fff3c1bbcf3dc53049bd1-binder-298">v</a>.</pre></details></article><article id="symbol-8f9685ea8e92796f0b8beca3"><h2>buffer_fill_body</h2><p class="meta">cjr.buffer.buffer_fill_body</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition buffer_fill_body:
+    type:
+        <a href="lang.html#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>
+    body:
+        <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+            <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$p&quot;)
+            <a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">CJR StructLoad [requires runtime or layout metadata]</a>:
+                <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$fillArgs&quot;)
+                0
+            <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+                <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$n&quot;)
+                <a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">CJR StructLoad [requires runtime or layout metadata]</a>:
+                    <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$fillArgs&quot;)
+                    1
+                <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+                    <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$seed&quot;)
+                    <a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">CJR StructLoad [requires runtime or layout metadata]</a>:
+                        <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$fillArgs&quot;)
+                        2
+                    <a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If">if (</a>(<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$n&quot;)<a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp"> </a><a href="lang.html#symbol-37256053b71692d5ec6ec1ed" title="cjr.lang.LeOp">&lt;=</a><a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp"> </a>0)<a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If">) {</a>
+                        <a href="lang.html#symbol-e33c34795338d99093521ac3" title="cjr.lang.LitUnit">()</a>
+                    <a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If">}</a><a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If"> else {</a>
+                        <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+                            <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$k&quot;)
+                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$n&quot;)<a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp"> </a><a href="lang.html#symbol-9be64384a6caf139d86cdc8f" title="cjr.lang.MinusOp">-</a><a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp"> </a>1
+                            <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">let </a>_<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let"> = </a>
+                                (
+                                    <a href="lang.html#symbol-61ff0b4d8645f22d168d80c2" title="cjr.lang.Store">unsafe {</a><a href="lang.html#symbol-61ff0b4d8645f22d168d80c2" title="cjr.lang.Store"> (</a>
+                                        (
+                                            <a href="lang.html#symbol-9786c2648afa7649f6adc9a0" title="cjr.lang.Offset">unsafe {</a><a href="lang.html#symbol-9786c2648afa7649f6adc9a0" title="cjr.lang.Offset"> </a>
+                                                <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>:
+                                                    &quot;$p&quot;
+                                            <a href="lang.html#symbol-9786c2648afa7649f6adc9a0" title="cjr.lang.Offset"> + </a><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$k&quot;)<a href="lang.html#symbol-9786c2648afa7649f6adc9a0" title="cjr.lang.Offset"> }</a>
+                                        )
+                                    <a href="lang.html#symbol-61ff0b4d8645f22d168d80c2" title="cjr.lang.Store">).write(</a><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$seed&quot;)<a href="lang.html#symbol-61ff0b4d8645f22d168d80c2" title="cjr.lang.Store">) }</a>
+                                )
+                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$fill&quot;)<a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">(</a>
+                                <a href="lang.html#symbol-eaf23532f0d6ea5928965638" title="cjr.lang.Struct">CJR Struct [requires runtime or layout metadata]</a>:
+                                    <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">empty_list</span>
+                                    <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">list_with_tail_items</span>:
+                                        <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$p&quot;)
+                                        items:
+                                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$k&quot;)
+                                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$seed&quot;)
+                            <a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">)</a>
+                    <a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If">}</a></pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="lang.html#symbol-50123e23e3558cbee7f84fb1">cjr.lang.base_lit</a></li><li><a href="lang.html#symbol-5205c3e703f74a0cb13702bf">cjr.lang.bin_op</a></li><li><a href="lang.html#symbol-02fb45236d2ab5eccd901065">cjr.lang.expr</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition buffer_fill_body : <a href="lang.html#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a> :=
+  <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$p&quot;) (<a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">StructLoad</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$fillArgs&quot;) 0)
+  (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$n&quot;) (<a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">StructLoad</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$fillArgs&quot;) 1)
+  (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$seed&quot;) (<a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">StructLoad</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$fillArgs&quot;) 2)
+    (<a href="lang.html#symbol-e2ea6e3b60d3b1aef45afa34" title="cjr.lang.If">If</a> (<a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp">BinOp</a> <a href="lang.html#symbol-37256053b71692d5ec6ec1ed" title="cjr.lang.LeOp">LeOp</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$n&quot;) (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> 0))))
+      (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> <a href="lang.html#symbol-e33c34795338d99093521ac3" title="cjr.lang.LitUnit">LitUnit</a>))
+      (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$k&quot;) (<a href="lang.html#symbol-102a88a2de423f8aff135c7a" title="cjr.lang.BinOp">BinOp</a> <a href="lang.html#symbol-9be64384a6caf139d86cdc8f" title="cjr.lang.MinusOp">MinusOp</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$n&quot;) (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> 1))))
+      (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> <span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span> (<a href="lang.html#symbol-61ff0b4d8645f22d168d80c2" title="cjr.lang.Store">Store</a> (<a href="lang.html#symbol-9786c2648afa7649f6adc9a0" title="cjr.lang.Offset">Offset</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$p&quot;) (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$k&quot;)) (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$seed&quot;))
+        (<a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">App</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$fill&quot;) (<a href="lang.html#symbol-eaf23532f0d6ea5928965638" title="cjr.lang.Struct">Struct</a> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">[</span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$p&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$k&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$seed&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">]</span>))))))).</pre></details></article><article id="symbol-81a6244b5b4ad5b12d67407c"><h2>buffer_fill_val</h2><p class="meta">cjr.buffer.buffer_fill_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition buffer_fill_val:
+    type:
+        <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>
+    body:
+        <a href="lang.html#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">CJR RecV [symbolic identifier or binder]</a>:
+            <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$fill&quot;)
+            <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$fillArgs&quot;)
+            <a href="#symbol-8f9685ea8e92796f0b8beca3" title="cjr.buffer.buffer_fill_body">buffer_fill_body</a></pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-8f9685ea8e92796f0b8beca3">cjr.buffer.buffer_fill_body</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition buffer_fill_val : <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a> :=
+  <a href="lang.html#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$fill&quot;) (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$fillArgs&quot;) <a href="#symbol-8f9685ea8e92796f0b8beca3" title="cjr.buffer.buffer_fill_body">buffer_fill_body</a>.</pre></details></article><article id="symbol-ce607b65a1504a8dcf38fef3"><h2>buffer_make_body</h2><p class="meta">cjr.buffer.buffer_make_body</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition buffer_make_body:
+    type:
+        <a href="lang.html#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>
+    body:
+        <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+            <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$size&quot;)
+            <a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">CJR StructLoad [requires runtime or layout metadata]</a>:
+                <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$makeArgs&quot;)
+                0
+            <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+                <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$seed&quot;)
+                <a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">CJR StructLoad [requires runtime or layout metadata]</a>:
+                    <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$makeArgs&quot;)
+                    1
+                <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">CJR Let [symbolic identifier or binder]</a>:
+                    <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$base&quot;)
+                    <a href="lang.html#symbol-f21338ae56361798ae838e12" title="cjr.lang.Alloc">unsafe {</a><a href="lang.html#symbol-f21338ae56361798ae838e12" title="cjr.lang.Alloc"> CPointer&lt;Int64&gt;(calloc(UIntNative(</a>
+                        <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$size&quot;)
+                    <a href="lang.html#symbol-f21338ae56361798ae838e12" title="cjr.lang.Alloc">), UIntNative(8))) }</a>
+                    <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">let </a>_<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let"> = </a>
+                        (
+                            <a href="#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a><a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">(</a>
+                                <a href="lang.html#symbol-eaf23532f0d6ea5928965638" title="cjr.lang.Struct">CJR Struct [requires runtime or layout metadata]</a>:
+                                    <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">empty_list</span>
+                                    <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">list_with_tail_items</span>:
+                                        <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$base&quot;)
+                                        items:
+                                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$size&quot;)
+                                            <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$seed&quot;)
+                            <a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">)</a>
+                        )
+                    <a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">CJR Var [symbolic identifier or binder]</a>(&quot;$base&quot;)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c">cjr.buffer.buffer_fill_val</a></li><li><a href="lang.html#symbol-02fb45236d2ab5eccd901065">cjr.lang.expr</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition buffer_make_body : <a href="lang.html#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a> :=
+  <a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$size&quot;) (<a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">StructLoad</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$makeArgs&quot;) 0)
+  (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$seed&quot;) (<a href="lang.html#symbol-4e1c6b4b996752ee8661435d" title="cjr.lang.StructLoad">StructLoad</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$makeArgs&quot;) 1)
+  (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$base&quot;) (<a href="lang.html#symbol-f21338ae56361798ae838e12" title="cjr.lang.Alloc">Alloc</a> (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$size&quot;))
+  (<a href="lang.html#symbol-6d35deffb294bbdeb86e269e" title="cjr.lang.Let">Let</a> <span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span> (<a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">App</a> (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> <a href="#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a>)
+     (<a href="lang.html#symbol-eaf23532f0d6ea5928965638" title="cjr.lang.Struct">Struct</a> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">[</span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$base&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$size&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$seed&quot;<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">]</span>))
+     (<a href="lang.html#symbol-a6c05f4be2dd1f951ff275ad" title="cjr.lang.Var">Var</a> &quot;$base&quot;)))).</pre></details></article><article id="symbol-c6f078c0b259511891a5c9d2"><h2>buffer_make_val</h2><p class="meta">cjr.buffer.buffer_make_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition buffer_make_val:
+    type:
+        <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>
+    body:
+        <a href="lang.html#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">CJR RecV [symbolic identifier or binder]</a>(<span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span>, <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span>(&quot;$makeArgs&quot;), <a href="#symbol-ce607b65a1504a8dcf38fef3" title="cjr.buffer.buffer_make_body">buffer_make_body</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-ce607b65a1504a8dcf38fef3">cjr.buffer.buffer_make_body</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition buffer_make_val : <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a> := <a href="lang.html#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> <span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span> (<span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> &quot;$makeArgs&quot;) <a href="#symbol-ce607b65a1504a8dcf38fef3" title="cjr.buffer.buffer_make_body">buffer_make_body</a>.</pre></details></article><article id="symbol-91766b3552afebeb3f213ed4"><h2>buffer_fill_closed</h2><p class="meta">cjr.buffer.buffer_fill_closed</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma buffer_fill_closed:
+    statement:
+        <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a>(<a href="#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-8f9685ea8e92796f0b8beca3">cjr.buffer.buffer_fill_body</a></li><li><a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c">cjr.buffer.buffer_fill_val</a></li><li><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1">cjr.buffer.closed_val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma buffer_fill_closed : <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a> <a href="#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a>.</pre></details></article><article id="symbol-7c9bb42cc8e404cdf06fca34"><h2>buffer_make_closed</h2><p class="meta">cjr.buffer.buffer_make_closed</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma buffer_make_closed:
+    statement:
+        <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a>(<a href="#symbol-c6f078c0b259511891a5c9d2" title="cjr.buffer.buffer_make_val">buffer_make_val</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-91766b3552afebeb3f213ed4">cjr.buffer.buffer_fill_closed</a></li><li><a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c">cjr.buffer.buffer_fill_val</a></li><li><a href="buffer.html#symbol-ce607b65a1504a8dcf38fef3">cjr.buffer.buffer_make_body</a></li><li><a href="buffer.html#symbol-c6f078c0b259511891a5c9d2">cjr.buffer.buffer_make_val</a></li><li><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1">cjr.buffer.closed_val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma buffer_make_closed : <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a> <a href="#symbol-c6f078c0b259511891a5c9d2" title="cjr.buffer.buffer_make_val">buffer_make_val</a>.</pre></details></article><article id="symbol-fe45ab94e7b6b152d71de9fc"><h2>closed_lit</h2><p class="meta">cjr.buffer.closed_lit</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma closed_lit:
+    parameter(<span id="symbol-fe45ab94e7b6b152d71de9fc-binder-1794">l</span>, type(_ (inferred)))
+    statement:
+        <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a>(<a href="#symbol-fe45ab94e7b6b152d71de9fc-binder-1794">l</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1">cjr.buffer.closed_val</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma closed_lit l : <a href="#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> <a href="#symbol-fe45ab94e7b6b152d71de9fc-binder-1794">l</a>).</pre></details></article></main></body></html>

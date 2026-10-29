@@ -1,0 +1,22 @@
+opam-version: "2.0"
+synopsis: "Cangjie Radical (cjr), mechanized in Iris"
+description: """
+Performance-parity fragment of Cangjie: stack slots, raw blocks, and final class
+objects, with a separation-logic program logic in Coq/Iris.
+"""
+maintainer: "cjr"
+authors: "cjr"
+license: "BSD-3-Clause"
+homepage: ""
+bug-reports: ""
+depends: [
+  "coq" {>= "8.19" & < "9.1~"}
+  "coq-stdpp" {= "1.12.0"}
+  "coq-iris" {= "4.4.0"}
+]
+build: [
+  ["coq_makefile" "-f" "_CoqProject" "-o" "Makefile"]
+  [make "-j%{jobs}%"]
+]
+install: [make "install"]
+dev-repo: "git+https://example.com/cjr.git"

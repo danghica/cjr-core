@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>theories/buffer_laws.v — Rocq Readable</title><link rel="stylesheet" href="../style.css"></head>
+<body><main><header><div class="eyebrow">Rocq Readable · specification reference</div>
+<nav aria-label="Project"><a href="../index.html">Home</a> · <a href="../declarations.html">Index</a></nav>
+<h1>theories/buffer_laws.v</h1><p class="meta">4 declarations · proofs omitted</p>
+<p class="notice">Indentation determines multiline scope. Brackets delimit scope only within a line.
+WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
+Rendering rules are presentation choices reviewed by their authors.</p></header><section class="panel dependency-diagram" data-scope="file" aria-labelledby="graph-heading">
+<h2 id="graph-heading">Dependency graph</h2>
+<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry.</p>
+<div class="graph-controls">
+<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="focus">Focused declaration</option></select></label>
+<label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
+<datalist id="graph-choices"></datalist>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+</div>
+<p id="graph-status" class="meta" aria-live="polite"></p>
+<div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
+<div class="graph-legend"><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
+<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
+<noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
+</section><script id="dependency-data" type="application/json">{"cjr.buffer_laws.buffer_cells": {"dependencies": [], "file": "theories/buffer_laws.v", "href": "#symbol-3d43f68531812f2e1e085e08", "kind": "definition", "label": "cjr.buffer_laws.buffer_cells", "name": "buffer_cells"}, "cjr.buffer_laws.buffer_zero_cells": {"dependencies": ["cjr.buffer_laws.buffer_cells"], "file": "theories/buffer_laws.v", "href": "#symbol-120fa986a9a86ece09d63a70", "kind": "lemma", "label": "cjr.buffer_laws.buffer_zero_cells", "name": "buffer_zero_cells"}, "cjr.buffer_laws.wp_buffer_fill": {"dependencies": ["cjr.buffer_laws.buffer_cells"], "file": "theories/buffer_laws.v", "href": "#symbol-83b6a5025ecc932d09aecac5", "kind": "lemma", "label": "cjr.buffer_laws.wp_buffer_fill", "name": "wp_buffer_fill"}, "cjr.buffer_laws.wp_buffer_make": {"dependencies": ["cjr.buffer_laws.buffer_cells", "cjr.buffer_laws.buffer_zero_cells", "cjr.buffer_laws.wp_buffer_fill"], "file": "theories/buffer_laws.v", "href": "#symbol-da4aa4aa9362ada033a3b21e", "kind": "lemma", "label": "cjr.buffer_laws.wp_buffer_make", "name": "wp_buffer_make"}}</script><script>
+(() => {
+  const data = JSON.parse(document.getElementById('dependency-data').textContent);
+  const ids = Object.keys(data).sort();
+  const svg = document.getElementById('dependency-svg');
+  const mode = document.getElementById('graph-view');
+  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const search = document.getElementById('graph-focus');
+  const status = document.getElementById('graph-status');
+  const choices = document.getElementById('graph-choices');
+  const reverse = Object.fromEntries(ids.map(id => [id, []]));
+  for (const id of ids) {
+    for (const dependency of data[id].dependencies) reverse[dependency].push(id);
+    const option = document.createElement('option'); option.value = id;
+    option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
+  let focused = null;
+  function element(tag, attrs = {}, text = null) {
+    const node = document.createElementNS(ns, tag);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    if (text !== null) node.textContent = text;
+    return node;
+  }
+  function applyViewport() {
+    svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+  }
+  function fit() {
+    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
+    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
+    const h = w / aspect;
+    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    applyViewport();
+  }
+  function zoom(factor, x = .5, y = .5) {
+    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    viewport.x += viewport.width * (1 - factor) * x;
+    viewport.y += viewport.height * (1 - factor) * y;
+    viewport.width *= factor; viewport.height *= factor; applyViewport();
+  }
+  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  function layout(nodes, edges) {
+    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
+    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
+    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
+    const seen = new Set(), order = [];
+    for (const root of keys) {
+      const stack = [[root, false]];
+      while (stack.length) {
+        const [id, finished] = stack.pop();
+        if (finished) order.push(id);
+        else if (!seen.has(id)) {
+          seen.add(id); stack.push([id, true]);
+          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+        }
+      }
+    }
+    const component = new Map(), groups = [];
+    for (const root of order.reverse()) {
+      if (component.has(root)) continue;
+      const index = groups.length, members = [], stack = [root];
+      while (stack.length) {
+        const id = stack.pop();
+        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
+      }
+      groups.push(members.sort());
+    }
+    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
+    for (const [a, b] of edges) {
+      const from = component.get(a), to = component.get(b);
+      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
+    }
+    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
+    for (let next = 0; next < queue.length; next++) {
+      const from = queue[next];
+      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
+    }
+    const columns = [];
+    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
+    // A few barycentric sweeps reduce crossings without nondeterministic forces.
+    const positions = new Map();
+    for (let pass = 0; pass < 4; pass++) {
+      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
+      const sequence = pass % 2 ? [...columns].reverse() : columns;
+      for (const column of sequence) {
+        const neighbors = pass % 2 ? adjacency : incoming;
+        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
+        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
+      }
+    }
+    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
+    columns.forEach((column, col) => column.forEach((id, row) => {
+      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
+    }));
+    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+  }
+  function sourceColor(file) {
+    const parts = file.split('/');
+    if (parts.includes('spec')) return ['#edf5fc', '#bed8ee'];
+    if (parts.includes('algorithm')) return ['#edf8f4', '#b6dfd4'];
+    if (parts.includes('proof')) return ['#f5f0fb', '#d7c8ec'];
+    return ['#f3f6f8', '#d7dfe5'];
+  }
+  function declarationColor(kind) {
+    if (['lemma','theorem','corollary','proposition','fact','remark','example'].includes(kind)) return ['#f5f0fb','#d7c8ec'];
+    if (['inductive','coinductive','record','structure','class','variant','finite','cofinite','bifinite'].includes(kind)) return ['#edf5fc','#bed8ee'];
+    if (['definition','let','recursive function','corecursive function','instance'].includes(kind)) return ['#edf8f4','#b6dfd4'];
+    return ['#f3f6f8','#d7dfe5'];
+  }
+  function labelLines(label) {
+    const limit = mode.value === 'files' ? 18 : 29;
+    if (label.length <= limit) return [label];
+    const split = Math.max(label.lastIndexOf('_', limit - 1), label.lastIndexOf('/', limit - 1), limit - 8);
+    const remainder = label.slice(split);
+    return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
+  }
+  function render() {
+    let nodes = {}, edges = [], counts = new Map();
+    width = mode.value === 'files' ? 156 : local ? 220 : 244;
+    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
+    if (mode.value === 'files') {
+      for (const id of ids) {
+        const d = data[id], file = d.file;
+        if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
+        nodes[file].count++;
+        for (const dependency of d.dependencies) {
+          const other = data[dependency].file;
+          if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
+        }
+      }
+      edges = [...counts.keys()].map(key => JSON.parse(key));
+    } else {
+      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      for (const id of selected) nodes[id] = data[id];
+      for (const id of selected) for (const dependency of data[id].dependencies) {
+        if (selected.has(dependency)) edges.push([id, dependency]);
+      }
+    }
+    const drawing = layout(nodes, edges);
+    const padding = mode.value === 'files' ? 32 : 80;
+    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
+    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    svg.replaceChildren();
+    svg.setAttribute('tabindex', '0');
+    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
+    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
+    for (const [a, b] of edges) {
+      const from = drawing.points[a], to = drawing.points[b];
+      let d;
+      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
+      else if (to.x > from.x) {
+        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
+        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
+      } else {
+        const x = Math.max(from.x, to.x) + width + 50;
+        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
+      }
+      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const count = counts.get(JSON.stringify([a,b]));
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+    }
+    for (const [id, node] of Object.entries(nodes)) {
+      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
+      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
+      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
+      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
+      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
+      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      svg.append(link);
+    }
+    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    svg.parentElement.classList.toggle('graph-empty', !ids.length);
+    fit();
+  }
+  search.addEventListener('input', () => {
+    const value = search.value.trim();
+    const matches = ids.filter(id => id === value || data[id].name === value);
+    if (matches.length === 1) { focused = matches[0]; mode.value = 'focus'; render(); }
+    else if (!value) { focused = null; mode.value = local ? 'all' : 'files'; render(); }
+  });
+  mode.addEventListener('change', () => {
+    if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
+    render();
+  });
+  document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
+  document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
+  document.getElementById('graph-fit').addEventListener('click', fit);
+  svg.addEventListener('wheel', event => {
+    event.preventDefault(); const box = svg.getBoundingClientRect();
+    zoom(event.deltaY < 0 ? .9 : 1.1, (event.clientX - box.left) / box.width, (event.clientY - box.top) / box.height);
+  }, {passive:false});
+  let drag = null;
+  svg.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
+    drag = {x:event.clientX,y:event.clientY,startX:viewport.x,startY:viewport.y}; svg.setPointerCapture(event.pointerId);
+  });
+  svg.addEventListener('pointermove', event => {
+    if (!drag) return;
+    const scale = viewport.width / svg.clientWidth;
+    viewport.x = drag.startX - (event.clientX - drag.x) * scale;
+    viewport.y = drag.startY - (event.clientY - drag.y) * scale; applyViewport();
+  });
+  for (const type of ['pointerup','pointercancel','lostpointercapture']) svg.addEventListener(type, () => {drag = null;});
+  svg.addEventListener('keydown', event => {
+    if (!['+','=','-','0','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === '+' || event.key === '=') zoom(.8);
+    else if (event.key === '-') zoom(1.25);
+    else if (event.key === '0') fit();
+    else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
+  });
+  new ResizeObserver(fit).observe(svg);
+  render();
+})();
+</script><p class="notice">Incomplete rendering: 7 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-3d43f68531812f2e1e085e08"><h2>buffer_cells</h2><p class="meta">cjr.buffer_laws.buffer_cells · buffer_logic</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition buffer_cells:
+    context:
+        typeclass maximal implicit !(_, type(<a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca" title="cjr.primitive_laws.cjrGS">cjrGS</a>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+        typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span>(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span>, <span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-3d43f68531812f2e1e085e08-binder-354">base</span>, type(<span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>))
+    parameter(<span id="symbol-3d43f68531812f2e1e085e08-binder-365">xs</span>, type(<span class="external" title="External or unresolved: Coq.Init.Datatypes.list">list</span>(<a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>)))
+    type:
+        <span class="external" title="External or unresolved: iris.base_logic.lib.iprop.iProp_solution.iProp">iProp</span>(<span class="external" title="External or unresolved: Σ">Σ</span>)
+    body:
+        <span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;↦&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">separately_for_each_index_and_item</span>:
+            <span id="symbol-3d43f68531812f2e1e085e08-binder-409">i</span>
+            <span id="symbol-3d43f68531812f2e1e085e08-binder-415">v</span>
+            <a href="#symbol-3d43f68531812f2e1e085e08-binder-365">xs</a>
+            <a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</a>(<a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a>(in_scope Z(<span class="external" title="External or unresolved: Coq.ZArith.BinInt.::Z_scope:x_&#x27;+&#x27;_x">add</span>(<a href="#symbol-3d43f68531812f2e1e085e08-binder-354">base</a>, <span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span>(<a href="#symbol-3d43f68531812f2e1e085e08-binder-409">i</a>)))), <a href="#symbol-3d43f68531812f2e1e085e08-binder-415">v</a>)</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="lang.html#symbol-407a84dd3b117ddcf266f7de">cjr.lang.raw_id</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li><li><a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3">cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x</a></li><li><a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca">cjr.primitive_laws.cjrGS</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Definition buffer_cells (base : <span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>) (xs : <span class="external" title="External or unresolved: Coq.Init.Datatypes.list">list</span> <a href="lang.html#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>) : <span class="external" title="External or unresolved: iris.base_logic.lib.iprop.iProp_solution.iProp">iProp</span> Σ :=
+    <span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;↦&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">[∗ list] </span>i<span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;↦&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x"> ↦ </span>v<span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;↦&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x"> ∈ </span><a href="#symbol-3d43f68531812f2e1e085e08-binder-365">xs</a><span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;↦&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">, </span><a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a> (<a href="#symbol-3d43f68531812f2e1e085e08-binder-354">base</a><span class="external" title="External or unresolved: Coq.ZArith.BinInt.::Z_scope:x_&#x27;+&#x27;_x"> + </span><span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span> <a href="#symbol-3d43f68531812f2e1e085e08-binder-409">i</a>)%Z<a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </a><a href="#symbol-3d43f68531812f2e1e085e08-binder-415">v</a>.</pre></details></article><article id="symbol-120fa986a9a86ece09d63a70"><h2>buffer_zero_cells</h2><p class="meta">cjr.buffer_laws.buffer_zero_cells · buffer_logic</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma buffer_zero_cells:
+    context:
+        typeclass maximal implicit !(_, type(<a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca" title="cjr.primitive_laws.cjrGS">cjrGS</a>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+        typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span>(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span>, <span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-120fa986a9a86ece09d63a70-binder-490">base</span>, type(_ (inferred)))
+    parameter(<span id="symbol-120fa986a9a86ece09d63a70-binder-495">n</span>, type(_ (inferred)))
+    statement:
+        <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;⊢&#x27;_x">entails</span>:
+            <span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">separately_for_each_item</span>:
+                <span id="symbol-120fa986a9a86ece09d63a70-binder-515">i</span>
+                <span class="external" title="External or unresolved: Coq.Lists.List.seq">seq</span>(0, <a href="#symbol-120fa986a9a86ece09d63a70-binder-495">n</a>)
+                <a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x">owns_raw</a>(<a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a>(in_scope Z(<span class="external" title="External or unresolved: Coq.ZArith.BinInt.::Z_scope:x_&#x27;+&#x27;_x">add</span>(<a href="#symbol-120fa986a9a86ece09d63a70-binder-490">base</a>, <span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span>(<a href="#symbol-120fa986a9a86ece09d63a70-binder-515">i</a>)))), 0)
+            <a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a>(<a href="#symbol-120fa986a9a86ece09d63a70-binder-490">base</a>, <span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span>(<a href="#symbol-120fa986a9a86ece09d63a70-binder-495">n</a>, 0))</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer_laws.html#symbol-3d43f68531812f2e1e085e08">cjr.buffer_laws.buffer_cells</a></li><li><a href="lang.html#symbol-50123e23e3558cbee7f84fb1">cjr.lang.base_lit</a></li><li><a href="lang.html#symbol-407a84dd3b117ddcf266f7de">cjr.lang.raw_id</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li><li><a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3">cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x</a></li><li><a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca">cjr.primitive_laws.cjrGS</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma buffer_zero_cells base n :
+    <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;⊢&#x27;_x">(</span><span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">[∗ list] </span>i<span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x"> ∈ </span><span class="external" title="External or unresolved: Coq.Lists.List.seq">seq</span> 0 <a href="#symbol-120fa986a9a86ece09d63a70-binder-495">n</a><span class="external" title="External or unresolved: iris.bi.big_op.::bi_scope:&#x27;[∗&#x27;_&#x27;list]&#x27;_x_&#x27;∈&#x27;_x_&#x27;,&#x27;_x">, </span><a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a> (<a href="#symbol-120fa986a9a86ece09d63a70-binder-490">base</a><span class="external" title="External or unresolved: Coq.ZArith.BinInt.::Z_scope:x_&#x27;+&#x27;_x"> + </span><span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span> <a href="#symbol-120fa986a9a86ece09d63a70-binder-515">i</a>)%Z<a href="primitive_laws.html#symbol-bab3aab524a3161fb75841d3" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵣ&#x27;_x"> ↦ᵣ </a><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> 0)<span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;⊢&#x27;_x">) ⊢
+    </span><a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a> <a href="#symbol-120fa986a9a86ece09d63a70-binder-490">base</a> (<span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span> <a href="#symbol-120fa986a9a86ece09d63a70-binder-495">n</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> 0))).</pre></details></article><article id="symbol-83b6a5025ecc932d09aecac5"><h2>wp_buffer_fill</h2><p class="meta">cjr.buffer_laws.wp_buffer_fill · buffer_logic</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma wp_buffer_fill:
+    context:
+        typeclass maximal implicit !(_, type(<a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca" title="cjr.primitive_laws.cjrGS">cjrGS</a>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+        typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span>(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span>, <span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-83b6a5025ecc932d09aecac5-binder-964">base</span>, type(_ (inferred)))
+    parameter(<span id="symbol-83b6a5025ecc932d09aecac5-binder-969">n</span>, type(_ (inferred)))
+    parameter(<span id="symbol-83b6a5025ecc932d09aecac5-binder-971">seed</span>, type(_ (inferred)))
+    statement:
+        <span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x">arrow</span>:
+            <a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a>)
+            <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x">consuming_implies</span>:
+                <a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a>, <span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a>, 0))
+                <span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">wp_partial</span>:
+                    <a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a><a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">(</a>
+                        <a href="lang.html#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">CJR StructV [requires runtime or layout metadata]</a>:
+                            <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">list_with_tail_items</span>:
+                                <a href="lang.html#symbol-698733efb80781f48317cdb5" title="cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</a>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a>)
+                                items(<span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a>), <a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a>)
+                    <a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">)</a>
+                    post binder(<span id="symbol-83b6a5025ecc932d09aecac5-binder-1176">v</span>)
+                    postcondition:
+                        <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x">separately</span>:
+                            <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">pure</span>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-1176">v</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x">=</span><a href="lang.html#symbol-e33c34795338d99093521ac3" title="cjr.lang.LitUnit">()</a>)
+                            <a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a>, <span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span>(<a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a>, <a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a>))</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c">cjr.buffer.buffer_fill_val</a></li><li><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1">cjr.buffer.closed_val</a></li><li><a href="buffer_laws.html#symbol-3d43f68531812f2e1e085e08">cjr.buffer_laws.buffer_cells</a></li><li><a href="generic_laws.html#symbol-bccd4aafdb6a892e5649fbaf">cjr.generic_laws.wp_generic_pack_acc</a></li><li><a href="lang.html#symbol-50123e23e3558cbee7f84fb1">cjr.lang.base_lit</a></li><li><a href="lang.html#symbol-94c0dd09415be66b45b91b5a">cjr.lang.bin_op_eval</a></li><li><a href="lang.html#symbol-cdbe6c9dc367327c7c948a7e">cjr.lang.ectx_item</a></li><li><a href="lang.html#symbol-02fb45236d2ab5eccd901065">cjr.lang.expr</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li><li><a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca">cjr.primitive_laws.cjrGS</a></li><li><a href="primitive_laws.html#symbol-82c429d289193babe930a998">cjr.primitive_laws.wp_app</a></li><li><a href="primitive_laws.html#symbol-7103ca3a02ff784173e57369">cjr.primitive_laws.wp_bind</a></li><li><a href="primitive_laws.html#symbol-421d15c2b87e6aee30d9f16a">cjr.primitive_laws.wp_binop</a></li><li><a href="primitive_laws.html#symbol-5bd1c39ae65d90555ff03eca">cjr.primitive_laws.wp_if_false</a></li><li><a href="primitive_laws.html#symbol-a8e336af4663eb21977915e0">cjr.primitive_laws.wp_if_true</a></li><li><a href="primitive_laws.html#symbol-15c801990ab44d21a9d4b8e8">cjr.primitive_laws.wp_let</a></li><li><a href="primitive_laws.html#symbol-ed3e1d16994b7216ff468d1f">cjr.primitive_laws.wp_offset</a></li><li><a href="primitive_laws.html#symbol-474f0e61ea60c88bb9129744">cjr.primitive_laws.wp_store</a></li><li><a href="primitive_laws.html#symbol-a4be93eb1a994eab042e3c46">cjr.primitive_laws.wp_struct_load</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma wp_buffer_fill base n seed : <a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a><span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x"> →
+    </span><a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a> (<span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a> (<a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> 0)))<span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:x_&#x27;-∗&#x27;_x"> -∗
+    </span><span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">WP </span><a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">App</a> (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> <a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c" title="cjr.buffer.buffer_fill_val">buffer_fill_val</a>)
+      (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> (<a href="lang.html#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">[</span><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-698733efb80781f48317cdb5" title="cjr.lang.LitPtr">LitPtr</a> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a>)<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> (<span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a>))<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a><span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">]</span>))<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">
+      {{ </span>v<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">, </span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">⌜</span><a href="#symbol-83b6a5025ecc932d09aecac5-binder-1176">v</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x"> = </span><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> <a href="lang.html#symbol-e33c34795338d99093521ac3" title="cjr.lang.LitUnit">LitUnit</a><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">⌝</span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x"> ∗ </span><a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-964">base</a> (<span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-969">n</a> <a href="#symbol-83b6a5025ecc932d09aecac5-binder-971">seed</a>)<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;"> }}</span>.</pre></details></article><article id="symbol-da4aa4aa9362ada033a3b21e"><h2>wp_buffer_make</h2><p class="meta">cjr.buffer_laws.wp_buffer_make · buffer_logic</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">lemma wp_buffer_make:
+    context:
+        typeclass maximal implicit !(_, type(<a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca" title="cjr.primitive_laws.cjrGS">cjrGS</a>(<span class="external" title="External or unresolved: Σ">Σ</span>)))
+        typeclass maximal implicit !(_, type(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.invGS_gen">invGS_gen</span>(<span class="external" title="External or unresolved: iris.base_logic.lib.fancy_updates.HasLc">HasLc</span>, <span class="external" title="External or unresolved: Σ">Σ</span>)))
+    parameter(<span id="symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</span>, type(_ (inferred)))
+    parameter(<span id="symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</span>, type(_ (inferred)))
+    statement:
+        <span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x">arrow</span>:
+            in_scope nat(<span class="external" title="External or unresolved: Coq.Init.Peano.::nat_scope:x_&#x27;&lt;&#x27;_x">less_than</span>(0, <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>))
+            <span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x">arrow</span>:
+                <a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a>(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a>)
+                <span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:&#x27;⊢&#x27;_x">valid_resource_assertion</span>:
+                    <span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">wp_partial</span>:
+                        <a href="buffer.html#symbol-c6f078c0b259511891a5c9d2" title="cjr.buffer.buffer_make_val">buffer_make_val</a><a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">(</a>
+                            <a href="lang.html#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">CJR StructV [requires runtime or layout metadata]</a>:
+                                <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">list_with_tail_items</span>(<span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span>(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>), items(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a>))
+                        <a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">)</a>
+                        post binder(<span id="symbol-da4aa4aa9362ada033a3b21e-binder-3506">v</span>)
+                        postcondition:
+                            <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;∃&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">exists</span>:
+                                binders:
+                                    parameter(<span id="symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</span>, type(_ (inferred)))
+                                <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x">separately</span>:
+                                    <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">pure</span>:
+                                        <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3506">v</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x">=</span>
+                                            <a href="lang.html#symbol-698733efb80781f48317cdb5" title="cjr.lang.LitPtr">CJR LitPtr [requires runtime or layout metadata]</a>:
+                                                <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a>
+                                    <span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x">separately</span>:
+                                        <a href="primitive_laws.html#symbol-a6470a66dc5557d9c9113c07" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵦ&#x27;_x">owns_block</a>(<a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a>(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a>), <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>)
+                                        <a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a>(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a>, <span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span>(<a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>, <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a>))</pre><section aria-label="Direct dependencies"><h3>Depends on</h3><ul><li><a href="buffer.html#symbol-91766b3552afebeb3f213ed4">cjr.buffer.buffer_fill_closed</a></li><li><a href="buffer.html#symbol-81a6244b5b4ad5b12d67407c">cjr.buffer.buffer_fill_val</a></li><li><a href="buffer.html#symbol-c6f078c0b259511891a5c9d2">cjr.buffer.buffer_make_val</a></li><li><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1">cjr.buffer.closed_val</a></li><li><a href="buffer_laws.html#symbol-3d43f68531812f2e1e085e08">cjr.buffer_laws.buffer_cells</a></li><li><a href="buffer_laws.html#symbol-120fa986a9a86ece09d63a70">cjr.buffer_laws.buffer_zero_cells</a></li><li><a href="buffer_laws.html#symbol-83b6a5025ecc932d09aecac5">cjr.buffer_laws.wp_buffer_fill</a></li><li><a href="generic_laws.html#symbol-bccd4aafdb6a892e5649fbaf">cjr.generic_laws.wp_generic_pack_acc</a></li><li><a href="lang.html#symbol-50123e23e3558cbee7f84fb1">cjr.lang.base_lit</a></li><li><a href="lang.html#symbol-cdbe6c9dc367327c7c948a7e">cjr.lang.ectx_item</a></li><li><a href="lang.html#symbol-02fb45236d2ab5eccd901065">cjr.lang.expr</a></li><li><a href="lang.html#symbol-407a84dd3b117ddcf266f7de">cjr.lang.raw_id</a></li><li><a href="lang.html#symbol-ad59d00b2dd876e659cef5c0">cjr.lang.val</a></li><li><a href="primitive_laws.html#symbol-a6470a66dc5557d9c9113c07">cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵦ&#x27;_x</a></li><li><a href="primitive_laws.html#symbol-b26103c5adf16e6948bb83ca">cjr.primitive_laws.cjrGS</a></li><li><a href="primitive_laws.html#symbol-54e7e2979ffa3cc4e49869f4">cjr.primitive_laws.wp_alloc</a></li><li><a href="primitive_laws.html#symbol-82c429d289193babe930a998">cjr.primitive_laws.wp_app</a></li><li><a href="primitive_laws.html#symbol-7103ca3a02ff784173e57369">cjr.primitive_laws.wp_bind</a></li><li><a href="primitive_laws.html#symbol-15c801990ab44d21a9d4b8e8">cjr.primitive_laws.wp_let</a></li><li><a href="primitive_laws.html#symbol-a4be93eb1a994eab042e3c46">cjr.primitive_laws.wp_struct_load</a></li></ul></section><details><summary>Original declaration (proof-free)</summary><pre>Lemma wp_buffer_make n seed : (0<span class="external" title="External or unresolved: Coq.Init.Peano.::nat_scope:x_&#x27;&lt;&#x27;_x"> &lt; </span><a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>)%nat<span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x"> → </span><a href="buffer.html#symbol-c33fff3c1bbcf3dc53049bd1" title="cjr.buffer.closed_val">closed_val</a> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a><span class="external" title="External or unresolved: Coq.Unicode.Utf8_core.::type_scope:x_&#x27;→&#x27;_x"> →
+    </span><span class="external" title="External or unresolved: iris.bi.interface.::stdpp_scope:&#x27;⊢&#x27;_x">⊢ </span><span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">WP </span><a href="lang.html#symbol-51bdce835f50a6982d33ae22" title="cjr.lang.App">App</a> (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> <a href="buffer.html#symbol-c6f078c0b259511891a5c9d2" title="cjr.buffer.buffer_make_val">buffer_make_val</a>)
+      (<a href="lang.html#symbol-86b9a701a5d31e59a4fc9bb8" title="cjr.lang.Val">Val</a> (<a href="lang.html#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">[</span><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-bb738dfe95110f65b9c3c334" title="cjr.lang.LitInt">LitInt</a> (<span class="external" title="External or unresolved: Coq.ZArith.BinInt.Z.of_nat">Z.of_nat</span> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a>))<span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">; </span><a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a><span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_x_&#x27;;&#x27;_x_&#x27;;&#x27;_&#x27;..&#x27;_&#x27;;&#x27;_x_&#x27;]&#x27;">]</span>))<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">
+      {{ </span>v<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;">, </span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;∃&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">∃ </span>base<span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;∃&#x27;_x_&#x27;..&#x27;_x_&#x27;,&#x27;_x">, </span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">⌜</span><a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3506">v</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x"> = </span><a href="lang.html#symbol-e5491a6109969ad3a9f3dd13" title="cjr.lang.LitV">LitV</a> (<a href="lang.html#symbol-698733efb80781f48317cdb5" title="cjr.lang.LitPtr">LitPtr</a> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a>)<span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:&#x27;⌜&#x27;_x_&#x27;⌝&#x27;">⌝</span><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x"> ∗ </span><a href="lang.html#symbol-79d61258f1a1ab7f71be67dd" title="cjr.lang.RawId">RawId</a> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a><a href="primitive_laws.html#symbol-a6470a66dc5557d9c9113c07" title="cjr.primitive_laws.::bi_scope:x_&#x27;↦ᵦ&#x27;_x"> ↦ᵦ </a><a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a><span class="external" title="External or unresolved: iris.bi.interface.::bi_scope:x_&#x27;∗&#x27;_x"> ∗
+        </span><a href="#symbol-3d43f68531812f2e1e085e08" title="cjr.buffer_laws.buffer_cells">buffer_cells</a> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3513">base</a> (<span class="external" title="External or unresolved: stdpp.list_basics.replicate">replicate</span> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3358">n</a> <a href="#symbol-da4aa4aa9362ada033a3b21e-binder-3360">seed</a>)<span class="external" title="External or unresolved: iris.bi.weakestpre.::bi_scope:&#x27;WP&#x27;_x_&#x27;{{&#x27;_x_&#x27;,&#x27;_x_&#x27;}&#x27;_&#x27;}&#x27;"> }}</span>.</pre></details></article></main></body></html>

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rocq-readable"
+version = "0.1.0"
+description = "Deterministic proof-free Rocq specifications as linked offline HTML"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+rocq-readable = "tools.rocq_readable.cli:main"
+
+[tool.setuptools]
+packages = ["tools.rocq_readable"]
+
+[tool.setuptools.package-data]
+"tools.rocq_readable" = ["renderings.json"]

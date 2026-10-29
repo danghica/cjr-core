@@ -1,0 +1,453 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "rocq/arith.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
+        "unmapped notation - _"
+      ],
+      "declarations": 11
+    },
+    {
+      "file": "rocq/cell.v",
+      "errors": [],
+      "unsupported": [],
+      "declarations": 3
+    },
+    {
+      "file": "rocq/class_upd.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR FieldLoad [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR FieldStore [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR New [requires runtime or layout metadata]"
+      ],
+      "declarations": 3
+    },
+    {
+      "file": "rocq/frame_call.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
+      ],
+      "declarations": 2
+    },
+    {
+      "file": "rocq/struct_upd.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR StructStore [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR StructV [requires runtime or layout metadata]"
+      ],
+      "declarations": 5
+    },
+    {
+      "file": "rocq/sum_block.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
+      ],
+      "declarations": 2
+    },
+    {
+      "file": "rocq/swap.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
+      ],
+      "declarations": 3
+    },
+    {
+      "file": "rocq/vtable.v",
+      "errors": [],
+      "unsupported": [
+        "Cangjie unavailable: CJR FieldLoad [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR FieldStore [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR New [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR Struct [requires runtime or layout metadata]",
+        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]"
+      ],
+      "declarations": 4
+    }
+  ],
+  "dependencies": {
+    "complete": true,
+    "roots": [
+      "cjr.examples.arith.bitwise_noninteger",
+      "cjr.examples.arith.bitwise_signed_cases",
+      "cjr.examples.arith.multiplication_cases",
+      "cjr.examples.arith.multiplication_noninteger",
+      "cjr.examples.arith.multiply_body",
+      "cjr.examples.arith.remainder_noninteger",
+      "cjr.examples.arith.remainder_signs",
+      "cjr.examples.arith.remainder_zero_divisor",
+      "cjr.examples.arith.sum_one_adequate",
+      "cjr.examples.cell.cell_adequate",
+      "cjr.examples.class_upd.class_bump_adequate",
+      "cjr.examples.frame_call.write_call_wp",
+      "cjr.examples.struct_upd.bump_adequate",
+      "cjr.examples.sum_block.sum_at_wp",
+      "cjr.examples.swap.swap_aliased",
+      "cjr.examples.swap.swap_wp",
+      "cjr.examples.vtable.vtable_adequate"
+    ],
+    "source_issues": {
+      "rocq/arith.v": [],
+      "rocq/cell.v": [],
+      "rocq/class_upd.v": [],
+      "rocq/frame_call.v": [],
+      "rocq/struct_upd.v": [],
+      "rocq/sum_block.v": [],
+      "rocq/swap.v": [],
+      "rocq/vtable.v": []
+    },
+    "declarations": {
+      "cjr.examples.arith.bitwise_noninteger": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.bitwise_signed_cases": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.multiplication_cases": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.multiplication_noninteger": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.multiply_body": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.remainder_noninteger": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.remainder_signs": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.remainder_zero_divisor": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.sum_one": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.sum_one_adequate": {
+        "depends_on": [
+          "cjr.examples.arith.sum_one",
+          "cjr.examples.arith.sum_one_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.arith.sum_one_wp": {
+        "depends_on": [
+          "cjr.examples.arith.sum_one"
+        ],
+        "issues": []
+      },
+      "cjr.examples.cell.cell": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.cell.cell_adequate": {
+        "depends_on": [
+          "cjr.examples.cell.cell",
+          "cjr.examples.cell.cell_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.cell.cell_wp": {
+        "depends_on": [
+          "cjr.examples.cell.cell"
+        ],
+        "issues": []
+      },
+      "cjr.examples.class_upd.class_bump": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.class_upd.class_bump_adequate": {
+        "depends_on": [
+          "cjr.examples.class_upd.class_bump",
+          "cjr.examples.class_upd.class_bump_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.class_upd.class_bump_wp": {
+        "depends_on": [
+          "cjr.examples.class_upd.class_bump"
+        ],
+        "issues": []
+      },
+      "cjr.examples.frame_call.write_call": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.frame_call.write_call_wp": {
+        "depends_on": [
+          "cjr.examples.frame_call.write_call"
+        ],
+        "issues": []
+      },
+      "cjr.examples.struct_upd.bump": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.struct_upd.bump_adequate": {
+        "depends_on": [
+          "cjr.examples.struct_upd.bump_keep",
+          "cjr.examples.struct_upd.bump_keep_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.struct_upd.bump_keep": {
+        "depends_on": [
+          "cjr.examples.struct_upd.bump"
+        ],
+        "issues": []
+      },
+      "cjr.examples.struct_upd.bump_keep_wp": {
+        "depends_on": [
+          "cjr.examples.struct_upd.bump",
+          "cjr.examples.struct_upd.bump_keep",
+          "cjr.examples.struct_upd.bump_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.struct_upd.bump_wp": {
+        "depends_on": [
+          "cjr.examples.struct_upd.bump"
+        ],
+        "issues": []
+      },
+      "cjr.examples.sum_block.sum_at": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.sum_block.sum_at_wp": {
+        "depends_on": [
+          "cjr.examples.sum_block.sum_at"
+        ],
+        "issues": []
+      },
+      "cjr.examples.swap.swap_aliased": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.swap.swap_at": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.swap.swap_wp": {
+        "depends_on": [
+          "cjr.examples.swap.swap_at"
+        ],
+        "issues": []
+      },
+      "cjr.examples.vtable.inc_body": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.vtable.vtable_adequate": {
+        "depends_on": [
+          "cjr.examples.vtable.vtable_prog",
+          "cjr.examples.vtable.vtable_prog_wp"
+        ],
+        "issues": []
+      },
+      "cjr.examples.vtable.vtable_prog": {
+        "depends_on": [
+          "cjr.examples.vtable.inc_body"
+        ],
+        "issues": []
+      },
+      "cjr.examples.vtable.vtable_prog_wp": {
+        "depends_on": [
+          "cjr.examples.vtable.inc_body",
+          "cjr.examples.vtable.vtable_prog"
+        ],
+        "issues": []
+      }
+    }
+  },
+  "explanations": {
+    "model_selection": "CLI configured model",
+    "failures": 0,
+    "declarations": {
+      "cjr.examples.arith.bitwise_noninteger": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.bitwise_signed_cases": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.multiplication_cases": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.multiplication_noninteger": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.multiply_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.remainder_noninteger": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.remainder_signs": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.remainder_zero_divisor": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.sum_one": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.sum_one_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.sum_one_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.cell.cell": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.cell.cell_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.cell.cell_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.class_upd.class_bump": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.class_upd.class_bump_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.class_upd.class_bump_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.frame_call.write_call": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.frame_call.write_call_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.struct_upd.bump": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.struct_upd.bump_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.struct_upd.bump_keep": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.struct_upd.bump_keep_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.struct_upd.bump_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.sum_block.sum_at": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.sum_block.sum_at_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.swap.swap_aliased": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.swap.swap_at": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.swap.swap_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.vtable.inc_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.vtable.vtable_adequate": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.vtable.vtable_prog": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.vtable.vtable_prog_wp": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      }
+    }
+  }
+}
