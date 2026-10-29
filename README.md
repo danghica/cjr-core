@@ -8,7 +8,7 @@ Open [HTML documentation](docs/index.html) or the [tutorial PDF](paper/tutorial.
 
 Use Python 3.10+, Cangjie 1.0.5, and pdfLaTeX. Proof work additionally needs Coq 8.20.1, stdpp 1.12.0, Iris 4.4.0 and coq-lsp 0.2.5+8.20 for readable specification regeneration. `CJC`, `CANGJIE_HOME`, and `SDKROOT` override the native toolchain.
 
-Dependencies are pinned in dependencies.lock.json. Place checkouts alongside this repository or set `CJR_CORE_DIR` and `CJR_COLLECTIONS_DIR`. `make dependencies` checks versions and generates Rocq load paths. No remote repositories have been created.
+Dependencies are pinned in dependencies.lock.json. Place checkouts alongside this repository or set `CJR_CORE_DIR` and `CJR_COLLECTIONS_DIR`. `make dependencies` checks versions and generates Rocq load paths. Public repository: [danghica/cjr-core](https://github.com/danghica/cjr-core).
 
 ## Commands
 
