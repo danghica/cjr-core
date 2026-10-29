@@ -1,0 +1,14 @@
+{
+  "date_utc": "2026-10-29T14:13:52.957335+00:00",
+  "proofs_revalidated": false,
+  "results": [
+    {
+      "example": "misc",
+      "status": "passed"
+    },
+    {
+      "example": "generics",
+      "status": "passed"
+    }
+  ]
+}

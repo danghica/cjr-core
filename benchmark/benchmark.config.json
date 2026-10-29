@@ -1,0 +1,69 @@
+{
+  "project_root": "..",
+  "compiler": "cjc",
+  "required_compiler_version": "1.0.5",
+  "output": "benchmark/results",
+  "processes": 3,
+  "timeout_seconds": 900,
+  "group_by": [
+    "case",
+    "n",
+    "implementation"
+  ],
+  "plots": {
+    "facet": "case",
+    "filename": "{facet}.svg"
+  },
+  "protocol": {
+    "warmups": 2,
+    "processes": 3,
+    "samples_per_process": 7,
+    "validation": "Independent fixture constants, full runtime suites, checked timed checksums. Native code is optimized; core microbenchmarks may be simplified or inlined by the compiler.",
+    "units": "ns per operation: core primitive/callback invocation; authenticator complete kernel or session lifecycle. Session includes allocate, enroll, list, read, rename, remove, destroy."
+  },
+  "workloads": {
+    "comparison": "Handwritten denotes direct Cangjie equivalents. Generic callback compares Box.map allocation with direct application; it does not isolate generic type-erasure cost."
+  },
+  "libraries": [
+    "example/misc/extracted/arith.cj",
+    "example/misc/extracted/swap.cj",
+    "example/misc/extracted/sum_block.cj",
+    "example/generics/extracted/generics.cj"
+  ],
+  "harness": "runtime_bench.cj",
+  "jobs": [
+    {
+      "name": "core",
+      "compile": [
+        "python3",
+        "{root}/benchmark/compile.py",
+        "{cjc}",
+        "{root}",
+        "{binary}"
+      ],
+      "run": [
+        "{binary}",
+        "--no-progress",
+        "--no-color"
+      ],
+      "sources": [
+        "example/misc/extracted/arith.cj",
+        "example/misc/extracted/swap.cj",
+        "example/misc/extracted/sum_block.cj",
+        "example/generics/extracted/generics.cj",
+        "benchmark/compile.py",
+        "benchmark/runtime_bench.cj",
+        "tools/project_tools/benchmark_common.cj"
+      ],
+      "harness_sources": [
+        "benchmark/compile.py",
+        "benchmark/runtime_bench.cj",
+        "tools/project_tools/benchmark_common.cj"
+      ],
+      "expected_rows_per_process": 56,
+      "pattern": "BENCH,(?P<case>[a-z_]+),(?P<implementation>[A-Za-z]+),(?P<n>\\d+),(?P<trial>\\d+),(?P<elapsed_ns>\\d+),(?P<operations>\\d+),(?P<checksum>-?\\d+)"
+    }
+  ],
+  "report_css": "../../docs/style.css",
+  "report_index": "../../docs/index.html"
+}

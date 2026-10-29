@@ -9,10 +9,6 @@ Print Assumptions class_bump_adequate.
 Print Assumptions vtable_adequate.
 Print Assumptions wp_mul.
 Print Assumptions wp_rem.
-Print Assumptions cj_print.bulk_copy_grow_enabled.
-Print Assumptions cj_print.bulk_copy_remove_enabled.
-Print Assumptions cj_print.bulk_copy_arbitrary_loop_disabled.
-Print Assumptions cj_print.bulk_copy_get_disabled.
 Print Assumptions wp_bitxor.
 Print Assumptions wp_bitand.
 Print Assumptions wp_div.

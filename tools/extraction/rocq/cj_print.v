@@ -4,7 +4,6 @@ example defines, are passed in with each example. *)
 
 From Coq Require Import String Ascii ZArith List Bool DecimalString.
 From cjr Require Import lang.
-From cjr.examples Require Import array_list.
 Import ListNotations.
 
 Local Open Scope string_scope.
@@ -201,6 +200,13 @@ Record prog := Prog {
   p_main : expr
 }.
 
+(** Explicit optimization policy supplied by an owning repository. Core has no collection dependency. *)
+Record copy_rules := CopyRules {
+  copy_methods : list expr;
+  copy_loop : option expr
+}.
+Definition no_copy_rules : copy_rules := CopyRules [] None.
+
 Record penv := Env {
   e_cls : list decl;
   e_sty : list decl;
@@ -209,7 +215,8 @@ Record penv := Env {
   e_ty : list (string * string);
   e_pack : list (string * list string);
   e_alias : list (string * string);
-  e_bulk_copy : bool
+  e_bulk_copy : bool;
+  e_copy_rules : copy_rules
 }.
 
 Fixpoint assoc {A} (k : string) (xs : list (string * A)) : option A :=
@@ -248,41 +255,44 @@ Definition find_closed (env : penv) (e : expr) : option fn :=
 
 Definition with_ty (env : penv) (x t : string) : penv :=
   Env (e_cls env) (e_sty env) (e_fns env) (e_this env)
-      ((x, t) :: e_ty env) (e_pack env) (e_alias env) (e_bulk_copy env).
+      ((x, t) :: e_ty env) (e_pack env) (e_alias env) (e_bulk_copy env) (e_copy_rules env).
 
 Definition with_ty_opt (env : penv) (x : string) (t : option string) : penv :=
   with_ty env x (match t with Some t => t | None => "" end).
 
 Definition with_pack (env : penv) (x : string) (ss : list string) : penv :=
   Env (e_cls env) (e_sty env) (e_fns env) (e_this env)
-      (e_ty env) ((x, ss) :: e_pack env) (e_alias env) (e_bulk_copy env).
+      (e_ty env) ((x, ss) :: e_pack env) (e_alias env) (e_bulk_copy env) (e_copy_rules env).
 
 Definition with_alias (env : penv) (x n : string) : penv :=
   Env (e_cls env) (e_sty env) (e_fns env) (e_this env)
-      (e_ty env) (e_pack env) ((x, n) :: e_alias env) (e_bulk_copy env).
+      (e_ty env) (e_pack env) ((x, n) :: e_alias env) (e_bulk_copy env) (e_copy_rules env).
 
 Definition with_this (env : penv) (r : option string) (owner : option string) : penv :=
   let tys := match r, owner with
              | Some r, Some c => (r, c) :: e_ty env
              | _, _ => e_ty env
              end in
-  Env (e_cls env) (e_sty env) (e_fns env) r tys (e_pack env) (e_alias env) (e_bulk_copy env).
+  Env (e_cls env) (e_sty env) (e_fns env) r tys (e_pack env) (e_alias env) (e_bulk_copy env) (e_copy_rules env).
 
 Definition without (env : penv) (n : string) : penv :=
   Env (e_cls env) (e_sty env)
       (filter (fun k => negb (String.eqb (fn_name k) n)) (e_fns env))
-      (e_this env) (e_ty env) (e_pack env) (e_alias env) (e_bulk_copy env).
+      (e_this env) (e_ty env) (e_pack env) (e_alias env) (e_bulk_copy env) (e_copy_rules env).
 
 (** Bulk copying is enabled only in these exact verified method bodies.
     Growth copies between disjoint blocks; removal copies left within one
     block. An arbitrary forward-copy loop can propagate overwritten values
     during right overlap, so it must not be replaced by snapshot memmove. *)
-Definition bulk_copy_method (body : expr) : bool :=
-  expr_beq body array_list.grow_body || expr_beq body array_list.remove_body.
+Definition bulk_copy_method (rules : copy_rules) (body : expr) : bool :=
+  existsb (fun candidate => expr_beq body candidate) (copy_methods rules).
+
+Definition bulk_copy_loop (rules : copy_rules) (body : expr) : bool :=
+  match copy_loop rules with Some candidate => expr_beq body candidate | None => false end.
 
 Definition with_bulk_copy (env : penv) (enabled : bool) : penv :=
   Env (e_cls env) (e_sty env) (e_fns env) (e_this env)
-      (e_ty env) (e_pack env) (e_alias env) enabled.
+      (e_ty env) (e_pack env) (e_alias env) enabled (e_copy_rules env).
 
 Definition keywords : list string :=
   ["this"; "super"; "init"; "main"; "func"; "let"; "var"; "type"; "in"; "is";
@@ -561,7 +571,7 @@ Fixpoint ex (env : penv) (ind : string) (e : expr) {struct e} : string :=
       ex env ind e1 +++ nl +++ ind +++ ex env ind e2
   | VarBind x e1 e2 =>
       if e_bulk_copy env && String.eqb x "i" &&
-         expr_beq e1 (Val (LitV (LitInt 0))) && expr_beq e2 array_list.copy_vars then
+         expr_beq e1 (Val (LitV (LitInt 0))) && bulk_copy_loop (e_copy_rules env) e2 then
         "if (0 < " +++ var_name env "len" +++ ") {" +++ nl
         +++ ind2 +++ "unsafe {" +++ nl
         +++ ind2 +++ "    memmove(CPointer<Unit>(" +++ var_name env "dst"
@@ -679,7 +689,7 @@ Definition print_fn (env : penv) (ind : string) (k : fn) : string :=
   let env1 :=
     fold_left (fun env '(x, t) => with_ty env x t) typed
       (with_this (without env (fn_name k)) recv (fn_owner k)) in
-  let env2 := with_bulk_copy env1 (bulk_copy_method (fn_body k)) in
+  let env2 := with_bulk_copy env1 (bulk_copy_method (e_copy_rules env1) (fn_body k)) in
   let ind2 := ind +++ "    " in
   let kw := match fn_owner k with Some _ => "public func " | None => "func " end in
   ind +++ kw +++ fn_name k +++ "("
@@ -736,10 +746,10 @@ Definition prelude : string :=
   +++ "foreign func calloc(count: UIntNative, size: UIntNative): CPointer<Unit>" +++ nl
   +++ "foreign func free(ptr: CPointer<Unit>): Unit" +++ nl.
 
-Definition print_prog (p : prog) : string :=
-  let env := Env (p_classes p) (p_structs p) (p_fns p) None [] [] [] false in
+Definition print_prog_with (rules : copy_rules) (p : prog) : string :=
+  let env := Env (p_classes p) (p_structs p) (p_fns p) None [] [] [] false rules in
   prelude
-  +++ (if existsb (fun k => bulk_copy_method (fn_body k)) (p_fns p) then
+  +++ (if existsb (fun k => bulk_copy_method rules (fn_body k)) (p_fns p) then
          "foreign func memmove(dst: CPointer<Unit>, src: CPointer<Unit>, size: UIntNative): CPointer<Unit>" +++ nl
        else "")
   +++ cat_all (map (fun d => nl +++ print_decl env "struct" d) (p_structs p))
@@ -749,13 +759,5 @@ Definition print_prog (p : prog) : string :=
   +++ "    " +++ ex env "    " (p_main p) +++ nl
   +++ "}" +++ nl.
 
-(** Recognition regressions: canonical methods qualify; a forward-copy
-    loop in isolation or a different list method does not. *)
-Example bulk_copy_grow_enabled : bulk_copy_method array_list.grow_body = true.
-Proof. vm_compute. reflexivity. Qed.
-Example bulk_copy_remove_enabled : bulk_copy_method array_list.remove_body = true.
-Proof. vm_compute. reflexivity. Qed.
-Example bulk_copy_arbitrary_loop_disabled : bulk_copy_method array_list.copy_vars = false.
-Proof. vm_compute. reflexivity. Qed.
-Example bulk_copy_get_disabled : bulk_copy_method array_list.al_get_body = false.
-Proof. vm_compute. reflexivity. Qed.
+(** Default printing enables no repository-specific native rewrite. *)
+Definition print_prog : prog -> string := print_prog_with no_copy_rules.

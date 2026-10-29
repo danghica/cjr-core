@@ -1,7 +1,7 @@
--R ../../theories cjr
--Q ../array/rocq cjr.examples
--Q ../array_list/rocq cjr.examples
--Q ../../tools/extraction/rocq cjr.examples
--Q rocq cjr.examples
+-R /Users/danghica/cjr/cjr-core/theories cjr
+-Q /Users/danghica/cjr/cjr-core/tools/extraction/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/example/generics/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/example/misc/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/audit cjr.audit
 rocq/generic_examples.v
 rocq/generic_tests.v

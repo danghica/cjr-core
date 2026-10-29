@@ -1,0 +1,9 @@
+{
+  "proofs_revalidated": false,
+  "runtime_cases": 21,
+  "tooling_tests": 48,
+  "proof_backend_tests_skipped": 9,
+  "html_links": "passed",
+  "pdf": "compiled twice; representative pages visually inspected",
+  "benchmarks": "168 normalized checksum-validated samples"
+}

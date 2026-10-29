@@ -43,6 +43,7 @@ class HTMLInfo(HTMLParser):
 
 
 def hashes(root: Path, exclude=()):
+    root = root.resolve()
     ignored=set(exclude) | {".git", "__pycache__", "results", "build"}
     result={}
     for path in sorted(root.rglob("*")):
@@ -51,19 +52,22 @@ def hashes(root: Path, exclude=()):
         if not path.is_file() or any(part in ignored for part in parts) or generated_docs or "generated" in parts:
             continue
         if (path.suffix in {".v", ".cj", ".c", ".py", ".cjs", ".css", ".md", ".txt"}
-                or path.name.endswith(".config.json") or path.name in {"_CoqProject", "Makefile", "Makefile.local-late"}):
+                or path.name.endswith(".config.json") or path.name in {"_CoqProject", "Makefile", "Makefile.local-late", "dependencies.lock.json", "repository.json"}):
             result[path.relative_to(root).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
-    repo = next((p for p in (root, *root.parents)
-                 if (p / "tools/project_tools").is_dir() and (p / "theories/lang.v").is_file()), root)
-    shared=repo/"tools"/"project_tools"
+    repo = next((p for p in (root, *root.parents) if (p/'repository.json').is_file()), None)
+    if repo is None:
+        repo = next((p for p in (root, *root.parents)
+                     if (p/'tools/project_tools').is_dir() and (p/'theories/lang.v').is_file()), root)
+    core = Path(os.environ.get('CJR_CORE_DIR', repo if (repo/'tools/project_tools').is_dir() else repo.parent/'cjr-core')).resolve()
+    shared=core/"tools"/"project_tools"
     if shared.is_dir():
         for path in sorted(shared.glob("*.py")):
             result[os.path.relpath(path,root).replace(os.sep,"/")]=hashlib.sha256(path.read_bytes()).hexdigest()
-    dependencies = [*sorted((repo / "theories").glob("*.v")),
-                    *sorted((repo / "tools/extraction/rocq").glob("*.v")),
+    dependencies = [*sorted((core / "theories").glob("*.v")),
+                    *sorted((core / "tools/extraction/rocq").glob("*.v")),
                     *sorted((repo / "example").glob("*/rocq/*.v")),
-                    *sorted((repo / "tools/rocq_readable").glob("*.py")),
-                    repo / "tools/rocq_readable/renderings.json",
+                    *sorted((core / "tools/rocq_readable").glob("*.py")),
+                    core / "tools/rocq_readable/renderings.json",
                     repo / "_CoqProject", repo / "Makefile.local-late"]
     for path in dependencies:
         if path.is_file():

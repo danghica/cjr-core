@@ -1,0 +1,29 @@
+-R /Users/danghica/cjr/cjr-core/theories cjr
+-Q /Users/danghica/cjr/cjr-core/tools/extraction/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/example/generics/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/example/misc/rocq cjr.examples
+-Q /Users/danghica/cjr/cjr-core/audit cjr.audit
+-arg -w
+-arg +admitted-proof
+theories/adequacy.v
+theories/buffer.v
+theories/buffer_laws.v
+theories/generic_laws.v
+theories/generics.v
+theories/lang.v
+theories/lifting.v
+theories/notation.v
+theories/primitive_laws.v
+tools/extraction/rocq/cj_print.v
+tools/extraction/rocq/emit_cj.v
+tools/extraction/rocq/generic_print.v
+example/generics/rocq/generic_examples.v
+example/generics/rocq/generic_tests.v
+example/misc/rocq/arith.v
+example/misc/rocq/cell.v
+example/misc/rocq/class_upd.v
+example/misc/rocq/frame_call.v
+example/misc/rocq/struct_upd.v
+example/misc/rocq/sum_block.v
+example/misc/rocq/swap.v
+example/misc/rocq/vtable.v

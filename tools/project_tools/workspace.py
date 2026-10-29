@@ -19,7 +19,7 @@ def dependencies(root,check=True):
     return paths
 
 def configure(root,deps):
-    name=root.name
+    name=json.loads((root/'repository.json').read_text())['name']
     core=deps.get('cjr-core',root)
     flags=['-R',str(core/'theories'),'cjr','-Q',str(core/'tools/extraction/rocq'),'cjr.examples']
     for base in [core,*([deps['cjr-collections']] if 'cjr-collections' in deps else []),root]:
@@ -155,8 +155,13 @@ def main(root):
     if args.command=='readable':
         configure(root,deps)
         for name in names:examples.readable(name,args.explanations)
-        if root.name=='cjr-core':run([sys.executable,'-m','tools.rocq_readable','build','--sources','theories','tools/extraction/rocq','--output','generated/spec-html','--explanations',args.explanations],root)
+        if json.loads((root/'repository.json').read_text())['name']=='cjr-core':run([sys.executable,'-m','tools.rocq_readable','build','--sources','theories','tools/extraction/rocq','--output','generated/spec-html','--explanations',args.explanations],root)
     if args.command=='paper':paper(root)
-    if args.command in ('docs','report','benchmark','test','paper'):pages(root)
+    if args.command in ('docs','report','benchmark','test','paper'):
+        pages(root)
+        from .link_audit import audit
+        result=audit(root)
+        (root/'docs/link-check.json').write_text(json.dumps(result,indent=2)+'\n')
+        if result['errors']:raise RuntimeError(f"{len(result['errors'])} broken documentation links; see docs/link-check.json")
 
 if __name__=='__main__':main(Path.cwd())

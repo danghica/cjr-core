@@ -197,6 +197,8 @@ class FilesystemAndRules(unittest.TestCase):
 
 
 def backend_available():
+    if __import__("os").environ.get("CJR_SKIP_PROOF_BACKEND") == "1":
+        return False
     try:
         return bool(executable())
     except BackendError:

@@ -321,7 +321,7 @@ Section~\ref{sec:generics} gives their source definitions, proofs, and the
 generated code. The generic layer currently supports immutable bindings,
 typed callbacks, conditionals, calls, struct construction/projection, and
 class allocation/read, and initialized managed buffers with indexed reads
-and writes (Section~\ref{sec:poly-arrays}). The mutable and raw-memory forms above remain
+and writes (the polymorphic-array chapter of the CJR Collections tutorial). The mutable and raw-memory forms above remain
 available through the original language and printer.
 
 \subsection{From Cangjie to the Coq core}
@@ -485,7 +485,7 @@ There is no universal quantifier inside \texttt{gty}: polymorphism is
 rank one and belongs to declarations. There are no generic pointer or float
 constructors in this source grammar; their legacy core forms are unchanged.
 The buffer constructor supports managed indexed storage for the separate
-polymorphic-array example in Section~\ref{sec:poly-arrays}.
+polymorphic-array example in the polymorphic-array chapter of the CJR Collections tutorial.
 
 \texttt{gty\_wf ds scope t} checks that every variable occurs in
 \texttt{scope}, every named type has a layout in \texttt{ds}, and its number
@@ -615,7 +615,7 @@ an explicit receiver of its owning type, such as \texttt{self: Box<T>}.
 The printer renders this parameter as \texttt{this}. A static method has
 no receiver; \texttt{GStaticFunction} declares it and \texttt{GEStaticCall}
 calls it through an explicit owner type, as in
-\texttt{PolyArray<Bool>.make(3, false)} (Section~\ref{sec:poly-arrays}).
+\texttt{PolyArray<Bool>.make(3, false)} (the polymorphic-array chapter of the CJR Collections tutorial).
 
 The source constructors preserve the information that erasure discards:
 \begin{lstlisting}
@@ -2037,6 +2037,18 @@ The earlier examples already showed that leaving it unused is safe.
 % example/generics/extracted/generics.cj is listed in the included section below.
 \input{paper/generics.tex}
 
+
+\section{Limitations and target-code risks}
+\label{sec:limitations}
+CJR integers are unbounded mathematical integers, while generated Int64 values
+have machine bounds. Callers must satisfy the stated arithmetic and memory
+bounds. The logic specifies a sequential fragment and does not prove a full
+Cangjie type-soundness theorem, native compiler correctness, or the behavior
+of operating-system and frontend code. Generic specifications quantify over
+resource representations; they are not a universal relational-parametricity
+result. Checked kernels and conditional refinement contracts must be read
+with their hypotheses and documented coverage. Proofs were not rerun during
+this migration, and runtime tests supply separate empirical evidence.
 
 \section{Migration and current runtime evidence}
 Proofs were not revalidated during this repository split. Historical proof reports retain their original dates and provenance. Runtime timings measure generated native programs and do not establish cryptographic security or compiler correctness.

@@ -42,11 +42,11 @@ def extract():
     coqtop = os.environ.get('COQTOP', str(Path.home() / '.opam/default/bin/coqtop'))
     query = ('From Coq Require Import String.\nFrom cjr.ROOT_NAMESPACE Require Import emit_cj.\n'
              'Open Scope string_scope.\nEval vm_compute in cj_bundle.\n')
-    query = query.replace('ROOT_NAMESPACE', 'examples' if ROOT.name == 'cjr-core' else ROOT.name.removeprefix('cjr-'))
+    query = query.replace('ROOT_NAMESPACE', 'examples' if json.loads((ROOT/'repository.json').read_text())['name'] == 'cjr-core' else json.loads((ROOT/'repository.json').read_text())['name'].removeprefix('cjr-'))
     result = subprocess.run([coqtop, '-quiet', *coq_flags()], cwd=ROOT, input=query,
                             text=True, capture_output=True, check=True)
     match = re.search(r'=\s*"(.*)"(?:%string)?\s*:\s*string', result.stdout, re.S)
-    if not match:
+    if not match or 'Error:' in result.stderr:
         raise RuntimeError('Unexpected extraction response from coqtop')
     chunks = re.split(r'^@@FILE ', match.group(1).replace('""', '"'), flags=re.M)
     emitted = {}
