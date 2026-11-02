@@ -14,6 +14,52 @@ from tools.rocq_readable.project import configuration, module_name
 
 
 class ProjectToolTests(unittest.TestCase):
+    def test_configure_preserves_unchanged_project_timestamps(self):
+        import hashlib
+        import os
+        from tools.project_tools.workspace import configure
+        from tools.rocq_readable.project import Source
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'repository.json').write_text('{"name":"cjr-core"}')
+            source = root / 'example' / 'demo' / 'rocq' / 'model.v'
+            source.parent.mkdir(parents=True)
+            source.write_text('Definition answer := 42.\n')
+            configure(root, {})
+            configs = [root / '_CoqProject', source.parents[1] / '_CoqProject']
+            for config in configs:
+                os.utime(config, ns=(1_000_000_000, 1_000_000_000))
+            configure(root, {})
+            self.assertEqual([p.stat().st_mtime_ns for p in configs], [1_000_000_000] * 2)
+            source.with_suffix('.glob').write_text(
+                'DIGEST ' + hashlib.md5(source.read_bytes()).hexdigest() + '\nFcjr.examples.model\n')
+            configure(root, {})
+            self.assertTrue(Source.load(source, root).glob.valid)
+            source.with_name('extra.v').write_text('Definition extra := 0.\n')
+            configure(root, {})
+            self.assertFalse(Source.load(source, root).glob.valid)
+            for config in configs:
+                self.assertIn('extra.v', config.read_text())
+                self.assertGreater(config.stat().st_mtime_ns, 1_000_000_000)
+
+    def test_readable_without_optional_report_config_uses_project_sources(self):
+        from unittest.mock import patch
+        from tools.project_tools import examples
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            project = root / 'example' / 'authenticator'
+            source = project / 'core' / 'rocq' / 'model.v'
+            source.parent.mkdir(parents=True)
+            source.write_text('Definition answer := 42.\n')
+            (project / '_CoqProject').write_text(
+                '-Q core/rocq cjr.authenticator\ncore/rocq/model.v\n')
+            with patch.object(examples, 'ROOT', root), patch.object(examples.subprocess, 'run') as run:
+                examples.readable('authenticator', 'offline')
+            command = run.call_args.args[0]
+            self.assertEqual(command[command.index('--sources') + 1:], ['core/rocq/model.v'])
+            self.assertEqual(run.call_args.kwargs['cwd'], project)
+            self.assertTrue(run.call_args.kwargs['check'])
+
     def test_custom_benchmark_plot_command_receives_resolved_paths(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp)

@@ -238,7 +238,7 @@
         "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
         "unmapped notation _ ++ _"
       ],
-      "declarations": 47
+      "declarations": 29
     },
     {
       "file": "tools/extraction/rocq/generic_print.v",
@@ -257,13 +257,15 @@
       "cjr.adequacy.subG_cjrGpreS",
       "cjr.buffer.closed_lit",
       "cjr.buffer_laws.wp_buffer_make",
-      "cjr.examples.cj_print.bulk_copy_arbitrary_loop_disabled",
-      "cjr.examples.cj_print.bulk_copy_get_disabled",
-      "cjr.examples.cj_print.bulk_copy_grow_enabled",
-      "cjr.examples.cj_print.bulk_copy_remove_enabled",
       "cjr.examples.cj_print.val_beq",
       "cjr.examples.cj_print.z_string_machine_bounds",
+      "cjr.examples.emit_cj.array_c",
+      "cjr.examples.emit_cj.array_list_c",
       "cjr.examples.emit_cj.cj_bundle",
+      "cjr.examples.emit_cj.hash_map_c",
+      "cjr.examples.emit_cj.int64_opt_c",
+      "cjr.examples.emit_cj.node_c",
+      "cjr.examples.emit_cj.probe_result_s",
       "cjr.examples.generic_print.extracted_program_checked",
       "cjr.examples.generic_print.type_args",
       "cjr.generic_laws.generic_adequacy",
@@ -552,34 +554,19 @@
         ],
         "issues": []
       },
-      "cjr.examples.cj_print.bulk_copy_arbitrary_loop_disabled": {
+      "cjr.examples.cj_print.bulk_copy_loop": {
         "depends_on": [
-          "cjr.examples.cj_print.bulk_copy_method"
-        ],
-        "issues": []
-      },
-      "cjr.examples.cj_print.bulk_copy_get_disabled": {
-        "depends_on": [
-          "cjr.examples.cj_print.bulk_copy_method"
-        ],
-        "issues": []
-      },
-      "cjr.examples.cj_print.bulk_copy_grow_enabled": {
-        "depends_on": [
-          "cjr.examples.cj_print.bulk_copy_method"
-        ],
-        "issues": []
-      },
-      "cjr.examples.cj_print.bulk_copy_method": {
-        "depends_on": [
+          "cjr.examples.cj_print.copy_rules",
           "cjr.examples.cj_print.expr_beq",
           "cjr.lang.expr"
         ],
         "issues": []
       },
-      "cjr.examples.cj_print.bulk_copy_remove_enabled": {
+      "cjr.examples.cj_print.bulk_copy_method": {
         "depends_on": [
-          "cjr.examples.cj_print.bulk_copy_method"
+          "cjr.examples.cj_print.copy_rules",
+          "cjr.examples.cj_print.expr_beq",
+          "cjr.lang.expr"
         ],
         "issues": []
       },
@@ -610,6 +597,12 @@
         "depends_on": [
           "cjr.examples.cj_print.:::x_'+++'_x",
           "cjr.examples.cj_print.comma"
+        ],
+        "issues": []
+      },
+      "cjr.examples.cj_print.copy_rules": {
+        "depends_on": [
+          "cjr.lang.expr"
         ],
         "issues": []
       },
@@ -652,6 +645,7 @@
           "cjr.examples.cj_print.arg",
           "cjr.examples.cj_print.assoc",
           "cjr.examples.cj_print.binder_name",
+          "cjr.examples.cj_print.bulk_copy_loop",
           "cjr.examples.cj_print.class_of",
           "cjr.examples.cj_print.comma",
           "cjr.examples.cj_print.ctor_args",
@@ -709,6 +703,7 @@
           "cjr.examples.cj_print.arg",
           "cjr.examples.cj_print.assoc",
           "cjr.examples.cj_print.binder_name",
+          "cjr.examples.cj_print.bulk_copy_loop",
           "cjr.examples.cj_print.class_of",
           "cjr.examples.cj_print.comma",
           "cjr.examples.cj_print.ctor_args",
@@ -900,6 +895,12 @@
         "depends_on": [],
         "issues": []
       },
+      "cjr.examples.cj_print.no_copy_rules": {
+        "depends_on": [
+          "cjr.examples.cj_print.copy_rules"
+        ],
+        "issues": []
+      },
       "cjr.examples.cj_print.opnd": {
         "depends_on": [
           "cjr.examples.cj_print.arg",
@@ -929,6 +930,7 @@
       },
       "cjr.examples.cj_print.penv": {
         "depends_on": [
+          "cjr.examples.cj_print.copy_rules",
           "cjr.examples.cj_print.decl",
           "cjr.examples.cj_print.fn"
         ],
@@ -986,9 +988,18 @@
       },
       "cjr.examples.cj_print.print_prog": {
         "depends_on": [
+          "cjr.examples.cj_print.no_copy_rules",
+          "cjr.examples.cj_print.print_prog_with",
+          "cjr.examples.cj_print.prog"
+        ],
+        "issues": []
+      },
+      "cjr.examples.cj_print.print_prog_with": {
+        "depends_on": [
           "cjr.examples.cj_print.:::x_'+++'_x",
           "cjr.examples.cj_print.bulk_copy_method",
           "cjr.examples.cj_print.cat_all",
+          "cjr.examples.cj_print.copy_rules",
           "cjr.examples.cj_print.ex",
           "cjr.examples.cj_print.fn",
           "cjr.examples.cj_print.is_free",
@@ -1142,10 +1153,6 @@
         ],
         "issues": []
       },
-      "cjr.examples.emit_cj.al": {
-        "depends_on": [],
-        "issues": []
-      },
       "cjr.examples.emit_cj.array_c": {
         "depends_on": [
           "cjr.examples.cj_print.decl",
@@ -1159,22 +1166,6 @@
           "cjr.examples.cj_print.decl",
           "cjr.examples.emit_cj.t_int"
         ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.array_partition": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.array_qsort": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.array_sort": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.array_swap": {
-        "depends_on": [],
         "issues": []
       },
       "cjr.examples.emit_cj.box_c": {
@@ -1205,17 +1196,9 @@
         "depends_on": [
           "cjr.examples.cj_print.prog",
           "cjr.examples.emit_cj.p_arith",
-          "cjr.examples.emit_cj.p_array",
-          "cjr.examples.emit_cj.p_array_list",
           "cjr.examples.emit_cj.p_cell",
           "cjr.examples.emit_cj.p_class_upd",
           "cjr.examples.emit_cj.p_frame_call",
-          "cjr.examples.emit_cj.p_hash_map",
-          "cjr.examples.emit_cj.p_list",
-          "cjr.examples.emit_cj.p_list_rev",
-          "cjr.examples.emit_cj.p_most_frequent",
-          "cjr.examples.emit_cj.p_qsort_array",
-          "cjr.examples.emit_cj.p_qsort_array_list",
           "cjr.examples.emit_cj.p_struct_upd",
           "cjr.examples.emit_cj.p_sum_block",
           "cjr.examples.emit_cj.p_swap",
@@ -1244,10 +1227,6 @@
         ],
         "issues": []
       },
-      "cjr.examples.emit_cj.hm": {
-        "depends_on": [],
-        "issues": []
-      },
       "cjr.examples.emit_cj.int": {
         "depends_on": [
           "cjr.lang.base_lit",
@@ -1263,22 +1242,6 @@
         ],
         "issues": []
       },
-      "cjr.examples.emit_cj.list_partition": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.list_qsort": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.list_sort": {
-        "depends_on": [],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.list_swap": {
-        "depends_on": [],
-        "issues": []
-      },
       "cjr.examples.emit_cj.node_c": {
         "depends_on": [
           "cjr.examples.cj_print.decl",
@@ -1292,31 +1255,6 @@
           "cjr.examples.cj_print.prog",
           "cjr.examples.emit_cj.sum_one_fn",
           "cjr.examples.emit_cj.t_int"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_array": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_array_list": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.al",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.array_list_c",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.examples.emit_cj.unit_e",
-          "cjr.lang.expr"
         ],
         "issues": []
       },
@@ -1345,91 +1283,6 @@
           "cjr.examples.emit_cj.t_int",
           "cjr.examples.emit_cj.t_ptr",
           "cjr.examples.emit_cj.write_body",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_hash_map": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.hash_map_c",
-          "cjr.examples.emit_cj.hm",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.int64_opt_c",
-          "cjr.examples.emit_cj.probe_result_s",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.examples.emit_cj.unit_e",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_list": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.node_c",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.examples.emit_cj.unit_e",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_list_rev": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.node_c",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.examples.emit_cj.unit_e",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_most_frequent": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.int64_opt_c",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_qsort_array": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.array_partition",
-          "cjr.examples.emit_cj.array_qsort",
-          "cjr.examples.emit_cj.array_sort",
-          "cjr.examples.emit_cj.array_swap",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.lang.expr"
-        ],
-        "issues": []
-      },
-      "cjr.examples.emit_cj.p_qsort_array_list": {
-        "depends_on": [
-          "cjr.examples.cj_print.fn",
-          "cjr.examples.cj_print.prog",
-          "cjr.examples.emit_cj.al",
-          "cjr.examples.emit_cj.array_c",
-          "cjr.examples.emit_cj.array_list_c",
-          "cjr.examples.emit_cj.int",
-          "cjr.examples.emit_cj.list_partition",
-          "cjr.examples.emit_cj.list_qsort",
-          "cjr.examples.emit_cj.list_sort",
-          "cjr.examples.emit_cj.list_swap",
-          "cjr.examples.emit_cj.t_int",
-          "cjr.examples.emit_cj.unit_e",
           "cjr.lang.expr"
         ],
         "issues": []
@@ -3603,27 +3456,12 @@
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
-      "cjr.examples.cj_print.bulk_copy_arbitrary_loop_disabled": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.cj_print.bulk_copy_get_disabled": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.cj_print.bulk_copy_grow_enabled": {
+      "cjr.examples.cj_print.bulk_copy_loop": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
       "cjr.examples.cj_print.bulk_copy_method": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.cj_print.bulk_copy_remove_enabled": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
@@ -3639,6 +3477,11 @@
         "description": null
       },
       "cjr.examples.cj_print.comma": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.cj_print.copy_rules": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
@@ -3788,6 +3631,11 @@
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
+      "cjr.examples.cj_print.no_copy_rules": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
       "cjr.examples.cj_print.opnd": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
@@ -3834,6 +3682,11 @@
         "description": null
       },
       "cjr.examples.cj_print.print_prog": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.cj_print.print_prog_with": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
@@ -3938,37 +3791,12 @@
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
-      "cjr.examples.emit_cj.al": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
       "cjr.examples.emit_cj.array_c": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
       "cjr.examples.emit_cj.array_list_c": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.array_partition": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.array_qsort": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.array_sort": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.array_swap": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
@@ -4008,11 +3836,6 @@
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
-      "cjr.examples.emit_cj.hm": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
       "cjr.examples.emit_cj.int": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
@@ -4023,42 +3846,12 @@
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
-      "cjr.examples.emit_cj.list_partition": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.list_qsort": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.list_sort": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.list_swap": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
       "cjr.examples.emit_cj.node_c": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
       },
       "cjr.examples.emit_cj.p_arith": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_array": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_array_list": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null
@@ -4074,36 +3867,6 @@
         "description": null
       },
       "cjr.examples.emit_cj.p_frame_call": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_hash_map": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_list": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_list_rev": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_most_frequent": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_qsort_array": {
-        "status": "unavailable",
-        "reason": "No matching cached explanation (offline mode).",
-        "description": null
-      },
-      "cjr.examples.emit_cj.p_qsort_array_list": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null

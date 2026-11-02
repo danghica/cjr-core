@@ -1,61 +1,7 @@
-make verify started: 2026-10-29T14:49:30.877164+00:00
+make verify started: 2026-11-02T14:36:18.280632+00:00
 Command: /Users/danghica/.opam/default/bin/coq_makefile -f _CoqProject -o CoqMakefile
 Command: make -f CoqMakefile -j2
-COQDEP VFILES
-COQC theories/lang.v
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to ectxi_lang_ectx_mixin by
-ectx_language_mixin in cjr_ectx_lang: redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to ectxi_language.base_step by
-ectx_language.base_step in cjr_ectx_lang: redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to fill by ectx_language.fill in
-cjr_ectx_lang: redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to flip by comp_ectx in cjr_ectx_lang:
-redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to nil by empty_ectx in cjr_ectx_lang:
-redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 519, characters 0-87:
-Warning: Ignoring canonical projection to list by ectx in cjr_ectx_lang:
-redundant with ectxi_lang_ectx
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 520, characters 0-72:
-Warning: Ignoring canonical projection to ectx_lang_mixin by language_mixin
-in cjr_lang: redundant with ectx_lang
-[redundant-canonical-projection,records,default]
-File "./theories/lang.v", line 520, characters 0-72:
-Warning: Ignoring canonical projection to prim_step by language.prim_step in
-cjr_lang: redundant with ectx_lang
-[redundant-canonical-projection,records,default]
-COQC theories/primitive_laws.v
-COQC theories/buffer.v
-COQC theories/lifting.v
-COQC theories/notation.v
-COQC tools/extraction/rocq/cj_print.v
-COQC theories/generics.v
-COQC tools/extraction/rocq/generic_print.v
-COQC theories/adequacy.v
-COQC example/misc/rocq/swap.v
-COQC example/misc/rocq/sum_block.v
-COQC example/misc/rocq/class_upd.v
-COQC example/misc/rocq/frame_call.v
-COQC example/misc/rocq/vtable.v
-COQC theories/generic_laws.v
-COQC example/misc/rocq/arith.v
-COQC example/misc/rocq/struct_upd.v
-COQC example/misc/rocq/cell.v
-COQC example/generics/rocq/generic_examples.v
-COQC theories/buffer_laws.v
-COQC tools/extraction/rocq/emit_cj.v
-COQC example/generics/rocq/generic_tests.v
+make[2]: Nothing to be done for `real-all'.
 Command: /Users/danghica/.opam/default/bin/coqchk -silent -R /Users/danghica/cjr/cjr-core/theories cjr -Q /Users/danghica/cjr/cjr-core/tools/extraction/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/example/generics/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/example/misc/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/audit cjr.audit theories/adequacy.vo theories/buffer.vo theories/buffer_laws.vo theories/generic_laws.vo theories/generics.vo theories/lang.vo theories/lifting.vo theories/notation.vo theories/primitive_laws.vo tools/extraction/rocq/cj_print.vo tools/extraction/rocq/emit_cj.vo tools/extraction/rocq/generic_print.vo example/generics/rocq/generic_examples.vo example/generics/rocq/generic_tests.vo example/misc/rocq/arith.vo example/misc/rocq/cell.vo example/misc/rocq/class_upd.vo example/misc/rocq/frame_call.vo example/misc/rocq/struct_upd.vo example/misc/rocq/sum_block.vo example/misc/rocq/swap.vo example/misc/rocq/vtable.vo
 Command: /Users/danghica/.opam/default/bin/coqc -R /Users/danghica/cjr/cjr-core/theories cjr -Q /Users/danghica/cjr/cjr-core/tools/extraction/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/example/generics/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/example/misc/rocq cjr.examples -Q /Users/danghica/cjr/cjr-core/audit cjr.audit audit/assumptions.v
 Closed under the global context
@@ -92,4 +38,4 @@ Closed under the global context
 Closed under the global context
 Closed under the global context
 Closed under the global context
-make verify finished: 2026-10-29T14:50:14.796170+00:00 (exit status 0)
+make verify finished: 2026-11-02T14:36:52.887112+00:00 (exit status 0)

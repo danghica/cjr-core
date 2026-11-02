@@ -8,7 +8,7 @@
         "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
         "unmapped notation - _"
       ],
-      "declarations": 11
+      "declarations": 15
     },
     {
       "file": "rocq/cell.v",
@@ -78,6 +78,10 @@
     "roots": [
       "cjr.examples.arith.bitwise_noninteger",
       "cjr.examples.arith.bitwise_signed_cases",
+      "cjr.examples.arith.divide_body",
+      "cjr.examples.arith.division_noninteger",
+      "cjr.examples.arith.division_signs",
+      "cjr.examples.arith.division_zero",
       "cjr.examples.arith.multiplication_cases",
       "cjr.examples.arith.multiplication_noninteger",
       "cjr.examples.arith.multiply_body",
@@ -110,6 +114,22 @@
         "issues": []
       },
       "cjr.examples.arith.bitwise_signed_cases": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.divide_body": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.division_noninteger": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.division_signs": {
+        "depends_on": [],
+        "issues": []
+      },
+      "cjr.examples.arith.division_zero": {
         "depends_on": [],
         "issues": []
       },
@@ -289,6 +309,26 @@
         "description": null
       },
       "cjr.examples.arith.bitwise_signed_cases": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.divide_body": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.division_noninteger": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.division_signs": {
+        "status": "unavailable",
+        "reason": "No matching cached explanation (offline mode).",
+        "description": null
+      },
+      "cjr.examples.arith.division_zero": {
         "status": "unavailable",
         "reason": "No matching cached explanation (offline mode).",
         "description": null

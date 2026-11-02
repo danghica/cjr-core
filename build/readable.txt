@@ -1,0 +1,26 @@
+python3 scripts/project.py readable 
+Parsing rocq/arith.v
+Parsing rocq/cell.v
+Parsing rocq/class_upd.v
+Parsing rocq/frame_call.v
+Parsing rocq/struct_upd.v
+Parsing rocq/sum_block.v
+Parsing rocq/swap.v
+Parsing rocq/vtable.v
+Generated /Users/danghica/cjr/cjr-core/example/misc/docs/rocq/index.html (8 files, 0 with errors, 42 unmapped/unsupported constructs, 0 failed explanations)
+Parsing rocq/generic_examples.v
+Parsing rocq/generic_tests.v
+Generated /Users/danghica/cjr/cjr-core/example/generics/docs/rocq/index.html (2 files, 0 with errors, 8 unmapped/unsupported constructs, 0 failed explanations)
+Parsing theories/adequacy.v
+Parsing theories/buffer.v
+Parsing theories/buffer_laws.v
+Parsing theories/generic_laws.v
+Parsing theories/generics.v
+Parsing theories/lang.v
+Parsing theories/lifting.v
+Parsing theories/notation.v
+Parsing theories/primitive_laws.v
+Parsing tools/extraction/rocq/cj_print.v
+Parsing tools/extraction/rocq/emit_cj.v
+Parsing tools/extraction/rocq/generic_print.v
+Generated /Users/danghica/cjr/cjr-core/generated/spec-html/index.html (12 files, 0 with errors, 881 unmapped/unsupported constructs, 0 failed explanations)

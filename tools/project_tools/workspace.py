@@ -6,6 +6,11 @@ from datetime import datetime,timezone
 
 CORE=Path(__file__).resolve().parents[2]
 
+def write_if_changed(path,text):
+    # The renderer uses configuration mtimes to invalidate compiled symbol data.
+    if not path.is_file() or path.read_text()!=text:
+        path.write_text(text)
+
 def dependencies(root,check=True):
     lock=json.loads((root/'dependencies.lock.json').read_text())
     paths={}
@@ -39,13 +44,13 @@ def configure(root,deps):
     for folder in ('theories','tools/extraction/rocq','example','extraction'):
         for p in sorted((root/folder).rglob('*.v')):
             if 'docs' not in p.parts:sources.append(p.relative_to(root).as_posix())
-    (root/'_CoqProject').write_text('\n'.join(lines+sources)+'\n')
+    write_if_changed(root/'_CoqProject','\n'.join(lines+sources)+'\n')
     # Example configurations use the same explicit dependency paths.
     for example in (root/'example').iterdir():
         if example.is_dir():
             local=[' '.join(t) for t in pairs]
             local += [str(p.relative_to(example)) for p in sorted(example.rglob('*.v')) if 'docs' not in p.parts]
-            (example/'_CoqProject').write_text('\n'.join(local)+'\n')
+            write_if_changed(example/'_CoqProject','\n'.join(local)+'\n')
     return [x for t in pairs for x in t],sources
 
 _VERIFY_LOG = None
@@ -143,9 +148,9 @@ def pages(root):
     proof=json.loads(proof_path.read_text()) if proof_path.exists() else {}
     fresh=(proof.get('status')=='passed' and proof.get('dependencies')==json.loads((root/'dependencies.lock.json').read_text()) and all((root/name).is_file() and hashlib.sha256((root/name).read_bytes()).hexdigest()==digest for name,digest in proof.get('sources',{}).items()))
     if fresh:
-        intro=f'<aside><strong>Proof validation passed.</strong> {proof["modules_checked"]} modules kernel-checked; {proof["closed"]}/{proof["expected_closed"]} assumption audits closed. Recorded {html.escape(proof["finished_utc"])}. Read the repository README for the verification log and source fingerprints. Imported readable-specification pages remain historical snapshots.</aside>'
+        intro=f'<aside><strong>Proof validation passed.</strong> {proof["modules_checked"]} modules kernel-checked; {proof["closed"]}/{proof["expected_closed"]} assumption audits closed. Recorded {html.escape(proof["finished_utc"])}. Read the repository README for the verification log and source fingerprints. Consult the readable-specification reports for rendering coverage and explanation availability.</aside>'
     else:
-        intro='<aside>Current sources do not have a matching successful proof-validation record. Imported proof and readable-specification reports are historical snapshots. Runtime checks and measurements are reported separately.</aside>'
+        intro='<aside>Current sources do not have a matching successful proof-validation record. Consult individual reports for rendering coverage. Runtime checks and measurements are reported separately.</aside>'
 
     links=['<li><a href="../paper/tutorial.pdf">Tutorial paper (PDF)</a> · <a href="../paper/tutorial.tex">LaTeX source</a></li>','<li><a href="../README.md">Setup and commands</a> · <a href="../dependencies.lock.json">Pinned dependencies</a></li>','<li><a href="../build/runtime-validation.json">Runtime validation</a></li>']
     if proof_path.is_file():links.append('<li><a href="../build/proof-verification.json">Proof validation record</a> · <a href="../build/verify.log">Verification log</a></li>')
@@ -158,9 +163,9 @@ def pages(root):
             if 'results' not in p.parts and 'build' not in p.parts:entries.append('<li><a href="'+os.path.relpath(p,project)+'">'+html.escape(str(p.relative_to(project)))+'</a></li>')
         (project/'index.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>'+name+'</title><link rel="stylesheet" href="../../docs/style.css"></head><body><a href="../../docs/index.html">Repository documentation</a><h1>'+name+'</h1>'+intro+'<ul>'+''.join(entries)+'</ul></body></html>')
         links.append('<li><a href="../example/'+name+'/index.html">'+name+'</a></li>')
-    if (root/'generated/spec-html/index.html').exists():links.append('<li><a href="../generated/spec-html/index.html">Framework specifications (historical HTML)</a></li>')
+    if (root/'generated/spec-html/index.html').exists():links.append('<li><a href="../generated/spec-html/index.html">Framework specifications</a></li>')
     if (root/'benchmark/results/report.html').exists():links.append('<li><a href="../benchmark/results/report.html">Core runtime benchmarks</a></li>')
-    (docs/'index.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>'+cfg['name']+'</title><link rel="stylesheet" href="style.css"></head><body><h1>'+cfg['name']+'</h1>'+intro+'<h2>Getting started</h2><p>Run make dependencies to check pinned sibling checkouts. Run make test, make benchmark, make docs, or make paper independently. These commands use the checked-in native sources and do not compile proofs. make build, make extract, make verify, and make readable explicitly invoke the Rocq toolchain.</p><h2>Documentation and results</h2><ul>'+''.join(links)+'</ul><h2>Readable specifications</h2><p>The renderer, launcher, packaging, resources, and tests live exclusively in cjr-core. This repository owns its documentation and cached outputs. make readable invokes the core renderer and checks proofs; it was not run during this migration.</p></body></html>')
+    (docs/'index.html').write_text('<!doctype html><html><head><meta charset="utf-8"><title>'+cfg['name']+'</title><link rel="stylesheet" href="style.css"></head><body><h1>'+cfg['name']+'</h1>'+intro+'<h2>Getting started</h2><p>Run make dependencies to check pinned sibling checkouts. Run make test, make benchmark, make docs, or make paper independently. These commands use the checked-in native sources and do not compile proofs. make build, make extract, make verify, and make readable explicitly invoke the Rocq toolchain.</p><h2>Documentation and results</h2><ul>'+''.join(links)+'</ul><h2>Readable specifications</h2><p>The renderer, launcher, packaging, resources, and tests live exclusively in cjr-core. This repository owns its documentation and cached outputs. Run make verify to revalidate proofs and make readable to regenerate specifications. Each report.json records rendering coverage and explanation availability.</p></body></html>')
 
 def paper(root):
     parts=['\\subsection{Measurement protocol}\nTimings are from optimized Cangjie 1.0.5 builds on the machine recorded in each metadata file. Each suite uses its checked-in configuration, warmups, independent processes, and checksum validation. Medians and interquartile ranges describe repeated samples; they are not universal guarantees.\\par\n']

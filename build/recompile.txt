@@ -1,0 +1,57 @@
+python3 scripts/project.py dependencies 
+Dependencies match lock file
+COQDEP VFILES
+COQC theories/lang.v
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to ectxi_lang_ectx_mixin by
+ectx_language_mixin in cjr_ectx_lang: redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to ectxi_language.base_step by
+ectx_language.base_step in cjr_ectx_lang: redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to fill by ectx_language.fill in
+cjr_ectx_lang: redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to flip by comp_ectx in cjr_ectx_lang:
+redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to nil by empty_ectx in cjr_ectx_lang:
+redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 519, characters 0-87:
+Warning: Ignoring canonical projection to list by ectx in cjr_ectx_lang:
+redundant with ectxi_lang_ectx
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 520, characters 0-72:
+Warning: Ignoring canonical projection to ectx_lang_mixin by language_mixin
+in cjr_lang: redundant with ectx_lang
+[redundant-canonical-projection,records,default]
+File "./theories/lang.v", line 520, characters 0-72:
+Warning: Ignoring canonical projection to prim_step by language.prim_step in
+cjr_lang: redundant with ectx_lang
+[redundant-canonical-projection,records,default]
+COQC theories/buffer.v
+COQC theories/primitive_laws.v
+COQC theories/lifting.v
+COQC theories/notation.v
+COQC tools/extraction/rocq/cj_print.v
+COQC theories/generics.v
+COQC tools/extraction/rocq/generic_print.v
+COQC theories/adequacy.v
+COQC example/misc/rocq/swap.v
+COQC example/misc/rocq/sum_block.v
+COQC example/misc/rocq/class_upd.v
+COQC example/misc/rocq/frame_call.v
+COQC example/misc/rocq/vtable.v
+COQC theories/generic_laws.v
+COQC example/misc/rocq/arith.v
+COQC example/misc/rocq/struct_upd.v
+COQC example/misc/rocq/cell.v
+COQC example/generics/rocq/generic_examples.v
+COQC theories/buffer_laws.v
+COQC tools/extraction/rocq/emit_cj.v
+COQC example/generics/rocq/generic_tests.v

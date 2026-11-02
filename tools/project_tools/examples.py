@@ -73,7 +73,8 @@ def extract():
 
 def readable(name, explanations):
     project = ROOT / 'example' / name
-    config = json.loads((project / 'project.config.json').read_text())
+    config_path = project / 'project.config.json'
+    config = json.loads(config_path.read_text()) if config_path.is_file() else {}
     if 'documentation_sources' in config:
         sources = config['documentation_sources']
     elif name == 'quadtree':

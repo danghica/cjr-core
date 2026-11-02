@@ -1,0 +1,26 @@
+{
+  "reviewed_utc": "2026-11-02T17:14:55.996924+00:00",
+  "method": "Codex reviewed the displayed explanations against proof-free source statements and related definitions, checking premises, bounds, ownership, result claims and partial correctness versus termination. Automated checks bind this review to the regenerated HTML and reports.",
+  "scope": "All available explanations in the current readable build. Missing explanations were left explicitly unavailable. English text is reviewed, not formally verified.",
+  "fresh_symbol_data": true,
+  "declarations": 448,
+  "explanations_reviewed": 0,
+  "explanations_unavailable": 448,
+  "unsupported_notices": 185,
+  "reports": [
+    {
+      "report": "example/generics/docs/rocq/report.json",
+      "sha256": "c14449188b333ae5f989cc577edc160fe951d28a23ae692247c740babd5ab4c4"
+    },
+    {
+      "report": "example/misc/docs/rocq/report.json",
+      "sha256": "b915850e7efeb9e943d6b69d97e1114029fbf1df61c08ed6925a81a2c253d269"
+    },
+    {
+      "report": "generated/spec-html/report.json",
+      "sha256": "6ec9d7293d6910e7ce3b7e8c6ea8c374cb487063874d6ff9a35c723f0f5571c2"
+    }
+  ],
+  "entries": [],
+  "removed_obsolete_pages": []
+}
