@@ -111,54 +111,67 @@
     "declarations": {
       "cjr.examples.arith.bitwise_noninteger": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.bitwise_signed_cases": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.divide_body": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.division_noninteger": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.division_signs": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.division_zero": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.multiplication_cases": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.multiplication_noninteger": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.multiply_body": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.remainder_noninteger": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.remainder_signs": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.remainder_zero_divisor": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.sum_one": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.arith.sum_one_adequate": {
@@ -166,16 +179,23 @@
           "cjr.examples.arith.sum_one",
           "cjr.examples.arith.sum_one_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.arith.sum_one"
+        ],
         "issues": []
       },
       "cjr.examples.arith.sum_one_wp": {
         "depends_on": [
           "cjr.examples.arith.sum_one"
         ],
+        "statement_depends_on": [
+          "cjr.examples.arith.sum_one"
+        ],
         "issues": []
       },
       "cjr.examples.cell.cell": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.cell.cell_adequate": {
@@ -183,16 +203,23 @@
           "cjr.examples.cell.cell",
           "cjr.examples.cell.cell_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.cell.cell"
+        ],
         "issues": []
       },
       "cjr.examples.cell.cell_wp": {
         "depends_on": [
           "cjr.examples.cell.cell"
         ],
+        "statement_depends_on": [
+          "cjr.examples.cell.cell"
+        ],
         "issues": []
       },
       "cjr.examples.class_upd.class_bump": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.class_upd.class_bump_adequate": {
@@ -200,26 +227,37 @@
           "cjr.examples.class_upd.class_bump",
           "cjr.examples.class_upd.class_bump_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.class_upd.class_bump"
+        ],
         "issues": []
       },
       "cjr.examples.class_upd.class_bump_wp": {
         "depends_on": [
           "cjr.examples.class_upd.class_bump"
         ],
+        "statement_depends_on": [
+          "cjr.examples.class_upd.class_bump"
+        ],
         "issues": []
       },
       "cjr.examples.frame_call.write_call": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.frame_call.write_call_wp": {
         "depends_on": [
           "cjr.examples.frame_call.write_call"
         ],
+        "statement_depends_on": [
+          "cjr.examples.frame_call.write_call"
+        ],
         "issues": []
       },
       "cjr.examples.struct_upd.bump": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.struct_upd.bump_adequate": {
@@ -227,10 +265,16 @@
           "cjr.examples.struct_upd.bump_keep",
           "cjr.examples.struct_upd.bump_keep_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.struct_upd.bump_keep"
+        ],
         "issues": []
       },
       "cjr.examples.struct_upd.bump_keep": {
         "depends_on": [
+          "cjr.examples.struct_upd.bump"
+        ],
+        "statement_depends_on": [
           "cjr.examples.struct_upd.bump"
         ],
         "issues": []
@@ -241,40 +285,56 @@
           "cjr.examples.struct_upd.bump_keep",
           "cjr.examples.struct_upd.bump_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.struct_upd.bump_keep"
+        ],
         "issues": []
       },
       "cjr.examples.struct_upd.bump_wp": {
         "depends_on": [
           "cjr.examples.struct_upd.bump"
         ],
+        "statement_depends_on": [
+          "cjr.examples.struct_upd.bump"
+        ],
         "issues": []
       },
       "cjr.examples.sum_block.sum_at": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.sum_block.sum_at_wp": {
         "depends_on": [
           "cjr.examples.sum_block.sum_at"
         ],
+        "statement_depends_on": [
+          "cjr.examples.sum_block.sum_at"
+        ],
         "issues": []
       },
       "cjr.examples.swap.swap_aliased": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.swap.swap_at": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.swap.swap_wp": {
         "depends_on": [
           "cjr.examples.swap.swap_at"
         ],
+        "statement_depends_on": [
+          "cjr.examples.swap.swap_at"
+        ],
         "issues": []
       },
       "cjr.examples.vtable.inc_body": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": []
       },
       "cjr.examples.vtable.vtable_adequate": {
@@ -282,10 +342,16 @@
           "cjr.examples.vtable.vtable_prog",
           "cjr.examples.vtable.vtable_prog_wp"
         ],
+        "statement_depends_on": [
+          "cjr.examples.vtable.vtable_prog"
+        ],
         "issues": []
       },
       "cjr.examples.vtable.vtable_prog": {
         "depends_on": [
+          "cjr.examples.vtable.inc_body"
+        ],
+        "statement_depends_on": [
           "cjr.examples.vtable.inc_body"
         ],
         "issues": []
@@ -293,6 +359,9 @@
       "cjr.examples.vtable.vtable_prog_wp": {
         "depends_on": [
           "cjr.examples.vtable.inc_body",
+          "cjr.examples.vtable.vtable_prog"
+        ],
+        "statement_depends_on": [
           "cjr.examples.vtable.vtable_prog"
         ],
         "issues": []
@@ -490,6 +559,57 @@
       }
     }
   },
+  "cangjie": {
+    "cjr.examples.arith.sum_one": {
+      "status": "available",
+      "text": "var n = 1\nvar s = 0\nwhile (1 <= n) {\n    s = s + 1\n    n = n - 1\n}\ns"
+    },
+    "cjr.examples.arith.multiply_body": {
+      "status": "available",
+      "text": "let a = args[0]\nlet b = args[1]\na * b"
+    },
+    "cjr.examples.arith.divide_body": {
+      "status": "available",
+      "text": "let a = args[0]\nlet b = args[1]\na / b"
+    },
+    "cjr.examples.cell.cell": {
+      "status": "available",
+      "text": "let p = unsafe { CPointer<Int64>(calloc(UIntNative(1), UIntNative(8))) }\nunsafe { p.write(7) }\nunsafe { p.read() }\nunsafe { free(CPointer<Unit>(p)) }"
+    },
+    "cjr.examples.class_upd.class_bump": {
+      "status": "unavailable",
+      "reason": "The Gallina printer reported an unsupported construct or missing layout metadata."
+    },
+    "cjr.examples.frame_call.write_call": {
+      "status": "unavailable",
+      "reason": "The Gallina printer requires concrete non-expression arguments."
+    },
+    "cjr.examples.struct_upd.bump": {
+      "status": "available",
+      "text": "var p = (0)\np.f0 = 1\np[0]"
+    },
+    "cjr.examples.struct_upd.bump_keep": {
+      "status": "available",
+      "text": "let r = unsafe { CPointer<Int64>(calloc(UIntNative(1), UIntNative(8))) }\nvar p = (0)\np.f0 = 1\np[0]\nunsafe { r.read() }"
+    },
+    "cjr.examples.sum_block.sum_at": {
+      "status": "unavailable",
+      "reason": "The Gallina printer requires concrete non-expression arguments."
+    },
+    "cjr.examples.swap.swap_at": {
+      "status": "unavailable",
+      "reason": "The Gallina printer requires concrete non-expression arguments."
+    },
+    "cjr.examples.vtable.inc_body": {
+      "status": "available",
+      "text": "self.f0 = self.f0 + 1"
+    },
+    "cjr.examples.vtable.vtable_prog": {
+      "status": "unavailable",
+      "reason": "The Gallina printer reported an unsupported construct or missing layout metadata."
+    }
+  },
+  "correctness_contracts": {},
   "history": {
     "complete": true,
     "declarations": {
@@ -528,6 +648,7 @@
           {
             "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
             "date": "2026-10-14T06:42:55+01:00",
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks",
             "prompts": [
               {
                 "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
@@ -605,8 +726,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-14T05:26:10+00:00"
               }
-            ],
-            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
+            ]
           }
         ],
         "issues": [],
@@ -617,6 +737,7 @@
           {
             "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
             "date": "2026-10-14T06:42:55+01:00",
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks",
             "prompts": [
               {
                 "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
@@ -694,8 +815,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-14T05:26:10+00:00"
               }
-            ],
-            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
+            ]
           }
         ],
         "issues": [],
@@ -706,6 +826,7 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
+            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -799,8 +920,7 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ],
-            "subject": "Add integer multiplication and improve hashmap hashing"
+            ]
           }
         ],
         "issues": [],
@@ -811,6 +931,7 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
+            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -904,8 +1025,7 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ],
-            "subject": "Add integer multiplication and improve hashmap hashing"
+            ]
           }
         ],
         "issues": [],
@@ -916,6 +1036,7 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
+            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -1009,8 +1130,7 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ],
-            "subject": "Add integer multiplication and improve hashmap hashing"
+            ]
           }
         ],
         "issues": [],
@@ -1021,6 +1141,7 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
+            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1054,8 +1175,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ],
-            "subject": "Add authenticator core and readable Rocq documentation"
+            ]
           }
         ],
         "issues": [],
@@ -1066,6 +1186,7 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
+            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1099,8 +1220,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ],
-            "subject": "Add authenticator core and readable Rocq documentation"
+            ]
           }
         ],
         "issues": [],
@@ -1111,6 +1231,7 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
+            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1144,8 +1265,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ],
-            "subject": "Add authenticator core and readable Rocq documentation"
+            ]
           }
         ],
         "issues": [],
@@ -1156,6 +1276,7 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
+            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1189,8 +1310,7 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ],
-            "subject": "Add authenticator core and readable Rocq documentation"
+            ]
           }
         ],
         "issues": [],
@@ -1306,6 +1426,22 @@
         "issues": [],
         "complete": true
       }
+    }
+  },
+  "rendering": {
+    "proof_validation": "not_run",
+    "proof_bodies_evaluated": false,
+    "preserved_available_explanations": 0,
+    "explanations_mode": "offline",
+    "sources": {
+      "rocq/arith.v": "613d927e3780bf42709962c00c72422175d72e002a93e47e3777cd1354991dad",
+      "rocq/cell.v": "c0471d220cde7e67e9a17df1f50da2bbf3dfc03ebf86c8706adaca0cc59626a8",
+      "rocq/class_upd.v": "78217b10e216b98b5df4fc1283a8d3f2392463d91110a90bbe33e503e9ed8dae",
+      "rocq/frame_call.v": "eb2361055f07c5ed1b4c8ddf42ba09a9add69c280de9431da9658aa5572efeee",
+      "rocq/struct_upd.v": "5da41e2996d3421079e906ec23c7d5274f0e589cb6a0c3b7e53b66b2147158b6",
+      "rocq/sum_block.v": "3305634fc23a7b5e7d2837754b7c7b339e945f1ac74c0c40ff3dbec1aa9fb8d0",
+      "rocq/swap.v": "2012bf271ea7f862463047da89e354706193e51e5817028ed40dcfc7cfb28fe4",
+      "rocq/vtable.v": "0859be5e2b6297f465541b440fbf044b7567799e69a19f52ec27dc4039217735"
     }
   }
 }

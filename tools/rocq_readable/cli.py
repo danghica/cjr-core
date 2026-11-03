@@ -57,6 +57,12 @@ def resolve_missing(backend, source):
 
 def prepare(paths, root, timeout, selected=None):
     sources, resolutions = [], {}
+    from .gallina import fresh, render_compiled, render_source
+    try:
+        snapshots = [Source.load(path, root) for path in paths]
+        compiled_view = bool(snapshots) and all(fresh(s) and s.glob.valid for s in snapshots)
+    except (OSError, ValueError):
+        compiled_view = False
     for path in paths:
         try:
             source = Source.load(path, root)
@@ -75,8 +81,11 @@ def prepare(paths, root, timeout, selected=None):
                 declarations(source, document)
                 from .semantics import classify_arrows
                 classify_arrows(backend, source)
-                from .gallina import render_source
-                render_source(backend, source)
+                # Prefer program-aware compiled printing when possible. An
+                # empty environment can inline large shared helpers repeatedly
+                # (notably AES substitution tables) before the contextual pass.
+                if not compiled_view:
+                    render_source(backend, source)
                 errors = [d for d in diagnostics if d.get("severity") == 1]
                 source.errors.extend(f"line {d['range']['start']['line'] + 1}: {d['message']}" for d in errors[:8])
                 if len(errors) > 8:
@@ -87,7 +96,6 @@ def prepare(paths, root, timeout, selected=None):
         except (BackendError, ValueError, KeyError, IndexError) as exc:
             source.errors.append(str(exc))
             print(f"  error: {exc}", file=sys.stderr)
-    from .gallina import render_compiled
     render_compiled(sources, timeout)
     return sources, resolutions
 

@@ -9,8 +9,22 @@ from .dependencies import reference_nodes
 
 
 def classify_contracts(sources, documents, resolved, statement_edges):
+    selected, specification_modules, call_wrappers = set(), set(), set()
+    for root in {s.root for s in sources}:
+        config = root / 'project.config.json'
+        if not config.is_file():
+            continue
+        settings = json.loads(config.read_text())
+        for key, target in [('main_correctness_contracts', selected),
+                            ('correctness_specification_modules', specification_modules),
+                            ('correctness_call_wrappers', call_wrappers)]:
+            configured = settings.get(key, [])
+            if not isinstance(configured, list) or any(not isinstance(i, str) for i in configured):
+                raise ValueError(f'{key} must be a list of qualified identities')
+            target.update(configured)
     declarations = {d.identity: (s, d) for s in sources for d in s.declarations}
-    specs = {i for i, (s, _) in declarations.items() if 'spec' in s.relative.parts}
+    specs = {i for i, (s, _) in declarations.items()
+             if 'spec' in s.relative.parts or s.module in specification_modules}
     implementations = {i for i, (s, d) in declarations.items() if d.body and
                        ('algorithm' in s.relative.parts or i in s.cangjie)}
     representations = {i for i, (s, d) in declarations.items() if d.body and d.type and
@@ -27,16 +41,6 @@ def classify_contracts(sources, documents, resolved, statement_edges):
             # from the rendered statement or a definition's body and binders.
             pending.extend(statement_edges.get(identity, []))
         return seen
-
-    roots = {s.root for s in sources}
-    selected = set()
-    for root in roots:
-        config = root / 'project.config.json'
-        if config.is_file():
-            configured = json.loads(config.read_text()).get('main_correctness_contracts', [])
-            if not isinstance(configured, list) or any(not isinstance(i, str) for i in configured):
-                raise ValueError('main_correctness_contracts must be a list of qualified declaration identities')
-            selected.update(configured)
 
     records = {}
     for source in sources:
@@ -72,7 +76,12 @@ def classify_contracts(sources, documents, resolved, statement_edges):
                 if not isinstance(expr, list) or not expr:
                     return None
                 if expr[0] == 'CApp':
-                    return head(expr[1])
+                    operation = head(expr[1])
+                    # Reviewed adapters such as `call body arguments` expose
+                    # their operation in the first argument, not the adapter.
+                    if operation in call_wrappers:
+                        return head(expr[2][0][0]) if expr[2] else None
+                    return operation
                 if expr[0] == 'CRef':
                     return identity(expr[1])
                 if expr[0] == 'CAppExpl':

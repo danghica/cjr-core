@@ -112,3 +112,33 @@ class CorrectnessContracts(unittest.TestCase):
         self.configure('not a list')
         with self.assertRaisesRegex(ValueError, 'main_correctness_contracts'):
             self.graph()
+
+    def test_explicit_specification_module_without_spec_directory(self):
+        source = self.sources[0]
+        source.path = self.root/'core/model.v'
+        self.documents[source.path] = self.documents.pop(self.root/'spec/model.v')
+        self.assertNotIn(self.contract.identity, self.graph().contracts)
+        (self.root/'project.config.json').write_text(json.dumps({
+            'correctness_specification_modules': [source.module],
+            'main_correctness_contracts': [self.contract.identity]}))
+        self.assertTrue(self.graph().contracts[self.contract.identity]['main'])
+
+    def test_reviewed_call_wrapper_uses_the_body_as_operation(self):
+        wrapper = self.add('algorithm/calls.v', 'P.algorithm.calls.call', 'definition')
+        source = self.sources[-2]
+        source.glob.references[30] = (31, wrapper.identity, 'def')
+        self.documents[source.path][0].children.append(Doc(Token(wrapper.name, identity=wrapper.identity)))
+        self.contract.type['v'][3][0][0] = {
+            'v': ['CApp', reference(wrapper.identity, 30),
+                  [[reference(self.operation.identity, 10), None]]]}
+        self.assertEqual(self.graph().contracts[self.contract.identity]['operations'], [wrapper.identity])
+        (self.root/'project.config.json').write_text(json.dumps({
+            'correctness_call_wrappers': [wrapper.identity]}))
+        self.assertEqual(self.graph().contracts[self.contract.identity]['operations'], [self.operation.identity])
+
+    def test_invalid_role_configuration_is_reported(self):
+        for key in ['correctness_specification_modules', 'correctness_call_wrappers']:
+            with self.subTest(key=key):
+                (self.root/'project.config.json').write_text(json.dumps({key: 'not a list'}))
+                with self.assertRaisesRegex(ValueError, key):
+                    self.graph()

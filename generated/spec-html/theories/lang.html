@@ -8,28 +8,50 @@
 WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
 Rendering rules are presentation choices reviewed by their authors.</p></header><section class="panel dependency-diagram" data-scope="file" aria-labelledby="graph-heading">
 <h2 id="graph-heading">Dependency graph</h2>
-<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry.</p>
+<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry. Main correctness contracts highlights confirmed implementation–specification bridges using theorem statements.</p>
 <div class="graph-controls">
-<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="focus">Focused declaration</option></select></label>
+<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="contracts">Main correctness contracts</option><option value="focus">Focused declaration</option></select></label>
 <label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
 <datalist id="graph-choices"></datalist>
-<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button><button type="button" id="graph-fullscreen" aria-pressed="false">Full screen</button></div>
 </div>
 <p id="graph-status" class="meta" aria-live="polite"></p>
 <div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
-<div class="graph-legend"><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
-<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
+<div class="graph-legend"><span style="--swatch:#e8b947">Main correctness contracts</span><span style="--swatch:#29897d">Representation predicates</span><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
+<p class="notice">Drag the background to pan. Zoom in to reveal less important nodes and links; positions stay fixed. Circle area shows node rank and line width shows edge importance; both stay the same screen size as you zoom. Labels stay anchored outside the circles and keep their rank-based font size as you zoom. Overlapping lower-ranked labels are hidden; hover a node to show its label and AI-generated explanation in a solid box. Highly ranked links may extend to hidden nodes. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
 <noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
-</section><script id="dependency-data" type="application/json">{"cjr.lang.base_lit": {"dependencies": ["cjr.lang.loc"], "file": "theories/lang.v", "href": "#symbol-50123e23e3558cbee7f84fb1", "kind": "inductive_kw", "label": "cjr.lang.base_lit", "name": "base_lit"}, "cjr.lang.base_step": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op_eval", "cjr.lang.expr", "cjr.lang.free_cells", "cjr.lang.init_cells", "cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.observation", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_nth", "cjr.lang.set_obj", "cjr.lang.set_raw", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.subst_binder", "cjr.lang.subst_var", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-7c260648a279069c01b626e3", "kind": "inductive_kw", "label": "cjr.lang.base_step", "name": "base_step"}, "cjr.lang.base_step_det": {"dependencies": ["cjr.lang.base_step", "cjr.lang.bin_op_eval"], "file": "theories/lang.v", "href": "#symbol-b247351f6f0238e9dac89f30", "kind": "lemma", "label": "cjr.lang.base_step_det", "name": "base_step_det"}, "cjr.lang.base_step_fill_item": {"dependencies": ["cjr.lang.base_step", "cjr.lang.fill_item", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-e8a55201a3516acf3e250f23", "kind": "lemma", "label": "cjr.lang.base_step_fill_item", "name": "base_step_fill_item"}, "cjr.lang.bin_op": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-5205c3e703f74a0cb13702bf", "kind": "inductive_kw", "label": "cjr.lang.bin_op", "name": "bin_op"}, "cjr.lang.bin_op_eval": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-94c0dd09415be66b45b91b5a", "kind": "definition", "label": "cjr.lang.bin_op_eval", "name": "bin_op_eval"}, "cjr.lang.binder": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-c8246980b50486c8938e549d", "kind": "definition", "label": "cjr.lang.binder", "name": "binder"}, "cjr.lang.binds": {"dependencies": ["cjr.lang.binder"], "file": "theories/lang.v", "href": "#symbol-ae6148e52b22b6964ad25ebe", "kind": "definition", "label": "cjr.lang.binds", "name": "binds"}, "cjr.lang.block_below": {"dependencies": ["cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-fed94dc4008d09b64b78c791", "kind": "definition", "label": "cjr.lang.block_below", "name": "block_below"}, "cjr.lang.block_cover": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-64651f15060bee3627d8590f", "kind": "definition", "label": "cjr.lang.block_cover", "name": "block_cover"}, "cjr.lang.block_fresh": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-be354fbbfa9093f976b1f1af", "kind": "lemma", "label": "cjr.lang.block_fresh", "name": "block_fresh"}, "cjr.lang.blocks_disjoint": {"dependencies": ["cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-957fa49e22aab63d1f89aed0", "kind": "definition", "label": "cjr.lang.blocks_disjoint", "name": "blocks_disjoint"}, "cjr.lang.cjr_ectx_lang": {"dependencies": ["cjr.lang.cjr_ectxi_lang"], "file": "theories/lang.v", "href": "#symbol-204c183e686b706a2b9f3326", "kind": "canonicalstructure", "label": "cjr.lang.cjr_ectx_lang", "name": "cjr_ectx_lang"}, "cjr.lang.cjr_ectxi_lang": {"dependencies": ["cjr.lang.cjr_ectxi_mixin"], "file": "theories/lang.v", "href": "#symbol-f1b199f25f8f3c7ce8e62d60", "kind": "canonicalstructure", "label": "cjr.lang.cjr_ectxi_lang", "name": "cjr_ectxi_lang"}, "cjr.lang.cjr_ectxi_mixin": {"dependencies": ["cjr.lang.base_step", "cjr.lang.base_step_fill_item", "cjr.lang.fill_item", "cjr.lang.fill_item_eq_no_val", "cjr.lang.fill_item_inj", "cjr.lang.fill_item_val", "cjr.lang.of_to_val", "cjr.lang.of_val", "cjr.lang.to_of_val", "cjr.lang.to_val", "cjr.lang.val_base_stuck"], "file": "theories/lang.v", "href": "#symbol-23d0e02e53d9ac0810835727", "kind": "lemma", "label": "cjr.lang.cjr_ectxi_mixin", "name": "cjr_ectxi_mixin"}, "cjr.lang.cjr_lang": {"dependencies": ["cjr.lang.cjr_ectx_lang"], "file": "theories/lang.v", "href": "#symbol-a027771fed57b393b217b7d7", "kind": "canonicalstructure", "label": "cjr.lang.cjr_lang", "name": "cjr_lang"}, "cjr.lang.ectx_item": {"dependencies": ["cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.expr", "cjr.lang.stack_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-cdbe6c9dc367327c7c948a7e", "kind": "inductive_kw", "label": "cjr.lang.ectx_item", "name": "ectx_item"}, "cjr.lang.expr": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.stack_id"], "file": "theories/lang.v", "href": "#symbol-02fb45236d2ab5eccd901065", "kind": "inductive_kw", "label": "cjr.lang.expr", "name": "expr"}, "cjr.lang.expr_cjr": {"dependencies": ["cjr.lang.expr"], "file": "theories/lang.v", "href": "#symbol-e9dda4c9c283275f2b6408d7", "kind": "abbrev", "label": "cjr.lang.expr_cjr", "name": "expr_cjr"}, "cjr.lang.expr_inhabited": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.expr", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-d0a24fc85363d17c66c2963f", "kind": "instance", "label": "cjr.lang.expr_inhabited", "name": "expr_inhabited"}, "cjr.lang.fill_item": {"dependencies": ["cjr.lang.ectx_item", "cjr.lang.expr"], "file": "theories/lang.v", "href": "#symbol-68f7f17cb7bbe594ed1f1d7b", "kind": "definition", "label": "cjr.lang.fill_item", "name": "fill_item"}, "cjr.lang.fill_item_eq_no_val": {"dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-bcb17234382261c2ad034b4b", "kind": "lemma", "label": "cjr.lang.fill_item_eq_no_val", "name": "fill_item_eq_no_val"}, "cjr.lang.fill_item_inj": {"dependencies": ["cjr.lang.fill_item"], "file": "theories/lang.v", "href": "#symbol-f3d0b8790e0bc33a1cef0b60", "kind": "lemma", "label": "cjr.lang.fill_item_inj", "name": "fill_item_inj"}, "cjr.lang.fill_item_not_val": {"dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-01c5d2f109b03a3eeb76ae78", "kind": "lemma", "label": "cjr.lang.fill_item_not_val", "name": "fill_item_not_val"}, "cjr.lang.fill_item_val": {"dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-f39fe7501a8b17befd36d5f6", "kind": "lemma", "label": "cjr.lang.fill_item_val", "name": "fill_item_val"}, "cjr.lang.free_cells": {"dependencies": ["cjr.lang.free_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-c8e626fb9b31abf506e639be", "kind": "recursive function", "label": "cjr.lang.free_cells", "name": "free_cells"}, "cjr.lang.free_cells_one": {"dependencies": ["cjr.lang.free_cells", "cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-079cd94cb749d64170afe3ba", "kind": "lemma", "label": "cjr.lang.free_cells_one", "name": "free_cells_one"}, "cjr.lang.init_cells": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-62f5fb6e6cdb444489bb5cf2", "kind": "recursive function", "label": "cjr.lang.init_cells", "name": "init_cells"}, "cjr.lang.init_cells_addr": {"dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-5d37d6ecb313558e5d99fc98", "kind": "lemma", "label": "cjr.lang.init_cells_addr", "name": "init_cells_addr"}, "cjr.lang.init_cells_below": {"dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-74df1525502cd72980879f90", "kind": "lemma", "label": "cjr.lang.init_cells_below", "name": "init_cells_below"}, "cjr.lang.init_cells_fresh": {"dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-79fe02272c9897b0e1c9b08e", "kind": "lemma", "label": "cjr.lang.init_cells_fresh", "name": "init_cells_fresh"}, "cjr.lang.init_cells_high": {"dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-1d280a1d9c568acf1622dcdf", "kind": "lemma", "label": "cjr.lang.init_cells_high", "name": "init_cells_high"}, "cjr.lang.init_cells_lookup": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-63c5d7a9e28921f610a09ed0", "kind": "lemma", "label": "cjr.lang.init_cells_lookup", "name": "init_cells_lookup"}, "cjr.lang.init_cells_one": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-20ffed25da19b65161a32e03", "kind": "lemma", "label": "cjr.lang.init_cells_one", "name": "init_cells_one"}, "cjr.lang.init_fields": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-299c04727e099d1d352a6eac", "kind": "recursive function", "label": "cjr.lang.init_fields", "name": "init_fields"}, "cjr.lang.init_fields_carrier": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-027597992884caf3a06cbeeb", "kind": "lemma", "label": "cjr.lang.init_fields_carrier", "name": "init_fields_carrier"}, "cjr.lang.init_fields_fresh": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.init_fields_carrier", "cjr.lang.obj_fresh", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-fd07e1ee69d833cc208a4158", "kind": "lemma", "label": "cjr.lang.init_fields_fresh", "name": "init_fields_fresh"}, "cjr.lang.init_fields_low": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-f0b2b9ecdba768100af481d7", "kind": "lemma", "label": "cjr.lang.init_fields_low", "name": "init_fields_low"}, "cjr.lang.init_fields_shift": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-33ea594b0f2673637cfccdaa", "kind": "lemma", "label": "cjr.lang.init_fields_shift", "name": "init_fields_shift"}, "cjr.lang.loc": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-01ba9fbb8621349b9315a540", "kind": "definition", "label": "cjr.lang.loc", "name": "loc"}, "cjr.lang.obj_below": {"dependencies": ["cjr.lang.obj_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-6db29148c07e93cf94d38b7b", "kind": "definition", "label": "cjr.lang.obj_below", "name": "obj_below"}, "cjr.lang.obj_fresh": {"dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-90ed3b5cb13810c26300ddc4", "kind": "lemma", "label": "cjr.lang.obj_fresh", "name": "obj_fresh"}, "cjr.lang.obj_id": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-805d0fb4db05ed5cd91ee6fd", "kind": "inductive_kw", "label": "cjr.lang.obj_id", "name": "obj_id"}, "cjr.lang.obj_id_countable": {"dependencies": ["cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-24ad1dd2dd83bb003f1ad7de", "kind": "instance", "label": "cjr.lang.obj_id_countable", "name": "obj_id_countable"}, "cjr.lang.obj_id_eq_dec": {"dependencies": ["cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-5152751483c7c8326dab9c8a", "kind": "instance", "label": "cjr.lang.obj_id_eq_dec", "name": "obj_id_eq_dec"}, "cjr.lang.obj_id_inj": {"dependencies": ["cjr.lang.obj_id"], "file": "theories/lang.v", "href": "#symbol-c2c5dfd77d8713bec3c99d29", "kind": "instance", "label": "cjr.lang.obj_id_inj", "name": "obj_id_inj"}, "cjr.lang.observation": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-b4773f20234d723f9aadd73e", "kind": "definition", "label": "cjr.lang.observation", "name": "observation"}, "cjr.lang.of_to_val": {"dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-032244b3458189ec4a3b4a56", "kind": "lemma", "label": "cjr.lang.of_to_val", "name": "of_to_val"}, "cjr.lang.of_val": {"dependencies": ["cjr.lang.expr", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-9f3dcb1174458ff0cd22b24d", "kind": "definition", "label": "cjr.lang.of_val", "name": "of_val"}, "cjr.lang.raw_below": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-6c03b7b99cbd97fcd21b4ff5", "kind": "definition", "label": "cjr.lang.raw_below", "name": "raw_below"}, "cjr.lang.raw_fresh": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-d6929c14b40a6eb2603171d1", "kind": "lemma", "label": "cjr.lang.raw_fresh", "name": "raw_fresh"}, "cjr.lang.raw_id": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-407a84dd3b117ddcf266f7de", "kind": "inductive_kw", "label": "cjr.lang.raw_id", "name": "raw_id"}, "cjr.lang.raw_id_countable": {"dependencies": ["cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-760d545075550a006fba0221", "kind": "instance", "label": "cjr.lang.raw_id_countable", "name": "raw_id_countable"}, "cjr.lang.raw_id_eq_dec": {"dependencies": ["cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-fbc776d6e5bc99a5998ae655", "kind": "instance", "label": "cjr.lang.raw_id_eq_dec", "name": "raw_id_eq_dec"}, "cjr.lang.raw_id_inj": {"dependencies": ["cjr.lang.raw_id"], "file": "theories/lang.v", "href": "#symbol-1f190d99a17c4a6158275432", "kind": "instance", "label": "cjr.lang.raw_id_inj", "name": "raw_id_inj"}, "cjr.lang.set_blocks": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-72de16a689d9202d2ae52dd0", "kind": "definition", "label": "cjr.lang.set_blocks", "name": "set_blocks"}, "cjr.lang.set_next": {"dependencies": ["cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-ab40ea99916128f9b40c038c", "kind": "definition", "label": "cjr.lang.set_next", "name": "set_next"}, "cjr.lang.set_nth": {"dependencies": ["cjr.lang.set_nth"], "file": "theories/lang.v", "href": "#symbol-8dc49de8df1137b22bf2905d", "kind": "recursive function", "label": "cjr.lang.set_nth", "name": "set_nth"}, "cjr.lang.set_obj": {"dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-4e2b2f8f0a4b72c4872b6b5c", "kind": "definition", "label": "cjr.lang.set_obj", "name": "set_obj"}, "cjr.lang.set_raw": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-1c2550714ca22f89697dd84c", "kind": "definition", "label": "cjr.lang.set_raw", "name": "set_raw"}, "cjr.lang.set_stack": {"dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-c3c74a04b3744237678cc88c", "kind": "definition", "label": "cjr.lang.set_stack", "name": "set_stack"}, "cjr.lang.stack_below": {"dependencies": ["cjr.lang.stack_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-4e884b5ee65265154df01162", "kind": "definition", "label": "cjr.lang.stack_below", "name": "stack_below"}, "cjr.lang.stack_fresh": {"dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-b74b1e99053a3ac9eb6188af", "kind": "lemma", "label": "cjr.lang.stack_fresh", "name": "stack_fresh"}, "cjr.lang.stack_id": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-53bd1c8943aa8462d1b75a5e", "kind": "inductive_kw", "label": "cjr.lang.stack_id", "name": "stack_id"}, "cjr.lang.stack_id_countable": {"dependencies": ["cjr.lang.stack_id"], "file": "theories/lang.v", "href": "#symbol-1cc75ba105bf489bbcc55d96", "kind": "instance", "label": "cjr.lang.stack_id_countable", "name": "stack_id_countable"}, "cjr.lang.stack_id_eq_dec": {"dependencies": ["cjr.lang.stack_id"], "file": "theories/lang.v", "href": "#symbol-16bddaeca34e847c058e0a36", "kind": "instance", "label": "cjr.lang.stack_id_eq_dec", "name": "stack_id_eq_dec"}, "cjr.lang.stack_id_inj": {"dependencies": ["cjr.lang.stack_id"], "file": "theories/lang.v", "href": "#symbol-5fc18e9141eeaa3760fedef0", "kind": "instance", "label": "cjr.lang.stack_id_inj", "name": "stack_id_inj"}, "cjr.lang.state": {"dependencies": ["cjr.lang.obj_id", "cjr.lang.raw_id", "cjr.lang.stack_id", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-6fdbdc92daa370c35195e998", "kind": "record", "label": "cjr.lang.state", "name": "state"}, "cjr.lang.state_cjr": {"dependencies": ["cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-201adcb4dfb37748e3ae8fa1", "kind": "abbrev", "label": "cjr.lang.state_cjr", "name": "state_cjr"}, "cjr.lang.state_inhabited": {"dependencies": ["cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-05f0c6081a48e726216f383f", "kind": "instance", "label": "cjr.lang.state_inhabited", "name": "state_inhabited"}, "cjr.lang.state_init": {"dependencies": ["cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-f10ccdb0e0f36aedb60e9d96", "kind": "definition", "label": "cjr.lang.state_init", "name": "state_init"}, "cjr.lang.state_init_wf": {"dependencies": ["cjr.lang.state_init", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-31676809e381f6ff99d5c0aa", "kind": "lemma", "label": "cjr.lang.state_init_wf", "name": "state_init_wf"}, "cjr.lang.state_wf": {"dependencies": ["cjr.lang.block_below", "cjr.lang.block_cover", "cjr.lang.blocks_disjoint", "cjr.lang.obj_below", "cjr.lang.raw_below", "cjr.lang.stack_below", "cjr.lang.state"], "file": "theories/lang.v", "href": "#symbol-9a54112d2e75776f158f5a8a", "kind": "record", "label": "cjr.lang.state_wf", "name": "state_wf"}, "cjr.lang.subst": {"dependencies": ["cjr.lang.binds", "cjr.lang.expr", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-9e194bb77f36072ddb5ddeea", "kind": "recursive function", "label": "cjr.lang.subst", "name": "subst"}, "cjr.lang.subst_binder": {"dependencies": ["cjr.lang.binder", "cjr.lang.expr", "cjr.lang.subst", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-4d6a352811efd99a8543b23a", "kind": "definition", "label": "cjr.lang.subst_binder", "name": "subst_binder"}, "cjr.lang.subst_val": {"dependencies": ["cjr.lang.binds", "cjr.lang.expr", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-212f6f0c49235110d4191e50", "kind": "recursive function", "label": "cjr.lang.subst_val", "name": "subst_val"}, "cjr.lang.subst_var": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.binds", "cjr.lang.expr", "cjr.lang.loc", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-732bdfffd17e34ff739c474c", "kind": "recursive function", "label": "cjr.lang.subst_var", "name": "subst_var"}, "cjr.lang.subst_var_val": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.binds", "cjr.lang.expr", "cjr.lang.loc", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-0c733daf5cf93584f327d339", "kind": "recursive function", "label": "cjr.lang.subst_var_val", "name": "subst_var_val"}, "cjr.lang.to_of_val": {"dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-dd0de0a2b4ef9f422fd820b6", "kind": "lemma", "label": "cjr.lang.to_of_val", "name": "to_of_val"}, "cjr.lang.to_val": {"dependencies": ["cjr.lang.expr", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-08f5b2c31b48e7b57a61cb5f", "kind": "definition", "label": "cjr.lang.to_val", "name": "to_val"}, "cjr.lang.ty": {"dependencies": [], "file": "theories/lang.v", "href": "#symbol-0346720b3fcee21494ac584b", "kind": "inductive_kw", "label": "cjr.lang.ty", "name": "ty"}, "cjr.lang.val": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.stack_id"], "file": "theories/lang.v", "href": "#symbol-ad59d00b2dd876e659cef5c0", "kind": "inductive_kw", "label": "cjr.lang.val", "name": "val"}, "cjr.lang.val_base_stuck": {"dependencies": ["cjr.lang.base_step", "cjr.lang.to_val"], "file": "theories/lang.v", "href": "#symbol-22f4fc733023cd36be4574aa", "kind": "lemma", "label": "cjr.lang.val_base_stuck", "name": "val_base_stuck"}, "cjr.lang.val_cjr": {"dependencies": ["cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-588ee1fe5f90dc456042d66c", "kind": "abbrev", "label": "cjr.lang.val_cjr", "name": "val_cjr"}, "cjr.lang.val_inhabited": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-998bdd3645391dbf1e4c05b3", "kind": "instance", "label": "cjr.lang.val_inhabited", "name": "val_inhabited"}, "cjr.lang.wf_alloc": {"dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.init_cells_below", "cjr.lang.init_cells_lookup", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-de0f889fabb9aa12b0c887a1", "kind": "lemma", "label": "cjr.lang.wf_alloc", "name": "wf_alloc"}, "cjr.lang.wf_alloc_one": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf", "cjr.lang.val"], "file": "theories/lang.v", "href": "#symbol-94e8635761f608d85af6265b", "kind": "lemma", "label": "cjr.lang.wf_alloc_one", "name": "wf_alloc_one"}, "cjr.lang.wf_alloc_one_insert": {"dependencies": ["cjr.lang.base_lit", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf", "cjr.lang.val", "cjr.lang.wf_alloc_one"], "file": "theories/lang.v", "href": "#symbol-7b349522380bb91856d2f584", "kind": "lemma", "label": "cjr.lang.wf_alloc_one_insert", "name": "wf_alloc_one_insert"}, "cjr.lang.wf_field_store": {"dependencies": ["cjr.lang.obj_id", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-3985f4b0c30ff584fed55c5b", "kind": "lemma", "label": "cjr.lang.wf_field_store", "name": "wf_field_store"}, "cjr.lang.wf_free_one": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-490dc08e1dae522df3df23de", "kind": "lemma", "label": "cjr.lang.wf_free_one", "name": "wf_free_one"}, "cjr.lang.wf_new": {"dependencies": ["cjr.lang.init_fields", "cjr.lang.init_fields_carrier", "cjr.lang.set_next", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-8935769af957813b1263f880", "kind": "lemma", "label": "cjr.lang.wf_new", "name": "wf_new"}, "cjr.lang.wf_raw_store": {"dependencies": ["cjr.lang.raw_id", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-103778d169d3fa6f9d5c5022", "kind": "lemma", "label": "cjr.lang.wf_raw_store", "name": "wf_raw_store"}, "cjr.lang.wf_stack_alloc": {"dependencies": ["cjr.lang.set_next", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-2a1ed0f5cd5b783fd0f1c107", "kind": "lemma", "label": "cjr.lang.wf_stack_alloc", "name": "wf_stack_alloc"}, "cjr.lang.wf_stack_delete": {"dependencies": ["cjr.lang.set_stack", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-24b8388375943878d4494e6b", "kind": "lemma", "label": "cjr.lang.wf_stack_delete", "name": "wf_stack_delete"}, "cjr.lang.wf_stack_upd": {"dependencies": ["cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "file": "theories/lang.v", "href": "#symbol-d093154f2d04789d87d4bc15", "kind": "lemma", "label": "cjr.lang.wf_stack_upd", "name": "wf_stack_upd"}}</script><script>
+</section><script id="dependency-data" type="application/json">{"cjr.lang.base_lit": {"contract": null, "dependencies": ["cjr.lang.loc"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-50123e23e3558cbee7f84fb1", "kind": "inductive_kw", "label": "cjr.lang.base_lit", "main_contract": false, "name": "base_lit", "statement_dependencies": ["cjr.lang.loc"]}, "cjr.lang.base_step": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op_eval", "cjr.lang.expr", "cjr.lang.free_cells", "cjr.lang.init_cells", "cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.observation", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_nth", "cjr.lang.set_obj", "cjr.lang.set_raw", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.subst_binder", "cjr.lang.subst_var", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-7c260648a279069c01b626e3", "kind": "inductive_kw", "label": "cjr.lang.base_step", "main_contract": false, "name": "base_step", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op_eval", "cjr.lang.expr", "cjr.lang.free_cells", "cjr.lang.init_cells", "cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.observation", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_nth", "cjr.lang.set_obj", "cjr.lang.set_raw", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.subst_binder", "cjr.lang.subst_var", "cjr.lang.val"]}, "cjr.lang.base_step_det": {"contract": null, "dependencies": ["cjr.lang.base_step", "cjr.lang.bin_op_eval"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-b247351f6f0238e9dac89f30", "kind": "lemma", "label": "cjr.lang.base_step_det", "main_contract": false, "name": "base_step_det", "statement_dependencies": ["cjr.lang.base_step"]}, "cjr.lang.base_step_fill_item": {"contract": null, "dependencies": ["cjr.lang.base_step", "cjr.lang.fill_item", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-e8a55201a3516acf3e250f23", "kind": "lemma", "label": "cjr.lang.base_step_fill_item", "main_contract": false, "name": "base_step_fill_item", "statement_dependencies": ["cjr.lang.base_step", "cjr.lang.fill_item", "cjr.lang.to_val"]}, "cjr.lang.bin_op": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-5205c3e703f74a0cb13702bf", "kind": "inductive_kw", "label": "cjr.lang.bin_op", "main_contract": false, "name": "bin_op", "statement_dependencies": []}, "cjr.lang.bin_op_eval": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-94c0dd09415be66b45b91b5a", "kind": "definition", "label": "cjr.lang.bin_op_eval", "main_contract": false, "name": "bin_op_eval", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.val"]}, "cjr.lang.binder": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-c8246980b50486c8938e549d", "kind": "definition", "label": "cjr.lang.binder", "main_contract": false, "name": "binder", "statement_dependencies": []}, "cjr.lang.binds": {"contract": null, "dependencies": ["cjr.lang.binder"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-ae6148e52b22b6964ad25ebe", "kind": "definition", "label": "cjr.lang.binds", "main_contract": false, "name": "binds", "statement_dependencies": ["cjr.lang.binder"]}, "cjr.lang.block_below": {"contract": null, "dependencies": ["cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-fed94dc4008d09b64b78c791", "kind": "definition", "label": "cjr.lang.block_below", "main_contract": false, "name": "block_below", "statement_dependencies": ["cjr.lang.raw_id"]}, "cjr.lang.block_cover": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-64651f15060bee3627d8590f", "kind": "definition", "label": "cjr.lang.block_cover", "main_contract": false, "name": "block_cover", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.val"]}, "cjr.lang.block_fresh": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-be354fbbfa9093f976b1f1af", "kind": "lemma", "label": "cjr.lang.block_fresh", "main_contract": false, "name": "block_fresh", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.blocks_disjoint": {"contract": null, "dependencies": ["cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-957fa49e22aab63d1f89aed0", "kind": "definition", "label": "cjr.lang.blocks_disjoint", "main_contract": false, "name": "blocks_disjoint", "statement_dependencies": ["cjr.lang.raw_id"]}, "cjr.lang.cjr_ectx_lang": {"contract": null, "dependencies": ["cjr.lang.cjr_ectxi_lang"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-204c183e686b706a2b9f3326", "kind": "canonicalstructure", "label": "cjr.lang.cjr_ectx_lang", "main_contract": false, "name": "cjr_ectx_lang", "statement_dependencies": ["cjr.lang.cjr_ectxi_lang"]}, "cjr.lang.cjr_ectxi_lang": {"contract": null, "dependencies": ["cjr.lang.cjr_ectxi_mixin"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-f1b199f25f8f3c7ce8e62d60", "kind": "canonicalstructure", "label": "cjr.lang.cjr_ectxi_lang", "main_contract": false, "name": "cjr_ectxi_lang", "statement_dependencies": ["cjr.lang.cjr_ectxi_mixin"]}, "cjr.lang.cjr_ectxi_mixin": {"contract": null, "dependencies": ["cjr.lang.base_step", "cjr.lang.base_step_fill_item", "cjr.lang.fill_item", "cjr.lang.fill_item_eq_no_val", "cjr.lang.fill_item_inj", "cjr.lang.fill_item_val", "cjr.lang.of_to_val", "cjr.lang.of_val", "cjr.lang.to_of_val", "cjr.lang.to_val", "cjr.lang.val_base_stuck"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-23d0e02e53d9ac0810835727", "kind": "lemma", "label": "cjr.lang.cjr_ectxi_mixin", "main_contract": false, "name": "cjr_ectxi_mixin", "statement_dependencies": ["cjr.lang.base_step", "cjr.lang.fill_item", "cjr.lang.of_val", "cjr.lang.to_val"]}, "cjr.lang.cjr_lang": {"contract": null, "dependencies": ["cjr.lang.cjr_ectx_lang"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-a027771fed57b393b217b7d7", "kind": "canonicalstructure", "label": "cjr.lang.cjr_lang", "main_contract": false, "name": "cjr_lang", "statement_dependencies": ["cjr.lang.cjr_ectx_lang"]}, "cjr.lang.ectx_item": {"contract": null, "dependencies": ["cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.expr", "cjr.lang.stack_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-cdbe6c9dc367327c7c948a7e", "kind": "inductive_kw", "label": "cjr.lang.ectx_item", "main_contract": false, "name": "ectx_item", "statement_dependencies": ["cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.expr", "cjr.lang.stack_id", "cjr.lang.val"]}, "cjr.lang.expr": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.stack_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-02fb45236d2ab5eccd901065", "kind": "inductive_kw", "label": "cjr.lang.expr", "main_contract": false, "name": "expr", "statement_dependencies": ["cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.stack_id"]}, "cjr.lang.expr_cjr": {"contract": null, "dependencies": ["cjr.lang.expr"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-e9dda4c9c283275f2b6408d7", "kind": "abbrev", "label": "cjr.lang.expr_cjr", "main_contract": false, "name": "expr_cjr", "statement_dependencies": []}, "cjr.lang.expr_inhabited": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.expr", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-d0a24fc85363d17c66c2963f", "kind": "instance", "label": "cjr.lang.expr_inhabited", "main_contract": false, "name": "expr_inhabited", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.expr"]}, "cjr.lang.fill_item": {"contract": null, "dependencies": ["cjr.lang.ectx_item", "cjr.lang.expr"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-68f7f17cb7bbe594ed1f1d7b", "kind": "definition", "label": "cjr.lang.fill_item", "main_contract": false, "name": "fill_item", "statement_dependencies": ["cjr.lang.ectx_item", "cjr.lang.expr"]}, "cjr.lang.fill_item_eq_no_val": {"contract": null, "dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-bcb17234382261c2ad034b4b", "kind": "lemma", "label": "cjr.lang.fill_item_eq_no_val", "main_contract": false, "name": "fill_item_eq_no_val", "statement_dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"]}, "cjr.lang.fill_item_inj": {"contract": null, "dependencies": ["cjr.lang.fill_item"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-f3d0b8790e0bc33a1cef0b60", "kind": "lemma", "label": "cjr.lang.fill_item_inj", "main_contract": false, "name": "fill_item_inj", "statement_dependencies": ["cjr.lang.fill_item"]}, "cjr.lang.fill_item_not_val": {"contract": null, "dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-01c5d2f109b03a3eeb76ae78", "kind": "lemma", "label": "cjr.lang.fill_item_not_val", "main_contract": false, "name": "fill_item_not_val", "statement_dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"]}, "cjr.lang.fill_item_val": {"contract": null, "dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-f39fe7501a8b17befd36d5f6", "kind": "lemma", "label": "cjr.lang.fill_item_val", "main_contract": false, "name": "fill_item_val", "statement_dependencies": ["cjr.lang.fill_item", "cjr.lang.to_val"]}, "cjr.lang.free_cells": {"contract": null, "dependencies": ["cjr.lang.free_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-c8e626fb9b31abf506e639be", "kind": "recursive function", "label": "cjr.lang.free_cells", "main_contract": false, "name": "free_cells", "statement_dependencies": ["cjr.lang.free_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"]}, "cjr.lang.free_cells_one": {"contract": null, "dependencies": ["cjr.lang.free_cells", "cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-079cd94cb749d64170afe3ba", "kind": "lemma", "label": "cjr.lang.free_cells_one", "main_contract": false, "name": "free_cells_one", "statement_dependencies": ["cjr.lang.free_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_cells": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-62f5fb6e6cdb444489bb5cf2", "kind": "recursive function", "label": "cjr.lang.init_cells", "main_contract": false, "name": "init_cells", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.loc", "cjr.lang.raw_id", "cjr.lang.val"]}, "cjr.lang.init_cells_addr": {"contract": null, "dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-5d37d6ecb313558e5d99fc98", "kind": "lemma", "label": "cjr.lang.init_cells_addr", "main_contract": false, "name": "init_cells_addr", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_cells_below": {"contract": null, "dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-74df1525502cd72980879f90", "kind": "lemma", "label": "cjr.lang.init_cells_below", "main_contract": false, "name": "init_cells_below", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_cells_fresh": {"contract": null, "dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-79fe02272c9897b0e1c9b08e", "kind": "lemma", "label": "cjr.lang.init_cells_fresh", "main_contract": false, "name": "init_cells_fresh", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.init_cells_high": {"contract": null, "dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-1d280a1d9c568acf1622dcdf", "kind": "lemma", "label": "cjr.lang.init_cells_high", "main_contract": false, "name": "init_cells_high", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_cells_lookup": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-63c5d7a9e28921f610a09ed0", "kind": "lemma", "label": "cjr.lang.init_cells_lookup", "main_contract": false, "name": "init_cells_lookup", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_cells_one": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.init_cells", "cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-20ffed25da19b65161a32e03", "kind": "lemma", "label": "cjr.lang.init_cells_one", "main_contract": false, "name": "init_cells_one", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id"]}, "cjr.lang.init_fields": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-299c04727e099d1d352a6eac", "kind": "recursive function", "label": "cjr.lang.init_fields", "main_contract": false, "name": "init_fields", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.loc", "cjr.lang.obj_id", "cjr.lang.val"]}, "cjr.lang.init_fields_carrier": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-027597992884caf3a06cbeeb", "kind": "lemma", "label": "cjr.lang.init_fields_carrier", "main_contract": false, "name": "init_fields_carrier", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"]}, "cjr.lang.init_fields_fresh": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.init_fields_carrier", "cjr.lang.obj_fresh", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-fd07e1ee69d833cc208a4158", "kind": "lemma", "label": "cjr.lang.init_fields_fresh", "main_contract": false, "name": "init_fields_fresh", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.init_fields_low": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-f0b2b9ecdba768100af481d7", "kind": "lemma", "label": "cjr.lang.init_fields_low", "main_contract": false, "name": "init_fields_low", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"]}, "cjr.lang.init_fields_shift": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-33ea594b0f2673637cfccdaa", "kind": "lemma", "label": "cjr.lang.init_fields_shift", "main_contract": false, "name": "init_fields_shift", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.obj_id"]}, "cjr.lang.loc": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-01ba9fbb8621349b9315a540", "kind": "definition", "label": "cjr.lang.loc", "main_contract": false, "name": "loc", "statement_dependencies": []}, "cjr.lang.obj_below": {"contract": null, "dependencies": ["cjr.lang.obj_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-6db29148c07e93cf94d38b7b", "kind": "definition", "label": "cjr.lang.obj_below", "main_contract": false, "name": "obj_below", "statement_dependencies": ["cjr.lang.obj_id", "cjr.lang.val"]}, "cjr.lang.obj_fresh": {"contract": null, "dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-90ed3b5cb13810c26300ddc4", "kind": "lemma", "label": "cjr.lang.obj_fresh", "main_contract": false, "name": "obj_fresh", "statement_dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.obj_id": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-805d0fb4db05ed5cd91ee6fd", "kind": "inductive_kw", "label": "cjr.lang.obj_id", "main_contract": false, "name": "obj_id", "statement_dependencies": []}, "cjr.lang.obj_id_countable": {"contract": null, "dependencies": ["cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-24ad1dd2dd83bb003f1ad7de", "kind": "instance", "label": "cjr.lang.obj_id_countable", "main_contract": false, "name": "obj_id_countable", "statement_dependencies": ["cjr.lang.obj_id"]}, "cjr.lang.obj_id_eq_dec": {"contract": null, "dependencies": ["cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-5152751483c7c8326dab9c8a", "kind": "instance", "label": "cjr.lang.obj_id_eq_dec", "main_contract": false, "name": "obj_id_eq_dec", "statement_dependencies": ["cjr.lang.obj_id"]}, "cjr.lang.obj_id_inj": {"contract": null, "dependencies": ["cjr.lang.obj_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-c2c5dfd77d8713bec3c99d29", "kind": "instance", "label": "cjr.lang.obj_id_inj", "main_contract": false, "name": "obj_id_inj", "statement_dependencies": ["cjr.lang.obj_id"]}, "cjr.lang.observation": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-b4773f20234d723f9aadd73e", "kind": "definition", "label": "cjr.lang.observation", "main_contract": false, "name": "observation", "statement_dependencies": []}, "cjr.lang.of_to_val": {"contract": null, "dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-032244b3458189ec4a3b4a56", "kind": "lemma", "label": "cjr.lang.of_to_val", "main_contract": false, "name": "of_to_val", "statement_dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"]}, "cjr.lang.of_val": {"contract": null, "dependencies": ["cjr.lang.expr", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-9f3dcb1174458ff0cd22b24d", "kind": "definition", "label": "cjr.lang.of_val", "main_contract": false, "name": "of_val", "statement_dependencies": ["cjr.lang.expr", "cjr.lang.val"]}, "cjr.lang.raw_below": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-6c03b7b99cbd97fcd21b4ff5", "kind": "definition", "label": "cjr.lang.raw_below", "main_contract": false, "name": "raw_below", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.val"]}, "cjr.lang.raw_fresh": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-d6929c14b40a6eb2603171d1", "kind": "lemma", "label": "cjr.lang.raw_fresh", "main_contract": false, "name": "raw_fresh", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.raw_id": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-407a84dd3b117ddcf266f7de", "kind": "inductive_kw", "label": "cjr.lang.raw_id", "main_contract": false, "name": "raw_id", "statement_dependencies": []}, "cjr.lang.raw_id_countable": {"contract": null, "dependencies": ["cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-760d545075550a006fba0221", "kind": "instance", "label": "cjr.lang.raw_id_countable", "main_contract": false, "name": "raw_id_countable", "statement_dependencies": ["cjr.lang.raw_id"]}, "cjr.lang.raw_id_eq_dec": {"contract": null, "dependencies": ["cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-fbc776d6e5bc99a5998ae655", "kind": "instance", "label": "cjr.lang.raw_id_eq_dec", "main_contract": false, "name": "raw_id_eq_dec", "statement_dependencies": ["cjr.lang.raw_id"]}, "cjr.lang.raw_id_inj": {"contract": null, "dependencies": ["cjr.lang.raw_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-1f190d99a17c4a6158275432", "kind": "instance", "label": "cjr.lang.raw_id_inj", "main_contract": false, "name": "raw_id_inj", "statement_dependencies": ["cjr.lang.raw_id"]}, "cjr.lang.set_blocks": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-72de16a689d9202d2ae52dd0", "kind": "definition", "label": "cjr.lang.set_blocks", "main_contract": false, "name": "set_blocks", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.state"]}, "cjr.lang.set_next": {"contract": null, "dependencies": ["cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-ab40ea99916128f9b40c038c", "kind": "definition", "label": "cjr.lang.set_next", "main_contract": false, "name": "set_next", "statement_dependencies": ["cjr.lang.state"]}, "cjr.lang.set_nth": {"contract": null, "dependencies": ["cjr.lang.set_nth"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-8dc49de8df1137b22bf2905d", "kind": "recursive function", "label": "cjr.lang.set_nth", "main_contract": false, "name": "set_nth", "statement_dependencies": ["cjr.lang.set_nth"]}, "cjr.lang.set_obj": {"contract": null, "dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-4e2b2f8f0a4b72c4872b6b5c", "kind": "definition", "label": "cjr.lang.set_obj", "main_contract": false, "name": "set_obj", "statement_dependencies": ["cjr.lang.obj_id", "cjr.lang.state", "cjr.lang.val"]}, "cjr.lang.set_raw": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-1c2550714ca22f89697dd84c", "kind": "definition", "label": "cjr.lang.set_raw", "main_contract": false, "name": "set_raw", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.state", "cjr.lang.val"]}, "cjr.lang.set_stack": {"contract": null, "dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-c3c74a04b3744237678cc88c", "kind": "definition", "label": "cjr.lang.set_stack", "main_contract": false, "name": "set_stack", "statement_dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.val"]}, "cjr.lang.stack_below": {"contract": null, "dependencies": ["cjr.lang.stack_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-4e884b5ee65265154df01162", "kind": "definition", "label": "cjr.lang.stack_below", "main_contract": false, "name": "stack_below", "statement_dependencies": ["cjr.lang.stack_id", "cjr.lang.val"]}, "cjr.lang.stack_fresh": {"contract": null, "dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-b74b1e99053a3ac9eb6188af", "kind": "lemma", "label": "cjr.lang.stack_fresh", "main_contract": false, "name": "stack_fresh", "statement_dependencies": ["cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.stack_id": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-53bd1c8943aa8462d1b75a5e", "kind": "inductive_kw", "label": "cjr.lang.stack_id", "main_contract": false, "name": "stack_id", "statement_dependencies": []}, "cjr.lang.stack_id_countable": {"contract": null, "dependencies": ["cjr.lang.stack_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-1cc75ba105bf489bbcc55d96", "kind": "instance", "label": "cjr.lang.stack_id_countable", "main_contract": false, "name": "stack_id_countable", "statement_dependencies": ["cjr.lang.stack_id"]}, "cjr.lang.stack_id_eq_dec": {"contract": null, "dependencies": ["cjr.lang.stack_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-16bddaeca34e847c058e0a36", "kind": "instance", "label": "cjr.lang.stack_id_eq_dec", "main_contract": false, "name": "stack_id_eq_dec", "statement_dependencies": ["cjr.lang.stack_id"]}, "cjr.lang.stack_id_inj": {"contract": null, "dependencies": ["cjr.lang.stack_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-5fc18e9141eeaa3760fedef0", "kind": "instance", "label": "cjr.lang.stack_id_inj", "main_contract": false, "name": "stack_id_inj", "statement_dependencies": ["cjr.lang.stack_id"]}, "cjr.lang.state": {"contract": null, "dependencies": ["cjr.lang.obj_id", "cjr.lang.raw_id", "cjr.lang.stack_id", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-6fdbdc92daa370c35195e998", "kind": "record", "label": "cjr.lang.state", "main_contract": false, "name": "state", "statement_dependencies": ["cjr.lang.obj_id", "cjr.lang.raw_id", "cjr.lang.stack_id", "cjr.lang.val"]}, "cjr.lang.state_cjr": {"contract": null, "dependencies": ["cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-201adcb4dfb37748e3ae8fa1", "kind": "abbrev", "label": "cjr.lang.state_cjr", "main_contract": false, "name": "state_cjr", "statement_dependencies": []}, "cjr.lang.state_inhabited": {"contract": null, "dependencies": ["cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-05f0c6081a48e726216f383f", "kind": "instance", "label": "cjr.lang.state_inhabited", "main_contract": false, "name": "state_inhabited", "statement_dependencies": ["cjr.lang.state"]}, "cjr.lang.state_init": {"contract": null, "dependencies": ["cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-f10ccdb0e0f36aedb60e9d96", "kind": "definition", "label": "cjr.lang.state_init", "main_contract": false, "name": "state_init", "statement_dependencies": ["cjr.lang.state"]}, "cjr.lang.state_init_wf": {"contract": null, "dependencies": ["cjr.lang.state_init", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-31676809e381f6ff99d5c0aa", "kind": "lemma", "label": "cjr.lang.state_init_wf", "main_contract": false, "name": "state_init_wf", "statement_dependencies": ["cjr.lang.state_init", "cjr.lang.state_wf"]}, "cjr.lang.state_wf": {"contract": null, "dependencies": ["cjr.lang.block_below", "cjr.lang.block_cover", "cjr.lang.blocks_disjoint", "cjr.lang.obj_below", "cjr.lang.raw_below", "cjr.lang.stack_below", "cjr.lang.state"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-9a54112d2e75776f158f5a8a", "kind": "record", "label": "cjr.lang.state_wf", "main_contract": false, "name": "state_wf", "statement_dependencies": ["cjr.lang.block_below", "cjr.lang.block_cover", "cjr.lang.blocks_disjoint", "cjr.lang.obj_below", "cjr.lang.raw_below", "cjr.lang.stack_below", "cjr.lang.state"]}, "cjr.lang.subst": {"contract": null, "dependencies": ["cjr.lang.binds", "cjr.lang.expr", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-9e194bb77f36072ddb5ddeea", "kind": "recursive function", "label": "cjr.lang.subst", "main_contract": false, "name": "subst", "statement_dependencies": ["cjr.lang.binds", "cjr.lang.expr", "cjr.lang.val"]}, "cjr.lang.subst_binder": {"contract": null, "dependencies": ["cjr.lang.binder", "cjr.lang.expr", "cjr.lang.subst", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-4d6a352811efd99a8543b23a", "kind": "definition", "label": "cjr.lang.subst_binder", "main_contract": false, "name": "subst_binder", "statement_dependencies": ["cjr.lang.binder", "cjr.lang.expr", "cjr.lang.subst", "cjr.lang.val"]}, "cjr.lang.subst_val": {"contract": null, "dependencies": ["cjr.lang.binds", "cjr.lang.expr", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-212f6f0c49235110d4191e50", "kind": "recursive function", "label": "cjr.lang.subst_val", "main_contract": false, "name": "subst_val", "statement_dependencies": ["cjr.lang.binds", "cjr.lang.val"]}, "cjr.lang.subst_var": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.binds", "cjr.lang.expr", "cjr.lang.loc", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-732bdfffd17e34ff739c474c", "kind": "recursive function", "label": "cjr.lang.subst_var", "main_contract": false, "name": "subst_var", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.binds", "cjr.lang.expr", "cjr.lang.loc"]}, "cjr.lang.subst_var_val": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.binds", "cjr.lang.expr", "cjr.lang.loc", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-0c733daf5cf93584f327d339", "kind": "recursive function", "label": "cjr.lang.subst_var_val", "main_contract": false, "name": "subst_var_val", "statement_dependencies": ["cjr.lang.binds", "cjr.lang.loc", "cjr.lang.val"]}, "cjr.lang.to_of_val": {"contract": null, "dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-dd0de0a2b4ef9f422fd820b6", "kind": "lemma", "label": "cjr.lang.to_of_val", "main_contract": false, "name": "to_of_val", "statement_dependencies": ["cjr.lang.of_val", "cjr.lang.to_val"]}, "cjr.lang.to_val": {"contract": null, "dependencies": ["cjr.lang.expr", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-08f5b2c31b48e7b57a61cb5f", "kind": "definition", "label": "cjr.lang.to_val", "main_contract": false, "name": "to_val", "statement_dependencies": ["cjr.lang.expr", "cjr.lang.val"]}, "cjr.lang.ty": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-0346720b3fcee21494ac584b", "kind": "inductive_kw", "label": "cjr.lang.ty", "main_contract": false, "name": "ty", "statement_dependencies": []}, "cjr.lang.val": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.bin_op", "cjr.lang.binder", "cjr.lang.stack_id"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-ad59d00b2dd876e659cef5c0", "kind": "inductive_kw", "label": "cjr.lang.val", "main_contract": false, "name": "val", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.binder"]}, "cjr.lang.val_base_stuck": {"contract": null, "dependencies": ["cjr.lang.base_step", "cjr.lang.to_val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-22f4fc733023cd36be4574aa", "kind": "lemma", "label": "cjr.lang.val_base_stuck", "main_contract": false, "name": "val_base_stuck", "statement_dependencies": ["cjr.lang.base_step", "cjr.lang.to_val"]}, "cjr.lang.val_cjr": {"contract": null, "dependencies": ["cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-588ee1fe5f90dc456042d66c", "kind": "abbrev", "label": "cjr.lang.val_cjr", "main_contract": false, "name": "val_cjr", "statement_dependencies": []}, "cjr.lang.val_inhabited": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-998bdd3645391dbf1e4c05b3", "kind": "instance", "label": "cjr.lang.val_inhabited", "main_contract": false, "name": "val_inhabited", "statement_dependencies": ["cjr.lang.base_lit", "cjr.lang.val"]}, "cjr.lang.wf_alloc": {"contract": null, "dependencies": ["cjr.lang.init_cells", "cjr.lang.init_cells_addr", "cjr.lang.init_cells_below", "cjr.lang.init_cells_lookup", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-de0f889fabb9aa12b0c887a1", "kind": "lemma", "label": "cjr.lang.wf_alloc", "main_contract": false, "name": "wf_alloc", "statement_dependencies": ["cjr.lang.init_cells", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_alloc_one": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf", "cjr.lang.val"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-94e8635761f608d85af6265b", "kind": "lemma", "label": "cjr.lang.wf_alloc_one", "main_contract": false, "name": "wf_alloc_one", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_alloc_one_insert": {"contract": null, "dependencies": ["cjr.lang.base_lit", "cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf", "cjr.lang.val", "cjr.lang.wf_alloc_one"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-7b349522380bb91856d2f584", "kind": "lemma", "label": "cjr.lang.wf_alloc_one_insert", "main_contract": false, "name": "wf_alloc_one_insert", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_next", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_field_store": {"contract": null, "dependencies": ["cjr.lang.obj_id", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-3985f4b0c30ff584fed55c5b", "kind": "lemma", "label": "cjr.lang.wf_field_store", "main_contract": false, "name": "wf_field_store", "statement_dependencies": ["cjr.lang.obj_id", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_free_one": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-490dc08e1dae522df3df23de", "kind": "lemma", "label": "cjr.lang.wf_free_one", "main_contract": false, "name": "wf_free_one", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.set_blocks", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_new": {"contract": null, "dependencies": ["cjr.lang.init_fields", "cjr.lang.init_fields_carrier", "cjr.lang.set_next", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-8935769af957813b1263f880", "kind": "lemma", "label": "cjr.lang.wf_new", "main_contract": false, "name": "wf_new", "statement_dependencies": ["cjr.lang.init_fields", "cjr.lang.set_next", "cjr.lang.set_obj", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_raw_store": {"contract": null, "dependencies": ["cjr.lang.raw_id", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-103778d169d3fa6f9d5c5022", "kind": "lemma", "label": "cjr.lang.wf_raw_store", "main_contract": false, "name": "wf_raw_store", "statement_dependencies": ["cjr.lang.raw_id", "cjr.lang.set_raw", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_stack_alloc": {"contract": null, "dependencies": ["cjr.lang.set_next", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-2a1ed0f5cd5b783fd0f1c107", "kind": "lemma", "label": "cjr.lang.wf_stack_alloc", "main_contract": false, "name": "wf_stack_alloc", "statement_dependencies": ["cjr.lang.set_next", "cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_stack_delete": {"contract": null, "dependencies": ["cjr.lang.set_stack", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-24b8388375943878d4494e6b", "kind": "lemma", "label": "cjr.lang.wf_stack_delete", "main_contract": false, "name": "wf_stack_delete", "statement_dependencies": ["cjr.lang.set_stack", "cjr.lang.state", "cjr.lang.state_wf"]}, "cjr.lang.wf_stack_upd": {"contract": null, "dependencies": ["cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "theories/lang.v", "href": "#symbol-d093154f2d04789d87d4bc15", "kind": "lemma", "label": "cjr.lang.wf_stack_upd", "main_contract": false, "name": "wf_stack_upd", "statement_dependencies": ["cjr.lang.set_stack", "cjr.lang.stack_id", "cjr.lang.state", "cjr.lang.state_wf"]}}</script><script>
 (() => {
   const data = JSON.parse(document.getElementById('dependency-data').textContent);
   const ids = Object.keys(data).sort();
   const svg = document.getElementById('dependency-svg');
   const mode = document.getElementById('graph-view');
-  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const panel = document.querySelector('.dependency-diagram');
+  const local = panel.dataset.scope === 'file';
   const search = document.getElementById('graph-focus');
   const status = document.getElementById('graph-status');
   const choices = document.getElementById('graph-choices');
+  const mainIds = ids.filter(id => data[id].main_contract);
+  const contractIds = new Set(mainIds.flatMap(id => [id,...((data[id].contract || {}).related || [])]).filter(id => data[id]));
+  const representationIds = new Set(mainIds.flatMap(id => (data[id].contract || {}).representations || []));
+  if (!local && mode.value === 'files' && mainIds.length) mode.value = 'contracts';
+  const hoverPopup = document.createElement('div');
+  hoverPopup.setAttribute('id','graph-node-tooltip'); hoverPopup.setAttribute('class','graph-label-popup');
+  hoverPopup.setAttribute('role','dialog'); hoverPopup.setAttribute('aria-label','Declaration details'); hoverPopup.setAttribute('aria-hidden','true');
+  hoverPopup.style.display = 'none'; svg.parentElement.append(hoverPopup);
+  let popupTimer = null;
+  function cancelPopupClose() { clearTimeout(popupTimer); popupTimer = null; }
+  function schedulePopupClose() {
+    cancelPopupClose();
+    popupTimer = setTimeout(() => { drawing.hoveredNode = null; updatePopup(); },150);
+  }
+  hoverPopup.addEventListener('pointerenter',cancelPopupClose);
+  hoverPopup.addEventListener('pointerleave',schedulePopupClose);
+  hoverPopup.addEventListener('wheel',event => event.stopPropagation());
+  hoverPopup.addEventListener('focusin',() => { cancelPopupClose(); drawing.focusedNode = drawing.popupId; });
+  hoverPopup.addEventListener('focusout',event => {
+    if (!hoverPopup.contains(event.relatedTarget)) { drawing.focusedNode = null; updatePopup(); }
+  });
   const reverse = Object.fromEntries(ids.map(id => [id, []]));
   for (const id of ids) {
     for (const dependency of data[id].dependencies) reverse[dependency].push(id);
@@ -37,9 +59,11 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
   }
   const ns = 'http://www.w3.org/2000/svg';
-  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let width = 244;
+  const height = 90, radius = 14;
   let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
-  let focused = null;
+  let focused = null, drawing = null, overviewWidth = 1, currentTier = 0;
+  const layouts = new Map();
   function element(tag, attrs = {}, text = null) {
     const node = document.createElementNS(ns, tag);
     for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
@@ -48,75 +72,328 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
   }
   function applyViewport() {
     svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+    updateVisibility();
+    updateGeometry();
+    updateLabels();
+  }
+  function frame(keys) {
+    const points = keys.map(id => drawing.points[id]);
+    if (!points.length) return {x:0,y:0,width:width+48,height:height+48};
+    // Leave room for self-loop curves and the spacing reserved for external labels.
+    let left = Infinity, top = Infinity, right = -Infinity, bottom = -Infinity;
+    for (const point of points) {
+      left = Math.min(left,point.x+width/2-radius); top = Math.min(top,point.y+height/2-radius);
+      right = Math.max(right,point.x+width/2+radius); bottom = Math.max(bottom,point.y+height/2+radius);
+    }
+    return {x:left-72,y:top-72,width:right-left+144,height:bottom-top+144};
+  }
+  function overviewViewport() {
+    const keys = Object.keys(drawing.nodes).filter(id => mode.value === 'focus' || mode.value === 'contracts' || drawing.nodeTiers.get(id) === 0);
+    const box = frame(keys), pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    // Text has a fixed screen size, so reserve screen-space margins when fitting.
+    const marginX = Math.min(180,pixelsWide/3), marginY = Math.min(80,pixelsHigh/3);
+    const units = Math.max(box.width/(pixelsWide-2*marginX),box.height/(pixelsHigh-2*marginY));
+    const w = pixelsWide*units, h = pixelsHigh*units;
+    return {x:box.x+(box.width-w)/2,y:box.y+(box.height-h)/2,width:w,height:h};
   }
   function fit() {
-    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
-    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
-    const h = w / aspect;
-    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    if (!drawing) return;
+    viewport = overviewViewport(); overviewWidth = viewport.width;
     applyViewport();
   }
+  function cameraUnits() {
+    return Math.max(viewport.width/Math.max(svg.clientWidth,1),viewport.height/Math.max(svg.clientHeight,1));
+  }
+  function updateGeometry() {
+    if (!drawing) return;
+    const units = cameraUnits();
+    if (drawing.geometryUnits === units) return;
+    drawing.geometryUnits = units;
+    for (const [id,circle] of drawing.nodeCircles) circle.setAttribute('r',drawing.nodeRadii.get(id)*units);
+    drawing.edges.forEach(([a,b],i) => {
+      const from = drawing.points[a], to = drawing.points[b];
+      const cx = from.x+width/2, cy = from.y+height/2;
+      const sourceRadius = drawing.nodeRadii.get(a)*units, targetRadius = drawing.nodeRadii.get(b)*units;
+      let d;
+      if (a === b) {
+        const reach = sourceRadius+30*units;
+        d = `M ${cx-sourceRadius*Math.SQRT1_2} ${cy-sourceRadius*Math.SQRT1_2} C ${cx-reach} ${cy-reach}, ${cx+reach} ${cy-reach}, ${cx+sourceRadius*Math.SQRT1_2} ${cy-sourceRadius*Math.SQRT1_2}`;
+      } else {
+        const dx = to.x-from.x, dy = to.y-from.y, distance = Math.hypot(dx,dy) || 1;
+        const ux = dx/distance, uy = dy/distance;
+        const x1 = cx+ux*sourceRadius, y1 = cy+uy*sourceRadius;
+        const x2 = to.x+width/2-ux*targetRadius, y2 = to.y+height/2-uy*targetRadius;
+        const bend = drawing.edgePairs.has(JSON.stringify([b,a])) ? 24*units : 0;
+        const mx = (x1+x2)/2-uy*bend, my = (y1+y2)/2+ux*bend;
+        // Overlapping screen-sized circles leave no exposed dependency segment.
+        d = distance <= sourceRadius+targetRadius ? '' : `M ${x1} ${y1} Q ${mx} ${my}, ${x2} ${y2}`;
+      }
+      drawing.edgeElements[i].setAttribute('d',d);
+      // Explicit user-space marker dimensions compensate for the camera too.
+      const arrowSize = (4+1.8*drawing.edgeWidths[i])*units;
+      drawing.edgeMarkers[i].setAttribute('markerWidth',arrowSize);
+      drawing.edgeMarkers[i].setAttribute('markerHeight',arrowSize);
+    });
+  }
+  function updateLabels() {
+    if (!drawing) return;
+    // Undo only the camera scale on label groups. Anchors still follow nodes.
+    // Using both dimensions also handles SVG's default preserveAspectRatio.
+    const units = cameraUnits();
+    const pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    const offsetX = (pixelsWide-viewport.width/units)/2, offsetY = (pixelsHigh-viewport.height/units)/2;
+    const intersects = (a,b) => a.x < b.x+b.w && a.x+a.w > b.x && a.y < b.y+b.h && a.y+a.h > b.y;
+    // Index screen rectangles, so label placement remains local on dense graphs.
+    const cells = new Map();
+    function visit(rect, callback) {
+      for (let x = Math.max(0,Math.floor(rect.x/64)); x <= Math.min(Math.floor(pixelsWide/64),Math.floor((rect.x+rect.w)/64)); x++)
+        for (let y = Math.max(0,Math.floor(rect.y/64)); y <= Math.min(Math.floor(pixelsHigh/64),Math.floor((rect.y+rect.h)/64)); y++) callback(x+','+y);
+    }
+    function add(rect) { visit(rect,key => { if (!cells.has(key)) cells.set(key,[]); cells.get(key).push(rect); }); }
+    function collides(rect) {
+      let collision = false;
+      visit(rect,key => { if (!collision) collision = (cells.get(key) || []).some(other => intersects(rect,other)); });
+      return collision;
+    }
+    const candidates = [];
+    for (const [id,label] of drawing.labels) {
+      const screenRadius = drawing.nodeRadii.get(id), point = drawing.points[id];
+      // Every label has the same fixed anchor below its circle. Only visibility
+      // changes when labels collide; labels are never moved to a different slot.
+      label.group.setAttribute('transform',`translate(${width/2},${height/2+screenRadius*units}) scale(${units})`);
+      const x = (point.x+width/2-viewport.x)/units+offsetX, y = (point.y+height/2-viewport.y)/units+offsetY;
+      label.onScreen = drawing.nodeElements.get(id).style.display !== 'none' && x >= -screenRadius && y >= -screenRadius && x <= pixelsWide+screenRadius && y <= pixelsHigh+screenRadius;
+      label.group.style.display = label.onScreen ? '' : 'none'; label.suppressed = false;
+      if (!label.onScreen) continue;
+      if (!label.box) {
+        const measured = label.group.getBBox ? label.group.getBBox() : null;
+        label.box = measured && measured.width ? {x:measured.x,y:measured.y,width:measured.width,height:measured.height} : {x:-100,y:8,width:200,height:label.fontSize*3};
+      }
+      const box = label.box;
+      candidates.push({id,rect:{x:x+box.x-4,y:y+screenRadius+box.y-4,w:box.width+8,h:box.height+8}});
+    }
+    candidates.sort((a,b) => drawing.ranks.nodes.get(b.id)-drawing.ranks.nodes.get(a.id) || compare(a.id,b.id));
+    for (const {id,rect} of candidates) {
+      const label = drawing.labels.get(id);
+      label.suppressed = collides(rect);
+      label.group.style.display = label.suppressed ? 'none' : '';
+      if (!label.suppressed) add(rect);
+    }
+    updatePopup();
+  }
+  function popupPlacement(x,y,radius,desiredWidth,desiredHeight,pixelsWide,pixelsHigh) {
+    const margin = Math.min(12,pixelsWide/8,pixelsHigh/8), gap = radius+10;
+    const innerWidth = pixelsWide-2*margin, innerHeight = pixelsHigh-2*margin;
+    const clamp = (n,lo,hi) => Math.max(lo,Math.min(n,hi));
+    const below = clamp(y+gap,margin,pixelsHigh-margin), above = clamp(y-gap,margin,pixelsHigh-margin);
+    const right = clamp(x+gap,margin,pixelsWide-margin), left = clamp(x-gap,margin,pixelsWide-margin);
+    // Each region excludes the node and a ten-pixel gap. Clamping a popup
+    // inside one region can never push it back across the hovered circle.
+    const regions = [
+      {x:margin,y:below,w:innerWidth,h:pixelsHigh-margin-below},
+      {x:margin,y:margin,w:innerWidth,h:above-margin},
+      {x:right,y:margin,w:pixelsWide-margin-right,h:innerHeight},
+      {x:margin,y:margin,w:left-margin,h:innerHeight}
+    ];
+    const usable = regions.filter(region => region.w >= 2 && region.h >= 2);
+    let region = usable.find(region => region.w >= desiredWidth && region.h >= desiredHeight);
+    if (!region) region = usable.reduce((best,next) => {
+      const area = r => Math.min(r.w,desiredWidth)*Math.min(r.h,desiredHeight);
+      return !best || area(next) > area(best) ? next : best;
+    },null);
+    return region;
+  }
+  function updatePopup() {
+    if (!drawing || !drawing.popup) return;
+    const id = drawing.hoveredNode || drawing.focusedNode, label = drawing.labels.get(id);
+    const popup = drawing.popup;
+    if (!label || !label.onScreen) {
+      popup.style.display = 'none'; popup.setAttribute('aria-hidden','true'); return;
+    }
+    if (drawing.popupId !== id) {
+      popup.replaceChildren();
+      const node = drawing.nodes[id], explanation = node.explanation || {};
+      const heading = document.createElement('strong'); heading.setAttribute('class','graph-popup-title');
+      heading.style.fontSize = label.fontSize+'px'; heading.textContent = node.name;
+      const tag = document.createElement('div'); tag.setAttribute('class','graph-popup-label'); tag.textContent = 'AI-generated explanation';
+      const paragraph = document.createElement('p');
+      paragraph.textContent = node.count ? 'Explanations belong to individual declarations. Choose All declarations and hover a declaration to read its explanation.' :
+        typeof explanation.description === 'string' && explanation.description.trim() ? explanation.description : 'No AI-generated explanation is available for this declaration.';
+      const open = document.createElement('a'); open.setAttribute('class','graph-popup-open');
+      open.setAttribute('href',node.href); open.textContent = node.count ? 'Open file' : 'Open declaration';
+      popup.append(heading); popup.append(tag); popup.append(paragraph); popup.append(open);
+      popup.scrollTop = 0;
+      drawing.popupId = id;
+    }
+    const point = drawing.points[id], units = cameraUnits();
+    const pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    const x = (point.x+width/2-viewport.x)/units+(pixelsWide-viewport.width/units)/2;
+    const y = (point.y+height/2-viewport.y)/units+(pixelsHigh-viewport.height/units)/2;
+    const boxWidth = Math.max(1,Math.min(420,pixelsWide-24));
+    const maxHeight = Math.max(2,Math.min(360,pixelsHigh-24));
+    popup.style.width = boxWidth+'px'; popup.style.maxHeight = maxHeight+'px'; popup.style.padding = '12px';
+    popup.style.display = ''; popup.setAttribute('aria-hidden','false');
+    const region = popupPlacement(x,y,drawing.nodeRadii.get(id),boxWidth,Math.min(maxHeight,popup.offsetHeight || 200),pixelsWide,pixelsHigh);
+    if (!region) { popup.style.display = 'none'; popup.setAttribute('aria-hidden','true'); return; }
+    const actualWidth = Math.min(boxWidth,region.w), allowedHeight = Math.min(maxHeight,region.h);
+    popup.style.width = actualWidth+'px'; popup.style.maxHeight = allowedHeight+'px';
+    popup.style.padding = Math.min(12,Math.max(0,(Math.min(actualWidth,allowedHeight)-2)/2))+'px';
+    const boxHeight = Math.min(allowedHeight,popup.offsetHeight || 200);
+    popup.style.left = Math.max(region.x,Math.min(x-actualWidth/2,region.x+region.w-actualWidth))+'px';
+    popup.style.top = Math.max(region.y,Math.min(y-boxHeight/2,region.y+region.h-boxHeight))+'px';
+  }
+
+  function updateVisibility() {
+    if (!drawing) return;
+    currentTier = Math.max(0, Math.floor(Math.log(overviewWidth/viewport.width)/Math.log(1.6)+1e-9));
+    const all = mode.value === 'focus' || mode.value === 'contracts' || Object.keys(drawing.nodes).length <= 24;
+    const visible = new Set(Object.keys(drawing.nodes).filter(id => all || drawing.nodeTiers.get(id) <= currentTier));
+    let links = 0;
+    for (const [id, node] of drawing.nodeElements) node.style.display = visible.has(id) ? '' : 'none';
+    drawing.edgeElements.forEach((element,i) => {
+      const [a,b] = drawing.edges[i];
+      const show = (all || drawing.edgeTiers.get(i) <= currentTier) && (visible.has(a) || visible.has(b));
+      element.style.display = show ? '' : 'none'; if (show) links++;
+    });
+    status.textContent = (mode.value === 'contracts' ? mainIds.length+' main correctness contracts · ' : '') + visible.size + ' / ' + Object.keys(drawing.nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + links + ' / ' + drawing.edges.length + ' dependency links';
+    if (mode.value === 'contracts' && !mainIds.length) status.textContent = 'No confirmed main correctness contracts on this page.';
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+  }
   function zoom(factor, x = .5, y = .5) {
-    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    if (viewport.width * factor < 1 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
     viewport.x += viewport.width * (1 - factor) * x;
     viewport.y += viewport.height * (1 - factor) * y;
     viewport.width *= factor; viewport.height *= factor; applyViewport();
   }
-  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  // Edge-space PageRank on reversed dependencies. Aggregate transitions through
+  // junctions instead of materializing the potentially quadratic line graph.
+  function importance(keys, edges) {
+    const outgoing = new Map(keys.map(id => [id, []]));
+    edges.forEach(([dependent, dependency], i) => {
+      outgoing.get(dependency).push(i);
+    });
+    const n = keys.length, m = edges.length, damping = .85;
+    let scores = Array(m).fill(1 / Math.max(m, 1));
+    for (let iteration = 0; m && iteration < 100; iteration++) {
+      let dangling = 0;
+      const junctions = new Map(keys.map(id => [id, 0]));
+      edges.forEach(([target], i) => {
+        if (!outgoing.get(target).length) dangling += scores[i];
+        else junctions.set(target, junctions.get(target) + scores[i] / outgoing.get(target).length);
+      });
+      const base = (1 - damping + damping * dangling) / m;
+      const next = edges.map(([, source]) => base + damping * junctions.get(source));
+      const change = next.reduce((sum, value, i) => sum + Math.abs(value - scores[i]), 0);
+      scores = next;
+      if (change < 1e-8) break;
+    }
+    const nodes = new Map(keys.map(id => [id, m ? (1 - damping) / n : 1 / Math.max(n, 1)]));
+    edges.forEach(([target], i) => nodes.set(target, nodes.get(target) + damping * scores[i]));
+    return {nodes, edges: scores};
+  }
+  function tiers(items, score, identity) {
+    const sorted = [...items].sort((a, b) => score(b) - score(a) || compare(identity(a), identity(b)));
+    const result = new Map();
+    let end = 0, target = 24, tier = 0;
+    while (end < sorted.length) {
+      let stop = Math.min(target, sorted.length);
+      while (stop < sorted.length && score(sorted[stop]) === score(sorted[stop - 1])) stop++;
+      for (; end < stop; end++) result.set(sorted[end], tier);
+      tier++; target = Math.max(target * 2, end + 1);
+    }
+    return result;
+  }
+  function compare(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
+  // Spatial hash: collision and repulsion checks stay local even on large graphs.
+  function spatialIndex() {
+    const cells = new Map(), cellWidth = width + 32, cellHeight = height + 32;
+    const cell = p => [Math.floor(p.x / cellWidth), Math.floor(p.y / cellHeight)];
+    return {
+      add(id, p) { const [x,y] = cell(p), key = x + ',' + y; if (!cells.has(key)) cells.set(key, []); cells.get(key).push(id); },
+      near(p) {
+        const [x,y] = cell(p), found = [];
+        for (let dx = -2; dx <= 2; dx++) for (let dy = -2; dy <= 2; dy++) found.push(...(cells.get((x+dx)+','+(y+dy)) || []));
+        return found;
+      }
+    };
+  }
   function layout(nodes, edges) {
-    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
-    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
-    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
-    const seen = new Set(), order = [];
-    for (const root of keys) {
-      const stack = [[root, false]];
-      while (stack.length) {
-        const [id, finished] = stack.pop();
-        if (finished) order.push(id);
-        else if (!seen.has(id)) {
-          seen.add(id); stack.push([id, true]);
-          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+    const keys = Object.keys(nodes).sort(), ranks = importance(keys, edges);
+    // Confirmed contracts share the highest display rank. Preserve the raw
+    // PageRank scores separately; edge scores remain unchanged.
+    ranks.pageRankNodes = new Map(ranks.nodes);
+    if (keys.some(id => nodes[id].main_contract)) {
+      const top = Math.max(...ranks.nodes.values())*1.25;
+      for (const id of keys) if (nodes[id].main_contract) ranks.nodes.set(id,top);
+      const total = [...ranks.nodes.values()].reduce((a,b) => a+b,0);
+      for (const id of keys) ranks.nodes.set(id,ranks.nodes.get(id)/total);
+    }
+    const nodeTiers = tiers(keys, id => ranks.nodes.get(id), id => id);
+    const edgeTiers = tiers(edges.map((_, i) => i), i => ranks.edges[i], i => JSON.stringify(edges[i]));
+    const neighbors = new Map(keys.map(id => [id, []]));
+    edges.forEach(([a,b], i) => {
+      if (a !== b) { neighbors.get(a).push([b, ranks.edges[i]]); neighbors.get(b).push([a, ranks.edges[i]]); }
+    });
+    const order = [...keys].sort((a,b) => nodeTiers.get(a)-nodeTiers.get(b) || ranks.nodes.get(b)-ranks.nodes.get(a) || compare(a,b));
+    const points = {}, fixed = new Set();
+    let disconnectedAttempt = 0;
+    const overlap = (a,b) => Math.abs(a.x-b.x) < width+24 && Math.abs(a.y-b.y) < height+24;
+    const spiral = (center, attempt) => {
+      const angle = attempt * 2.399963229728653;
+      return {x:center.x + Math.cos(angle)*Math.sqrt(attempt)*(width+32), y:center.y + Math.sin(angle)*Math.sqrt(attempt)*(height+32)};
+    };
+    const maxTier = Math.max(0, ...nodeTiers.values());
+    for (let tier = 0; tier <= maxTier; tier++) {
+      const batch = order.filter(id => nodeTiers.get(id) === tier);
+      const placed = spatialIndex();
+      for (const id of fixed) placed.add(id, points[id]);
+      for (const id of batch) {
+        const connected = neighbors.get(id).filter(([other]) => points[other]);
+        const weight = connected.reduce((sum,[,w]) => sum+w, 0);
+        const center = weight ? connected.reduce((p,[other,w]) => ({x:p.x+points[other].x*w/weight,y:p.y+points[other].y*w/weight}), {x:0,y:0}) : {x:0,y:0};
+        let attempt = connected.length ? 0 : disconnectedAttempt;
+        let point = connected.length ? center : spiral(center,attempt);
+        while (placed.near(point).some(other => overlap(point, points[other]))) point = spiral(center, ++attempt);
+        if (!connected.length) disconnectedAttempt = attempt+1;
+        points[id] = point; placed.add(id, point);
+      }
+      for (let iteration = 0; iteration < 80; iteration++) {
+        const grid = spatialIndex();
+        for (const id of Object.keys(points)) grid.add(id, points[id]);
+        const updates = {};
+        for (const id of batch) {
+          const p = points[id]; let fx = 0, fy = 0;
+          const linked = neighbors.get(id).filter(([other]) => points[other]);
+          const total = linked.reduce((sum,[,w]) => sum+w,0);
+          for (const [other,w] of linked) {
+            const q = points[other], dx = q.x-p.x, dy = q.y-p.y;
+            const distance = Math.hypot(dx/(width+80),dy/(height+48)) || 1;
+            const force = .06 * w/total * (distance-1)/distance;
+            fx += dx*force; fy += dy*force;
+          }
+          for (const other of grid.near(p)) {
+            if (id === other) continue;
+            const q = points[other], dx = p.x-q.x, dy = p.y-q.y;
+            const ox = width+32-Math.abs(dx), oy = height+32-Math.abs(dy);
+            if (ox > 0 && oy > 0) {
+              if (ox < oy) fx += (dx ? Math.sign(dx) : compare(id,other)) * ox * .35;
+              else fy += (dy ? Math.sign(dy) : compare(id,other)) * oy * .35;
+            }
+          }
+          updates[id] = {x:p.x+Math.max(-24,Math.min(24,fx)),y:p.y+Math.max(-24,Math.min(24,fy))};
         }
+        Object.assign(points, updates);
+      }
+      // Resolve residual collisions in rank order without moving fixed nodes.
+      const grid = spatialIndex();
+      for (const id of fixed) grid.add(id, points[id]);
+      for (const id of batch) {
+        const center = points[id]; let point = center, attempt = 0;
+        while (grid.near(point).some(other => overlap(point,points[other]))) point = spiral(center, ++attempt);
+        points[id] = point; grid.add(id,point); fixed.add(id);
       }
     }
-    const component = new Map(), groups = [];
-    for (const root of order.reverse()) {
-      if (component.has(root)) continue;
-      const index = groups.length, members = [], stack = [root];
-      while (stack.length) {
-        const id = stack.pop();
-        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
-      }
-      groups.push(members.sort());
-    }
-    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
-    for (const [a, b] of edges) {
-      const from = component.get(a), to = component.get(b);
-      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
-    }
-    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
-    for (let next = 0; next < queue.length; next++) {
-      const from = queue[next];
-      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
-    }
-    const columns = [];
-    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
-    // A few barycentric sweeps reduce crossings without nondeterministic forces.
-    const positions = new Map();
-    for (let pass = 0; pass < 4; pass++) {
-      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
-      const sequence = pass % 2 ? [...columns].reverse() : columns;
-      for (const column of sequence) {
-        const neighbors = pass % 2 ? adjacency : incoming;
-        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
-        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
-      }
-    }
-    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
-    columns.forEach((column, col) => column.forEach((id, row) => {
-      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
-    }));
-    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+    return {points, ranks, nodeTiers, edgeTiers};
   }
   function sourceColor(file) {
     const parts = file.split('/');
@@ -139,14 +416,17 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
   }
   function render() {
+    cancelPopupClose(); hoverPopup.style.display = 'none';
+    if (mode.value === 'contracts') panel.classList.add('graph-contract-view');
+    else panel.classList.remove('graph-contract-view');
     let nodes = {}, edges = [], counts = new Map();
     width = mode.value === 'files' ? 156 : local ? 220 : 244;
-    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
     if (mode.value === 'files') {
       for (const id of ids) {
         const d = data[id], file = d.file;
         if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
         nodes[file].count++;
+        if (d.main_contract) nodes[file].main_contract = true;
         for (const dependency of d.dependencies) {
           const other = data[dependency].file;
           if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
@@ -154,49 +434,63 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
       }
       edges = [...counts.keys()].map(key => JSON.parse(key));
     } else {
-      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      const selected = mode.value === 'contracts' ? contractIds : mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
       for (const id of selected) nodes[id] = data[id];
-      for (const id of selected) for (const dependency of data[id].dependencies) {
+      for (const id of selected) for (const dependency of (mode.value === 'contracts' ? data[id].statement_dependencies || data[id].dependencies : data[id].dependencies)) {
         if (selected.has(dependency)) edges.push([id, dependency]);
       }
     }
-    const drawing = layout(nodes, edges);
-    const padding = mode.value === 'files' ? 32 : 80;
-    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
-    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    // Focus is a subset of the full declaration layout, never a new layout.
+    const cacheKey = mode.value === 'files' ? 'files' : 'declarations';
+    if (!layouts.has(cacheKey)) {
+      const fullNodes = cacheKey === 'files' ? nodes : data;
+      const fullEdges = cacheKey === 'files' ? edges : ids.flatMap(id => data[id].dependencies.map(dependency => [id,dependency]));
+      const base = layout(fullNodes,fullEdges);
+      layouts.set(cacheKey, {...base, fullEdges});
+    }
+    const base = layouts.get(cacheKey);
+    const edgeIndices = new Map(base.fullEdges.map((edge,i) => [JSON.stringify(edge),i]));
+    const maxRank = Math.max(0,...base.ranks.nodes.values()) || 1;
+    const maxEdgeRank = Math.max(0,...base.ranks.edges) || 1;
+    const minEdgeRank = Math.min(maxEdgeRank,...base.ranks.edges);
+    const edgeRankSpan = maxEdgeRank-minEdgeRank;
+    const edgeWidths = edges.map(edge => edgeRankSpan > 0 ?
+      1.5+3.5*(base.ranks.edges[edgeIndices.get(JSON.stringify(edge))]-minEdgeRank)/edgeRankSpan : 5);
+    drawing = {...base,nodes,edges,nodeElements:new Map(),labels:new Map(),nodeCircles:new Map(),nodeRadii:new Map(Object.keys(nodes).map(id => [id,radius*Math.sqrt(base.ranks.nodes.get(id)/maxRank)])),edgeElements:[],edgeWidths,edgeMarkers:[],edgePairs:new Set(base.fullEdges.map(edge => JSON.stringify(edge))),edgeTiers:new Map(edges.map((edge,i) => [i,base.edgeTiers.get(edgeIndices.get(JSON.stringify(edge)))]))};
+    bounds = frame(Object.keys(nodes));
     svg.replaceChildren();
     svg.setAttribute('tabindex', '0');
-    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
-    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const defs = element('defs'); svg.append(defs);
     const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
     for (const [a, b] of edges) {
-      const from = drawing.points[a], to = drawing.points[b];
-      let d;
-      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
-      else if (to.x > from.x) {
-        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
-        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
-      } else {
-        const x = Math.max(from.x, to.x) + width + 50;
-        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
-      }
-      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const index = drawing.edgeElements.length, markerId = 'graph-arrow-'+index;
+      const marker = element('marker',{id:markerId,viewBox:'0 0 10 10',refX:'10',refY:'5',markerUnits:'userSpaceOnUse',orient:'auto-start-reverse'});
+      const mainEdge = nodes[a].main_contract;
+      marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:mainEdge ? '#ad6a00' : '#869bae'})); defs.append(marker); drawing.edgeMarkers.push(marker);
+      const edge = element('path',{class:'graph-edge'+(mainEdge ? ' graph-contract-edge' : ''),style:`stroke-width:${edgeWidths[index]}px`,'vector-effect':'non-scaling-stroke','marker-end':`url(#${markerId})`});
       const count = counts.get(JSON.stringify([a,b]));
-      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : '') + ' · importance ' + base.ranks.edges[edgeIndices.get(JSON.stringify([a,b]))].toPrecision(3))); edgeGroup.append(edge); drawing.edgeElements.push(edge);
     }
     for (const [id, node] of Object.entries(nodes)) {
-      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const p = drawing.points[id], [fill, stroke] = node.main_contract ? ['#fff1c2','#ad6a00'] : representationIds.has(id) && mode.value === 'contracts' ? ['#e6f7f5','#29897d'] : local ? declarationColor(node.kind) : sourceColor(node.file);
       const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
-      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
-      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
-      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
-      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const link = element('a',{href:node.href,class:'graph-node' + (node.main_contract ? ' graph-main-contract' : '') + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id+(node.main_contract ? ' · Main correctness contract' : ''),'aria-describedby':'graph-node-tooltip'});
+      const circle = element('circle',{cx:width/2,cy:height/2,r:drawing.nodeRadii.get(id),fill,stroke});
+      link.append(circle); drawing.nodeCircles.set(id,circle);
+      // A bounded linear rank scale keeps the lowest-ranked labels readable.
+      const fontSize = 11+9*drawing.ranks.nodes.get(id)/maxRank;
+      const labels = element('g',{class:'graph-labels'}), lines = labelLines(node.name);
+      lines.forEach((line,i) => labels.append(element('text',{x:0,y:8+fontSize*(i+1.05),style:`font-size:${fontSize}px`},line)));
       const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
-      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
-      svg.append(link);
+      labels.append(element('text',{x:0,y:12+fontSize*(lines.length+1.05),class:'graph-caption',style:`font-size:${fontSize*.75}px`},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      link.append(labels); drawing.labels.set(id,{group:labels,fontSize});
+      circle.addEventListener('pointerenter',() => { cancelPopupClose(); drawing.hoveredNode = id; updatePopup(); });
+      circle.addEventListener('pointerleave',() => { if (drawing.hoveredNode === id) schedulePopupClose(); });
+      link.addEventListener('focus',() => { if (link.matches(':focus-visible')) drawing.focusedNode = id; updatePopup(); });
+      link.addEventListener('blur',(event = {}) => { if (drawing.focusedNode === id && !hoverPopup.contains(event.relatedTarget)) drawing.focusedNode = null; updatePopup(); });
+      svg.append(link); drawing.nodeElements.set(id,link);
     }
-    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
-    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    drawing.popup = hoverPopup;
     svg.parentElement.classList.toggle('graph-empty', !ids.length);
     fit();
   }
@@ -209,6 +503,48 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
   mode.addEventListener('change', () => {
     if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
     render();
+  });
+  const fullscreenButton = document.getElementById('graph-fullscreen');
+  let savedOverflow = '';
+  function syncFullscreen() {
+    const active = document.fullscreenElement === panel || panel.classList.contains('graph-expanded');
+    fullscreenButton.textContent = active ? 'Exit full screen' : 'Full screen';
+    fullscreenButton.setAttribute('aria-pressed',String(active));
+  }
+  function expandGraph(active) {
+    if (active) {
+      savedOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      panel.classList.add('graph-expanded');
+    } else {
+      panel.classList.remove('graph-expanded');
+      document.body.style.overflow = savedOverflow;
+      fullscreenButton.focus();
+    }
+    syncFullscreen();
+  }
+  fullscreenButton.addEventListener('click',async () => {
+    if (panel.classList.contains('graph-expanded')) { expandGraph(false); return; }
+    if (document.fullscreenElement === panel) {
+      await document.exitFullscreen();
+    } else if (panel.requestFullscreen && document.fullscreenEnabled !== false) {
+      try { await panel.requestFullscreen(); }
+      catch { expandGraph(true); }
+    } else {
+      // Embedded browsers may disable the Fullscreen API. Expanding within the
+      // window keeps the same graph and controls usable there and in local files.
+      expandGraph(true);
+    }
+    syncFullscreen();
+  });
+  document.addEventListener('fullscreenchange',syncFullscreen);
+  document.addEventListener('keydown',event => {
+    if (event.key !== 'Escape') return;
+    if (panel.classList.contains('graph-expanded')) {
+      event.preventDefault(); expandGraph(false);
+    } else if (document.fullscreenElement === panel) {
+      event.preventDefault(); document.exitFullscreen().catch(syncFullscreen);
+    }
   });
   document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
   document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
@@ -237,7 +573,18 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     else if (event.key === '0') fit();
     else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
   });
-  new ResizeObserver(fit).observe(svg);
+  let previousSize = null;
+  new ResizeObserver(() => {
+    const size = {width:svg.clientWidth,height:svg.clientHeight};
+    if (previousSize && size.width && size.height) {
+      const cx = viewport.x+viewport.width/2, cy = viewport.y+viewport.height/2;
+      const oldOverview = overviewWidth;
+      overviewWidth = overviewViewport().width;
+      viewport.width *= overviewWidth/oldOverview; viewport.height = viewport.width*size.height/size.width;
+      viewport.x = cx-viewport.width/2; viewport.y = cy-viewport.height/2; applyViewport();
+    }
+    previousSize = size;
+  }).observe(svg);
   render();
 })();
 </script><p class="notice">Incomplete rendering: 204 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-01ba9fbb8621349b9315a540"><h2>loc</h2><p class="meta">cjr.lang.loc</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition loc:
@@ -648,7 +995,7 @@ with expr :=
   match <a href="#symbol-ae6148e52b22b6964ad25ebe-binder-3335">b</a> with
   | <span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span> =&gt; <span class="external" title="External or unresolved: Coq.Init.Datatypes.false">false</span>
   | <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> y =&gt; <span class="external" title="External or unresolved: stdpp.decidable.bool_decide">bool_decide</span> (<a href="#symbol-ae6148e52b22b6964ad25ebe-binder-3322">x</a><span class="external" title="External or unresolved: Coq.Init.Logic.::type_scope:x_&#x27;=&#x27;_x"> = </span>y)
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-9e194bb77f36072ddb5ddeea"><h2>subst</h2><p class="meta">cjr.lang.subst</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">recursive function subst:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-9e194bb77f36072ddb5ddeea"><h2>subst</h2><p class="meta">cjr.lang.subst</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">recursive function subst:
     parameter(<span id="symbol-9e194bb77f36072ddb5ddeea-binder-3448">x</span>, type(<span class="external" title="External or unresolved: Coq.Strings.String.string">string</span>))
     parameter(<span id="symbol-9e194bb77f36072ddb5ddeea-binder-3461">v</span>, type(<a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
     parameter(<span id="symbol-9e194bb77f36072ddb5ddeea-binder-3471">e</span>, type(<a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>))
@@ -833,7 +1180,7 @@ with subst_val (x : <span class="external" title="External or unresolved: Coq.St
       <a href="#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> f y (<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x">if </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> x f<span class="external" title="External or unresolved: Coq.Init.Datatypes.::bool_scope:x_&#x27;||&#x27;_x"> || </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> x y<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> then </span>e<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> else </span><span class="external" title="External or unresolved: cjr.lang.subst:111">subst</span> x v e)
   | <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> vs =&gt;
       <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> ((fix go vs := match vs with <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> =&gt; <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> | w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>vs =&gt; <span class="external" title="External or unresolved: cjr.lang.subst_val:112">subst_val</span> x v w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>go vs end) vs)
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-212f6f0c49235110d4191e50"><h2>subst_val</h2><p class="meta">cjr.lang.subst_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">recursive function subst_val:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-212f6f0c49235110d4191e50"><h2>subst_val</h2><p class="meta">cjr.lang.subst_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">recursive function subst_val:
     parameter(<span id="symbol-212f6f0c49235110d4191e50-binder-5335">x</span>, type(<span class="external" title="External or unresolved: Coq.Strings.String.string">string</span>))
     parameter(<span id="symbol-212f6f0c49235110d4191e50-binder-5348">v</span>, <span id="symbol-212f6f0c49235110d4191e50-binder-5350">w</span>, type(<a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
     type:
@@ -906,7 +1253,7 @@ with subst_val (x : <span class="external" title="External or unresolved: Coq.St
       <a href="#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> f y (<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x">if </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> <a href="#symbol-212f6f0c49235110d4191e50-binder-5335">x</a> f<span class="external" title="External or unresolved: Coq.Init.Datatypes.::bool_scope:x_&#x27;||&#x27;_x"> || </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> <a href="#symbol-212f6f0c49235110d4191e50-binder-5335">x</a> y<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> then </span>e<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> else </span><span class="external" title="External or unresolved: cjr.lang.subst:111">subst</span> <a href="#symbol-212f6f0c49235110d4191e50-binder-5335">x</a> <a href="#symbol-212f6f0c49235110d4191e50-binder-5348">v</a> e)
   | <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> vs =&gt;
       <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> ((fix go vs := match vs with <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> =&gt; <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> | w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>vs =&gt; <span class="external" title="External or unresolved: cjr.lang.subst_val:112">subst_val</span> <a href="#symbol-212f6f0c49235110d4191e50-binder-5335">x</a> <a href="#symbol-212f6f0c49235110d4191e50-binder-5348">v</a> <a href="#symbol-212f6f0c49235110d4191e50-binder-5350">w</a><span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>go vs end) vs)
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-4d6a352811efd99a8543b23a"><h2>subst_binder</h2><p class="meta">cjr.lang.subst_binder</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition subst_binder:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-4d6a352811efd99a8543b23a"><h2>subst_binder</h2><p class="meta">cjr.lang.subst_binder</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">definition subst_binder:
     parameter(<span id="symbol-4d6a352811efd99a8543b23a-binder-5645">b</span>, type(<a href="#symbol-c8246980b50486c8938e549d" title="cjr.lang.binder">binder</a>))
     parameter(<span id="symbol-4d6a352811efd99a8543b23a-binder-5658">v</span>, type(<a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
     parameter(<span id="symbol-4d6a352811efd99a8543b23a-binder-5668">e</span>, type(<a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>))
@@ -924,7 +1271,7 @@ with subst_val (x : <span class="external" title="External or unresolved: Coq.St
   match <a href="#symbol-4d6a352811efd99a8543b23a-binder-5645">b</a> with
   | <span class="external" title="External or unresolved: Coq.Init.Datatypes.None">None</span> =&gt; <a href="#symbol-4d6a352811efd99a8543b23a-binder-5668">e</a>
   | <span class="external" title="External or unresolved: Coq.Init.Datatypes.Some">Some</span> x =&gt; <a href="#symbol-9e194bb77f36072ddb5ddeea" title="cjr.lang.subst">subst</a> x <a href="#symbol-4d6a352811efd99a8543b23a-binder-5658">v</a> <a href="#symbol-4d6a352811efd99a8543b23a-binder-5668">e</a>
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-732bdfffd17e34ff739c474c"><h2>subst_var</h2><p class="meta">cjr.lang.subst_var</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">recursive function subst_var:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-732bdfffd17e34ff739c474c"><h2>subst_var</h2><p class="meta">cjr.lang.subst_var</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">recursive function subst_var:
     parameter(<span id="symbol-732bdfffd17e34ff739c474c-binder-5843">x</span>, type(<span class="external" title="External or unresolved: Coq.Strings.String.string">string</span>))
     parameter(<span id="symbol-732bdfffd17e34ff739c474c-binder-5856">l</span>, type(<a href="#symbol-01ba9fbb8621349b9315a540" title="cjr.lang.loc">loc</a>))
     parameter(<span id="symbol-732bdfffd17e34ff739c474c-binder-5866">e</span>, type(<a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>))
@@ -1137,7 +1484,7 @@ with subst_var_val (x : <span class="external" title="External or unresolved: Co
       <a href="#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> f y (<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x">if </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> x f<span class="external" title="External or unresolved: Coq.Init.Datatypes.::bool_scope:x_&#x27;||&#x27;_x"> || </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> x y<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> then </span>e<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> else </span><span class="external" title="External or unresolved: cjr.lang.subst_var:140">subst_var</span> x l e)
   | <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> vs =&gt;
       <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> ((fix go vs := match vs with <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> =&gt; <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> | w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>vs =&gt; <span class="external" title="External or unresolved: cjr.lang.subst_var_val:141">subst_var_val</span> x l w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>go vs end) vs)
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-0c733daf5cf93584f327d339"><h2>subst_var_val</h2><p class="meta">cjr.lang.subst_var_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">recursive function subst_var_val:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-0c733daf5cf93584f327d339"><h2>subst_var_val</h2><p class="meta">cjr.lang.subst_var_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">recursive function subst_var_val:
     parameter(<span id="symbol-0c733daf5cf93584f327d339-binder-8128">x</span>, type(<span class="external" title="External or unresolved: Coq.Strings.String.string">string</span>))
     parameter(<span id="symbol-0c733daf5cf93584f327d339-binder-8141">l</span>, type(<a href="#symbol-01ba9fbb8621349b9315a540" title="cjr.lang.loc">loc</a>))
     parameter(<span id="symbol-0c733daf5cf93584f327d339-binder-8151">w</span>, type(<a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
@@ -1218,7 +1565,7 @@ with subst_var_val (x : <span class="external" title="External or unresolved: Co
       <a href="#symbol-d9e461d119bfed485c0b3848" title="cjr.lang.RecV">RecV</a> f y (<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x">if </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> <a href="#symbol-0c733daf5cf93584f327d339-binder-8128">x</a> f<span class="external" title="External or unresolved: Coq.Init.Datatypes.::bool_scope:x_&#x27;||&#x27;_x"> || </span><a href="#symbol-ae6148e52b22b6964ad25ebe" title="cjr.lang.binds">binds</a> <a href="#symbol-0c733daf5cf93584f327d339-binder-8128">x</a> y<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> then </span>e<span class="external" title="External or unresolved: Coq.ssr.ssreflect.::general_if_scope:&#x27;if&#x27;_x_&#x27;then&#x27;_x_&#x27;else&#x27;_x"> else </span><span class="external" title="External or unresolved: cjr.lang.subst_var:140">subst_var</span> <a href="#symbol-0c733daf5cf93584f327d339-binder-8128">x</a> <a href="#symbol-0c733daf5cf93584f327d339-binder-8141">l</a> e)
   | <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> vs =&gt;
       <a href="#symbol-584a79705e8f506cc5aaab02" title="cjr.lang.StructV">StructV</a> ((fix go vs := match vs with <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> =&gt; <span class="external" title="External or unresolved: Coq.Lists.List.ListNotations.::list_scope:&#x27;[&#x27;_&#x27;]&#x27;">[]</span> | w<span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>vs =&gt; <span class="external" title="External or unresolved: cjr.lang.subst_var_val:141">subst_var_val</span> <a href="#symbol-0c733daf5cf93584f327d339-binder-8128">x</a> <a href="#symbol-0c733daf5cf93584f327d339-binder-8141">l</a> <a href="#symbol-0c733daf5cf93584f327d339-binder-8151">w</a><span class="external" title="External or unresolved: Coq.Init.Datatypes.::list_scope:x_&#x27;::&#x27;_x"> :: </span>go vs end) vs)
-  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-9f3dcb1174458ff0cd22b24d"><h2>of_val</h2><p class="meta">cjr.lang.of_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition of_val:
+  end.</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-9f3dcb1174458ff0cd22b24d"><h2>of_val</h2><p class="meta">cjr.lang.of_val</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">definition of_val:
     parameter(<span id="symbol-9f3dcb1174458ff0cd22b24d-binder-8448">v</span>, type(<a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>))
     type:
         <a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>
@@ -1796,7 +2143,7 @@ Define pure IGE operations as returning `(output, finalIV)` so the stateful laws
   | NewCtx (vs : <span class="external" title="External or unresolved: Coq.Init.Datatypes.list">list</span> <a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>) (es : <span class="external" title="External or unresolved: Coq.Init.Datatypes.list">list</span> <a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>)
   | FieldLoadCtx (i : <span class="external" title="External or unresolved: Coq.Init.Datatypes.nat">nat</span>)
   | FieldStoreLCtx (i : <span class="external" title="External or unresolved: Coq.Init.Datatypes.nat">nat</span>) (e2 : <a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>)
-  | FieldStoreRCtx (v1 : <a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>) (i : <span class="external" title="External or unresolved: Coq.Init.Datatypes.nat">nat</span>).</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-68f7f17cb7bbe594ed1f1d7b"><h2>fill_item</h2><p class="meta">cjr.lang.fill_item</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition fill_item:
+  | FieldStoreRCtx (v1 : <a href="#symbol-ad59d00b2dd876e659cef5c0" title="cjr.lang.val">val</a>) (i : <span class="external" title="External or unresolved: Coq.Init.Datatypes.nat">nat</span>).</pre></details><details class="prompt-history"><summary>History</summary><p class="notice">Prompts are associated by commit: all prompts added in a commit that touched this declaration or its proof are included.</p><p class="meta">No recorded prompts found.</p></details></article><article id="symbol-68f7f17cb7bbe594ed1f1d7b"><h2>fill_item</h2><p class="meta">cjr.lang.fill_item</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">definition fill_item:
     parameter(<span id="symbol-68f7f17cb7bbe594ed1f1d7b-binder-13967">Ki</span>, type(<a href="#symbol-cdbe6c9dc367327c7c948a7e" title="cjr.lang.ectx_item">ectx_item</a>))
     parameter(<span id="symbol-68f7f17cb7bbe594ed1f1d7b-binder-13984">e</span>, type(<a href="#symbol-02fb45236d2ab5eccd901065" title="cjr.lang.expr">expr</a>))
     type:

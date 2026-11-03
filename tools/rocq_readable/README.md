@@ -55,6 +55,15 @@ Candidates become main contracts through the `main_correctness_contracts` list
 of qualified identities in the invocation root's `project.config.json`.
 Quadtree explicitly selects its creation, insertion, membership and range-query
 contracts. Candidates without that annotation keep their ordinary rank.
+Projects whose mathematical models live outside `spec/` can list their qualified
+module identities in `correctness_specification_modules`. A project's
+`correctness_call_wrappers` list identifies adapters of the form `call body args`;
+the detector uses their first argument as the operation. Other applications keep
+their ordinary head, so arbitrary arguments do not become operation evidence.
+Authenticator uses these settings for its shared `core/rocq/` source directory
+and selects seven account contracts plus the public SHA-1, HMAC, HOTP and TOTP
+contracts. Resource-only destruction remains outside this specification-bridge
+view.
 The report's `correctness_contracts` section records the detected operations,
 specifications, representation predicates and selection source.
 
@@ -249,6 +258,8 @@ printer's class layouts, signatures and function bodies. When all selected sourc
 modules have matching fresh compiled artifacts, the renderer also shares their
 program metadata with individual definitions; a body belonging to a registered
 function is displayed as that function. Ambiguous program contexts are not chosen.
+Fresh compiled modules bypass the context-free printing pass, avoiding repeated
+expansion of large shared helpers such as AES substitution tables.
 Edited or uncompiled sources use their live Rocq document instead of old binaries.
 The original Rocq structure and proof-free declaration remain expandable below
 the Cangjie view. The `cangjie` section of `report.json` records available output

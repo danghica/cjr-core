@@ -8,28 +8,50 @@
 WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
 Rendering rules are presentation choices reviewed by their authors.</p></header><section class="panel dependency-diagram" data-scope="file" aria-labelledby="graph-heading">
 <h2 id="graph-heading">Dependency graph</h2>
-<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry.</p>
+<p class="notice">Shows dependencies between declarations and lemmas on this page. Arrows point toward dependencies. Search to focus on an entry and its direct dependencies and dependents; click a node to jump to the entry. Main correctness contracts highlights confirmed implementation–specification bridges using theorem statements.</p>
 <div class="graph-controls">
-<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="focus">Focused declaration</option></select></label>
+<label>View<select id="graph-view"><option value="all">All declarations in this file</option><option value="contracts">Main correctness contracts</option><option value="focus">Focused declaration</option></select></label>
 <label>Find a declaration<input id="graph-focus" type="search" list="graph-choices" placeholder="Name or qualified identity" autocomplete="off"></label>
 <datalist id="graph-choices"></datalist>
-<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button></div>
+<div class="graph-zoom"><button type="button" id="graph-out" aria-label="Zoom out">−</button><button type="button" id="graph-in" aria-label="Zoom in">+</button><button type="button" id="graph-fit">Fit</button><button type="button" id="graph-fullscreen" aria-pressed="false">Full screen</button></div>
 </div>
 <p id="graph-status" class="meta" aria-live="polite"></p>
 <div class="graph-viewport"><svg id="dependency-svg" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Dependency graph"></svg></div>
-<div class="graph-legend"><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
-<p class="notice">Drag the background to pan. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
+<div class="graph-legend"><span style="--swatch:#e8b947">Main correctness contracts</span><span style="--swatch:#29897d">Representation predicates</span><span style="--swatch:#b6dfd4">Definitions</span><span style="--swatch:#d7c8ec">Lemmas</span><span style="--swatch:#bed8ee">Types</span><span style="--swatch:#d7dfe5">Other declarations</span></div>
+<p class="notice">Drag the background to pan. Zoom in to reveal less important nodes and links; positions stay fixed. Circle area shows node rank and line width shows edge importance; both stay the same screen size as you zoom. Labels stay anchored outside the circles and keep their rank-based font size as you zoom. Overlapping lower-ranked labels are hidden; hover a node to show its label and AI-generated explanation in a solid box. Highly ranked links may extend to hidden nodes. Use the buttons or mouse wheel to zoom. With the graph focused, use arrow keys to pan, +/− to zoom, and 0 to fit. Only resolved dependencies between entries on this page are shown. Check individual entry notices for coverage limits.</p>
 <noscript><p>The interactive graph requires JavaScript. Use the direct dependency links in each declaration entry.</p></noscript>
-</section><script id="dependency-data" type="application/json">{"cjr.examples.swap.swap_aliased": {"dependencies": [], "file": "rocq/swap.v", "href": "#symbol-cbc86e02fe605145a735add2", "kind": "lemma", "label": "cjr.examples.swap.swap_aliased", "name": "swap_aliased"}, "cjr.examples.swap.swap_at": {"dependencies": [], "file": "rocq/swap.v", "href": "#symbol-462f8c16e61729f6da12efc8", "kind": "definition", "label": "cjr.examples.swap.swap_at", "name": "swap_at"}, "cjr.examples.swap.swap_wp": {"dependencies": ["cjr.examples.swap.swap_at"], "file": "rocq/swap.v", "href": "#symbol-30a2468dce5ab6dd9d6f109c", "kind": "lemma", "label": "cjr.examples.swap.swap_wp", "name": "swap_wp"}}</script><script>
+</section><script id="dependency-data" type="application/json">{"cjr.examples.swap.swap_aliased": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "rocq/swap.v", "href": "#symbol-cbc86e02fe605145a735add2", "kind": "lemma", "label": "cjr.examples.swap.swap_aliased", "main_contract": false, "name": "swap_aliased", "statement_dependencies": []}, "cjr.examples.swap.swap_at": {"contract": null, "dependencies": [], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "rocq/swap.v", "href": "#symbol-462f8c16e61729f6da12efc8", "kind": "definition", "label": "cjr.examples.swap.swap_at", "main_contract": false, "name": "swap_at", "statement_dependencies": []}, "cjr.examples.swap.swap_wp": {"contract": null, "dependencies": ["cjr.examples.swap.swap_at"], "explanation": {"description": null, "reason": "No matching cached explanation (offline mode).", "status": "unavailable"}, "file": "rocq/swap.v", "href": "#symbol-30a2468dce5ab6dd9d6f109c", "kind": "lemma", "label": "cjr.examples.swap.swap_wp", "main_contract": false, "name": "swap_wp", "statement_dependencies": ["cjr.examples.swap.swap_at"]}}</script><script>
 (() => {
   const data = JSON.parse(document.getElementById('dependency-data').textContent);
   const ids = Object.keys(data).sort();
   const svg = document.getElementById('dependency-svg');
   const mode = document.getElementById('graph-view');
-  const local = document.querySelector('.dependency-diagram').dataset.scope === 'file';
+  const panel = document.querySelector('.dependency-diagram');
+  const local = panel.dataset.scope === 'file';
   const search = document.getElementById('graph-focus');
   const status = document.getElementById('graph-status');
   const choices = document.getElementById('graph-choices');
+  const mainIds = ids.filter(id => data[id].main_contract);
+  const contractIds = new Set(mainIds.flatMap(id => [id,...((data[id].contract || {}).related || [])]).filter(id => data[id]));
+  const representationIds = new Set(mainIds.flatMap(id => (data[id].contract || {}).representations || []));
+  if (!local && mode.value === 'files' && mainIds.length) mode.value = 'contracts';
+  const hoverPopup = document.createElement('div');
+  hoverPopup.setAttribute('id','graph-node-tooltip'); hoverPopup.setAttribute('class','graph-label-popup');
+  hoverPopup.setAttribute('role','dialog'); hoverPopup.setAttribute('aria-label','Declaration details'); hoverPopup.setAttribute('aria-hidden','true');
+  hoverPopup.style.display = 'none'; svg.parentElement.append(hoverPopup);
+  let popupTimer = null;
+  function cancelPopupClose() { clearTimeout(popupTimer); popupTimer = null; }
+  function schedulePopupClose() {
+    cancelPopupClose();
+    popupTimer = setTimeout(() => { drawing.hoveredNode = null; updatePopup(); },150);
+  }
+  hoverPopup.addEventListener('pointerenter',cancelPopupClose);
+  hoverPopup.addEventListener('pointerleave',schedulePopupClose);
+  hoverPopup.addEventListener('wheel',event => event.stopPropagation());
+  hoverPopup.addEventListener('focusin',() => { cancelPopupClose(); drawing.focusedNode = drawing.popupId; });
+  hoverPopup.addEventListener('focusout',event => {
+    if (!hoverPopup.contains(event.relatedTarget)) { drawing.focusedNode = null; updatePopup(); }
+  });
   const reverse = Object.fromEntries(ids.map(id => [id, []]));
   for (const id of ids) {
     for (const dependency of data[id].dependencies) reverse[dependency].push(id);
@@ -37,9 +59,11 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     option.label = data[id].name + ' · ' + data[id].file; choices.append(option);
   }
   const ns = 'http://www.w3.org/2000/svg';
-  let width = 244, height = 90, columnGap = 100, rowGap = 26;
+  let width = 244;
+  const height = 90, radius = 14;
   let bounds = {width: 1, height: 1}, viewport = {x: 0, y: 0, width: 1, height: 1};
-  let focused = null;
+  let focused = null, drawing = null, overviewWidth = 1, currentTier = 0;
+  const layouts = new Map();
   function element(tag, attrs = {}, text = null) {
     const node = document.createElementNS(ns, tag);
     for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
@@ -48,75 +72,328 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
   }
   function applyViewport() {
     svg.setAttribute('viewBox', [viewport.x, viewport.y, viewport.width, viewport.height].join(' '));
+    updateVisibility();
+    updateGeometry();
+    updateLabels();
+  }
+  function frame(keys) {
+    const points = keys.map(id => drawing.points[id]);
+    if (!points.length) return {x:0,y:0,width:width+48,height:height+48};
+    // Leave room for self-loop curves and the spacing reserved for external labels.
+    let left = Infinity, top = Infinity, right = -Infinity, bottom = -Infinity;
+    for (const point of points) {
+      left = Math.min(left,point.x+width/2-radius); top = Math.min(top,point.y+height/2-radius);
+      right = Math.max(right,point.x+width/2+radius); bottom = Math.max(bottom,point.y+height/2+radius);
+    }
+    return {x:left-72,y:top-72,width:right-left+144,height:bottom-top+144};
+  }
+  function overviewViewport() {
+    const keys = Object.keys(drawing.nodes).filter(id => mode.value === 'focus' || mode.value === 'contracts' || drawing.nodeTiers.get(id) === 0);
+    const box = frame(keys), pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    // Text has a fixed screen size, so reserve screen-space margins when fitting.
+    const marginX = Math.min(180,pixelsWide/3), marginY = Math.min(80,pixelsHigh/3);
+    const units = Math.max(box.width/(pixelsWide-2*marginX),box.height/(pixelsHigh-2*marginY));
+    const w = pixelsWide*units, h = pixelsHigh*units;
+    return {x:box.x+(box.width-w)/2,y:box.y+(box.height-h)/2,width:w,height:h};
   }
   function fit() {
-    const aspect = svg.clientWidth / Math.max(svg.clientHeight, 1);
-    const w = Math.max(bounds.width + 48, (bounds.height + 48) * aspect);
-    const h = w / aspect;
-    viewport = {x: (bounds.width - w) / 2, y: (bounds.height - h) / 2, width: w, height: h};
+    if (!drawing) return;
+    viewport = overviewViewport(); overviewWidth = viewport.width;
     applyViewport();
   }
+  function cameraUnits() {
+    return Math.max(viewport.width/Math.max(svg.clientWidth,1),viewport.height/Math.max(svg.clientHeight,1));
+  }
+  function updateGeometry() {
+    if (!drawing) return;
+    const units = cameraUnits();
+    if (drawing.geometryUnits === units) return;
+    drawing.geometryUnits = units;
+    for (const [id,circle] of drawing.nodeCircles) circle.setAttribute('r',drawing.nodeRadii.get(id)*units);
+    drawing.edges.forEach(([a,b],i) => {
+      const from = drawing.points[a], to = drawing.points[b];
+      const cx = from.x+width/2, cy = from.y+height/2;
+      const sourceRadius = drawing.nodeRadii.get(a)*units, targetRadius = drawing.nodeRadii.get(b)*units;
+      let d;
+      if (a === b) {
+        const reach = sourceRadius+30*units;
+        d = `M ${cx-sourceRadius*Math.SQRT1_2} ${cy-sourceRadius*Math.SQRT1_2} C ${cx-reach} ${cy-reach}, ${cx+reach} ${cy-reach}, ${cx+sourceRadius*Math.SQRT1_2} ${cy-sourceRadius*Math.SQRT1_2}`;
+      } else {
+        const dx = to.x-from.x, dy = to.y-from.y, distance = Math.hypot(dx,dy) || 1;
+        const ux = dx/distance, uy = dy/distance;
+        const x1 = cx+ux*sourceRadius, y1 = cy+uy*sourceRadius;
+        const x2 = to.x+width/2-ux*targetRadius, y2 = to.y+height/2-uy*targetRadius;
+        const bend = drawing.edgePairs.has(JSON.stringify([b,a])) ? 24*units : 0;
+        const mx = (x1+x2)/2-uy*bend, my = (y1+y2)/2+ux*bend;
+        // Overlapping screen-sized circles leave no exposed dependency segment.
+        d = distance <= sourceRadius+targetRadius ? '' : `M ${x1} ${y1} Q ${mx} ${my}, ${x2} ${y2}`;
+      }
+      drawing.edgeElements[i].setAttribute('d',d);
+      // Explicit user-space marker dimensions compensate for the camera too.
+      const arrowSize = (4+1.8*drawing.edgeWidths[i])*units;
+      drawing.edgeMarkers[i].setAttribute('markerWidth',arrowSize);
+      drawing.edgeMarkers[i].setAttribute('markerHeight',arrowSize);
+    });
+  }
+  function updateLabels() {
+    if (!drawing) return;
+    // Undo only the camera scale on label groups. Anchors still follow nodes.
+    // Using both dimensions also handles SVG's default preserveAspectRatio.
+    const units = cameraUnits();
+    const pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    const offsetX = (pixelsWide-viewport.width/units)/2, offsetY = (pixelsHigh-viewport.height/units)/2;
+    const intersects = (a,b) => a.x < b.x+b.w && a.x+a.w > b.x && a.y < b.y+b.h && a.y+a.h > b.y;
+    // Index screen rectangles, so label placement remains local on dense graphs.
+    const cells = new Map();
+    function visit(rect, callback) {
+      for (let x = Math.max(0,Math.floor(rect.x/64)); x <= Math.min(Math.floor(pixelsWide/64),Math.floor((rect.x+rect.w)/64)); x++)
+        for (let y = Math.max(0,Math.floor(rect.y/64)); y <= Math.min(Math.floor(pixelsHigh/64),Math.floor((rect.y+rect.h)/64)); y++) callback(x+','+y);
+    }
+    function add(rect) { visit(rect,key => { if (!cells.has(key)) cells.set(key,[]); cells.get(key).push(rect); }); }
+    function collides(rect) {
+      let collision = false;
+      visit(rect,key => { if (!collision) collision = (cells.get(key) || []).some(other => intersects(rect,other)); });
+      return collision;
+    }
+    const candidates = [];
+    for (const [id,label] of drawing.labels) {
+      const screenRadius = drawing.nodeRadii.get(id), point = drawing.points[id];
+      // Every label has the same fixed anchor below its circle. Only visibility
+      // changes when labels collide; labels are never moved to a different slot.
+      label.group.setAttribute('transform',`translate(${width/2},${height/2+screenRadius*units}) scale(${units})`);
+      const x = (point.x+width/2-viewport.x)/units+offsetX, y = (point.y+height/2-viewport.y)/units+offsetY;
+      label.onScreen = drawing.nodeElements.get(id).style.display !== 'none' && x >= -screenRadius && y >= -screenRadius && x <= pixelsWide+screenRadius && y <= pixelsHigh+screenRadius;
+      label.group.style.display = label.onScreen ? '' : 'none'; label.suppressed = false;
+      if (!label.onScreen) continue;
+      if (!label.box) {
+        const measured = label.group.getBBox ? label.group.getBBox() : null;
+        label.box = measured && measured.width ? {x:measured.x,y:measured.y,width:measured.width,height:measured.height} : {x:-100,y:8,width:200,height:label.fontSize*3};
+      }
+      const box = label.box;
+      candidates.push({id,rect:{x:x+box.x-4,y:y+screenRadius+box.y-4,w:box.width+8,h:box.height+8}});
+    }
+    candidates.sort((a,b) => drawing.ranks.nodes.get(b.id)-drawing.ranks.nodes.get(a.id) || compare(a.id,b.id));
+    for (const {id,rect} of candidates) {
+      const label = drawing.labels.get(id);
+      label.suppressed = collides(rect);
+      label.group.style.display = label.suppressed ? 'none' : '';
+      if (!label.suppressed) add(rect);
+    }
+    updatePopup();
+  }
+  function popupPlacement(x,y,radius,desiredWidth,desiredHeight,pixelsWide,pixelsHigh) {
+    const margin = Math.min(12,pixelsWide/8,pixelsHigh/8), gap = radius+10;
+    const innerWidth = pixelsWide-2*margin, innerHeight = pixelsHigh-2*margin;
+    const clamp = (n,lo,hi) => Math.max(lo,Math.min(n,hi));
+    const below = clamp(y+gap,margin,pixelsHigh-margin), above = clamp(y-gap,margin,pixelsHigh-margin);
+    const right = clamp(x+gap,margin,pixelsWide-margin), left = clamp(x-gap,margin,pixelsWide-margin);
+    // Each region excludes the node and a ten-pixel gap. Clamping a popup
+    // inside one region can never push it back across the hovered circle.
+    const regions = [
+      {x:margin,y:below,w:innerWidth,h:pixelsHigh-margin-below},
+      {x:margin,y:margin,w:innerWidth,h:above-margin},
+      {x:right,y:margin,w:pixelsWide-margin-right,h:innerHeight},
+      {x:margin,y:margin,w:left-margin,h:innerHeight}
+    ];
+    const usable = regions.filter(region => region.w >= 2 && region.h >= 2);
+    let region = usable.find(region => region.w >= desiredWidth && region.h >= desiredHeight);
+    if (!region) region = usable.reduce((best,next) => {
+      const area = r => Math.min(r.w,desiredWidth)*Math.min(r.h,desiredHeight);
+      return !best || area(next) > area(best) ? next : best;
+    },null);
+    return region;
+  }
+  function updatePopup() {
+    if (!drawing || !drawing.popup) return;
+    const id = drawing.hoveredNode || drawing.focusedNode, label = drawing.labels.get(id);
+    const popup = drawing.popup;
+    if (!label || !label.onScreen) {
+      popup.style.display = 'none'; popup.setAttribute('aria-hidden','true'); return;
+    }
+    if (drawing.popupId !== id) {
+      popup.replaceChildren();
+      const node = drawing.nodes[id], explanation = node.explanation || {};
+      const heading = document.createElement('strong'); heading.setAttribute('class','graph-popup-title');
+      heading.style.fontSize = label.fontSize+'px'; heading.textContent = node.name;
+      const tag = document.createElement('div'); tag.setAttribute('class','graph-popup-label'); tag.textContent = 'AI-generated explanation';
+      const paragraph = document.createElement('p');
+      paragraph.textContent = node.count ? 'Explanations belong to individual declarations. Choose All declarations and hover a declaration to read its explanation.' :
+        typeof explanation.description === 'string' && explanation.description.trim() ? explanation.description : 'No AI-generated explanation is available for this declaration.';
+      const open = document.createElement('a'); open.setAttribute('class','graph-popup-open');
+      open.setAttribute('href',node.href); open.textContent = node.count ? 'Open file' : 'Open declaration';
+      popup.append(heading); popup.append(tag); popup.append(paragraph); popup.append(open);
+      popup.scrollTop = 0;
+      drawing.popupId = id;
+    }
+    const point = drawing.points[id], units = cameraUnits();
+    const pixelsWide = svg.clientWidth || 1, pixelsHigh = svg.clientHeight || 1;
+    const x = (point.x+width/2-viewport.x)/units+(pixelsWide-viewport.width/units)/2;
+    const y = (point.y+height/2-viewport.y)/units+(pixelsHigh-viewport.height/units)/2;
+    const boxWidth = Math.max(1,Math.min(420,pixelsWide-24));
+    const maxHeight = Math.max(2,Math.min(360,pixelsHigh-24));
+    popup.style.width = boxWidth+'px'; popup.style.maxHeight = maxHeight+'px'; popup.style.padding = '12px';
+    popup.style.display = ''; popup.setAttribute('aria-hidden','false');
+    const region = popupPlacement(x,y,drawing.nodeRadii.get(id),boxWidth,Math.min(maxHeight,popup.offsetHeight || 200),pixelsWide,pixelsHigh);
+    if (!region) { popup.style.display = 'none'; popup.setAttribute('aria-hidden','true'); return; }
+    const actualWidth = Math.min(boxWidth,region.w), allowedHeight = Math.min(maxHeight,region.h);
+    popup.style.width = actualWidth+'px'; popup.style.maxHeight = allowedHeight+'px';
+    popup.style.padding = Math.min(12,Math.max(0,(Math.min(actualWidth,allowedHeight)-2)/2))+'px';
+    const boxHeight = Math.min(allowedHeight,popup.offsetHeight || 200);
+    popup.style.left = Math.max(region.x,Math.min(x-actualWidth/2,region.x+region.w-actualWidth))+'px';
+    popup.style.top = Math.max(region.y,Math.min(y-boxHeight/2,region.y+region.h-boxHeight))+'px';
+  }
+
+  function updateVisibility() {
+    if (!drawing) return;
+    currentTier = Math.max(0, Math.floor(Math.log(overviewWidth/viewport.width)/Math.log(1.6)+1e-9));
+    const all = mode.value === 'focus' || mode.value === 'contracts' || Object.keys(drawing.nodes).length <= 24;
+    const visible = new Set(Object.keys(drawing.nodes).filter(id => all || drawing.nodeTiers.get(id) <= currentTier));
+    let links = 0;
+    for (const [id, node] of drawing.nodeElements) node.style.display = visible.has(id) ? '' : 'none';
+    drawing.edgeElements.forEach((element,i) => {
+      const [a,b] = drawing.edges[i];
+      const show = (all || drawing.edgeTiers.get(i) <= currentTier) && (visible.has(a) || visible.has(b));
+      element.style.display = show ? '' : 'none'; if (show) links++;
+    });
+    status.textContent = (mode.value === 'contracts' ? mainIds.length+' main correctness contracts · ' : '') + visible.size + ' / ' + Object.keys(drawing.nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + links + ' / ' + drawing.edges.length + ' dependency links';
+    if (mode.value === 'contracts' && !mainIds.length) status.textContent = 'No confirmed main correctness contracts on this page.';
+    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+  }
   function zoom(factor, x = .5, y = .5) {
-    if (viewport.width * factor < 100 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
+    if (viewport.width * factor < 1 || viewport.width * factor > Math.max(bounds.width, bounds.height) * 30) return;
     viewport.x += viewport.width * (1 - factor) * x;
     viewport.y += viewport.height * (1 - factor) * y;
     viewport.width *= factor; viewport.height *= factor; applyViewport();
   }
-  // Condense cycles before assigning layers. Shared nodes are drawn once.
+  // Edge-space PageRank on reversed dependencies. Aggregate transitions through
+  // junctions instead of materializing the potentially quadratic line graph.
+  function importance(keys, edges) {
+    const outgoing = new Map(keys.map(id => [id, []]));
+    edges.forEach(([dependent, dependency], i) => {
+      outgoing.get(dependency).push(i);
+    });
+    const n = keys.length, m = edges.length, damping = .85;
+    let scores = Array(m).fill(1 / Math.max(m, 1));
+    for (let iteration = 0; m && iteration < 100; iteration++) {
+      let dangling = 0;
+      const junctions = new Map(keys.map(id => [id, 0]));
+      edges.forEach(([target], i) => {
+        if (!outgoing.get(target).length) dangling += scores[i];
+        else junctions.set(target, junctions.get(target) + scores[i] / outgoing.get(target).length);
+      });
+      const base = (1 - damping + damping * dangling) / m;
+      const next = edges.map(([, source]) => base + damping * junctions.get(source));
+      const change = next.reduce((sum, value, i) => sum + Math.abs(value - scores[i]), 0);
+      scores = next;
+      if (change < 1e-8) break;
+    }
+    const nodes = new Map(keys.map(id => [id, m ? (1 - damping) / n : 1 / Math.max(n, 1)]));
+    edges.forEach(([target], i) => nodes.set(target, nodes.get(target) + damping * scores[i]));
+    return {nodes, edges: scores};
+  }
+  function tiers(items, score, identity) {
+    const sorted = [...items].sort((a, b) => score(b) - score(a) || compare(identity(a), identity(b)));
+    const result = new Map();
+    let end = 0, target = 24, tier = 0;
+    while (end < sorted.length) {
+      let stop = Math.min(target, sorted.length);
+      while (stop < sorted.length && score(sorted[stop]) === score(sorted[stop - 1])) stop++;
+      for (; end < stop; end++) result.set(sorted[end], tier);
+      tier++; target = Math.max(target * 2, end + 1);
+    }
+    return result;
+  }
+  function compare(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
+  // Spatial hash: collision and repulsion checks stay local even on large graphs.
+  function spatialIndex() {
+    const cells = new Map(), cellWidth = width + 32, cellHeight = height + 32;
+    const cell = p => [Math.floor(p.x / cellWidth), Math.floor(p.y / cellHeight)];
+    return {
+      add(id, p) { const [x,y] = cell(p), key = x + ',' + y; if (!cells.has(key)) cells.set(key, []); cells.get(key).push(id); },
+      near(p) {
+        const [x,y] = cell(p), found = [];
+        for (let dx = -2; dx <= 2; dx++) for (let dy = -2; dy <= 2; dy++) found.push(...(cells.get((x+dx)+','+(y+dy)) || []));
+        return found;
+      }
+    };
+  }
   function layout(nodes, edges) {
-    const keys = Object.keys(nodes).sort(), adjacency = {}, incoming = {};
-    for (const id of keys) { adjacency[id] = []; incoming[id] = []; }
-    for (const [a, b] of edges) { adjacency[a].push(b); incoming[b].push(a); }
-    const seen = new Set(), order = [];
-    for (const root of keys) {
-      const stack = [[root, false]];
-      while (stack.length) {
-        const [id, finished] = stack.pop();
-        if (finished) order.push(id);
-        else if (!seen.has(id)) {
-          seen.add(id); stack.push([id, true]);
-          for (const child of adjacency[id]) if (!seen.has(child)) stack.push([child, false]);
+    const keys = Object.keys(nodes).sort(), ranks = importance(keys, edges);
+    // Confirmed contracts share the highest display rank. Preserve the raw
+    // PageRank scores separately; edge scores remain unchanged.
+    ranks.pageRankNodes = new Map(ranks.nodes);
+    if (keys.some(id => nodes[id].main_contract)) {
+      const top = Math.max(...ranks.nodes.values())*1.25;
+      for (const id of keys) if (nodes[id].main_contract) ranks.nodes.set(id,top);
+      const total = [...ranks.nodes.values()].reduce((a,b) => a+b,0);
+      for (const id of keys) ranks.nodes.set(id,ranks.nodes.get(id)/total);
+    }
+    const nodeTiers = tiers(keys, id => ranks.nodes.get(id), id => id);
+    const edgeTiers = tiers(edges.map((_, i) => i), i => ranks.edges[i], i => JSON.stringify(edges[i]));
+    const neighbors = new Map(keys.map(id => [id, []]));
+    edges.forEach(([a,b], i) => {
+      if (a !== b) { neighbors.get(a).push([b, ranks.edges[i]]); neighbors.get(b).push([a, ranks.edges[i]]); }
+    });
+    const order = [...keys].sort((a,b) => nodeTiers.get(a)-nodeTiers.get(b) || ranks.nodes.get(b)-ranks.nodes.get(a) || compare(a,b));
+    const points = {}, fixed = new Set();
+    let disconnectedAttempt = 0;
+    const overlap = (a,b) => Math.abs(a.x-b.x) < width+24 && Math.abs(a.y-b.y) < height+24;
+    const spiral = (center, attempt) => {
+      const angle = attempt * 2.399963229728653;
+      return {x:center.x + Math.cos(angle)*Math.sqrt(attempt)*(width+32), y:center.y + Math.sin(angle)*Math.sqrt(attempt)*(height+32)};
+    };
+    const maxTier = Math.max(0, ...nodeTiers.values());
+    for (let tier = 0; tier <= maxTier; tier++) {
+      const batch = order.filter(id => nodeTiers.get(id) === tier);
+      const placed = spatialIndex();
+      for (const id of fixed) placed.add(id, points[id]);
+      for (const id of batch) {
+        const connected = neighbors.get(id).filter(([other]) => points[other]);
+        const weight = connected.reduce((sum,[,w]) => sum+w, 0);
+        const center = weight ? connected.reduce((p,[other,w]) => ({x:p.x+points[other].x*w/weight,y:p.y+points[other].y*w/weight}), {x:0,y:0}) : {x:0,y:0};
+        let attempt = connected.length ? 0 : disconnectedAttempt;
+        let point = connected.length ? center : spiral(center,attempt);
+        while (placed.near(point).some(other => overlap(point, points[other]))) point = spiral(center, ++attempt);
+        if (!connected.length) disconnectedAttempt = attempt+1;
+        points[id] = point; placed.add(id, point);
+      }
+      for (let iteration = 0; iteration < 80; iteration++) {
+        const grid = spatialIndex();
+        for (const id of Object.keys(points)) grid.add(id, points[id]);
+        const updates = {};
+        for (const id of batch) {
+          const p = points[id]; let fx = 0, fy = 0;
+          const linked = neighbors.get(id).filter(([other]) => points[other]);
+          const total = linked.reduce((sum,[,w]) => sum+w,0);
+          for (const [other,w] of linked) {
+            const q = points[other], dx = q.x-p.x, dy = q.y-p.y;
+            const distance = Math.hypot(dx/(width+80),dy/(height+48)) || 1;
+            const force = .06 * w/total * (distance-1)/distance;
+            fx += dx*force; fy += dy*force;
+          }
+          for (const other of grid.near(p)) {
+            if (id === other) continue;
+            const q = points[other], dx = p.x-q.x, dy = p.y-q.y;
+            const ox = width+32-Math.abs(dx), oy = height+32-Math.abs(dy);
+            if (ox > 0 && oy > 0) {
+              if (ox < oy) fx += (dx ? Math.sign(dx) : compare(id,other)) * ox * .35;
+              else fy += (dy ? Math.sign(dy) : compare(id,other)) * oy * .35;
+            }
+          }
+          updates[id] = {x:p.x+Math.max(-24,Math.min(24,fx)),y:p.y+Math.max(-24,Math.min(24,fy))};
         }
+        Object.assign(points, updates);
+      }
+      // Resolve residual collisions in rank order without moving fixed nodes.
+      const grid = spatialIndex();
+      for (const id of fixed) grid.add(id, points[id]);
+      for (const id of batch) {
+        const center = points[id]; let point = center, attempt = 0;
+        while (grid.near(point).some(other => overlap(point,points[other]))) point = spiral(center, ++attempt);
+        points[id] = point; grid.add(id,point); fixed.add(id);
       }
     }
-    const component = new Map(), groups = [];
-    for (const root of order.reverse()) {
-      if (component.has(root)) continue;
-      const index = groups.length, members = [], stack = [root];
-      while (stack.length) {
-        const id = stack.pop();
-        if (!component.has(id)) { component.set(id, index); members.push(id); stack.push(...incoming[id]); }
-      }
-      groups.push(members.sort());
-    }
-    const outgoing = groups.map(() => new Set()), degree = groups.map(() => 0), rank = groups.map(() => 0);
-    for (const [a, b] of edges) {
-      const from = component.get(a), to = component.get(b);
-      if (from !== to && !outgoing[from].has(to)) { outgoing[from].add(to); degree[to]++; }
-    }
-    const queue = degree.map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
-    for (let next = 0; next < queue.length; next++) {
-      const from = queue[next];
-      for (const to of outgoing[from]) { rank[to] = Math.max(rank[to], rank[from] + 1); if (--degree[to] === 0) queue.push(to); }
-    }
-    const columns = [];
-    for (const id of keys) { const r = rank[component.get(id)]; (columns[r] ||= []).push(id); }
-    // A few barycentric sweeps reduce crossings without nondeterministic forces.
-    const positions = new Map();
-    for (let pass = 0; pass < 4; pass++) {
-      columns.forEach(column => column.forEach((id, i) => positions.set(id, i)));
-      const sequence = pass % 2 ? [...columns].reverse() : columns;
-      for (const column of sequence) {
-        const neighbors = pass % 2 ? adjacency : incoming;
-        const average = id => neighbors[id].length ? neighbors[id].reduce((sum, n) => sum + positions.get(n), 0) / neighbors[id].length : positions.get(id);
-        column.sort((a, b) => average(a) - average(b) || (a < b ? -1 : a > b ? 1 : 0));
-      }
-    }
-    const maxRows = Math.max(1, ...columns.map(c => c.length)), points = {};
-    columns.forEach((column, col) => column.forEach((id, row) => {
-      points[id] = {x: col * (width + columnGap), y: ((maxRows - column.length) / 2 + row) * (height + rowGap)};
-    }));
-    return {points, width: Math.max(1, columns.length) * (width + columnGap) - columnGap, height: maxRows * (height + rowGap) - rowGap};
+    return {points, ranks, nodeTiers, edgeTiers};
   }
   function sourceColor(file) {
     const parts = file.split('/');
@@ -139,14 +416,17 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     return [label.slice(0, split), remainder.length > limit ? remainder.slice(0, limit - 3) + '…' : remainder];
   }
   function render() {
+    cancelPopupClose(); hoverPopup.style.display = 'none';
+    if (mode.value === 'contracts') panel.classList.add('graph-contract-view');
+    else panel.classList.remove('graph-contract-view');
     let nodes = {}, edges = [], counts = new Map();
     width = mode.value === 'files' ? 156 : local ? 220 : 244;
-    columnGap = mode.value === 'files' ? 36 : local ? 60 : 100;
     if (mode.value === 'files') {
       for (const id of ids) {
         const d = data[id], file = d.file;
         if (!nodes[file]) nodes[file] = {name: file.split('/').pop(), file, href: d.href.split('#')[0], count: 0};
         nodes[file].count++;
+        if (d.main_contract) nodes[file].main_contract = true;
         for (const dependency of d.dependencies) {
           const other = data[dependency].file;
           if (file !== other) { const key = JSON.stringify([file, other]); counts.set(key, (counts.get(key) || 0) + 1); }
@@ -154,49 +434,63 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
       }
       edges = [...counts.keys()].map(key => JSON.parse(key));
     } else {
-      const selected = mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
+      const selected = mode.value === 'contracts' ? contractIds : mode.value === 'focus' && focused ? new Set([focused, ...data[focused].dependencies, ...reverse[focused]]) : new Set(ids);
       for (const id of selected) nodes[id] = data[id];
-      for (const id of selected) for (const dependency of data[id].dependencies) {
+      for (const id of selected) for (const dependency of (mode.value === 'contracts' ? data[id].statement_dependencies || data[id].dependencies : data[id].dependencies)) {
         if (selected.has(dependency)) edges.push([id, dependency]);
       }
     }
-    const drawing = layout(nodes, edges);
-    const padding = mode.value === 'files' ? 32 : 80;
-    for (const point of Object.values(drawing.points)) { point.x += padding; point.y += padding; }
-    bounds = {width:drawing.width + padding * 2,height:drawing.height + padding * 2};
+    // Focus is a subset of the full declaration layout, never a new layout.
+    const cacheKey = mode.value === 'files' ? 'files' : 'declarations';
+    if (!layouts.has(cacheKey)) {
+      const fullNodes = cacheKey === 'files' ? nodes : data;
+      const fullEdges = cacheKey === 'files' ? edges : ids.flatMap(id => data[id].dependencies.map(dependency => [id,dependency]));
+      const base = layout(fullNodes,fullEdges);
+      layouts.set(cacheKey, {...base, fullEdges});
+    }
+    const base = layouts.get(cacheKey);
+    const edgeIndices = new Map(base.fullEdges.map((edge,i) => [JSON.stringify(edge),i]));
+    const maxRank = Math.max(0,...base.ranks.nodes.values()) || 1;
+    const maxEdgeRank = Math.max(0,...base.ranks.edges) || 1;
+    const minEdgeRank = Math.min(maxEdgeRank,...base.ranks.edges);
+    const edgeRankSpan = maxEdgeRank-minEdgeRank;
+    const edgeWidths = edges.map(edge => edgeRankSpan > 0 ?
+      1.5+3.5*(base.ranks.edges[edgeIndices.get(JSON.stringify(edge))]-minEdgeRank)/edgeRankSpan : 5);
+    drawing = {...base,nodes,edges,nodeElements:new Map(),labels:new Map(),nodeCircles:new Map(),nodeRadii:new Map(Object.keys(nodes).map(id => [id,radius*Math.sqrt(base.ranks.nodes.get(id)/maxRank)])),edgeElements:[],edgeWidths,edgeMarkers:[],edgePairs:new Set(base.fullEdges.map(edge => JSON.stringify(edge))),edgeTiers:new Map(edges.map((edge,i) => [i,base.edgeTiers.get(edgeIndices.get(JSON.stringify(edge)))]))};
+    bounds = frame(Object.keys(nodes));
     svg.replaceChildren();
     svg.setAttribute('tabindex', '0');
-    const defs = element('defs'), marker = element('marker', {id:'graph-arrow',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'7',markerHeight:'7',orient:'auto-start-reverse'});
-    marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#869bae'})); defs.append(marker); svg.append(defs);
+    const defs = element('defs'); svg.append(defs);
     const edgeGroup = element('g', {'aria-label':'Dependency arrows'}); svg.append(edgeGroup);
     for (const [a, b] of edges) {
-      const from = drawing.points[a], to = drawing.points[b];
-      let d;
-      if (a === b) d = `M ${from.x + width - 30} ${from.y} C ${from.x + width + 40} ${from.y - 65}, ${from.x + width + 40} ${from.y + 55}, ${from.x + width} ${from.y + 30}`;
-      else if (to.x > from.x) {
-        const x1 = from.x + width, y1 = from.y + height / 2, x2 = to.x, y2 = to.y + height / 2, mid = (x1 + x2) / 2;
-        d = `M ${x1} ${y1} C ${mid} ${y1}, ${mid} ${y2}, ${x2} ${y2}`;
-      } else {
-        const x = Math.max(from.x, to.x) + width + 50;
-        d = `M ${from.x + width} ${from.y + height / 2} C ${x} ${from.y + height / 2}, ${x} ${to.y + height / 2}, ${to.x + width} ${to.y + height / 2}`;
-      }
-      const edge = element('path',{d,class:'graph-edge','marker-end':'url(#graph-arrow)'});
+      const index = drawing.edgeElements.length, markerId = 'graph-arrow-'+index;
+      const marker = element('marker',{id:markerId,viewBox:'0 0 10 10',refX:'10',refY:'5',markerUnits:'userSpaceOnUse',orient:'auto-start-reverse'});
+      const mainEdge = nodes[a].main_contract;
+      marker.append(element('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:mainEdge ? '#ad6a00' : '#869bae'})); defs.append(marker); drawing.edgeMarkers.push(marker);
+      const edge = element('path',{class:'graph-edge'+(mainEdge ? ' graph-contract-edge' : ''),style:`stroke-width:${edgeWidths[index]}px`,'vector-effect':'non-scaling-stroke','marker-end':`url(#${markerId})`});
       const count = counts.get(JSON.stringify([a,b]));
-      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : ''))); edgeGroup.append(edge);
+      edge.append(element('title',{},a + ' depends on ' + b + (count ? ' · ' + count + ' declaration links' : '') + ' · importance ' + base.ranks.edges[edgeIndices.get(JSON.stringify([a,b]))].toPrecision(3))); edgeGroup.append(edge); drawing.edgeElements.push(edge);
     }
     for (const [id, node] of Object.entries(nodes)) {
-      const p = drawing.points[id], [fill, stroke] = local ? declarationColor(node.kind) : sourceColor(node.file);
+      const p = drawing.points[id], [fill, stroke] = node.main_contract ? ['#fff1c2','#ad6a00'] : representationIds.has(id) && mode.value === 'contracts' ? ['#e6f7f5','#29897d'] : local ? declarationColor(node.kind) : sourceColor(node.file);
       const kind = ['finite','cofinite','bifinite'].includes(node.kind) ? 'type' : node.kind;
-      const link = element('a',{href:node.href,class:'graph-node' + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id});
-      link.append(element('title',{},id + (kind ? ' · ' + kind : '')));
-      link.append(element('rect',{width,height,rx:'10',fill,stroke}));
-      labelLines(node.name).forEach((line, i) => link.append(element('text',{x:'15',y:String(26 + i * 17),style:mode.value === 'files' ? 'font-size:14px' : ''},line)));
+      const link = element('a',{href:node.href,class:'graph-node' + (node.main_contract ? ' graph-main-contract' : '') + (id === focused ? ' graph-selected' : ''),transform:`translate(${p.x},${p.y})`,'aria-label':id+(node.main_contract ? ' · Main correctness contract' : ''),'aria-describedby':'graph-node-tooltip'});
+      const circle = element('circle',{cx:width/2,cy:height/2,r:drawing.nodeRadii.get(id),fill,stroke});
+      link.append(circle); drawing.nodeCircles.set(id,circle);
+      // A bounded linear rank scale keeps the lowest-ranked labels readable.
+      const fontSize = 11+9*drawing.ranks.nodes.get(id)/maxRank;
+      const labels = element('g',{class:'graph-labels'}), lines = labelLines(node.name);
+      lines.forEach((line,i) => labels.append(element('text',{x:0,y:8+fontSize*(i+1.05),style:`font-size:${fontSize}px`},line)));
       const caption = node.count ? node.count + ' declarations' : local ? kind : node.file;
-      link.append(element('text',{x:'15',y:'73',class:'graph-caption'},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
-      svg.append(link);
+      labels.append(element('text',{x:0,y:12+fontSize*(lines.length+1.05),class:'graph-caption',style:`font-size:${fontSize*.75}px`},caption.length > 34 ? caption.slice(0,31) + '…' : caption));
+      link.append(labels); drawing.labels.set(id,{group:labels,fontSize});
+      circle.addEventListener('pointerenter',() => { cancelPopupClose(); drawing.hoveredNode = id; updatePopup(); });
+      circle.addEventListener('pointerleave',() => { if (drawing.hoveredNode === id) schedulePopupClose(); });
+      link.addEventListener('focus',() => { if (link.matches(':focus-visible')) drawing.focusedNode = id; updatePopup(); });
+      link.addEventListener('blur',(event = {}) => { if (drawing.focusedNode === id && !hoverPopup.contains(event.relatedTarget)) drawing.focusedNode = null; updatePopup(); });
+      svg.append(link); drawing.nodeElements.set(id,link);
     }
-    status.textContent = Object.keys(nodes).length + (mode.value === 'files' ? ' source files' : ' declarations') + ' · ' + edges.length + ' dependency links' + (mode.value === 'focus' && focused ? ' · ' + data[focused].name : '');
-    if (!ids.length) status.textContent = 'No declarations available to diagram.';
+    drawing.popup = hoverPopup;
     svg.parentElement.classList.toggle('graph-empty', !ids.length);
     fit();
   }
@@ -209,6 +503,48 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
   mode.addEventListener('change', () => {
     if (mode.value === 'focus' && !focused && ids.length) { focused = ids[0]; search.value = focused; }
     render();
+  });
+  const fullscreenButton = document.getElementById('graph-fullscreen');
+  let savedOverflow = '';
+  function syncFullscreen() {
+    const active = document.fullscreenElement === panel || panel.classList.contains('graph-expanded');
+    fullscreenButton.textContent = active ? 'Exit full screen' : 'Full screen';
+    fullscreenButton.setAttribute('aria-pressed',String(active));
+  }
+  function expandGraph(active) {
+    if (active) {
+      savedOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      panel.classList.add('graph-expanded');
+    } else {
+      panel.classList.remove('graph-expanded');
+      document.body.style.overflow = savedOverflow;
+      fullscreenButton.focus();
+    }
+    syncFullscreen();
+  }
+  fullscreenButton.addEventListener('click',async () => {
+    if (panel.classList.contains('graph-expanded')) { expandGraph(false); return; }
+    if (document.fullscreenElement === panel) {
+      await document.exitFullscreen();
+    } else if (panel.requestFullscreen && document.fullscreenEnabled !== false) {
+      try { await panel.requestFullscreen(); }
+      catch { expandGraph(true); }
+    } else {
+      // Embedded browsers may disable the Fullscreen API. Expanding within the
+      // window keeps the same graph and controls usable there and in local files.
+      expandGraph(true);
+    }
+    syncFullscreen();
+  });
+  document.addEventListener('fullscreenchange',syncFullscreen);
+  document.addEventListener('keydown',event => {
+    if (event.key !== 'Escape') return;
+    if (panel.classList.contains('graph-expanded')) {
+      event.preventDefault(); expandGraph(false);
+    } else if (document.fullscreenElement === panel) {
+      event.preventDefault(); document.exitFullscreen().catch(syncFullscreen);
+    }
   });
   document.getElementById('graph-in').addEventListener('click', () => zoom(.8));
   document.getElementById('graph-out').addEventListener('click', () => zoom(1.25));
@@ -237,10 +573,21 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
     else if (event.key === '0') fit();
     else { const step = viewport.width * .08; viewport.x += event.key === 'ArrowRight' ? step : event.key === 'ArrowLeft' ? -step : 0; viewport.y += event.key === 'ArrowDown' ? step : event.key === 'ArrowUp' ? -step : 0; applyViewport(); }
   });
-  new ResizeObserver(fit).observe(svg);
+  let previousSize = null;
+  new ResizeObserver(() => {
+    const size = {width:svg.clientWidth,height:svg.clientHeight};
+    if (previousSize && size.width && size.height) {
+      const cx = viewport.x+viewport.width/2, cy = viewport.y+viewport.height/2;
+      const oldOverview = overviewWidth;
+      overviewWidth = overviewViewport().width;
+      viewport.width *= overviewWidth/oldOverview; viewport.height = viewport.width*size.height/size.width;
+      viewport.x = cx-viewport.width/2; viewport.y = cy-viewport.height/2; applyViewport();
+    }
+    previousSize = size;
+  }).observe(svg);
   render();
 })();
-</script><p class="notice">Incomplete rendering: 4 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-462f8c16e61729f6da12efc8"><h2>swap_at</h2><p class="meta">cjr.examples.swap.swap_at</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><pre class="pseudocode">definition swap_at:
+</script><p class="notice">Incomplete rendering: 4 unsupported or unmapped constructs. Original syntax is retained where needed.</p><article id="symbol-462f8c16e61729f6da12efc8"><h2>swap_at</h2><p class="meta">cjr.examples.swap.swap_at</p><div class="explanation-label">AI-generated explanation</div><p class="notice">Explanation unavailable: No matching cached explanation (offline mode).</p><p class="notice">Cangjie unavailable: The Gallina printer requires concrete non-expression arguments.</p><pre class="pseudocode">definition swap_at:
     parameter(<span id="symbol-462f8c16e61729f6da12efc8-binder-286">l1</span>, <span id="symbol-462f8c16e61729f6da12efc8-binder-289">l2</span>, type(<span class="external" title="External or unresolved: Coq.Numbers.BinNums.Z">Z</span>))
     type:
         <span class="external" title="External or unresolved: cjr.lang.expr">expr</span>

@@ -1,22 +1,22 @@
 {
   "associations": {
-    "cjr.adequacy.cjrGpreS:a662ffe73d19d23e80420c497e8a8e359745b8688e15590f2d1b941a1b33440c": {
+    "cjr.adequacy.cjrGpreS:ceebbc6f35f4ca51fbcce93c744eb13ad99a361b573269b19f86cf1e6904ab0c": {
       "entries": [],
       "issues": []
     },
-    "cjr.adequacy.cjr_adequacy:af4be17dd101b780bc9217e269f8cd99f41e2fcf7c8e10315653c5c368601701": {
+    "cjr.adequacy.cjr_adequacy:3ccd5100d01b6bbaf09409c46d955e8cb5fa0e88241512e84480a840b095bff3": {
       "entries": [],
       "issues": []
     },
-    "cjr.adequacy.cjrΣ:02bf6c2cbcec333982aa42689457d07adbdc400c93f3701ae36df0deaa627b92": {
+    "cjr.adequacy.cjrΣ:4070731d00120ecf3df6ae99467c2f3dc6952cbe2ae64552498ff20fdea6f795": {
       "entries": [],
       "issues": []
     },
-    "cjr.adequacy.subG_cjrGpreS:de1d11ea5d02f3d9e95ec4f4c765aa4f90acf9a9f822724d140bff0101efc42b": {
+    "cjr.adequacy.subG_cjrGpreS:445a5acd7534857f50e4b943750dcbee49865befa567f38e36e2f2c586acb9c2": {
       "entries": [],
       "issues": []
     },
-    "cjr.buffer.buffer_fill_body:65eb73e08f204a7a3fb5593610b801515376a6a2e845ca4004ebd79f3f1c0fc7": {
+    "cjr.buffer.buffer_fill_body:bd50ad4e4b5617d443ad74b94c4abe9eee0cc84dfc35605bd61be8c4ddf4c613": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -88,7 +88,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.buffer_fill_closed:2bb38f58aa17cdf729be657bee68b79079d10914994eca7691b71ed959379cd5": {
+    "cjr.buffer.buffer_fill_closed:51fab53ef3ee7162023bb603d2fb9fa378c3b83539588987156161ede3feb0cd": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -160,7 +160,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.buffer_fill_val:df770e987919dc6dc231156a9808c8b3502c31a4416df0c2bc87dfe1ca121f6a": {
+    "cjr.buffer.buffer_fill_val:8e4155590bac48efd7989b14d9384aae6773f0f26f3ff1fdf3a59985fdd4eef9": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -232,7 +232,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.buffer_make_body:725716962b6406614b27c9182bfa5cfd7957f1a30b9bf849b7cd3abe9f10bcc2": {
+    "cjr.buffer.buffer_make_body:16570ade2406d2f27cee12931c1381b6dcc59e4c805049307b416031d7b35bb2": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -304,7 +304,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.buffer_make_closed:efc4e6d1d27e944df8c046e547e025d36335393735308ce5318ca87c3b63b182": {
+    "cjr.buffer.buffer_make_closed:f5fa897311bfc7cc9e5759ae3c0a622f2fbd8c03825ebcda7f53129c04779cf0": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -376,7 +376,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.buffer_make_val:2085e8cc28dc9a1c1cc4799ba58c092198854f8e3284ba1acdb0c4e9ce92d392": {
+    "cjr.buffer.buffer_make_val:a2f09511c158bb25e5dbf1295d73c48a884d64f2e330aae7f554edcce80cd611": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -448,7 +448,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.closed_lit:e63ad0928a29d7d61c5dfeecc909187c06b63b5777de2e992becf6ca39e69135": {
+    "cjr.buffer.closed_lit:2759b30d5e726549cdb96b1a478632954c8c1e31b24612028d6c939adb2be99f": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -520,7 +520,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer.closed_val:e917ad0139df4615d6c9e574e4b082171281c74077e26b227e30391bc4ae6488": {
+    "cjr.buffer.closed_val:3d55e9ba151d7f70fbda49415423c0b3f1a83db2408cbb515c93ea6a59611176": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -592,7 +592,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer_laws.buffer_cells:8e3c5198c19e5c6d17f5e49eb4cf2994627e20d1d2a62ca26344ea8843effa3b": {
+    "cjr.buffer_laws.buffer_cells:7a3bfb6f2aed02b4518eac05754d457adcf9c16c1a90dff2b7c039179e1c7994": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -664,7 +664,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer_laws.buffer_zero_cells:0c4ba1e7e6052258e5678561687e3d1bcc3f469ce0c6d5cf74ccd2b047b6e8e9": {
+    "cjr.buffer_laws.buffer_zero_cells:f0df0409b23430916a0d5a8542dd1a2ced43dade4671e20f7fa5dd7ada66fc61": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -736,7 +736,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer_laws.wp_buffer_fill:b2b0d278318b3873117591fa26a29748ccfffff7c59e383aefb514bd5bc3aed8": {
+    "cjr.buffer_laws.wp_buffer_fill:4e62d8b6e14009128e1e6495010ce8adc5c5fd4bb5b2c03ea5ec49a5aed93f5e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -808,7 +808,7 @@
       ],
       "issues": []
     },
-    "cjr.buffer_laws.wp_buffer_make:effbb98dfa2ea29ec4393cde39ebc28e6ef4723f1af0e6539039d2eeca4390fb": {
+    "cjr.buffer_laws.wp_buffer_make:01c5823036216084e23190988a2b229245b421ba8627423cc7cd62f57d2be701": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -880,7 +880,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.bitwise_noninteger:fbbb58232545bac9dc2eb5040e9186fb3f545edc6a1cb8d8e84ad21b89804661": {
+    "cjr.examples.arith.bitwise_noninteger:95c1fd5a77ae6969ff872749b215b0832f6ae3f900a6f65b654aa1f4b8c9fc08": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -968,7 +968,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.bitwise_signed_cases:5f2216e2ce642a2caa5cbb1489c9944b86302bc3b04c33f7c78c251fb40cc951": {
+    "cjr.examples.arith.bitwise_signed_cases:16723e49aced631758d9288ac6b1769fcc40e655efd512e90339919164ea7082": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -1056,7 +1056,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.divide_body:d1de05975a2bd86beb411d9658f1564d2de6cbc83083c7514570c718d7fb5330": {
+    "cjr.examples.arith.divide_body:88769852384bd0040f1b9b8c359ce24d291c9b6977ef7928433fd2f495662214": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -1100,7 +1100,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.division_noninteger:427d181eb77538dcc5d3314c168f97280a17ce435a1512090e2cbddb6a0065f2": {
+    "cjr.examples.arith.division_noninteger:857084bbfa2c0f6eddcedeac499c9d9ad76714ded635382cfd2dbe79ce5cd6e3": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -1144,7 +1144,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.division_signs:e2d9b8260046b9119139728cb20e2a45108e015ebad01d5f929cfa0039e9b3fd": {
+    "cjr.examples.arith.division_signs:cceeb441bc3c1e4dc929f30d24a27714be0d43d73c3b06310e36c8ae06f905e0": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -1188,7 +1188,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.division_zero:9d66442b5f8c00d688d1f412493ea0d0a65615a22db876881c9a662e3c3c870e": {
+    "cjr.examples.arith.division_zero:a6fffb4b0bce328029588ed8077f49860ec2cc4671eb34408e843223125da04e": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -1232,7 +1232,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.multiplication_cases:d04bd6f72856a061f90952cc53bafc418cc19951406e10f6de6954ba31f71ba6": {
+    "cjr.examples.arith.multiplication_cases:3f8dd635d2e99d063d4e126125084c4bacf4f18f88a178966cc2bd38ab335c00": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -1336,7 +1336,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.multiplication_noninteger:249b44bfb3fdba717a8361cdd918a081ecce393b3e246cc5e38233d6e8d4c144": {
+    "cjr.examples.arith.multiplication_noninteger:5291bfaec4e7540ea426d038dc5000959e0f4036cfc76372ef0e62d1e880833c": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -1440,7 +1440,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.multiply_body:1a453953ccd18da1b987ca348a3ba34a7c9d89fc1cc4cfc35543caf76a95d75e": {
+    "cjr.examples.arith.multiply_body:8317645e268d2574d7f7e73a4f788b7b06a8d316753be5c876bf6ba8cdebdfdc": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -1544,67 +1544,67 @@
       ],
       "issues": []
     },
-    "cjr.examples.arith.remainder_noninteger:902a32cf8d9da5434142dd78fd08289d88bac67c6a1983767fcbd710a43e90e3": {
+    "cjr.examples.arith.remainder_noninteger:4f4f03c164abee2c9276be7fbd0f4051574caa10dc69906807b604d3ead2971f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.arith.remainder_signs:bb7839f2cb7806ad6b617dfe15ee87b2908eb31976681e6a869d0789df008127": {
+    "cjr.examples.arith.remainder_signs:1dce5ec8df535c8a5e243f6b3b9df1aeec9047c618013b3cef78b8c975a32116": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.arith.remainder_zero_divisor:28b1b8f794f1b3486ab4e29ea5d9934b07a9d028987d2a55bf0a3b33658020b6": {
+    "cjr.examples.arith.remainder_zero_divisor:f75618d885cdca537e7d69953185cef9e910f62a169a79478a0d0cc2208e6437": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.arith.sum_one:a35a090d4778d15198633cf7e8af684811394618253f4d98c7c03b2120be58a0": {
+    "cjr.examples.arith.sum_one:c2c66dd90c060ed247f5fc0326eb269f001fdb697d9ed255ef1ee54d01751298": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.arith.sum_one_adequate:20ea45693e5a23075a365e10bcecd08770896c501ad4028cd54e730411259e53": {
+    "cjr.examples.arith.sum_one_adequate:a7e139223856a3ecbe2cdc45521e81134792c2b7276f318de0ff89db21d5c5da": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.arith.sum_one_wp:773ecd8c1bbe450e217c15ff1d99641fa8c244333082fa17b79ef09103fc7405": {
+    "cjr.examples.arith.sum_one_wp:8175385460c0930a41dd1ef0be0fe8da873cabf956cdc8f560ea9b3c095954c8": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cell.cell:ae66e7241e3f0303c020340279999d076aefefa1a4ef0c7780703445f2b24359": {
+    "cjr.examples.cell.cell:3e8ab263c108bc790551e0d02c981b7043c8ed7ccdb478400a687993be9689c1": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cell.cell_adequate:cc098f499cb101d9375deb4a50defcce75c3a7e502206c18901f5c000f0ef239": {
+    "cjr.examples.cell.cell_adequate:3765c7b80c78a93407ff92c67281f9e0a6ac3b61a4d496a262b60ceadf237398": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cell.cell_wp:8deba22409c1ba006e9610add7da1c0ef316e0f54fd71f3a8bb357060f060193": {
+    "cjr.examples.cell.cell_wp:ce91034562b7e52bacafd82b5affcf2dec3a491c4a39d24443c5c3f95e222c40": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.:::x_'+++'_x:aa0fa3402df896be287fa651d5b1527dd593f4f9b723909ae246969f5e861b28": {
+    "cjr.examples.cj_print.:::x_'+++'_x:eefa355262875b6cdb0ee27859db0c9553733e5c8bbc3ccb8ae70f0e1b2408f6": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.all_decls:dc17c4ab950c42e68d9ac5c1b81ea7512d2a27af85da4bbf81cef389d96cac20": {
+    "cjr.examples.cj_print.all_decls:a4a586775f4532533fc9452a05d50d5e7a364676d4e8b53b220b063e18432792": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.arg:dc82c5e89f9870b1df3207e196ad5fd1303bda128a9540095c33de63eb2e9f56": {
+    "cjr.examples.cj_print.arg:a7dc80d77f19f522ff7a32d6cc0307d2e00fbc7149639b0a5d7f30f1bc7176d2": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.assoc:5883f91dc5fab7d6562f4496a1d4873a211175d72251bfd35facebde1a6d8a02": {
+    "cjr.examples.cj_print.assoc:a7f64cacf5384f91adc23de72b1ebc537e27b7ed7d9170ff03ee031b62aa8a13": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.binder_beq:46e788bc68960b05210a57d690a4d13104fdd8425171706f46b68a307bf07537": {
+    "cjr.examples.cj_print.binder_beq:2b13470f7638b1a8aa7a8b847cd08c3ec838bc8744f1db0adc3d57cd0eca3690": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.binder_name:c1d0eb6cbe66f4d50ded59139b7bf7f9345b482fdf740bc993bf2e0b9986e93e": {
+    "cjr.examples.cj_print.binder_name:52f6ab29a8585c2bc4351a538facef08b00529f2a2e913687d4a2e0616ae3b18": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.binop_beq:3df92bb1e06c8799bb236fb872b1666caeb7a1605342b82c5dac495081eef650": {
+    "cjr.examples.cj_print.binop_beq:adf4f400b689c7c9a085209dda6b2c7f84a3e0eaa67d18a0d62d9bd198d13c9d": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -1830,175 +1830,175 @@
       ],
       "issues": []
     },
-    "cjr.examples.cj_print.bulk_copy_loop:b1a1f373fd18c5bdd679e9120704d941258a93e9c461623b094a6ecb1138c863": {
+    "cjr.examples.cj_print.bulk_copy_loop:26127fe716c3330c175d77c9cb72e037f7a6556b5ca1e73b1fbaf521f93843e9": {
       "entries": [],
       "issues": [
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.bulk_copy_method:605666420aae8af44f71eceab4b135fbfd892d8b999149f3cac3999669493538": {
+    "cjr.examples.cj_print.bulk_copy_method:59fb2b95429355421f6a3dafe181caf56ff9fb55c8dad2f9d4955250d74e09a2": {
       "entries": [],
       "issues": [
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.cat_all:26bbec7b158cd90d144e6682092973d0f2b4c5d87e3cc776ab79fad7cfe1100b": {
+    "cjr.examples.cj_print.cat_all:2fc3879cdccf84f05a8a88e7cab25c18f27dd8f6e18f2bb040f257f0a91da24e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.class_of:508628d8a75b8176259d24076a72d98f82e35656ff283caaab5a7277a3188fe4": {
+    "cjr.examples.cj_print.class_of:aba866f17590b98aadd02cb4ff0587c4f6972aac98bad408e95f40497b58b3d8": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.comma:0a6ade3bef45ffdd73a1532bae0be45e7eb3b173877703fe18376dc25408412e": {
+    "cjr.examples.cj_print.comma:5c5cf2ecc2616bab56918cee0e97c85ac94a961d7a29d7e3ecd0f6e9d109eb9e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.copy_rules:935d9a2437821d37275673296d8075a50bf80103c860f333b3081d7b426f3ed6": {
+    "cjr.examples.cj_print.copy_rules:cc97d0db63ee4f69a24dfac76850932ef74a64cf578eb0b44c034350b3f02c10": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.ctor_args:352491f163646218a15d4e74223bc6d96e7e3d809cc7a61dc73024ce047401f6": {
+    "cjr.examples.cj_print.ctor_args:2ebe3ce67251a0a777a7b1d91b63689ba540453f72c6c15f42dcfb5efb258884": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.ctor_param:2cd56beb3c2da30a7f20a280c2690b7995ad4d8bd206558f8c31b8dbe0d9041d": {
+    "cjr.examples.cj_print.ctor_param:3504c0aa44f4c6e41739e17f2f3a2dee8e1799d797dfd0a95b363bbeb5b76388": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.decl:6ba1fd1f6c676a2c63be61391d8f318feb9fa0a9b0ff9adca13c49b23efebb41": {
+    "cjr.examples.cj_print.decl:f3d1d2dbfadc753b78b8869716ed5306a668332fb04aabec0ef0d4318e53885a": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.decl_by_arity:9f010bb5080801c2fb1c4f2c7b165fbda506270fad9e02eb2da395dc3eaadfa3": {
+    "cjr.examples.cj_print.decl_by_arity:d978c5b03c13fe27545019c1c16655d1e1325b7ae483db95c2fc878552cecaf2": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.decl_by_name:352f3b10e21af86a47d3ecbd26399149bbea0340f57e02a853b45794fc1e27d2": {
+    "cjr.examples.cj_print.decl_by_name:d8036cfa5794bbdb4b3c82c7f67235c0afed7e6540069493c9f518bb5d9b0a56": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.ex:73b64ec66309d7155de6d341868e4f2bade173bc4d0fbab667b517455c0d6856": {
+    "cjr.examples.cj_print.ex:5de8a87c03e8ffdbff37df1e505ebcfc0006a7ad7d0a2505c830f3293a4c1018": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.expr_beq:12de5e36a1777cb07f666a5571a53759ee24a85a6f3170b577c0ad56df906c69": {
+    "cjr.examples.cj_print.expr_beq:0947e579fe9a8397ed96b1b88d9bdae25ea84af8a433362a2c0073386e8e2da7": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.exv:73b64ec66309d7155de6d341868e4f2bade173bc4d0fbab667b517455c0d6856": {
+    "cjr.examples.cj_print.exv:5de8a87c03e8ffdbff37df1e505ebcfc0006a7ad7d0a2505c830f3293a4c1018": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.field_of:692d89ff05f565e2cc8f0ea391636da37aeed1710c2db9bdd9b6d0e06c4fbe38": {
+    "cjr.examples.cj_print.field_of:5755fd827372b5bd49f236532153005ad0deb394f818b301e9832b4fbb89994a": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.field_ty:571586dcce00057900fbc1f09c2806094ba97da0c0000f6f784f719101582274": {
+    "cjr.examples.cj_print.field_ty:2fe9050d256796f0cb1937fdb5847863ddfda591e9395d00665c0a89ffd8eaa3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.find_body:4f38b46b9879d6a4cd87d9e52844a9786bc8d2b5a70ec1f745c0a7c99859ffec": {
+    "cjr.examples.cj_print.find_body:e092469962ee03f4a5f7a8fe506ebb61494e80b41d0c429f911639e58a72a0fa": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.find_closed:a9e58ed34590f149a6e2cb2608edddb062ae70a660e440b7cfdd369b3198ceed": {
+    "cjr.examples.cj_print.find_closed:51882c43b75a403fc9ae38380e78f6a91fb1f02799d516bec5a546655011d121": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.find_name:c1d2b178a85a4fff98fa77c0ac18c2f158ddcc601b56e0bf030ed9f32714848c": {
+    "cjr.examples.cj_print.find_name:fa54614aafa1e81183d427f8abbf23528d6269c4fdf10bb020efea7ebc73a86b": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.fn:ad9fa53dd2c4146033d27fe34f85b94b8763c03e3cdfb5828c6f8a5530c38e85": {
+    "cjr.examples.cj_print.fn:14dff13a384d1ab2af62b7d96fb22bd7dd8b5b51a9cd83882f0d7ccc0af1cbfa": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.fn_parts:7a2f351a5e8d69f1fa76d36a4a12048e6f2cc4801adfb24c86c40295d58514ad": {
+    "cjr.examples.cj_print.fn_parts:65e3523e6abfe53350e5491c560d13430d7c69b566316b0731c4352a820d9b25": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.immediate_pack:bf57a279d334955b775ba6d3c7cc9aa2c5e86c0deaf9569c3daeb182a8a146ea": {
+    "cjr.examples.cj_print.immediate_pack:292d8a35dea247cfe265eb8529878569a773eb4dcca2225abe357eb64e16f1f5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.init_store:b150059e855ef4cab55a2e2e63808416fcdb7bdfd627f24c12a941ed9bb3568b": {
+    "cjr.examples.cj_print.init_store:48a24fb74a19efa88eb0cd800d972777c1b1c7ff0e01ac04651dc06c9de83a43": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.is_binop:abf2db5818978c7931cb6c59b15bc910f7d7ee23a7b24c9bb08fd3f057e47863": {
+    "cjr.examples.cj_print.is_binop:4f229008f6400f0fafcf4d1ca9ab5c4885018eda462bc6e1d70f896d538f1a2e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.is_free:e2b410007bbe1a3e2e01db24b1ef068558c7f71019abd8ecb6f22d4fa03d677f": {
+    "cjr.examples.cj_print.is_free:87bfaea86c9557da2469e361f89c9133e249b1c940d1b3cebf856e9691a9243f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.is_stmt:8c9219c84b4b270ba5c9de772b7b9c5a8efbf329634d1fa4c0faa2318c4fe191": {
+    "cjr.examples.cj_print.is_stmt:5419c54b7c351ae70115f4db7bee38fae9d340d2ebbeed490d17150c656aad92": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.is_unit:22616d5ed037a2536e1d1fd650f006992eff238be8ed094efdac1ab1d4406272": {
+    "cjr.examples.cj_print.is_unit:091d3044c43f626a73d122682311c533980756f71b224ca3173d96e161706c65": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.keywords:9dbb3776f8618077e18411545078929d4fafa5fa9a9b1202ac0b346baa709c56": {
+    "cjr.examples.cj_print.keywords:0f611aef55fbee6dc14b87c37a56b9d0af3d4198c1e8212568ae0140c0307db5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.lam:ddc7d98f9d466e379242d36e4a6f5fcc1d6579be442d7dc8a7c19e4e3de16892": {
+    "cjr.examples.cj_print.lam:a8e4c487bc4f9282474cdad2dd8d40b8f7da6d3df6c52a5a222ced8a0f71ccf3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.leaf:d58c8b6607d0e3e7699005b0a79c3e2f331f2d11e45cdeb2de55d725ff2504c8": {
+    "cjr.examples.cj_print.leaf:4ca60d114503686ea41ecad73ec83e053a5759e195884aee6aebb5ea08383b3f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.lit:ba093909c208170cd708890f71646f7db52951a7eb2ce8caf0671ce0aaf032a5": {
+    "cjr.examples.cj_print.lit:9ce33722ea66d4d9a6668968c942711cbbe4ac875ea0fe4d4d11a077170f8db2": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.lit_beq:9c2c387bc6b491cafb2034a17f83d4afc47e557f00f5885ab54b15def13f6492": {
+    "cjr.examples.cj_print.lit_beq:737553d06f918d6d7d2dd463bc36b9b9cdfcec7cfa865122a695192d2fd35f8b": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.nat_digits:bc8abc06141c48eb14b96dab0b20895f6b4dffea6aaa66d66b954d47389c71e2": {
+    "cjr.examples.cj_print.nat_digits:39eb926543e84eb82e65a9c50a37490b577efa7d2ee8e07f22b8e4ceb0b4caef": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.nat_string:eb671f8443a317584444b70bfdfe2e8b106d3953d8b9735fad285c50055916cd": {
+    "cjr.examples.cj_print.nat_string:e7c65ef8c3cc829cc75d9e67dc205d0d8c7c6c95c13bcdb3287d1e1c45b783e7": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.nl:9015b0c703ccb648ada8e4a3166bc5b185758562a66063a4f81ffb23f51bf899": {
+    "cjr.examples.cj_print.nl:f54071d84197fb8f235d32dfcf07ff9eef18df6376cee73d4d0ad0c7a8151001": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.no_copy_rules:a52c3062e80d4d92bcbb353620788a25abf5ecdbfd93ea911f3acb7d1bdba9bf": {
+    "cjr.examples.cj_print.no_copy_rules:dfd5893378397c5f2790737b2f0db8ef8cf6bcf088a263f38fa350e770b9c15e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.opnd:16a8e1dc7ebf47de645091b9a0c30f115a5048a066b2a7e80bf7e1323e1c4d85": {
+    "cjr.examples.cj_print.opnd:77fb65d1f2b992af366adbb2cb43b5a3cdb49f512c88a65e64e599b4bc265e5d": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.owned_by:b8fa7bb784257da058cc0555acd8a69595f0f3659192187dc8c4d78fecc80688": {
+    "cjr.examples.cj_print.owned_by:f4d5fc0b8b293f0e6a33d96478e644e65e6d564802c47ae375420d2512d7a23d": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.paren:e008e558e4c8a561f14268ce5403793237d6cb39a9b1b153b19de50396571287": {
+    "cjr.examples.cj_print.paren:c61c0d632d64739474de477727acfe0930014f140f828837d5291e93c83f325c": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.peel:937e51d2eece71f71941ef16ff6c7748d661c7bff60f697b7fc0010c9da6adb2": {
+    "cjr.examples.cj_print.peel:59d6df038e528638c809d95de881c05bf6083e769c9f7c6b99dc1428143d5618": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.penv:08585d5b86c9de594be7b8be03216aa66a3adbf36c1e299d76edc757624760b8": {
+    "cjr.examples.cj_print.penv:f13d55161a5ab0b447f404b778f3bed19b4f54e76490b95bc3b4cbb82ec76330": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.prelude:f18f932846dcb583721f27a6074b5fd9899ac3299b2dc064b43ec4c84978e4e4": {
+    "cjr.examples.cj_print.prelude:4e6fd9778c333d053823dab68de558ff582d40056e20735d7015deeff24acd64": {
       "entries": [
         {
           "commit": "d2089ec91d3bdbc3eabf789eb1fade0c4db47b9d",
@@ -2054,49 +2054,49 @@
       ],
       "issues": []
     },
-    "cjr.examples.cj_print.print_decl:08027607c4c52931cfaa6c55b116e37268841e850c74c7eef1a28d59bc5b625e": {
+    "cjr.examples.cj_print.print_decl:fca73e3d4d2048bf0de3681bd2cedd43457435bcc25d6608ee549c482fbbe465": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.print_fn:365889e3e12bfc153687b4e2c38089cc8dd6d30e141126eea289306d05f61933": {
+    "cjr.examples.cj_print.print_fn:2321ce65ad820ab6eecc150deac693442e78d8d917100b6832bdf8422b7db245": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.print_one_field:6c6312441d46793393fe459f59564b59b9a95ed7e73cd639b34ebd68f7df1d60": {
+    "cjr.examples.cj_print.print_one_field:274f545fb175cda5eca0ba8244bc4c01d80fa0b8636b8b44a0adbd6b26e8c29b": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.print_prog:f5501b3ac06d1483cb5231fd49304c252725deb551d8931ac2a9135d942c2c9d": {
+    "cjr.examples.cj_print.print_prog:3b2ea26aaac9d674f46449cc8224ff65dffae7f441ab406b51c4d1166d1a0b51": {
       "entries": [],
       "issues": [
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.print_prog_with:e059a9cc79b7366b057ad5ca949999a2a4d49efc746fea4cc2f94c9840902602": {
+    "cjr.examples.cj_print.print_prog_with:4b97be23c0e20fb9a350fab6066a55467b305a880c8dc7e3c669edbb1ad42fa7": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.prog:3a82cec1ed10c2b8777b28689ca01e43188a6db834eab8b33a212ea20cfc873b": {
+    "cjr.examples.cj_print.prog:f1d58938c28a45964ebfad73de640eb759385517e3d9b2833e23ea5c4e8ffc5f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.rename_ptr:80e278e9db806649047deccc49f6f57dd5a9b88e6643cac1797404e2fe8ab2e8": {
+    "cjr.examples.cj_print.rename_ptr:36325e7f0bb2194b618977a554b0711ab9396cca811e90bbc8a75387ee7f5a17": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.sanitize:9dddec79545651b4e2ea212b93c1951c0a46546c759ef30d4a70b5142f93fb02": {
+    "cjr.examples.cj_print.sanitize:96dcf27ff9f672bfa8d5151eb6db7d8a4e550d49a2ef77771047190b372bddeb": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.self_field:c18a7f072f6f333d4b7483e01a8b29583424a0a4fc03e8997005aa41f93a7548": {
+    "cjr.examples.cj_print.self_field:edff899a70a1d0b7967395d1a920d7a22691ab8b75dc25c05d5a78eee18a4add": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.simple:94dfcbb572818bd2cc277322ec084933b4fdd1066a4427ddc2d6c8f4cb25d63c": {
+    "cjr.examples.cj_print.simple:e700d766d046d86a88651ee55a791cc2320e78f833bac89b5819390814d70994": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.sym:eda92229df584ab17c0f05570b2eaee540278ea8bb7ace22ff99692ac9f91ade": {
+    "cjr.examples.cj_print.sym:7b9b0de935089560a7ee2141eeef2210c1d516f0cfbba773b7d766cf6068721d": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -2322,59 +2322,59 @@
       ],
       "issues": []
     },
-    "cjr.examples.cj_print.unsupported:ce6c925c01145bb6b2f8930a4f93817e53a18271789e726ed4b97b5a323a7e08": {
+    "cjr.examples.cj_print.unsupported:d7cfe60ce054fb01125b48939394d99885caae9a16046ee77a39117ea235357c": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.val_beq:12de5e36a1777cb07f666a5571a53759ee24a85a6f3170b577c0ad56df906c69": {
+    "cjr.examples.cj_print.val_beq:0947e579fe9a8397ed96b1b88d9bdae25ea84af8a433362a2c0073386e8e2da7": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.val_is_unit:734f96284d54568a0a9ba958b38cc6bc0b053ba564f2b543962c9071938eb84b": {
+    "cjr.examples.cj_print.val_is_unit:d0b118e9911e662fa8381e936d608e2634c169b939b7d4301080b8dccea065c6": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.var_class:f77b43951784541e8a1e7a6a61003e2c5e5db955711dd8dc4d9a17bac628c7f5": {
+    "cjr.examples.cj_print.var_class:33c4aa2b5873c76991143af7cb87b6d0e3fc2be38620cb24f9095d5cd2dda240": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.var_name:a50ecf463ed382e04ead601f7846ae698b35527d075ce3715ccf398b39c4d376": {
+    "cjr.examples.cj_print.var_name:36a3a48f70d1dacff7b22c92d522430b973598700a8dcbb3865e0c14eb0659b5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.with_alias:779c2316f47ae330467326d4225f4c830800543fe831334eb44243d43f6f840e": {
+    "cjr.examples.cj_print.with_alias:b67c7e250eef82c112abc3269564c646cd67d4bc7a205bdd44ca678ce33934d3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.with_bulk_copy:ba8081c2e218c4ed1626f4f005ecc4a2fab8002f9dc366a7e813517409520975": {
+    "cjr.examples.cj_print.with_bulk_copy:56f76301faf55b9ec0ec8294496be8b59d7cb4600b239d097ee35eb013dfcf04": {
       "entries": [],
       "issues": [
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.with_pack:ecf6f60a36953acc729fc051d4273b8771781e7856594ffec94e3cd2be540f17": {
+    "cjr.examples.cj_print.with_pack:e2b7d69c07ad2a4efc221e48864e89692901c24b657ee7e65f33d91cd3ec90d4": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.with_this:352815ee9aa56486963abb7dc59fa172687a5b2d34d11de1f0edb12f627f5bd9": {
+    "cjr.examples.cj_print.with_this:ecad0fc8714e631f00b62229c1a936b45bb9f081de72cd27478eaec150001dd8": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.with_ty:33c962d4a90b9380eda37b7e7c2d987909fd6556a7e5c2de48091b3ecc53922d": {
+    "cjr.examples.cj_print.with_ty:e9ebde737c6865ab5ef18fb822c07c9a6d5b2f5e26e9832cba22b4524c99302f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.with_ty_opt:a4e24d6442d8b49bb39d603d4c2eb4552223720fdfa9f50ffc1486714b733ecf": {
+    "cjr.examples.cj_print.with_ty_opt:9bd80ad12fac7c57140120fe5867290421da8325d6a32e74728eda5a4ed48906": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.cj_print.without:70087250cc762b980acc5c22e2ac4b65f546ae62d0e9d093b22c183c2cb64545": {
+    "cjr.examples.cj_print.without:c6c9692466ce0f3cdec5ebb6c8c4a8dc504fa06c86384d6370568fc216ba1ec5": {
       "entries": [],
       "issues": [
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.z_string:fb6fd170ae25ce51fe16ff0690a7ff8153870ca5a82f691ae381c2c4430f2c1b": {
+    "cjr.examples.cj_print.z_string:16f89cbe83d67247ff7e73304a8d5a11e3af7ffe1dfbce9037f9b29b54edf46b": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -2480,7 +2480,7 @@
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.cj_print.z_string_machine_bounds:6e8c12c6bf7b532048dc73ccb7cce1c4dfa1574e985ae7df241b7f80b7d96539": {
+    "cjr.examples.cj_print.z_string_machine_bounds:175d79a62b52bc666e7289703a4dfcca45d1f52b114624602d2eb1bf0543266b": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -2586,71 +2586,71 @@
         "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
       ]
     },
-    "cjr.examples.class_upd.class_bump:a1898137cfab094873341ea07a01b9d0b58d4737d5a98903eb7df9d10b3b5d07": {
+    "cjr.examples.class_upd.class_bump:21c501b6c2f15a8d194e4b0379201f6810094d6287b3d0d51f69f5dbcebc9656": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.class_upd.class_bump_adequate:6413761877c3d2f3de646c370e58df7800b5faf3df9911a5d0d237d35d7c5078": {
+    "cjr.examples.class_upd.class_bump_adequate:b6839c6713f2fee1ff54f94f057327fb4ff95fd72d763e70b24d5da4652716ae": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.class_upd.class_bump_wp:453c433f1ac434fd4e7613d60a7af2280ae8f7d8e86d2517f01d6a98e00196c7": {
+    "cjr.examples.class_upd.class_bump_wp:047248666d946ee59fe9da0e5b6d3fe5806e9870137348fc56167d7d025632cb": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.array_c:e9299641a9a7d9c7710d377bcce77e766d8a9975cea6c13a81f967d45e88e254": {
+    "cjr.examples.emit_cj.array_c:8c4d0a3f1498f79b6a7fb6838a51ff7f951ff73d38285df786e89c31355b2c95": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.array_list_c:b6d867b16f4fe29001206b75cc5fbcb4abd0e650ae9066f253693125fd381844": {
+    "cjr.examples.emit_cj.array_list_c:b1e7162554020e15d2eb0ab60aa2eb2136b4bef2813877c9d70f02ac83b7d9c9": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.box_c:549736fb404d1f21c95ee1988f2e43ce2d1b8673ddff7a8248db299fa4af4b3e": {
+    "cjr.examples.emit_cj.box_c:65e9a29677005019d38706a29d23d608933b9511b849bd3011fc10d9c863703e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.cell_s:7e03ad875a5563708e000f3dc946ad9d4bc8d2310e04772adea99893743459d8": {
+    "cjr.examples.emit_cj.cell_s:73a9826451a79db4e508ab64a74f888f7faafe89601025ef5331018b34d8306e": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.cj_bundle:b8d0f1065542283885c586a627749cf99d5d9aae5634411a4bb7af8c4c4ffce2": {
+    "cjr.examples.emit_cj.cj_bundle:7a320ff560fb9d621a80c35e7d17b89eec607b63d34871415fbbd5982a171ae2": {
       "entries": [],
       "issues": [
         "Migration edits prevent reliable earlier attribution."
       ]
     },
-    "cjr.examples.emit_cj.cj_files:0ebcf1d1984513106cd2ad649eaf6871045d4d5ea4efc22d4cfaaff83bd8e2a5": {
+    "cjr.examples.emit_cj.cj_files:cb75e48a1cbc0510d776e49c72ce5b5d2f12d883ff71d7527ac9b0f2ffdaa288": {
       "entries": [],
       "issues": [
         "Migration edits prevent reliable earlier attribution."
       ]
     },
-    "cjr.examples.emit_cj.counter_c:b44810eacc805768fd4b0e663b1561ab6df4ee6bed07fdb21e12841c22987d04": {
+    "cjr.examples.emit_cj.counter_c:e12d161defa0b06a36aae3784c0ff80886a5809792333ffb8961c224999ca3c2": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.frame_body:8abab5e54600bf3f25db9adcf812a98d5cf6fbe7223023b3bcd6833b9b899120": {
+    "cjr.examples.emit_cj.frame_body:ea61f7c2261dcf7d3f44503971b25b7ea194915006213ce47c877d981bfd2283": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.hash_map_c:db588c533c76bc0c9e5b832e4eb5b6a0e4226824a1ab8060696a634b443726f2": {
+    "cjr.examples.emit_cj.hash_map_c:d845b5e0a5ea4712eb0cba6cf9de78e250b8dff3020e655ac14982d1c8df46be": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.int64_opt_c:50a549f9471ce7fec197ccf9d4eef570a7403b1a9c84130546a89aeda6b0f3d8": {
+    "cjr.examples.emit_cj.int64_opt_c:3ce889673df88bb108fe0de4b99a0a680ee6de1839ad32c6c080283083c448d5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.int:b98da93ef6be849348e0b31aebd01050cf0381fba065108121b912af1f381279": {
+    "cjr.examples.emit_cj.int:390e6ac480ca5b410a1ddb6499d3180adf7322aace79fbc010b5f4bf024b1faa": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.node_c:c8c122a592315e3e1d19a1d6c1aa8da788195ff81c007267c20a7e5d6beddb64": {
+    "cjr.examples.emit_cj.node_c:98999ed73a1859f7922b5210ca4cc63a3ff8325b44128ac12f5eccad1b7ff8dc": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_arith:02bbeeb8d3fe8c301cd81502d537cf3b33fa1678ac5f66dd5977277523be3360": {
+    "cjr.examples.emit_cj.p_arith:59279aefa3196d3a135182b7580902bc85ad179b143392242f0681b5928d9c3b": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -2793,79 +2793,79 @@
       ],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_cell:bf9454bb5d66624a39b47659fa7a1e262890f12941efcaf0de5aab4af2c69369": {
+    "cjr.examples.emit_cj.p_cell:e6de668b3e5a836494164e10b4bbe861f68f721307bbecf9ff9f40e85086b05f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_class_upd:7a77fecc48f59d87eee82c5b29ab5a6689e173614384fb1a516b01f2c42e3047": {
+    "cjr.examples.emit_cj.p_class_upd:cf6e679594473ffc5cc51322557c18fb31a76302d01bbec9dcbb7f7268bcbe0c": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_frame_call:68730016ddc4b4fcc78b53ac99088e5f20411d71af6f9642a0c08e311ad44847": {
+    "cjr.examples.emit_cj.p_frame_call:609668e2f63925774951c1dc9135e1f7fc0f53ef87cd194dc65ab90bf3ef1973": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_struct_upd:81228b1e4854f427fe9b9454632ebb567e2a8ae064ffafebac1e398028e06f99": {
+    "cjr.examples.emit_cj.p_struct_upd:e016e8dfed5712386ad4cd7d0ae414d5ce992cea75eb4b00116eb0d7e65c44b0": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_sum_block:00500fc363fd8f964bc84573f01a106d9356a19eaac4b82092d648822c1ef2c7": {
+    "cjr.examples.emit_cj.p_sum_block:b90ae95907175a7a35cb7c668d6cf669896e1ae7a44b4ae86d0650f524a5c35b": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_swap:f487fe72998250208d703198d6ebc1e3dbba5f0d16dcc96570bb0aa85ad1b58d": {
+    "cjr.examples.emit_cj.p_swap:7584837a557fd60e947404d1ac3d2ac23deacfc004090c79ffe1fe4e7997cfc0": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.p_vtable:f9eb1e4cb514417f9069416a72e15901c65abed1808f7a754f6ce68edd2ab6a5": {
+    "cjr.examples.emit_cj.p_vtable:4dbe687053d0c32d1283b4af5c6621b8dd8e295843eb622e2f5bc36f13bca2cf": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.probe_result_s:a999761c3b3681fc4a53fd0f3ea70065cdccbba36cd607694ee0183dda885352": {
+    "cjr.examples.emit_cj.probe_result_s:d8c72195eff5c64881336996620b2b5098ad46a186acdadf07cd26ffbe7cbeba": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.sum_at_body:e872ffb599689eca04d0b941da3f04dc64cca4e3abbe87693a0279f598086ced": {
+    "cjr.examples.emit_cj.sum_at_body:88096836768ee25ac1202816a154bcd23d8c18ba6c5ee1174ff2c840e8138f4c": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.sum_one_fn:49f921eb5d232fa3f8c84fe0e69e5e80f8d35355dcaab8e374fff3b5cd50e35f": {
+    "cjr.examples.emit_cj.sum_one_fn:8bc101c77fc1e628dc7b0b79e4954805ce6d477d518093933018e477b38e26be": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.swap_body:77c4a9ba99aa920a89a30c8dac4f60cab471d97422132cabbbd72034cb29102d": {
+    "cjr.examples.emit_cj.swap_body:7ce893211a33c558645ad95584abbfb6406adf365fe5c60541448697c26b7572": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.t_int:42364741c52b2a6e2ea3add112c09a923e59987095cf366a9937ced79c07a677": {
+    "cjr.examples.emit_cj.t_int:b5de11a2cfced7004bd3e819ec15671a7b67c0004fa34f14ce2b3ce5a667623c": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.t_ptr:a3195ae35fd1039a41c2275551b5eae24a49dfe94a8667d792c6c6089485af4f": {
+    "cjr.examples.emit_cj.t_ptr:e464ffd27312441b1ce9abe6854cb6bd109cc81a6464b4e4df16ed7a4e2f34b5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.unit_e:a2b9618e11fdd72ebc8c5ff4a6466eb00f12a10c1ecaf3939d90d10814aef161": {
+    "cjr.examples.emit_cj.unit_e:9608e92a48efeef30731a7b7a3bccdf4afe1c142d3bd727bb1347397fa58dda5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.vtable_s:df819d0b643f39b832995860736036ebc0b80c0084cea58f07173134be8b2dcd": {
+    "cjr.examples.emit_cj.vtable_s:8793ae5cbe273411f005de0b22fa99732693bbb05089735c8b8304a812988d65": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.emit_cj.write_body:da45d034aec2f663298c2184ec663e1d3fed05963497e28d1578bcd3a900e655": {
+    "cjr.examples.emit_cj.write_body:864997d436bf61965375183464d028c2e4b00d397adbb73e3974e2e81c804457": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.frame_call.write_call:206445f06eeeae1fec0a75d11e1096bb3d3c9cf3c77e774a53c529a5e2445ae9": {
+    "cjr.examples.frame_call.write_call:cbc8f1f0e3b8187afe788e94b6ee02e96ee6ab94982431c4d32c91c681ce8218": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.frame_call.write_call_wp:93d589daf7e3f4ab32c8656ade6ecf29589ea18e7579466085daa67afe49c457": {
+    "cjr.examples.frame_call.write_call_wp:c39950f8701a23f5d1105b3602f9311ab49b74c03c955dc2e7511edc90e30cfa": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_construct_spec:35ec75ce6b8d6c3088341e374f2aefc34c17102361affbe4c9a8e52a88edb0cc": {
+    "cjr.examples.generic_examples.box_construct_spec:b077583a80c07b81a8f9d6dfa63104c2f183246d9c5309b994e715fde5764f53": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -2937,7 +2937,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_get_body:509055de1c1cb581caf2775f8a8097912cfd0add8b852787f9049108bb89b300": {
+    "cjr.examples.generic_examples.box_get_body:61c184b99c48717c3669fb5db8efe7b804aace6ced11ac351383bba2061e6c4c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3009,7 +3009,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_get_fn:79cd2038fc0fb21efdc837228942b36570363fff629ccf0fb9d40a1ff5580e98": {
+    "cjr.examples.generic_examples.box_get_fn:9a31557b754e390af9e553b00091508b3b16b234ee806d7d2913b087edb4aad4": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3081,7 +3081,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_get_spec:a825d9ad7798d0da281bf0919a762694bac2a8516d0d48c791e42ddb01769bc5": {
+    "cjr.examples.generic_examples.box_get_spec:43dd0b1545eb5b639b2d3dd888aa83af1fc2f768dea26191f6c8ea20f1682adb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3153,7 +3153,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_layout:6693560c65d8ceebe1949a83539971f3f9d2d4057b69017d98a9210e9091d51c": {
+    "cjr.examples.generic_examples.box_layout:3644a31bb02b2d2d0a1c3adb40132330f51f57b02f2e1890e00dcce4886a542e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3225,7 +3225,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_map_body:367eef3c08087dca5763c14d536652c158ba0604dd99d1e50b0dfa328074fdf5": {
+    "cjr.examples.generic_examples.box_map_body:8f43ad7bf441c160499adf4e0df5a28d826492aa2e2a56dffb77487fa813b596": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3297,7 +3297,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_map_fn:ca4e2250440b030e992486844efba9c26c01d72a4f20411a7afec0788f3135d7": {
+    "cjr.examples.generic_examples.box_map_fn:438f6b5af189de4b522921b8bbedc1bf61aad3ffa80e49b3fe211cadf21bf2a8": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3369,7 +3369,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_map_spec:b84594fc487e8be832f0799a1804028e42c536bc98d39b43732ff2bca423d56b": {
+    "cjr.examples.generic_examples.box_map_spec:7c8cda317a9a7b844c3867c896ed1f495156d63d228314fb9cc457413a592d05": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3441,7 +3441,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_rep:2b97ec596736dab5fa2c915ed536f3c459fa346f52216f5d3f56eebddb4ba1a9": {
+    "cjr.examples.generic_examples.box_rep:d2eca72d2a78a0b47591252f5c7b934a307c02e20d663a9de35c2b2d784d0e67": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3513,7 +3513,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.box_ty:facfe2f9838d6a4ee25cd7d89f1818d8ecca428001d74ec71835dc28d991b118": {
+    "cjr.examples.generic_examples.box_ty:e050de02b4d88af9eac543f14493751b62ea1e8fdefc13aec1bf129f53b31eff": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3585,7 +3585,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.first_body:c479a4dd246355f042b96246cbd24652899ba4169ac33884a47a51945c7598f1": {
+    "cjr.examples.generic_examples.first_body:1bb4d562c9920e9e7e11155ed0f79435e1e80703ddd3e221466cb81936e0f293": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3657,7 +3657,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.first_fn:7983f6c18c822b5b3dd54e16bcccb0bfdc338b8419ae3c8495ed91586798175d": {
+    "cjr.examples.generic_examples.first_fn:d9cd42a3fc369bea34a32b8dca1262e4f8b5fb761c0af92f8f827a0fd117d5f8": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3729,7 +3729,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_functions:d89525295dc4739429f5473d2f633a034ccfd44765d7c36152707e123a333c4a": {
+    "cjr.examples.generic_examples.generic_functions:f10a3c4736c8aada38b0846b2b1c0d0817a863eb0cb05b25fd9f221346aceeb7": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3801,7 +3801,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_layouts:1e18d1c30e96fbacf5eec88790c36d4342280457d31951f3abc38a543f4a5b65": {
+    "cjr.examples.generic_examples.generic_layouts:03a382e202d83da41b899d9b7e01f7298f90ae491a34ad4ad42d307f619263ac": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3873,7 +3873,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_main:8082bcdebc2f413f5ccefc2b5d5f676516a6aeb93808ed2d6fdacb4f818538e3": {
+    "cjr.examples.generic_examples.generic_main:f8d65361dfb84bb4fb5d2a28e92923b1597cc9e2bf3ae3f0e67026c4ddb7d210": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -3945,7 +3945,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_main_adequate:1495bc56447d85f40635ed1f62ff7219667ac2ffe659b5c3e42ef7c24715e657": {
+    "cjr.examples.generic_examples.generic_main_adequate:beee098ba64accb92caa60a7ace9de60f3d1ecb0b9868938c313ebcea096a49c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4017,7 +4017,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_main_wp:015126a96f2baaaacaccb063776b03b67ec9062ff1874c4f905bdc27b4d262ae": {
+    "cjr.examples.generic_examples.generic_main_wp:921f46e930cd8bfd79519a06e22617ff0d86f2987d6fa4296a1347f73b318ca5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4089,7 +4089,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_program:28ea98612f87617fd501bc7736f111b75e0a980991f206a283e709dbe509a6e4": {
+    "cjr.examples.generic_examples.generic_program:6b1a25b89fb1e4184ed917e409aecaa0971cb2ca25a4c1635e2cd62b5e601df7": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4161,7 +4161,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_program_valid:072aaeb4ef9bed394f2a5546f3f661cb926a10e3c3c441c13b2a4dca13a6ca8e": {
+    "cjr.examples.generic_examples.generic_program_valid:20832382b6f0cf054150c8a4220d774984f41a4d79071356ad79d87e6b283639": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4233,7 +4233,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.generic_runtime:fc71b36c99d0b201ae86eae3a804390694a58e6b4da116f72e6b61058034ab0d": {
+    "cjr.examples.generic_examples.generic_runtime:2aac0f4a5a5ce7891647a8dfcbe478ed6ef3ec0433878d4f2aa6903f8af0a39d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4305,7 +4305,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.identity_again_fn:39d2f8271465cd05ac04cec426d88eb8f295a774887657eaf321c94c3fc4ea9a": {
+    "cjr.examples.generic_examples.identity_again_fn:a92090e9180b2162ff860c19b13cd8885adb899b948cba2f59db696de76e535e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4377,7 +4377,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.identity_body:8e1875a6dc7047257fded423ab473a075858289a4019a756c50aaafc152f9334": {
+    "cjr.examples.generic_examples.identity_body:a6278061e1c6b8156664395c34cc470693280cf424c299970aba02b30fb4dba2": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4449,7 +4449,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.identity_fn:a69b8b99b3d2fd75b35daf5645c5ab1cbd88934c8fade778e942a969e68b7d51": {
+    "cjr.examples.generic_examples.identity_fn:2c3702819b913e00acb71ec515b89dadcbeb5874cc982fdf77aa21c739ac2089": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4521,7 +4521,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.identity_spec:e05340f35bdd3b55badf8f877a592062db5006c7f82958bb0406ba48ede1ff2a": {
+    "cjr.examples.generic_examples.identity_spec:9812e3b1835472f93b5da6e672da212806b622acc45da2717caa46e4bb019187": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4593,7 +4593,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.make_box_fn:3d8e78d5acac134d94f7c6124af9cfa8907faea57916865537c258e3aec91d91": {
+    "cjr.examples.generic_examples.make_box_fn:9e37498a560874d783eb6ef36fb8a465d9a25eba23c26102da98e632130ea46d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4665,7 +4665,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.make_pair_body:cde3e6e1cc86ebb31e9454dde3797266568dc9298d39aff9459dd5fffacc5cab": {
+    "cjr.examples.generic_examples.make_pair_body:a912272d52d48fe7e3826c7c8e52b66a1117e3d31d19328d3d4151062d550129": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4737,7 +4737,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.make_pair_fn:a40cdb9fd338e9002d3ee909fd9601d1f950c1476fa34aa1fc2dc580ac63fd3e": {
+    "cjr.examples.generic_examples.make_pair_fn:c5f8b0aaac5bcf55fa6b2d1fb088368a45a9dc2303e68fa6fe0836c06f8fb0f0": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4809,7 +4809,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.other_box_layout:41889ba9b48d2fff61b823f5e34df55cc4459ee05564f8906b60b9c150be6f14": {
+    "cjr.examples.generic_examples.other_box_layout:a5092e714a2c1a3bbe63a3dac94e81ea0e781f479e93d9cf6e5a29fed4fe2552": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4881,7 +4881,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.other_pair_layout:bad1aabbbd5baa6ab8a03135004ed8db814eb562638c426e15462879deeb8e0a": {
+    "cjr.examples.generic_examples.other_pair_layout:7fb5929bd84cc4026fce7ffda63335b3d5ccb502d7a5f7978a78c7d97ebbd5a8": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -4953,7 +4953,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_construct_spec:3f9907b0bb8ac43226de45794a2e7ff72efcf6b15e73bdfea595708edd1f2b31": {
+    "cjr.examples.generic_examples.pair_construct_spec:ceff6cfd24224b470ad088ec56009d36118fff559b800ac8a4730f9b7da796cb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5025,7 +5025,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_first_spec:964f2d83ce8021d16dc60fe01cc07b0575c5b6be5a18ef5417297991ed505e8c": {
+    "cjr.examples.generic_examples.pair_first_spec:9f23c2b2fb7ac180593e1b2053094202169fe85d5d3d40ebd363f035cff25fba": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5097,7 +5097,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_layout:f24e82160eda0931379f1d93df844058b5acd1e8cc1255d1001fc7b9d0238cf2": {
+    "cjr.examples.generic_examples.pair_layout:d222195b1bc7812721ea0c97c31220df882da5daa139cf742db85b2c44170145": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5169,7 +5169,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_rep:19e2be330049cb144bd497b3f7504d7e229f15dd78ed83899bae3c5c9b7a28e2": {
+    "cjr.examples.generic_examples.pair_rep:0c8f6619ccc38751818f25641e6f7ff08013cd3e87f41e16eec132d4b7eb28a0": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5241,7 +5241,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_second_spec:102a108ad0909d699410b5a658684ff0b906f180e72933a231cd4a149a2f5e3f": {
+    "cjr.examples.generic_examples.pair_second_spec:605529ddd9aad21577e1cd534e147c8c3091060515fd923aabbde94ff17b995b": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5313,7 +5313,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.pair_ty:141108e222087939535a94b83f6b2c48fa0c1abc415938f7aa5ffecd6a9cabf5": {
+    "cjr.examples.generic_examples.pair_ty:dec1e79db161d17e232f6f5fc6e744f9ad0878ba72e20eadb07473feedd77f79": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5385,7 +5385,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.positive_box_body:28583998fad66a192ead1df6151e9fb23b3b31fd5a5d7f39574fe1de167fe7fe": {
+    "cjr.examples.generic_examples.positive_box_body:799e1c28e5ef8e222ab4bd11426f614c24f7a6f94c6325c378a6cfcf8765c7bf": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5457,7 +5457,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.positive_box_fn:0a7791669025a8ff0b6bf95d328b75cd30a505abd7bfbf549497e3c6c213de60": {
+    "cjr.examples.generic_examples.positive_box_fn:0c043e84ac15d0ea767d5b1ba32d6e518f3b68d5091678efe6e9f8a064b3d5ea": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5529,7 +5529,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.recursive_body:7fe82e86d9641fa0b18391a92dc53df8a9f7b7193a5cc98d4d696ad8d532a9a0": {
+    "cjr.examples.generic_examples.recursive_body:0bc550a88afbc9839662d8742376102f1388879abd5a902de0416dd1ad606e03": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5601,7 +5601,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.recursive_fn:52bea3d2b9839e1472bf1da37baa33fc99f5db9e175bfdf25a52741540d85374": {
+    "cjr.examples.generic_examples.recursive_fn:31a6562c1d63c70b6deaab5c586eb969cc97c92c8854ec97471123b543058443": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5673,7 +5673,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.second_body:4c9a762a64833209f4c841c846dc0a8a9b3ef69abc34392121878a333caa7dd6": {
+    "cjr.examples.generic_examples.second_body:7b67bdec5c9193a28b983ceb49c32595af4438f26f23e39f1281c72c7b4e74b3": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5745,7 +5745,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.second_fn:19a370661e933e2c256c3351e87e4defb50944fff2aee3172982dd07a0bab39f": {
+    "cjr.examples.generic_examples.second_fn:f35f7f48e481e9c4a405bb238c264b5b0e037778240c967f5465009e748d2f84": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5817,7 +5817,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.strict_and_fn:ceb53528929bb2954720faec47e9b274a817c0e028b5e2641a50e1dcad474e94": {
+    "cjr.examples.generic_examples.strict_and_fn:12073549dd169bff7453ae1425f12c0709d191b63aff4e83c56cb3a1df8f37de": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5889,7 +5889,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.tA:1bf1467f1ec212fe776a5c934bbc59547b103e7de3079d19ca3f066170cc733c": {
+    "cjr.examples.generic_examples.tA:e925a9e953523174bc5e042fe1e42ffd9d6ad1d251a952617bf19835d252f7db": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -5961,7 +5961,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.tB:745c946c2c2da86759d5ced572c4bd76a66093a8b69ca254f1315940e15edf87": {
+    "cjr.examples.generic_examples.tB:629148c944b3fc8d096ac3a5c62f9c92543077bf47e51e9608b3771bb2c6f5da": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6033,7 +6033,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.tT:45a8277907c7bc504c20352003926d665eb4872caf9403998afe4da4a5d9996c": {
+    "cjr.examples.generic_examples.tT:200611d19772ef3074169d908646a76fb7ebbab6fdc1c0e6a971cec090c915e4": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6105,7 +6105,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_examples.tU:55c4083aed87abc182faa8f8a89622e78b1f9c7652e002a4e8289b208a71f6a1": {
+    "cjr.examples.generic_examples.tU:2076b94af01dc6d13615ce1a8f86f8cdfba0e807908592d187dfa73539cfb1bb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6177,7 +6177,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.check_expr:1078abdee8542e08881a8bee9ae89c52333e204644962e50dde3cf89434b51d6": {
+    "cjr.examples.generic_print.check_expr:977361203a3682d309b354ce6881f4211d481a57ae39bea5ea9c6755527b02c4": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6249,7 +6249,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.check_function:e82654819c377b587b626627161848c2e1a95867d19174a714ae0dc4f12a5cfc": {
+    "cjr.examples.generic_print.check_function:e512646a26baf08f3d8bdc7380da4b19c59a14b6b3a850a578488dba43f9acb8": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6321,7 +6321,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.check_functions:cd2917b86c9869dbd9402da2a9e979a988da36aed4f0f05f9c9c887cc6513162": {
+    "cjr.examples.generic_print.check_functions:77b203c632b29741fe2d180de38857704b2ef0d382ccb5e8eabd20683de5ef29": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6393,7 +6393,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.check_layout:16b6b2c81f980d685b750624bc19027ac3b704ac64a8ffff04b81a111b8bff3b": {
+    "cjr.examples.generic_print.check_layout:ce452986dbef3af92875cf97a6143c1c93ae5257ab34a39468b15720cb5f4822": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6465,7 +6465,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.check_program:65ad4e9f8db916468d04118586334a9018c443c2e4f5619cf6ceff561b4f13d3": {
+    "cjr.examples.generic_print.check_program:59b63e982e8b99fd83296a3a14e617894947089e74863f7c1869ae538ff8a813": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6537,7 +6537,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.digit:29229d530ca010295f4c219a9e77ae9c40be989739ca72ee3287c1a762ef6db4": {
+    "cjr.examples.generic_print.digit:9ca0a3e7d7dbbea7fffe38b674e7f4c5c9e049f082fee64d5abe00e532a48e08": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6609,7 +6609,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.distinct:e8b95674e8c213cf3562ddab8c5496cfc29099c5d454470cc556d9a6b958e0ea": {
+    "cjr.examples.generic_print.distinct:fdce890203e1989bb2cd63ff3f8743ffc2e2a219519bbd0db5e13f6610af3f56": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6681,7 +6681,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.extracted_program_checked:6fff772d99eb577fbabd9eb0b5564afb32718f3dbc627f516a4330a206961eef": {
+    "cjr.examples.generic_print.extracted_program_checked:31924b9e769cbe61afbb4a50a099744f52caf52c48c003c49e0441b354a75974": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6753,7 +6753,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.extraction_result:3a88dc7d78ff8ab85d1b30bc7072a6e9923699ae068e52d02f744028faa7233f": {
+    "cjr.examples.generic_print.extraction_result:09189c0e8fd8fca7232bc24201ba9a0ed4a0c885cad3aeedbddd793b91d0de98": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6825,7 +6825,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.function_env:fb0c4f4c89be23fc1f661bc060d912d780cec60083078263dca261cd259db7ce": {
+    "cjr.examples.generic_print.function_env:7041166b6f7d7260c26d16c450d0ebd94f4a658b112b1d4123a95fbbc46f7b33": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6897,7 +6897,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.generic_source:bd0ebe29bd1ae39ac7be93f8aee32613f37ac83625924508e3b6b99f4e6027c5": {
+    "cjr.examples.generic_print.generic_source:800a7af405e0ed906055c0ab8019b9eb80bf19de60f188e9d2546ecd30d93c69": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -6969,7 +6969,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.gty_beq:b838a04c0ac1bb4f26b1e0cd8c7ca9f0d48f8e38440cf53782d08bfb8359687d": {
+    "cjr.examples.generic_print.gty_beq:b1a6ee55d17d3c9328d27d3924edc1429a0d859d9a741bbd2ce5d046c6a3cb7f": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7041,7 +7041,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.identifier:6cb87c548a7a63507463b9d6b94cc93aa26da045bd604f12e5ebec1b71f5cbc6": {
+    "cjr.examples.generic_print.identifier:60d7c9e953a7f48cf0ee0c99cf24074de3826315d359b6f492677637e1c0bdda": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7113,7 +7113,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.identifier_tail:5fa1767a0727f31237406db86b052daf16061eaea85433374e2d6a6bd91de771": {
+    "cjr.examples.generic_print.identifier_tail:a2d6fefd83f617456df0f6d9838c79e1c97df2921fc00ffa8faa6d5a43c42cc1": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7185,7 +7185,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.letter:528d955c9f3b32e3617054d72d1de4bf9dc4051f16fd69c5aa563a8ef18380cc": {
+    "cjr.examples.generic_print.letter:43631718ff06717d6f6092455464508eec3acb320b73bb55c1ebb1087e0d36b9": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7257,7 +7257,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.local_identifier:e078e258ed5986da47e3d487156be7370e74945fdcedaccff5d8e9fe2978b9c3": {
+    "cjr.examples.generic_print.local_identifier:e208bf3ccb0ff7fdbbb6207f90d6728a032a67af6fc72e4fa927aa19d568e1df": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7329,7 +7329,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.member:9267897958a91aad9cb22aedf41d3d666147f663602dc8e1a2346f6f33d63937": {
+    "cjr.examples.generic_print.member:b0e5d0622889b0fe674e3f8d623703ed0f31f307d1463d9a526d808757a08b55": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7401,7 +7401,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.owner_parameters:db5ea8507965129bfa033af95a872365e5edf262939e806dd16b3344de73d99f": {
+    "cjr.examples.generic_print.owner_parameters:c72438048a05301206e583ae16814c961bab564ec0c12c824fcd83cfc42d2a02": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7473,7 +7473,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_expr:c9ff23a089f9aede43dc60cfba08cdaeac98f7be7ca2d08c24639eae99fab9bc": {
+    "cjr.examples.generic_print.print_expr:406f922100d9b89412c58257b82ed24d7018ba6cb20455cf66aaad6149b77c81": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7545,7 +7545,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_field_name:a83ba78d9f3f08886ce4edb705d02ce0acd89a65ff857328fb0a2586f4116723": {
+    "cjr.examples.generic_print.print_field_name:539efe2351e11d5e61dbeb3adadebe33b16f4fa4af56c7afee654fc9b49ef9da": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7617,7 +7617,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_function:59d85809aa8dd3bc72261d2e86e3ff40d601bb19c79bc273dac72bb452d1c162": {
+    "cjr.examples.generic_print.print_function:5f851b411a1b6b9459611209bbfdaf39955099f762afe82acab50c4a74ea3fe1": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7689,7 +7689,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_generic_program:5cf12c53b0fab4ff09de7f79c5b374ae00f9e2a00146bc9aacbdb52ef42ed346": {
+    "cjr.examples.generic_print.print_generic_program:76994a80b66962bff48814dc928ecf44b6d4adab747d05deccf10c872628bd46": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7761,7 +7761,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_layout:607e235830c54b5234f8550a30bd097493e52d1402a241179041814cd6740325": {
+    "cjr.examples.generic_print.print_layout:e172e1eb3e624374471e043840c2bd60086e1f88190cec6cda79285b14f52de5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7833,7 +7833,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_parameter:308ce72e7931514d684921b809e5cb18d6f4b0b4173b0fc8e6c955107d1048f3": {
+    "cjr.examples.generic_print.print_parameter:2968f1b3f1dada331331338d495e3c8751c360f47891bf2ea839e04b61018202": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7905,7 +7905,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_parameters:902009288f03abee8772198125a641f3059ce908e6eae4102bed608193727f9d": {
+    "cjr.examples.generic_print.print_parameters:a91fd43ae6fde50f3e3a46eb5b6026b88146fa8da01f552139ff92a829da9084": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -7977,7 +7977,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_type:5da94b8e7234c2e1c36c733614e867468b8e4df744cd1533c249e097d3418a58": {
+    "cjr.examples.generic_print.print_type:79ecf1e8260b461ea5dcdeeefcd97bc1064eb7537065db8a1414c25c1be20014": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8049,7 +8049,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.print_types:cedcea75b032770208ec20c0f9936885760ce8563bed739fd06b576feaf5dc7a": {
+    "cjr.examples.generic_print.print_types:c282bf27b4b903ac29d06f263b33fa7cec02093a7fafc80ed30d1e4ee6cda071": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8121,7 +8121,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.require:5285f772201b8f3771d4742c6b94cd208a016915c8f013716673a5b0cf4ebbb5": {
+    "cjr.examples.generic_print.require:e70fd548e183ec6e5d71f1ef3fdbadc9dd600d75553c3439ae6c596769263cd6": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8193,7 +8193,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.type_args:9f47c27781726b92d7d321ee41c39804fc82728f3e13dceee972ce0becdf335b": {
+    "cjr.examples.generic_print.type_args:e3a68a85c8fc22f3c254a6e5deae1f947f7db991ad20d7ea4196aeb5f86e27bb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8265,7 +8265,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.type_errors:8fc20573d18dbf4540d3e5afe2b0b9482a7adb48054622dfc8354ad08add10f2": {
+    "cjr.examples.generic_print.type_errors:b74cdfa85e8f3042de6fe1c10cdb1d885d5fc0627c4221ddf5b196ebddc9a073": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8337,7 +8337,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_print.typed_receiver:6e0dc708973fce1232ad20f1a6da5e208b6ab6e9299091c62773eefa6670a469": {
+    "cjr.examples.generic_print.typed_receiver:21b2f10c1eacbe62ad23e5069e3642e8351b8bf95ffcde659ed2a833637179ca": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8409,7 +8409,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.declaration_shadowing_rejected:b87c7baec3da619326084b38df91d73468bd767ebbfcff832f465fd367befc15": {
+    "cjr.examples.generic_tests.declaration_shadowing_rejected:397f26adffa46526a150be33d96c8bb3326fa865dfaee171d80295971791b82d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8481,7 +8481,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.duplicate_declaration_rejected:24c829ff23f94aab53df1acf8471ed823019b0dfce0950d1cc8ce93298f8d622": {
+    "cjr.examples.generic_tests.duplicate_declaration_rejected:c74008bfac87903781d78489f198b189cd6c2acb7ca8429e02c9d5cb472ea37c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8553,7 +8553,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.expression_errors:bf66ad5c3906fdd77bf2ab15a6f1476d0dbd31b31c0263d30b93183f15f8e1b1": {
+    "cjr.examples.generic_tests.expression_errors:a2e065d4373b66c5d00f522d2f28e5c7da36a0ab1db8557600a15342378aafa7": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8625,7 +8625,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.forward_reference_rejected:732947a012e4865787f8845fc049b96a758915be709eb0058f5f872896ae91d2": {
+    "cjr.examples.generic_tests.forward_reference_rejected:953743baee8e8df5afec82a9f6382c28328fbaede46900ca777047a0c5e52c10": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8697,7 +8697,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.identical_bodies_have_distinct_references:7666af2c00e83eee6c7dad16b930773e379d5cda5055039149858392a1f407ca": {
+    "cjr.examples.generic_tests.identical_bodies_have_distinct_references:821dd28c05f2bccd0a203802a92aadfbe10d690e0caf82929182416e7a681289": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8769,7 +8769,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names:dab7dce28085335da9cc0144e01ee63d168145cc82471a3f66ccf9bfb8cdda8d": {
+    "cjr.examples.generic_tests.identical_layout_sizes_have_distinct_names:e680b0adc63e28254cc85e210621f883318e78a3593f9716587420e592a40da7": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8841,7 +8841,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.internal_binder_rejected:7d0db3e5068267294a66e8becd2a730449b2c11b4f55e3710f93da24f11dc679": {
+    "cjr.examples.generic_tests.internal_binder_rejected:b12bcb2f12b43cd888ce8fb544b9291d072c99be0ab3eb4358b0fa4d479d93db": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8913,7 +8913,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.invalid_constructor_arity_rejected:0952bcf161942c3d49c1cc143c7d5e0c8e68f0c1bf41bb6ef19c7deddf8a45c0": {
+    "cjr.examples.generic_tests.invalid_constructor_arity_rejected:7326cf7989680451bb780d84dfdc77d10ab1ffc1ed5fe12b7520daef38902c05": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -8985,7 +8985,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.invalid_field_rejected:846566e3deaa2fbd4816021e12f553644973b1ab6caa89ce3b684529296921ba": {
+    "cjr.examples.generic_tests.invalid_field_rejected:9205f74c3511ea22d69e663702a9abd82068370550d4278514610873b0772e41": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9057,7 +9057,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.invalid_method_type_arity_rejected:68af647fab438d7a30390f722f1a2e610c365c7699559cf25928d3f9c482a468": {
+    "cjr.examples.generic_tests.invalid_method_type_arity_rejected:772281e1c240fff2ab7167bb48a042eab0d78fe9a1d26d07450f194ad570e71d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9129,7 +9129,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer:6734699650c129ec8063c28f7f06a47d7085453e5642fadcf3f288152040f224": {
+    "cjr.examples.generic_tests.legacy_embedding_rejected_by_generic_printer:68bd0c74f9d5616a180cd1f394e4649b58c4c5fbba96fb7d69ce9b2745775a67": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9201,7 +9201,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.map_erasure_uniform:e08c2235aed2d5635760c0f7796eeeeca549ad8d886ee79dd32f1d2f30050955": {
+    "cjr.examples.generic_tests.map_erasure_uniform:cc9212a735f274eabb74b3c6312211a271cfb68d488e752e410d51a50087b24d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9273,7 +9273,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.method_parameter_shadowing_rejected:d8f556e605b92003b4733ff605fa0e15b1c1c98f44c8ff229814590f89861147": {
+    "cjr.examples.generic_tests.method_parameter_shadowing_rejected:89a8611616a06c207b385f3bf669abe73445a9f478e141bf5edc760b8f9e9cac": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9345,7 +9345,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.nested_type_substitution:f3590ccf8e6d111fa59c6b407b644ab9e7b41e7d4d60a231a98455ea0a3dfee3": {
+    "cjr.examples.generic_tests.nested_type_substitution:5f73db33b8a61a242757b768caff3dcec12e3e9b8dd3ab6c13f49f1e7f22426d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9417,7 +9417,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.nested_type_well_formed:aa9992f628000bc15eb95cd11e9bc3a0f2b68a55fb7f6cea747d799ef87fdf0d": {
+    "cjr.examples.generic_tests.nested_type_well_formed:cc25601f858e901571545c8dcbe9951a972ae0b44cc3335bab23b580bfee8a3e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9489,7 +9489,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.nominal_type_arity_rejected:1fe98678306fdd25e92bac529411a87121d73e1c1ae97f0cb13a07e82dd535d8": {
+    "cjr.examples.generic_tests.nominal_type_arity_rejected:8a2a36b390acba3278861bd736e69d55087b10044914b8ea431a6f4cb6d47bb5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9561,7 +9561,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.recursive_reference_is_bound:e4e8c1618d33720908c63547a46f5ecb552daf5c2d22536b0b1004473f536391": {
+    "cjr.examples.generic_tests.recursive_reference_is_bound:5c377639aae58db526dd30da5193e78ee91714ad692b2566c5c594160916fedb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9633,7 +9633,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.rejected:a720a1a22b28f15ff1f6134b4ae2222ccef3869835d15491f1e3440636dc5308": {
+    "cjr.examples.generic_tests.rejected:d0a8c3363a03f3f8023cf94efda0d05431a0fd5f77c06feab218350c19b5434d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9705,7 +9705,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.simultaneous_type_substitution:de01179ffdeb6850fcc103b55f2975232415d1b648df928ca5da181aea1448ab": {
+    "cjr.examples.generic_tests.simultaneous_type_substitution:b451a99cf71775e197663fa5a7d2ae9da5e5909e0e1bc5e03776b0968b364514": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9777,7 +9777,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.source_substitution_respects_shadowing:cba27cd13dbf91433b6565f8393a0547678be117303634dd014a75e25f491660": {
+    "cjr.examples.generic_tests.source_substitution_respects_shadowing:7cca1ba45bbeb0bff116b0cb1230d41c8a0e3db8c35d76407251f73339d371e2": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9849,7 +9849,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.unbound_local_rejected:27e543186f4984409b1cd9509a8ae0b4b18f542fc3800b73ecd42135410f99f8": {
+    "cjr.examples.generic_tests.unbound_local_rejected:d1289321895a93914da100ffdf1fa5b340a9b1bd5a3267129ef68791f563b209": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9921,7 +9921,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.unbound_type_rejected:49f5c94f726e09aad2f1ad1a7dab9782d5408ba26ede5848d8d303d6ed3a24e0": {
+    "cjr.examples.generic_tests.unbound_type_rejected:819e8473651d80b818624fcf946ff834000f76dea68b9e89b5430b14cd847e76": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -9993,7 +9993,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.unknown_reference_rejected:5d792f3bda76944a6c9bca4b359f40825961552a93218753d6c4aa88b5091061": {
+    "cjr.examples.generic_tests.unknown_reference_rejected:22d66d0f848d56df5dd31ec201cb9cbf7bdd13d01ae1959fe4d2ac236d60b506": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10065,7 +10065,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.wrong_type_arity_rejected:dd3d42e684fe909775e0d593741c871fb90db4bb11245aacf5b0bb791fbada21": {
+    "cjr.examples.generic_tests.wrong_type_arity_rejected:79a7326405103b54ee9707a8607e2da36a5fd5045072e8519a4f5e2ebc282671": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10137,7 +10137,7 @@
       ],
       "issues": []
     },
-    "cjr.examples.generic_tests.wrong_value_arity_rejected:7bae3575f0f034a03a0e17d4e23260e629a3b89ee68a01dc2ac332b70145922e": {
+    "cjr.examples.generic_tests.wrong_value_arity_rejected:c9787045c0cded3ce904a8d77a62c1cb6a91a5af5baf6c4ca3b198fab2a50f60": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10209,63 +10209,63 @@
       ],
       "issues": []
     },
-    "cjr.examples.struct_upd.bump:9bbb33905141a3699d5d89609562aabe73a4256ec5e1c3e3f2634c757b2ffea0": {
+    "cjr.examples.struct_upd.bump:69e1415ad79cfebf2f5d046504e8c0a00479aa68516bb5cd78ef19ff30b14838": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.struct_upd.bump_adequate:ed6f64dc5fb37d645bb811728d5b2334f932a4133069ac01e92165000cd10ebb": {
+    "cjr.examples.struct_upd.bump_adequate:34694ac019587ec4eb02af982807b468021ac6f31b5343a1877b748e4dd0a9de": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.struct_upd.bump_keep:0491ce8a334bb23cb202a69c693c8f45bfb2bee5bf68bc1a1dda635952a8780e": {
+    "cjr.examples.struct_upd.bump_keep:5c57e7c3fac4e5d01ce7909374272bc4d07d10877b68a920a273cfa2d6c40339": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.struct_upd.bump_keep_wp:1e2fb6ea715ba010dc7576f39d08f8dbf469e9726ec3bf14cabc76d6ff68849a": {
+    "cjr.examples.struct_upd.bump_keep_wp:7720567633932880a8f809a5fd7c7f68f642067dbbf91753b8c89f11bda673a9": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.struct_upd.bump_wp:2219774352b1b5e7119ac71f0a4b0a6db37b9aee08891114d898adf5e6023c34": {
+    "cjr.examples.struct_upd.bump_wp:7afc87f08609d5422fbb8feeb403ce3ce72b874a8bb6e8475a4570d3eba79eb9": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.sum_block.sum_at:2a2f21d5d4a281fe845ecb2d67848927199dabd47c0e0aca2428bd7a37f09e6c": {
+    "cjr.examples.sum_block.sum_at:61076b893a86e1707719158029653c90e9e997d199a1f94ae5df09bd21d97b1f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.sum_block.sum_at_wp:179bd215942879bd7bfcb7add568f9c7f354bd1f1089ee085bb287ecb639cce2": {
+    "cjr.examples.sum_block.sum_at_wp:0e3706c639de02dc6944e2409ecc57947d6271f55bd6d206c8d7f4e0c83583db": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.swap.swap_aliased:f370c86cd15c26756862513c70364945a8c6396194d4a4d94252a267c2c91c32": {
+    "cjr.examples.swap.swap_aliased:143e0aabd7be39038a7b00726901b77a06c6c25a789ccdf6dc2786cdb39d57b5": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.swap.swap_at:d3f0a9a116be0dff12517cf9ed07e2437ba4034fa3911849d2670dbab67fbb83": {
+    "cjr.examples.swap.swap_at:3f596e96e571d867cc39c06e9e78aa66f3321599d66f0a74a21f1ab7cdc4e8a3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.swap.swap_wp:9930d5db1c5b8bfd1278bc472727c0baeb6e83d9040cee8d28de39fb26d24fc3": {
+    "cjr.examples.swap.swap_wp:2bc061a41564acacdb23da9ce709e9a6c7ea86265e4da6a3362794eb742e2cd3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.vtable.inc_body:85be0f618769323abd1b95b3c358e199f209020fba04589e40b9566cb4390aea": {
+    "cjr.examples.vtable.inc_body:0aa9e6abd14a7be3ee1ce82a09817b8427e1caeb8318d8384fea15e8b4cfbb3f": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.vtable.vtable_adequate:f47c9e518549df95855f4119fb5527b49f607e4a3e79c2d3fcd2cd074bc594c9": {
+    "cjr.examples.vtable.vtable_adequate:085514aff494971588b5eae8bf9bdde919f36943c241efb6e5ef3fbb279eada3": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.vtable.vtable_prog:c708671f00aba05492f811718fb246d2d6cae9e91ee588244569f1ec6fbb01c6": {
+    "cjr.examples.vtable.vtable_prog:dc8a53348609f5f386c9b08f848145005a150799725fe78d4b0d776d4dbd2aec": {
       "entries": [],
       "issues": []
     },
-    "cjr.examples.vtable.vtable_prog_wp:fd2541409cc7a59e5953ab7baeb33c6e4250957287eb6dca905d0320a878ba40": {
+    "cjr.examples.vtable.vtable_prog_wp:95c5885848c2f14cbb81380c17a0dc59ed544e76e25e4386a35f2162d9638427": {
       "entries": [],
       "issues": []
     },
-    "cjr.generic_laws.generic_adequacy:16d7117c3b25fa83988a887f27e71704d8bed488b4d30c5665a2a43dc0ec35a3": {
+    "cjr.generic_laws.generic_adequacy:6d3888aca63f6f874ca671e72d0f1540dc51f4c383f38368ab74875d08fa7d13": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10337,7 +10337,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.generic_wp:028e7fa853f0f566819db23e8bb960304750f9e95992fb1c4a82c7dfe6255bc6": {
+    "cjr.generic_laws.generic_wp:95789c80e610621c049ea0af9aca75e76d78a8655208a593fdef215a464fd159": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10409,7 +10409,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.generic_wp_instantiate:c2de0d4d033c3cfda6df4ed11b7e8c87417e42076c261dcf704b06200941730f": {
+    "cjr.generic_laws.generic_wp_instantiate:dc9c0a615e049d25b9558f82c9f3184a567031ef0dfa844fdadf485841f2b291": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10481,7 +10481,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.generic_wp_legacy:bc134a0d27e7481eb1dfa21d007f02c28da56c4fccc9709a7f5f54854579292d": {
+    "cjr.generic_laws.generic_wp_legacy:2b928850484c0427cc805a023d1b9b2c38ad7463da1ed5e192a253853ab4930f": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10553,7 +10553,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.wp_generic_call_args:47c64c7feb9f88a0aba6535e5f413f9c01f4f14020b1867662c52782465880e4": {
+    "cjr.generic_laws.wp_generic_call_args:5ec99c5d1ce45011d341be23ab6df0726b2998aaa4fef4b079f157b6c486e42b": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10625,7 +10625,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.wp_generic_new_step:b9a10043d0f5e3b3fedccdea2b4631d50212a9300c02c2ecc27848da3337a35d": {
+    "cjr.generic_laws.wp_generic_new_step:9b125c4547a1cb0c16aaeb72f026fa07ebac61e7ff7bd0c99389121d47024ac4": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10697,7 +10697,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.wp_generic_pack_acc:29a5ffad6cf3ff0d7d3299fa5324aa5a0f2ba1db1f5ee722f251a4e2a9ddf0ea": {
+    "cjr.generic_laws.wp_generic_pack_acc:a54c5baf168a3ada7664a9518bf742a350a3c4f8f429d8c71fa4314569fc982d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10769,7 +10769,7 @@
       ],
       "issues": []
     },
-    "cjr.generic_laws.wp_generic_struct_step:7b7467f51c31f70f7aa94573dce608ca1aa60ecc3c22c00e9e49db40be9a659d": {
+    "cjr.generic_laws.wp_generic_struct_step:d99c8ecb89e0addd8f3251b60ffeba48db09486c0cee644885684a0049a6c6e7": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10841,7 +10841,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.GFunction:f3ba60b140fce4cc9c766e52b71d12603469a6b1c1962f3b215624e16fb12706": {
+    "cjr.generics.GFunction:8870e8d929800110bccff08603db645f6f1d815a185ad931596cd6b99c70a31c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10913,7 +10913,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.GStaticFunction:1e0e9f2fba3e8f40bbc1241f1ba075b780cc9f7e0605067ea36c870d3c879c3e": {
+    "cjr.generics.GStaticFunction:76a1d335dac621ed9dcb01018f92dbe67c5dcb9df8315a2f3332cbd0fd28b068": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -10985,7 +10985,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.bind_parameters:f76ec988c70e66ce79512969bd7409460d2c9660da5c9bb243e5b45dbf73aa85": {
+    "cjr.generics.bind_parameters:921afe4260f2e695127886a912889f00ee7386b91cd7ebd32bca660da501a900": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11057,7 +11057,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase:c4ed27010e6c33943d60abbaa01981391f6fa2ec2bb3809306605fc64bef27b1": {
+    "cjr.generics.erase:d325bbf3f69586ea631ba27157b54bb124d2c15f8b28a21c6ebdc74e7326cb47": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11129,7 +11129,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase_function:779bd4e3326a536cd4ae5bbfde81c0d638f12afac96d6e9f9f0dd0449453bea5": {
+    "cjr.generics.erase_function:c348501cb68949188f9d891eeb895595249d1157bdcd45268597579e91a9a16c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11201,7 +11201,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase_instantiate:b85534e3abfaff615639996c505f014b96b8251765e590b6c2a55cfe31942325": {
+    "cjr.generics.erase_instantiate:fb2c0b0d9fc68127a91eb4425ab62c181015e7cadf88cd996a99e2c053de63e5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11273,7 +11273,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase_legacy:a523a5b02b4843865defb92957d02c488b979f0ec87000501796599dbc176cd8": {
+    "cjr.generics.erase_legacy:6ae661b51b19a01300110dfbc7bdcdfe3b04ac4ac8dedeef7980552d4530cb9d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11345,7 +11345,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase_program:b2e404cbe1a4fbcaea0d52dc4bdff3b9ca21ed8a541a604009b0aef0a96a2aa6": {
+    "cjr.generics.erase_program:1b5b1800327b8532d93b8282acb5d397246c32b95488c6e97c05233668adad3d": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11417,7 +11417,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.erase_subst:1a54f3bf78b00f59e87ddee3d2bee36a988188e79b933d20e064416abadc5e5a": {
+    "cjr.generics.erase_subst:b4cb29f1f08949f4cf787cabd7c79a7512d54c3f9bce2fd6d16c3562471e9358": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11489,7 +11489,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.function_key:6de94512f11d7a8fdbb9cd00fe551118628129fabff019fcedf5eafbddfd6763": {
+    "cjr.generics.function_key:00d25580a9f5c1cb8970a950cb686c351131e9c9009c47481cd9300d674b42a5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11561,7 +11561,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gexpr:aa689e350f5de6c378b4f9e396f770da8a59d37634c01f8728471594c0bdb30e": {
+    "cjr.generics.gexpr:9c0b1fd1412cb9345eaed7c2612913878ec031bead0a5312ea4604991bc69d94": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11633,7 +11633,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gfunction:527cde5cb4317c37be7cf3b8e669b0fa6a4039bd11c769109f02a6a7a4c3384f": {
+    "cjr.generics.gfunction:4158bc773ff8d173d9367998fefa9637843d4385bd3b726dd8be4ae6645cadfc": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11705,7 +11705,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.ginstantiate:aa38b113f09bea3232930aafa38cb5bc9f41c5ad344a5ac5a8e995f67539be71": {
+    "cjr.generics.ginstantiate:2d49765032efd29e82760550a624fb04bf40417e539dfc34467c759a77a74ddc": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11777,7 +11777,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gkind:8c7d5ecfa523538e6a9bef5d8c3cfc274e9e85248384f2679e40b54a99004dba": {
+    "cjr.generics.gkind:175579f483b404021a1a919cbb1544fe577aa079aee6e52194f5beb6081ca9ed": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11849,7 +11849,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.glayout:40d8b6c7f8575f9fee174865b21b1fbe91823493587091a1306207c7294cf519": {
+    "cjr.generics.glayout:f9c3821169f7a48646eeca33368cbd41c1368e65cec19bbccd997310e86997d6": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11921,7 +11921,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.glookup:ddb9371911eb4b7914c4d333a8b8285295462afd31278e89b2021efa299afce0": {
+    "cjr.generics.glookup:5898c881b5fc3eccee47fed98296da72a3ef2a0c7dfd60a10fb74abe7de56336": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -11993,7 +11993,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gpack:bf4d3bcf9e322748c63ffc5217d5ff0685e2cc60ee20a0e0ab29012f5465fb10": {
+    "cjr.generics.gpack:d73d280e283ad4f606f02af5e5a2f06ef4b3318ed7f040b274f0b0c20e077dc8": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12065,7 +12065,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gprogram:e5e0ccb4516ce6568bb4766d0d54f763cef023f5380dcc4fb71f6335bc40e11a": {
+    "cjr.generics.gprogram:c09440b77745a78a3b5b3e68199db44ee9539d8eb0baffc145f774707b3b6f55": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12137,7 +12137,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gsubst:7721b20e057d55a32c11f67be22e82db52264a250ba53a3f056fbd374749944c": {
+    "cjr.generics.gsubst:9eaba56997a757efd4324c6d50edae12e9dcfad2ad165f5f987acec84c1da493": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12209,7 +12209,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gty:de74363ed725fadb8c1a84bc28541b7168f42579655432a9666aa15a8e644a9e": {
+    "cjr.generics.gty:351c1846d497902f4c9453cdd7f1b4b3253f44b30f15c23a5b84d76a20503feb": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12281,7 +12281,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gty_subst:1603ab06ca645140baae01ed66534a9bdc36e054989ccc95cd562710ef5f1069": {
+    "cjr.generics.gty_subst:e52e7df652003753e01c64909f2bb9fa5246a767294dc343dd2d5061f3874f2b": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12353,7 +12353,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.gty_wf:ebd9d2799dfc0c9b16801523f32ebd478eb1250ead61af43cd0bde4660c5e59a": {
+    "cjr.generics.gty_wf:b0921320e713805b3e7c9b145478451a67836dc25636f33d2e9b264ca5eb86ed": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12425,7 +12425,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.is_class:d9c0d9327a23de782625002c7f17191b91b485bee3d4ed1f5304b92fb402fee6": {
+    "cjr.generics.is_class:77d183c2426cacd61aca2ab8f6e6791381a5dcafc98a11c200ff2e0b678a918e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12497,7 +12497,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.layout_env:e12609af69e794fa0fb945eedc3051a6c200f541809ccc05a40debab611e33c1": {
+    "cjr.generics.layout_env:b33a01382a6bbb2b88e2bd1db7fa335947440fef2734deb8fbed8e1f248cb28b": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12569,7 +12569,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.link_functions:15ffb9b748d4c459cd91aee91fed82a99512b7626705fb3b201cb9b55b454693": {
+    "cjr.generics.link_functions:6eadb0153c5b328b762897eb9c8035a5b0f057023e0f4e048a206d59e95cf6d5": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12641,7 +12641,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.method_key:c1f6664bb39aa58dc020cc8cbf3551dd23730289239891c4110001218e08913b": {
+    "cjr.generics.method_key:c51d1f2bfd70cea80441fa25e9ebc0d4d83eac56f6c73352ca796476dbb1653f": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12713,7 +12713,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.nominal:6199ffefee9de0d04d228d40cd0b2014bc323d16bd45fbf2f3618da35abf9a2b": {
+    "cjr.generics.nominal:5929a2a0bd9c8e3185203ef887a75bf8d6dce4591ab0699aae884bb042ac8f85": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12785,7 +12785,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.nominal_owners:5995f9ae3ae08a597a69397962fc29e5831b2c49396c3208d8c33aa22748faa5": {
+    "cjr.generics.nominal_owners:5b5206059402b292141318343d3dee32afc9a10fcbea3d8c3f24b8892fc70257": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12857,7 +12857,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.owner_name:4e9724f9235beb1bf4ee95dd92b1e74f2edd6251c1eb76fb3b2183f16d00b178": {
+    "cjr.generics.owner_name:b0a7e93b129bbac773731e1f8a713f75c0ced4c42c34466d8c50e885c5897c19": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -12929,7 +12929,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.owner_subst:31751ad11f1a965ff8bb1442c0e8f29adc6cdc9bbfffd7a7250ece448d6777ae": {
+    "cjr.generics.owner_subst:0850911676151d9c0695dfeedc90cc18cf9da758674478bca600fcc21e31528c": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -13001,7 +13001,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.referenced_names:38035d95b2366c7a3a43789f66c2467d80d18100a8f01305540f598ad5bb13ba": {
+    "cjr.generics.referenced_names:9292b345a5dc52214451a73a6e9890d930573fd043005e99542e32629a40727e": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -13073,7 +13073,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.resolve:17ef626e3743bd74fe13a8b66274309be405080c7358e08921c73aab8ca7e040": {
+    "cjr.generics.resolve:3239cce453dd4bb714306eb5493b3a55e42f43f92645ae71e10d321129217ba4": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -13145,7 +13145,7 @@
       ],
       "issues": []
     },
-    "cjr.generics.string_eqb_decide:3471b6bf4a2c422d80236081b84532ddc30943ab790b6b48dff5af75bb12b7f8": {
+    "cjr.generics.string_eqb_decide:3f2d9e6d568aa59c6fd1211569589d22e2598ce972943c03cac3e48d07881f03": {
       "entries": [
         {
           "commit": "e07ccfb365e019f440480d6357d0251187acc8da",
@@ -13217,249 +13217,23 @@
       ],
       "issues": []
     },
-    "cjr.lang.base_lit:accb070e80b3d532c964ccdb10a1d2b20e34f91e81a5c24d06ad6232a019a224": {
+    "cjr.lang.base_lit:1da1ac5171d4fb00650668aa07daf58a105dea9d8caa096d0a736866cec846bc": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.base_step:16d401e75688d56490a3bf62857ad00691bded4052b41b90c486debeed2dde7d": {
+    "cjr.lang.base_step:93a7d5610a91042ed1392b1a102bb86a9f7cfaa038947588e1213921b10905c8": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.base_step_det:a83fe06c54f1ce97ccef0ef47be7995ccddda9ca65cb8c80850dce342393f2db": {
+    "cjr.lang.base_step_det:6377f7bc739b05d5380c984616a33af4a7046f27343bccd89de70187e1667985": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.base_step_fill_item:eb29353ab5877da1f38d6e943781d96f70396bc764498569b6dfef93e2a0c2c4": {
+    "cjr.lang.base_step_fill_item:ecdeadfaa6819905a44baee9895e71525146dec00101e06bf9c0e0c4123cb504": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.bin_op:40268f9c7145a2d97c051e880d1eceef9b839dff6427533b61bc24c3c14ef7af": {
-      "entries": [
-        {
-          "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
-          "date": "2026-10-27T12:52:40Z",
-          "prompts": [
-            {
-              "text": "create a plan first",
-              "timestamp": "2026-10-27T09:16:05+00:00"
-            },
-            {
-              "text": "open the file with the plan",
-              "timestamp": "2026-10-27T09:18:59+00:00"
-            },
-            {
-              "text": "execute up to milestone 2. do not go beyond milestone 2. ",
-              "timestamp": "2026-10-27T09:33:20+00:00"
-            },
-            {
-              "text": "process the authenticator rocq files with rocq-readable",
-              "timestamp": "2026-10-27T11:35:22+00:00"
-            },
-            {
-              "text": "process the rocq files with the rocq-readable tool ",
-              "timestamp": "2026-10-27T11:36:25+00:00"
-            },
-            {
-              "text": "why did codex explanations fail? identify and fix the problem? ",
-              "timestamp": "2026-10-27T11:41:15+00:00"
-            },
-            {
-              "text": "Allow sending source to Codex",
-              "timestamp": "2026-10-27T11:42:14+00:00"
-            },
-            {
-              "text": "push to github",
-              "timestamp": "2026-10-27T12:51:55+00:00"
-            }
-          ],
-          "subject": "Add authenticator core and readable Rocq documentation"
-        },
-        {
-          "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
-          "date": "2026-10-16T08:36:57+01:00",
-          "prompts": [
-            {
-              "text": "the extracted code to rocq ration is strangely low. why? ",
-              "timestamp": "2026-10-15T08:01:51+00:00"
-            },
-            {
-              "text": "what definitions are relvant for s-box functions? ",
-              "timestamp": "2026-10-15T08:04:01+00:00"
-            },
-            {
-              "text": "what rocq file contains the code extracted into the s-box cangjie function? ",
-              "timestamp": "2026-10-15T08:04:50+00:00"
-            },
-            {
-              "text": "what is the cangjie flie? ",
-              "timestamp": "2026-10-15T08:06:42+00:00"
-            },
-            {
-              "text": "is aesSbox extracted by the standard Galina script or is it a one-off?",
-              "timestamp": "2026-10-15T08:07:58+00:00"
-            },
-            {
-              "text": "what is a sbox_table? ",
-              "timestamp": "2026-10-15T08:08:52+00:00"
-            },
-            {
-              "text": "why is it hardcoded? ",
-              "timestamp": "2026-10-15T08:09:36+00:00"
-            },
-            {
-              "text": "'same fixed substitution' for all implementations ? ",
-              "timestamp": "2026-10-15T08:10:04+00:00"
-            },
-            {
-              "text": "what other popular languages other than cangjie can cjr be extracted as? ",
-              "timestamp": "2026-10-15T08:13:42+00:00"
-            },
-            {
-              "text": "when was the four color theorem and feith-0thomson proved in coq?",
-              "timestamp": "2026-10-15T08:20:36+00:00"
-            },
-            {
-              "text": "when did compcert start? ",
-              "timestamp": "2026-10-15T08:21:24+00:00"
-            },
-            {
-              "text": "does the adequacy result prove no memory leaks?",
-              "timestamp": "2026-10-15T08:24:22+00:00"
-            },
-            {
-              "text": "can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)",
-              "timestamp": "2026-10-15T09:15:03+00:00"
-            },
-            {
-              "text": "how does it compare to cjr? ",
-              "timestamp": "2026-10-15T09:17:45+00:00"
-            },
-            {
-              "text": "do cjr arithmetic operations deal with overflow and underflow? ",
-              "timestamp": "2026-10-16T02:21:30+00:00"
-            },
-            {
-              "text": "add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. ",
-              "timestamp": "2026-10-16T02:36:18+00:00"
-            },
-            {
-              "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.\",\"annotation\":\"explain this\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":170,\"endOffset\":243}}]\n</response-annotations>\n\n## My request:\nexplain this",
-              "timestamp": "2026-10-16T05:37:11+00:00"
-            },
-            {
-              "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Capacity-spaced lookups: 38–658× faster.\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":130,\"endOffset\":170}}]\n</response-annotations>\n\n## My request:\nexplain ",
-              "timestamp": "2026-10-16T05:39:35+00:00"
-            },
-            {
-              "text": "explain **Hashmap_Build_Scan data in the benchmark report**\\",
-              "timestamp": "2026-10-16T05:40:44+00:00"
-            },
-            {
-              "text": "it is suspicious that the data points for cjr and std are identical. justify",
-              "timestamp": "2026-10-16T05:43:41+00:00"
-            },
-            {
-              "text": "refresh all the documentation (pdf report and readmes)",
-              "timestamp": "2026-10-16T05:45:48+00:00"
-            },
-            {
-              "text": "by looking at the timestamps on the coq files and the verification log, is the verification log to date? ",
-              "timestamp": "2026-10-16T07:29:35+00:00"
-            },
-            {
-              "text": "push to github without rerunning the proof verification script",
-              "timestamp": "2026-10-16T07:36:26+00:00"
-            }
-          ],
-          "subject": "Add integer multiplication and improve hashmap hashing"
-        },
-        {
-          "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
-          "date": "2026-10-14T06:42:55+01:00",
-          "prompts": [
-            {
-              "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
-              "timestamp": "2026-10-13T06:00:47+00:00"
-            },
-            {
-              "text": "whats the rocq cjr syntax for this fragment? ",
-              "timestamp": "2026-10-13T06:03:00+00:00"
-            },
-            {
-              "text": "does cjr need a model of garbage collection?",
-              "timestamp": "2026-10-13T06:09:10+00:00"
-            },
-            {
-              "text": "does cangjie have byte-level layout",
-              "timestamp": "2026-10-13T06:09:56+00:00"
-            },
-            {
-              "text": "what about the coq checker flags, where are they defined?",
-              "timestamp": "2026-10-13T06:14:40+00:00"
-            },
-            {
-              "text": "what is -q ?",
-              "timestamp": "2026-10-13T06:16:16+00:00"
-            },
-            {
-              "text": "explain thiese flags: ",
-              "timestamp": "2026-10-13T06:16:55+00:00"
-            },
-            {
-              "text": "what is -arg -w",
-              "timestamp": "2026-10-13T06:18:54+00:00"
-            },
-            {
-              "text": "what is verify_assumptions.v",
-              "timestamp": "2026-10-13T06:20:03+00:00"
-            },
-            {
-              "text": "refresh the extracted cell.html definitions including the LLM generated explanations. dont do anything else",
-              "timestamp": "2026-10-13T07:01:43+00:00"
-            },
-            {
-              "text": "write this in algebraic notation: Lemma cons_then_tail_spec (x : Z) xs (p : val_cjr) :\n    is_list xs p -∗\n    WP cons_then_tail x p {{ v, ⌜ v = p ⌝ ∗ is_list xs v }}.",
-              "timestamp": "2026-10-13T07:15:23+00:00"
-            },
-            {
-              "text": "what file is it in? ",
-              "timestamp": "2026-10-13T07:24:28+00:00"
-            },
-            {
-              "text": "how about the rocq definition fo the data strcuture",
-              "timestamp": "2026-10-13T07:24:50+00:00"
-            },
-            {
-              "text": "what is the native implementation of quadtrees used for the benchmarks?",
-              "timestamp": "2026-10-13T07:59:35+00:00"
-            },
-            {
-              "text": "PLEASE IMPLEMENT THIS PLAN:\n# Verified AES-IGE with proved algebraic properties\n\n## Summary\n\nCreate `example/aes_ige` containing AES-128/192/256 encryption and decryption, verified IGE processing over separate buffers, extracted Cangjie, tests, benchmarks, and an offline report. Prove both implementation correctness and the key algebraic properties of the specification.\n\n## Implementation and interfaces\n\n- Model AES according to FIPS 197, using byte-valued integers, column-major state layout, concrete key expansion, and 10/12/14-round cipher loops.\n- Add integer XOR and bitwise AND primitives to CJR, including semantics, WP rules, notation, extraction support, and correspondence tests. Use addition and masking for byte doubling.\n- Implement the AES transformations and their inverses. Prove the S-box tables agree with the finite-field specification.\n- Expose key expansion into a caller-owned 240-byte schedule buffer, returning the round count or zero for invalid key length. Provide block encryption/decryption and IGE encryption/decryption using reusable caller-owned workspace.\n- Require disjoint input/output, IV, schedule, and workspace buffers. Preserve input and schedule. Reject invalid round counts and negative or non-block-aligned message lengths before modifying output or IV.\n- Use a mutable 32-byte IV ordered as previous ciphertext followed by previous plaintext. Empty input succeeds and preserves the IV. Exclude padding, in-place operation, and bidirectional IGE.\n\n## Specification and algebraic proofs\n\nState and prove these properties independently of the embedded implementation, for every supported key size and valid input:\n\n- **AES inverse laws:** `decrypt(k, encrypt(k, b)) = b` and `encrypt(k, decrypt(k, b)) = b`.\n- **AES bijectivity:** derive injectivity and surjectivity of encryption and decryption from the inverse laws.\n- **Transformation inverse laws:** prove both compositions for SubBytes/InvSubBytes, ShiftRows/InvShiftRows, and MixColumns/InvMixColumns. Prove applying AddRoundKey twice with the same round key is identity.\n- **Byte-XOR laws:** prove associativity, commutativity, zero identity, self-cancellation, and byte-range closure, supporting AES and IGE cancellation arguments.\n- **IGE inverse laws:** encryption followed by decryption, and decryption followed by encryption, recover the original message when both operations start from the same initial IV. Prove that the corresponding final IVs agree.\n- **IGE bijectivity:** for a fixed key, initial IV, and block count, derive injectivity and surjectivity on messages of that length.\n- **Length and range preservation:** AES preserves block size; IGE preserves message length; outputs and final IV remain byte-valued.\n- **Empty-message identity:** both IGE directions return the empty message and unchanged IV.\n- **Chunk composition:** processing `xs ++ ys` equals processing `xs`, then `ys` with the returned IV, for both encryption and decryption. Prove equality of concatenated outputs and final IV.\n\nDefine pure IGE operations as returning `(output, finalIV)` so the stateful laws are explicit. Round-trip laws reset to the original IV before the inverse operation; they do not reuse the mutated final IV.\n\n## Implementation proofs and integration\n\n- Separate the mathematical model, embedded programs, and proofs within the example.\n- Prove Iris refinement contracts for helpers, key expansion, AES blocks, and complete IGE loops, including ownership, bounds, preservation, and IV updates.\n- Derive implementation-level round-trip and chunk-composition contracts from refinement and the pure algebraic theorems.\n- Use concrete AES throughout; introduce no admissions or assumed cipher correctness.\n- Integrate build load paths, extraction, test/report dispatch, and the examples index. Audit the public correctness contracts and algebraic theorems with `Print Assumptions` and kernel checks.\n\n## Validation and report\n\n- Test AES known-answer vectors for every key size, OpenSSL IGE vectors, and independently generated AES-192/256 IGE fixtures with recorded provenance.\n- Test both inverse compositions, chunk composition, empty and multi-block messages, high-bit bytes, final IV equality, rejected lengths, and memory preservation.\n- Run full `make verify`, runtime regression suites, extraction checks, and report link checks. Prove machine-range bounds for AES arithmetic and indexing.\n- Benchmark encryption/decryption at 16 bytes, 1 KiB, and 64 KiB for every key size; measure key expansion separately. Use three processes, seven samples per process, warm-up, and checked checksums.\n- Produce the existing-style offline report with rendered specifications, dependency diagrams, proof narrative, test provenance, and benchmark charts. Give each algebraic law its statement, assumptions, proof explanation, and implementation consequence.\n- State that the verified guarantees cover functional correctness and memory safety; constant-time behavior and cryptographic security proofs remain outside scope.\n- Preserve existing prompt-log changes and resume exact prompt logging when implementation mode begins.",
-              "timestamp": "2026-10-14T02:24:37+00:00"
-            },
-            {
-              "text": "do it",
-              "timestamp": "2026-10-14T04:01:03+00:00"
-            },
-            {
-              "text": "why is openssl so much faster? ",
-              "timestamp": "2026-10-14T05:22:21+00:00"
-            },
-            {
-              "text": "add this explanations to aes_ige/benchmark/results/report.html and note them as possible causes not definitive",
-              "timestamp": "2026-10-14T05:24:32+00:00"
-            },
-            {
-              "text": "push to github",
-              "timestamp": "2026-10-14T05:26:10+00:00"
-            }
-          ],
-          "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
-        }
-      ],
-      "issues": []
-    },
-    "cjr.lang.bin_op_eval:cbc42984c04ddc487c91f4e436bacbc33968975fdcd1536ce23363ae9b6d6bfb": {
+    "cjr.lang.bin_op:7035369d36a21503912ab58dbba460868041d49a9318f9954136d7f225c220ad": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -13685,371 +13459,597 @@
       ],
       "issues": []
     },
-    "cjr.lang.binder:3f1238dd50f2c3d3a60a7a317ccc50f12b37efae150aaa283b2ae205d0863a85": {
+    "cjr.lang.bin_op_eval:c9130cfc3ea73c3b4beb4cd91dd4005993678d4c462021fb6e3cafe17babc013": {
+      "entries": [
+        {
+          "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
+          "date": "2026-10-27T12:52:40Z",
+          "prompts": [
+            {
+              "text": "create a plan first",
+              "timestamp": "2026-10-27T09:16:05+00:00"
+            },
+            {
+              "text": "open the file with the plan",
+              "timestamp": "2026-10-27T09:18:59+00:00"
+            },
+            {
+              "text": "execute up to milestone 2. do not go beyond milestone 2. ",
+              "timestamp": "2026-10-27T09:33:20+00:00"
+            },
+            {
+              "text": "process the authenticator rocq files with rocq-readable",
+              "timestamp": "2026-10-27T11:35:22+00:00"
+            },
+            {
+              "text": "process the rocq files with the rocq-readable tool ",
+              "timestamp": "2026-10-27T11:36:25+00:00"
+            },
+            {
+              "text": "why did codex explanations fail? identify and fix the problem? ",
+              "timestamp": "2026-10-27T11:41:15+00:00"
+            },
+            {
+              "text": "Allow sending source to Codex",
+              "timestamp": "2026-10-27T11:42:14+00:00"
+            },
+            {
+              "text": "push to github",
+              "timestamp": "2026-10-27T12:51:55+00:00"
+            }
+          ],
+          "subject": "Add authenticator core and readable Rocq documentation"
+        },
+        {
+          "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
+          "date": "2026-10-16T08:36:57+01:00",
+          "prompts": [
+            {
+              "text": "the extracted code to rocq ration is strangely low. why? ",
+              "timestamp": "2026-10-15T08:01:51+00:00"
+            },
+            {
+              "text": "what definitions are relvant for s-box functions? ",
+              "timestamp": "2026-10-15T08:04:01+00:00"
+            },
+            {
+              "text": "what rocq file contains the code extracted into the s-box cangjie function? ",
+              "timestamp": "2026-10-15T08:04:50+00:00"
+            },
+            {
+              "text": "what is the cangjie flie? ",
+              "timestamp": "2026-10-15T08:06:42+00:00"
+            },
+            {
+              "text": "is aesSbox extracted by the standard Galina script or is it a one-off?",
+              "timestamp": "2026-10-15T08:07:58+00:00"
+            },
+            {
+              "text": "what is a sbox_table? ",
+              "timestamp": "2026-10-15T08:08:52+00:00"
+            },
+            {
+              "text": "why is it hardcoded? ",
+              "timestamp": "2026-10-15T08:09:36+00:00"
+            },
+            {
+              "text": "'same fixed substitution' for all implementations ? ",
+              "timestamp": "2026-10-15T08:10:04+00:00"
+            },
+            {
+              "text": "what other popular languages other than cangjie can cjr be extracted as? ",
+              "timestamp": "2026-10-15T08:13:42+00:00"
+            },
+            {
+              "text": "when was the four color theorem and feith-0thomson proved in coq?",
+              "timestamp": "2026-10-15T08:20:36+00:00"
+            },
+            {
+              "text": "when did compcert start? ",
+              "timestamp": "2026-10-15T08:21:24+00:00"
+            },
+            {
+              "text": "does the adequacy result prove no memory leaks?",
+              "timestamp": "2026-10-15T08:24:22+00:00"
+            },
+            {
+              "text": "can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)",
+              "timestamp": "2026-10-15T09:15:03+00:00"
+            },
+            {
+              "text": "how does it compare to cjr? ",
+              "timestamp": "2026-10-15T09:17:45+00:00"
+            },
+            {
+              "text": "do cjr arithmetic operations deal with overflow and underflow? ",
+              "timestamp": "2026-10-16T02:21:30+00:00"
+            },
+            {
+              "text": "add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. ",
+              "timestamp": "2026-10-16T02:36:18+00:00"
+            },
+            {
+              "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.\",\"annotation\":\"explain this\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":170,\"endOffset\":243}}]\n</response-annotations>\n\n## My request:\nexplain this",
+              "timestamp": "2026-10-16T05:37:11+00:00"
+            },
+            {
+              "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Capacity-spaced lookups: 38–658× faster.\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":130,\"endOffset\":170}}]\n</response-annotations>\n\n## My request:\nexplain ",
+              "timestamp": "2026-10-16T05:39:35+00:00"
+            },
+            {
+              "text": "explain **Hashmap_Build_Scan data in the benchmark report**\\",
+              "timestamp": "2026-10-16T05:40:44+00:00"
+            },
+            {
+              "text": "it is suspicious that the data points for cjr and std are identical. justify",
+              "timestamp": "2026-10-16T05:43:41+00:00"
+            },
+            {
+              "text": "refresh all the documentation (pdf report and readmes)",
+              "timestamp": "2026-10-16T05:45:48+00:00"
+            },
+            {
+              "text": "by looking at the timestamps on the coq files and the verification log, is the verification log to date? ",
+              "timestamp": "2026-10-16T07:29:35+00:00"
+            },
+            {
+              "text": "push to github without rerunning the proof verification script",
+              "timestamp": "2026-10-16T07:36:26+00:00"
+            }
+          ],
+          "subject": "Add integer multiplication and improve hashmap hashing"
+        },
+        {
+          "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
+          "date": "2026-10-14T06:42:55+01:00",
+          "prompts": [
+            {
+              "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
+              "timestamp": "2026-10-13T06:00:47+00:00"
+            },
+            {
+              "text": "whats the rocq cjr syntax for this fragment? ",
+              "timestamp": "2026-10-13T06:03:00+00:00"
+            },
+            {
+              "text": "does cjr need a model of garbage collection?",
+              "timestamp": "2026-10-13T06:09:10+00:00"
+            },
+            {
+              "text": "does cangjie have byte-level layout",
+              "timestamp": "2026-10-13T06:09:56+00:00"
+            },
+            {
+              "text": "what about the coq checker flags, where are they defined?",
+              "timestamp": "2026-10-13T06:14:40+00:00"
+            },
+            {
+              "text": "what is -q ?",
+              "timestamp": "2026-10-13T06:16:16+00:00"
+            },
+            {
+              "text": "explain thiese flags: ",
+              "timestamp": "2026-10-13T06:16:55+00:00"
+            },
+            {
+              "text": "what is -arg -w",
+              "timestamp": "2026-10-13T06:18:54+00:00"
+            },
+            {
+              "text": "what is verify_assumptions.v",
+              "timestamp": "2026-10-13T06:20:03+00:00"
+            },
+            {
+              "text": "refresh the extracted cell.html definitions including the LLM generated explanations. dont do anything else",
+              "timestamp": "2026-10-13T07:01:43+00:00"
+            },
+            {
+              "text": "write this in algebraic notation: Lemma cons_then_tail_spec (x : Z) xs (p : val_cjr) :\n    is_list xs p -∗\n    WP cons_then_tail x p {{ v, ⌜ v = p ⌝ ∗ is_list xs v }}.",
+              "timestamp": "2026-10-13T07:15:23+00:00"
+            },
+            {
+              "text": "what file is it in? ",
+              "timestamp": "2026-10-13T07:24:28+00:00"
+            },
+            {
+              "text": "how about the rocq definition fo the data strcuture",
+              "timestamp": "2026-10-13T07:24:50+00:00"
+            },
+            {
+              "text": "what is the native implementation of quadtrees used for the benchmarks?",
+              "timestamp": "2026-10-13T07:59:35+00:00"
+            },
+            {
+              "text": "PLEASE IMPLEMENT THIS PLAN:\n# Verified AES-IGE with proved algebraic properties\n\n## Summary\n\nCreate `example/aes_ige` containing AES-128/192/256 encryption and decryption, verified IGE processing over separate buffers, extracted Cangjie, tests, benchmarks, and an offline report. Prove both implementation correctness and the key algebraic properties of the specification.\n\n## Implementation and interfaces\n\n- Model AES according to FIPS 197, using byte-valued integers, column-major state layout, concrete key expansion, and 10/12/14-round cipher loops.\n- Add integer XOR and bitwise AND primitives to CJR, including semantics, WP rules, notation, extraction support, and correspondence tests. Use addition and masking for byte doubling.\n- Implement the AES transformations and their inverses. Prove the S-box tables agree with the finite-field specification.\n- Expose key expansion into a caller-owned 240-byte schedule buffer, returning the round count or zero for invalid key length. Provide block encryption/decryption and IGE encryption/decryption using reusable caller-owned workspace.\n- Require disjoint input/output, IV, schedule, and workspace buffers. Preserve input and schedule. Reject invalid round counts and negative or non-block-aligned message lengths before modifying output or IV.\n- Use a mutable 32-byte IV ordered as previous ciphertext followed by previous plaintext. Empty input succeeds and preserves the IV. Exclude padding, in-place operation, and bidirectional IGE.\n\n## Specification and algebraic proofs\n\nState and prove these properties independently of the embedded implementation, for every supported key size and valid input:\n\n- **AES inverse laws:** `decrypt(k, encrypt(k, b)) = b` and `encrypt(k, decrypt(k, b)) = b`.\n- **AES bijectivity:** derive injectivity and surjectivity of encryption and decryption from the inverse laws.\n- **Transformation inverse laws:** prove both compositions for SubBytes/InvSubBytes, ShiftRows/InvShiftRows, and MixColumns/InvMixColumns. Prove applying AddRoundKey twice with the same round key is identity.\n- **Byte-XOR laws:** prove associativity, commutativity, zero identity, self-cancellation, and byte-range closure, supporting AES and IGE cancellation arguments.\n- **IGE inverse laws:** encryption followed by decryption, and decryption followed by encryption, recover the original message when both operations start from the same initial IV. Prove that the corresponding final IVs agree.\n- **IGE bijectivity:** for a fixed key, initial IV, and block count, derive injectivity and surjectivity on messages of that length.\n- **Length and range preservation:** AES preserves block size; IGE preserves message length; outputs and final IV remain byte-valued.\n- **Empty-message identity:** both IGE directions return the empty message and unchanged IV.\n- **Chunk composition:** processing `xs ++ ys` equals processing `xs`, then `ys` with the returned IV, for both encryption and decryption. Prove equality of concatenated outputs and final IV.\n\nDefine pure IGE operations as returning `(output, finalIV)` so the stateful laws are explicit. Round-trip laws reset to the original IV before the inverse operation; they do not reuse the mutated final IV.\n\n## Implementation proofs and integration\n\n- Separate the mathematical model, embedded programs, and proofs within the example.\n- Prove Iris refinement contracts for helpers, key expansion, AES blocks, and complete IGE loops, including ownership, bounds, preservation, and IV updates.\n- Derive implementation-level round-trip and chunk-composition contracts from refinement and the pure algebraic theorems.\n- Use concrete AES throughout; introduce no admissions or assumed cipher correctness.\n- Integrate build load paths, extraction, test/report dispatch, and the examples index. Audit the public correctness contracts and algebraic theorems with `Print Assumptions` and kernel checks.\n\n## Validation and report\n\n- Test AES known-answer vectors for every key size, OpenSSL IGE vectors, and independently generated AES-192/256 IGE fixtures with recorded provenance.\n- Test both inverse compositions, chunk composition, empty and multi-block messages, high-bit bytes, final IV equality, rejected lengths, and memory preservation.\n- Run full `make verify`, runtime regression suites, extraction checks, and report link checks. Prove machine-range bounds for AES arithmetic and indexing.\n- Benchmark encryption/decryption at 16 bytes, 1 KiB, and 64 KiB for every key size; measure key expansion separately. Use three processes, seven samples per process, warm-up, and checked checksums.\n- Produce the existing-style offline report with rendered specifications, dependency diagrams, proof narrative, test provenance, and benchmark charts. Give each algebraic law its statement, assumptions, proof explanation, and implementation consequence.\n- State that the verified guarantees cover functional correctness and memory safety; constant-time behavior and cryptographic security proofs remain outside scope.\n- Preserve existing prompt-log changes and resume exact prompt logging when implementation mode begins.",
+              "timestamp": "2026-10-14T02:24:37+00:00"
+            },
+            {
+              "text": "do it",
+              "timestamp": "2026-10-14T04:01:03+00:00"
+            },
+            {
+              "text": "why is openssl so much faster? ",
+              "timestamp": "2026-10-14T05:22:21+00:00"
+            },
+            {
+              "text": "add this explanations to aes_ige/benchmark/results/report.html and note them as possible causes not definitive",
+              "timestamp": "2026-10-14T05:24:32+00:00"
+            },
+            {
+              "text": "push to github",
+              "timestamp": "2026-10-14T05:26:10+00:00"
+            }
+          ],
+          "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
+        }
+      ],
+      "issues": []
+    },
+    "cjr.lang.binder:bb086c17c558880a83e95b7c9fe434b7d36172fa21730837c426d7f5687e681c": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.binds:63ddfa38139917a8ec3ced0f711ae135f1793e6de5e93ed6e141372f09eb9a0b": {
+    "cjr.lang.binds:db5874ff50a03cd2a181fbbcd32bf3d6d8dcfaed9b6a5de738ac33a15d1f6652": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.block_below:719a59f6508b6912e896c7683380bd8452d3745ded4cd7965eb0d3f7e3d49b2e": {
+    "cjr.lang.block_below:3d3a7ad779dad62ecf4c6bc366a16dcf3cfa7b9d5065c8955b22cf60235bfcde": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.block_cover:77924b3da8aa917e02acd9f7a0fbbf7bd441f96c919d374f1c977a19ed24cfda": {
+    "cjr.lang.block_cover:2007abb90f3288d1bdf6232eb3c4c31665108938e4a20131a94901d834a6c643": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.block_fresh:be933b916d95b612d4d6831628da5084c3095ac68178911bffb6fca8b5db2691": {
+    "cjr.lang.block_fresh:7004611db6956297f800b6118b2e1d3e3b1ec4bc3c58c85eb457f89ac566572f": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.blocks_disjoint:e3e0b744703bdc6096fca318d1d649ed32d97892836d1b11144a9f890ad96387": {
+    "cjr.lang.blocks_disjoint:b8bdc75ddee783fe044ad184f89afc3c33ffd37a7bdb4e2f1469009edaf9b7a3": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.cjr_ectx_lang:a705f46d3799d03f126b2d7ba2546754050ac9a0bc824cbdacc3af37c7a00dad": {
+    "cjr.lang.cjr_ectx_lang:baf598298529ca80c62ba1cd2ab1cd0f2dff0eb40da490a2b667c3cc3f14cd42": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.cjr_ectxi_lang:cc2cb4b9baf689210a6824c5b7a18bb06387ac301d253befe9ac087877842f61": {
+    "cjr.lang.cjr_ectxi_lang:670f172019d6922eabad7901dc66427cf937dcc6ee576065ed90349e94c3377d": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.cjr_ectxi_mixin:c15e42ea12aa17345d8362ec3734b1044345e9d78f2d19837e2cd28ad78b8d88": {
+    "cjr.lang.cjr_ectxi_mixin:0a78fff1bd4794f7146de4fc01cc831e4488e244a0725c86255c9eefcd1646ed": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.cjr_lang:647150833a7cf08c11135fc2eacc6b6b45aaf48a52faab95a79480958a992da0": {
+    "cjr.lang.cjr_lang:d7e86913d92c270759ab32a455d84314d21dc062412a1d82e243d2d50f783177": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.ectx_item:ee00f75d517bb1187c3e33767062697640c0ec4f37ba698c3b3132f72cf92343": {
+    "cjr.lang.ectx_item:c0be1574f3e43f2ca370fb46149a470837033f906375be57e4595106ffa7a7a5": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.expr:8aef1dcdc3cd3f8d260c7b3dc2ace6fabc0a6a97abce5700cf599ce06510acf3": {
+    "cjr.lang.expr:075e6e807d1b5c361ee8f70cf55e424338ab9b2108aa3fed7f29d1ab49d333e9": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.expr_cjr:82b9f770d0e1881e9a58d7f70bcd6b91824cab249951eb0e58c742c71f59247d": {
+    "cjr.lang.expr_cjr:926fddfe39fd393cb163c924f6de0c239d9b49feef4de006af63a0e433e5eb5e": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.expr_inhabited:b75f1d08210f172972067e74ca803d248d8df7a4e04e25fd3390a5b2ae80c15f": {
+    "cjr.lang.expr_inhabited:02cb663ccf9db68e4a77e85570bf34563ced1279ab30def89d1264a2783eece2": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.fill_item:beb4d8a6514c41bef9042cc4c219837f5a317d52b4d7ca42b74beecc5a770611": {
+    "cjr.lang.fill_item:87d9bb27433bd68aef93372d054a1a312e74e629cdf83a205f4c8c45e568b5dc": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.fill_item_eq_no_val:d8f358f98f43c52fc06559f7e769e1d18b5f747e984514c73308ef8a62d795a7": {
+    "cjr.lang.fill_item_eq_no_val:8aa4f4aa2ec844e1c19d1ffa73c2e89a61025d416e3eb91351d79709ec64d064": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.fill_item_inj:5c153823fb4f94e5e6315bc4255abb9c02c43f82f8b0c291172383911ab093c6": {
+    "cjr.lang.fill_item_inj:c5cc342886691ba4504b5c0312a418cfba4fcb6538e2e4807aefac6ac0d151e1": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.fill_item_not_val:85bd59238c51348471c99825fea00e0849983d2c181bee35ff0792f17013cdc4": {
+    "cjr.lang.fill_item_not_val:67bd1e2fa0fb610b6af0bfd11597c76ecaa4af2db201a240f87f5266d71870cc": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.fill_item_val:796d65e26b99d3f6a94c986783ba075615ba994d114feee58fdbdd61ba7a3d10": {
+    "cjr.lang.fill_item_val:c9a1f3b6ff4f0270ae3bcae9d373e0600d191b091bdb75a04b114a32d8bdc55d": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.free_cells:f531091547a496bb92c43021b5ceeb6adbfcb6954e80163fae43789f3ebb098b": {
+    "cjr.lang.free_cells:214c17e7661906dbf72518de31bcb6ab24553311505a4d210035351611a1443b": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.free_cells_one:b381453464ce0977c4948a6944f607626c27a2d1bfa383c3560ba0889a6ea9cd": {
+    "cjr.lang.free_cells_one:fc83597ef91285ce3c9003df2c1b3c351e71c00ceba6fb39887c2dbde1c07304": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells:2ebc67ad284950dd9dc9edb9f5c70dd387062f14a03f5bd59d236be34af4f84e": {
+    "cjr.lang.init_cells:aa9504264ad8c66f7ba5819ec8de260e4dcc5fcdd1b577695eb371943955f4e3": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_addr:1cd9c3e9b904e6d9a0b8ccdb6d4624432041ee7929c7ac48f5156a3c4913f6fb": {
+    "cjr.lang.init_cells_addr:c8a868b88b77464f10c5798a7f367c6dd919a7509fda991aa65c6e98a8fe34e9": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_below:773d975033005eda68b94369cca515bf428f0814b07230b23c6a5db61bdab9a6": {
+    "cjr.lang.init_cells_below:e1868207bd90d84886a6e027bae156f5f794d928311a31daf51d1f80c4204cda": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_fresh:615b2c53102870f17a6fec9b9b4723556301aa39224dcfbe7961dcd0614ff5f2": {
+    "cjr.lang.init_cells_fresh:e2c320dcb4ffb831e4ff948c40065923ff318ded7bd8ad99c743e673519c3e5b": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_high:535757535d386391a24bfe1baf61bc5fbc904eb0e4a8c852c60bc519a0205df9": {
+    "cjr.lang.init_cells_high:c2a3de66cb92ff4c4d54c3c24790091d28346df3061d2f15adc168a54efe10a0": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_lookup:7702890f645503bfd4a07464dfb61a6d206357a6223ed3d5f2e29815829b6d78": {
+    "cjr.lang.init_cells_lookup:ffb5998f8e52c9b179f02adcc0b0313c66474f2237258d661311763c0c5d08ae": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_cells_one:3e45700b7a6d348f1c5f5ffeb04d2eb78b5ee4d88072d0705fd4240aa721445f": {
+    "cjr.lang.init_cells_one:2e541a3525c1aa6ee1f570ed07722bc44e01c8b77e4a14c130dfb97ed440da79": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_fields:4dee906cb1433114e574fb208cef1da7233e7f2451e330ff9196564951d64bb7": {
+    "cjr.lang.init_fields:c63afef357cc43f547a73dd8dfb37a76dc35cd70cfbe8ecb4a8b19c73a582eae": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_fields_carrier:f995f9e2f75f326e0e5e7ef7f1a0de2a0abf204f59808882e825d0ba8dd5a5a4": {
+    "cjr.lang.init_fields_carrier:e35e4e52699a4cd600bf62374f084fb181c1d9897e926e39aa911f952f8fdfdc": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_fields_fresh:d4eb58c318cb14c4cee4dd7f47c52e5ce56c17cf48509de911e0b8fcbdc8c44f": {
+    "cjr.lang.init_fields_fresh:bf22173047457ba0b057c350d439e81a162dd03272051d80c7dc0a5d8d10bd95": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_fields_low:4ad3f6bd33610df593aeaeea2e4e74eb7a05fa1db1f178e73ea3fdd639ae371e": {
+    "cjr.lang.init_fields_low:fba08fb1ea33279930b1652b8dd241cdac89cb995bddf973c8c7fd871d25ed90": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.init_fields_shift:1e998601043d53e1c8ed30050eda5f3e29a2d36953fadb74e86e0ea8bcaa8510": {
+    "cjr.lang.init_fields_shift:5dada2ea31e54150cee8a45dec945c46f2e86f43cf3bdb469afde382b45a1220": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.loc:bd39d09d91c9ccbcf5f1205956aa785d974e48c43bbf2721804640d612f07bff": {
+    "cjr.lang.loc:c73abd59dbfb39f07470a3e0f75ec425229b4884ec70bfa3fb4b133ccdac6fd4": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_below:e69cadc201f64097e232dae1f8663b398915ff36e70d8bcec884d8dda847789e": {
+    "cjr.lang.obj_below:0343fb295743216998b7b790ec459cd30403bd052786c04f98aafdf204a0b6b3": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_fresh:e8d649d275655f9a1a7aa208b9f9a3f715903293b25ea3fa13ba97d89349ba38": {
+    "cjr.lang.obj_fresh:62ff060b19e895e31cfcf0b9bd622bd4c135d0ab854484ab96edebe87a6ad585": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_id:e85f87a9832f10b70ce5c79b6b1e1030f33846b9d9005f1e7695e16148e09d07": {
+    "cjr.lang.obj_id:ca1ea9e2971ac0d135403361c80f048703bd29430924cd9fc576ad617c07b494": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_id_countable:3819dc96817bd8df13e2195b9a06094d171046d099aaefd02457c982354522ae": {
+    "cjr.lang.obj_id_countable:1d37c7eeb71e9b78fefbac0bb15a0f89601fa64d2592526f99f0b5b59cb908bf": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_id_eq_dec:d8f396a7b7ac7cb1f2734c72ef10fd2f46d064372167798bbc0288bf0f31a807": {
+    "cjr.lang.obj_id_eq_dec:275c38639d2fc279c7eabe85a38b8d0eada8524a75196fe8dff0ff47ce4baebf": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.obj_id_inj:4d94d871f6de82a68eefd43a8bf7673e977bf0a2e63bb0c34076f4eb28dac56d": {
+    "cjr.lang.obj_id_inj:ef5fc599caef7f93b2816694f2c785b68a3a0a8fa47248dea9247497332b1dfd": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.observation:cde5e76ffe3f93a356fb323c9196d7e6550de7d67ca6f2c881cb4dac50fdd650": {
+    "cjr.lang.observation:a070bc0ce2d57bed535fcd86897b06b6c6d70c475a562a79bc35805d38c8093c": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.of_to_val:0a6e18a4bbecf7aeece6aa5415b8f7f8a901d69f9b599184e016b63712a87eac": {
+    "cjr.lang.of_to_val:2af0118e6ce0ad48095566a8d82653da28391624a181404c81d8dd63f9913551": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.of_val:7ded0ee42a74e7fcbb2c7852eef3cc5106229efea6c7779b7732ef5bd2794618": {
+    "cjr.lang.of_val:0f94a5799e05b75e9114f6d1220ed15cc041b1bad025150c5968c34c64b95a52": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_below:d9224101061c1285d3787a7c3a73fa7cd5cd5fc45c512250c2f3f65cbf01fbd3": {
+    "cjr.lang.raw_below:1cd503d47b5f2eee62b7f999cac8827b911c1a45580e173afb69770533c959c1": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_fresh:352f2686736611f318f4e2655ab57dd1aa054df8ec6c095eec5adee038012715": {
+    "cjr.lang.raw_fresh:d22b9e3b7daecb2334683aaf6cc902903fc247268a5b8ba3b5ad2f023bb99a43": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_id:b3ea1d595c9cc9950d32441aafb30fa2807f4eba4182830085cb5e6eed6b54b3": {
+    "cjr.lang.raw_id:c7fc4dbb3b1bbdedf0d6561ce0f38c8929dd6b8570284ca23c2e98998c280238": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_id_countable:380d5ebb158bbb494304bf787b8c8931293dfa34d949512489679fdb2744ccca": {
+    "cjr.lang.raw_id_countable:bb6f89d617cd8b97f4da476aa2cf5d4f063fec65cc197a7f0ff358519a22b01f": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_id_eq_dec:988eaba5b7ec6a64bbb8d1760f7f58208839f320c95bc0fba2802a8c922b44b7": {
+    "cjr.lang.raw_id_eq_dec:41e8252e9b86dec868b8a98283057e9f63970e6815ad6a7a8480bcecf0e62854": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.raw_id_inj:d1d60ad8dde2bbd1057db517649f8e8d6376cb488104fc9d14521782a35d763f": {
+    "cjr.lang.raw_id_inj:446d2ff01f2efb4086d94136676a88e19f97780d654837ee49a2376967865aac": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_blocks:b5d412683f3ffe71c48c53fbe7a86e7c6ca2247e56446def7941a6357132f448": {
+    "cjr.lang.set_blocks:c2336b46bc1a9d2a418c6fd99d0c112491266c79db14d3cecaa41497f2bd3ccf": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_next:f0088529bb9ccaab9836275220d7f01b533595bf800ad729ed05ecf6bd9e5cf4": {
+    "cjr.lang.set_next:52da6b9f41ee7c0da7523958e1fa0d6b277909dd841a46ef424083e96b4cde95": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_nth:f7465076c51ad2edfd0e9e2e56226f169c51642ce2d1feb556e6fe6912f29f6c": {
+    "cjr.lang.set_nth:602e7386d456162d848050c5aa549587aee13575605f19be5e685f313c6a9940": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_obj:73ec26ed2bf9265fd4f899ae540cf7b670818c846a009d04c59655b94c63fd6c": {
+    "cjr.lang.set_obj:1cce70143a38c82b0828946dc3ad64966749d53131038a0b7deea3f959789f8e": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_raw:25b8a23cb7e8f8aaa8b430cde050758fafebd16c2d1c554020e960e1c241bfd6": {
+    "cjr.lang.set_raw:41afd2768e22e70083cefe196c796bbc569937ab00dd09f8995499aeccde44cd": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.set_stack:4665023f621dce10a4c8bcb2ed32f3333fe15fe75f3c591c253d4a927643f3c5": {
+    "cjr.lang.set_stack:6fea68847f32ec1a12eb3a4af001ff3fe26c0bf403077ae3898b82b404d3e927": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_below:1ef939194e80b1e35d8095d55154673d7347b5e6afecc79ff75965042838794b": {
+    "cjr.lang.stack_below:249036c261c5125d403d1e908fee3ee02e8ea0c71cb8521a7f1a79b129043991": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_fresh:98419c2c74db2e32939a91c81ff1ffc9a1288f8b87b5e591a5903b0193e9e2e6": {
+    "cjr.lang.stack_fresh:806f833acaa49105a5c387507a70ff8f2c7fe48848d441ad1c826ffd0825f27f": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_id:7de0aada1ca70afbb93882747564f13486748e2ae9d1199e60fc7b29b8f7c676": {
+    "cjr.lang.stack_id:b2828628ea7f960713fcb47dfd912df8a06bb1a41f625e3f8398a5bf2602681a": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_id_countable:09b019a011d54e0b9e804289a9f68cfb42a3a67e55fabd1830592fa72578fc4d": {
+    "cjr.lang.stack_id_countable:79dd42e82e6cf29144f332a3112a905ed03b842e98d85566aa10898791c59b98": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_id_eq_dec:0107f9d109fe5a6fbe6f8799e540c7bf1ce6fc7a997cfd4c8988631b8dc66715": {
+    "cjr.lang.stack_id_eq_dec:714dadd08521fedd9dda95ef70b1a7faf2d5e08cfe926840215f0734bf24d3a6": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.stack_id_inj:62694112aad1deb0e5e15800faf5c3d1d20b44348bcfe16e1ac0e39d010a2542": {
+    "cjr.lang.stack_id_inj:f5ce5b3e804715bb5a533fba74cbe297e8cdbed3be4f87ac6ba2e61423ec7e2e": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state:a7cb2805a9ba3f886a935ec70185f3044fdca591ba049c89273afb6b540f147a": {
+    "cjr.lang.state:b3fbf80294e8420e2b431368bca3d37cf8bcb54ca16d89211773e9415f63d62a": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state_cjr:9b5403adc49d07d41b8af3238894c92698fcfe41b02b3332ef0367f3800cb0bc": {
+    "cjr.lang.state_cjr:d1ea51514cd630f12cb823bf61e05e6c9e609837b4f958a9c4f2f7eb111a4986": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state_inhabited:5b417f5a9f13dbc0c01fd94541f68f061260ee3993ff1e39896fbc43c97a0397": {
+    "cjr.lang.state_inhabited:663483235ff24a33f8a639cb7e1f876db42f1564ad7508bbd3303be450cb0831": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state_init:b127414ded0319c6da8c47f171c03146b7d6fc1d64d17028f276a26ffe464d13": {
+    "cjr.lang.state_init:a98b276ebb2ee796b08d658b820bf3374b7e42b1d02de98bc7f145fb2d19966e": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state_init_wf:3e4b62119fd1c2c746842308475aa1635f165597db72af79b51c3389134ca672": {
+    "cjr.lang.state_init_wf:09bf89063b2c9c74d240ad045831b9c95f68642dcb5960109221610d841302bb": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.state_wf:7f95a7b3e6911835b1222ab0079acf7f68230f14f5c4922e13e44d050c6da303": {
+    "cjr.lang.state_wf:fab71107fd64b3814511db78485254f480bb3258410b48c25a473dc038177478": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.subst:210517bacbfc946443fce09560623d5d9855ace2e19de2a6913e21f4492fc7b1": {
+    "cjr.lang.subst:42a54c01460108540c1fa45e40aa019b65b179979f1cff81722f79049584ca96": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.subst_binder:237031e83197ac9e652d5585a0be205c7e6295c100f2d3cd538f79244547b2f4": {
+    "cjr.lang.subst_binder:a658216fa0b2bdc5c2b695336272f4e14f7b61cc0d0cc67e08c2b8de8fb0721d": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.subst_val:210517bacbfc946443fce09560623d5d9855ace2e19de2a6913e21f4492fc7b1": {
+    "cjr.lang.subst_val:42a54c01460108540c1fa45e40aa019b65b179979f1cff81722f79049584ca96": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.subst_var:c79a2d7d3d698de1b40c753c7ccc75803efe61fabb2a8e87b5ebcc9432c71d5b": {
+    "cjr.lang.subst_var:005cd65cff12562d8d70e9f6baec670127f17a3f60eba48a942cdfd7a3b9db88": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.subst_var_val:c79a2d7d3d698de1b40c753c7ccc75803efe61fabb2a8e87b5ebcc9432c71d5b": {
+    "cjr.lang.subst_var_val:005cd65cff12562d8d70e9f6baec670127f17a3f60eba48a942cdfd7a3b9db88": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.to_of_val:fe499ad5a3a03920952e67de254b47f31351c1c6247302a49d4cf171da73316a": {
+    "cjr.lang.to_of_val:0c52a3fceb5eb705645b3bd5fe81ff4095741dd65e592bb3e797a8f3d31315bb": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.to_val:a54618ccb96a6488740fe7135a3caea48ba65999df147c897ca614cf3e637689": {
+    "cjr.lang.to_val:929bf67c72dbd4fcb4785e769dcf065dcbd99d51725fff95db984a9118255be2": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.ty:66a1cc957cb194658dce6e8a610e10d919be8930fc5ad208c1a7f45da22f5d54": {
+    "cjr.lang.ty:27dc4639db57b1ed519e98659f20c93a1fe241d9db394c600dbf194772695a33": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.val:8aef1dcdc3cd3f8d260c7b3dc2ace6fabc0a6a97abce5700cf599ce06510acf3": {
+    "cjr.lang.val:075e6e807d1b5c361ee8f70cf55e424338ab9b2108aa3fed7f29d1ab49d333e9": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.val_base_stuck:f367d7113d65d759c40f77585e4b223519452e745f7de6af63654506fde0b7d0": {
+    "cjr.lang.val_base_stuck:b46118d2cf4ab0bfee21712bde4ebf12445d1ef77bf9def3cf5afb9dc8ee5a4f": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.val_cjr:3734c2421903f3138f34a2085b72bb17777ebd977513f5dc7bfb4100e5a7aad2": {
+    "cjr.lang.val_cjr:05b16cbcf8dcce68217bbe9f8ffc8731aa2a6e61898c1e0d52c241e251499838": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.val_inhabited:9cc9211a267e8c120e5e8ec33c7a38b174954337590858576e48f62d5c23a5f6": {
+    "cjr.lang.val_inhabited:2cc4cb1860d88b873d734f940dd805ec9fe6d10483fa9d3a97c0e398dfbb8ab7": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_alloc:bee31740a1df75b0e9a982498f8a6f65aa2b0450bc4808a39149785b04ee6899": {
+    "cjr.lang.wf_alloc:da70e1dc14475a8fb231a5aba0a9ffe2b004bf8eb8a4257753b05f4125addecd": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_alloc_one:0e6852e2571aff1d50156337a6991957112a0a00383dd6dd338a2d7db83ce40b": {
+    "cjr.lang.wf_alloc_one:1efb0978d69d4e497e43fe760443b514a9aa7f54ee37ee9586a40cb27cc1450e": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_alloc_one_insert:e0e3d7fa3c47526bac430b634fadb7c51d23de116650d1e47a094bfd608365c1": {
+    "cjr.lang.wf_alloc_one_insert:b8917c16d9ceda3101e9a7a8858242ade433c78e9dcf6353e010d6a4978d342d": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_field_store:69986395b60984386102fdd417f5aff9b8594a65240d6cdc1c566ace9dcd2a78": {
+    "cjr.lang.wf_field_store:762dcad6114a6c8502606512271dd96ccbc996dd8bb8a9776e67dec74df66493": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_free_one:a33246f12f0e104fbaee3ee3b33335df85ffba41f74972d0fde0d1be9d55c407": {
+    "cjr.lang.wf_free_one:ccf2ea5d91b325f4855cee6d4b27e6b9da6b0761e133d7ebce14b8d411f07fec": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_new:e03436aba00d480afaa0ecc4f204ea7bed0517d1fb14f14e9b0eb74b7265858d": {
+    "cjr.lang.wf_new:c1b4f969ae9cbe84cf06b95c9f36208ab67efff8f0100b1d746613a115fe8953": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_raw_store:8627cc0417403c18f9249eb7924152f27b6a3893e9d94e51687ed43792d84c23": {
+    "cjr.lang.wf_raw_store:d6cca11382f0401ecaff45f1a46d5d33473d3e3b295bce8301db25ff22ae3b6d": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_stack_alloc:cd2b1ef774168f6f9d53b11be4e77d61b87aa7f4505713f239a3223c390dc625": {
+    "cjr.lang.wf_stack_alloc:018c9aa6cae708b3173811f395a79056edfa67a957f0b0f316b43f9dc8a3cba7": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_stack_delete:de86affd9166f3f4c1a9ca6ac3c2166e17ec3a72c8d7616f09ae20a5eb885c5a": {
+    "cjr.lang.wf_stack_delete:637cc44aeeb68af184d1c5369c85c330c362a23330457943b9d35bda4b9c55fc": {
       "entries": [],
       "issues": []
     },
-    "cjr.lang.wf_stack_upd:2f7f1f33a0afd693db6ad41efdbbcb7a8212e0ad65c067113c4c0a05d6cfa771": {
+    "cjr.lang.wf_stack_upd:124e6edf6527ab151b74bdfa1b4e3ffd7f4222709f7a3652559449c73a215603": {
       "entries": [],
       "issues": []
     },
-    "cjr.lifting.wp_lift_pure_step:b9223a6fc2b5764240da8fc73c0a853da1ce619facdc7aaf699743d803bc486e": {
+    "cjr.lifting.wp_lift_pure_step:7271877f896231e297395dc185487fc880883891323ecf94d93eee5715f86ed7": {
       "entries": [],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'%'_x:84de3dea9773925f799b6c8e4d5cdead11b8a4629611c4e6420c1516440b7ca4": {
+    "cjr.notation.::expr_scope:x_'%'_x:51bab6e8adce5ef604ccc28c7a14a9dc1396157caf3e0cf2d119d275307fc7e4": {
       "entries": [],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'*'_x:b6fb13386355758fa61c8e681fceba5773557dba4b7cddf778cbcc04a2ef947a": {
+    "cjr.notation.::expr_scope:x_'*'_x:b5f2ac6685f55a6502ef50f38f91e95289db0602af1b32c54a040355c89c3445": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -14153,15 +14153,15 @@
       ],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'+'_x:0438b9a8b6bf5eb4246a4fbaa1c06ae86bb3db9ed37959b697545b007cdb26f5": {
+    "cjr.notation.::expr_scope:x_'+'_x:f84a8dce67397b53f790b93e32bff4404792095d3580d2a3f56f14fdde770408": {
       "entries": [],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'-'_x:d351c1d7734a14b853dc8e838e0fee3588503603bd9484b8d34199ff59c1f1a5": {
+    "cjr.notation.::expr_scope:x_'-'_x:c8b1e4e318727ca610696ddd0633724b6daee6651523498b97076c209b3b416d": {
       "entries": [],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'.&'_x:b5449595233b29e663d3fa66518942f1719370f2e47ad100081f6115c8b2cfa7": {
+    "cjr.notation.::expr_scope:x_'.&'_x:fb000fecdaaa4534508f90340cc8fefc21779e9e60b8d9319fde7623b3d36b69": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -14249,7 +14249,7 @@
       ],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'.^'_x:36741bae49760347635c79548e13ad17555dae1203f61889aa3abf957c206c6b": {
+    "cjr.notation.::expr_scope:x_'.^'_x:7b09a9ab1a18f861450366e8c0f3db1832732be2d389bf81e34b38a92cf39a6e": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -14337,7 +14337,7 @@
       ],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'/'_x:ec2f70b2ff34a763b6531f77f6bad9111c858fb8a66b79ac9e909495f50b1968": {
+    "cjr.notation.::expr_scope:x_'/'_x:8404c08a6ea69131fdb5bbc9cf96c7ade0258d577281b3b8fe50a1bd81a05367": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -14381,91 +14381,91 @@
       ],
       "issues": []
     },
-    "cjr.notation.::expr_scope:x_'≤'_x:329532ef8d64c98bdf3fb521df062bd5f04333d6d12342f406e0deeb6b763482": {
+    "cjr.notation.::expr_scope:x_'≤'_x:7acd5809e6824286a118ec91e84f19f1890b7099dffe9d914351b85500750c9e": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.::bi_scope:x_'↦ᵣ'_x:6fe037ba4b81ab6602a3cb2b2442f920566f70c7d7453884a5ce819998293ad4": {
+    "cjr.primitive_laws.::bi_scope:x_'↦ᵣ'_x:b723093b65728ef098516cb195082866f39e809c00f7c7ddec9d3a7effa81b76": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.::bi_scope:x_'↦ᵦ'_x:e047711b78d66063a6bf511dc77b2b6099904331915501079b9fe75ba3d2be6e": {
+    "cjr.primitive_laws.::bi_scope:x_'↦ᵦ'_x:017b78ad86478de6af37b0cb61ea4e2cb92ee55973d46482da6865a4e357f01a": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.::bi_scope:x_'↦ₒ['_x_']'_x:9455f97da4d13a321d09c93dbd1e20b39267297f5f0a1c298492d36bc45232a5": {
+    "cjr.primitive_laws.::bi_scope:x_'↦ₒ['_x_']'_x:9e5917719cebfb90bcfe5e5619f1eefc3f7bae7cbeb0276c6551e4827caffcc2": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.::bi_scope:x_'↦ₛ'_x:65771ba5a22037a564f1a8cd2ce05ea2b57f8cad2398cc3fa9a8e9a1ff510e9e": {
+    "cjr.primitive_laws.::bi_scope:x_'↦ₛ'_x:0ec0a004fd6781f3acfccf2350e4b0d15739a1dcd514a41da05ee346f98e8486": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.block_mapsto:1624da7655eab923c3da8f06ab61018a72e9cfd02017fbe1a9f996987a23e324": {
+    "cjr.primitive_laws.block_mapsto:f37e56c6d22a764817eae1c17a4d2d5cd2e5ee6f04ca914331a52a84cb234609": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.cjrGS:f9a6c4b19a98ae332a233d0dd0c76f6e8ac5f10222aae1bd0fafd1e63ec2eb76": {
+    "cjr.primitive_laws.cjrGS:bf0f300f6b256e2585589f52a236ada9d271b9a78ad2edbb945dc131cee0ca61": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.cjr_irisGS:031222429ba59e39cb3f9d416bf2409c00f7e2bbf8a968b3041002ecb3c25ade": {
+    "cjr.primitive_laws.cjr_irisGS:8c7a6149fb77634e9281c5247620d08d06735570a9f795d598c6ffa0101435ed": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.cjr_state_interp:a0fab52855ad13363edc1b5f03e2a537c20aa3f5d802a41fde231ada5662e707": {
+    "cjr.primitive_laws.cjr_state_interp:31db7b6a31fc21e4983633944f5937a88df2fe5eca0c14812d194fc6f0558542": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.init_cells_sep:795a87824c6ccdb7b9ee9cf20b20e439ddea3ebe4f5de741ad50fb4866c8533d": {
+    "cjr.primitive_laws.init_cells_sep:c96da174b6f6fd4336188a5ded5574ae1e00d085da9a59d5834a1efaebdbe9ff": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.init_fields_sep:e0bc3cd9260e153df4e65f95c8ce06b4e635ed466beb380d3dc3a3c5cfb62dc7": {
+    "cjr.primitive_laws.init_fields_sep:f72da26e54d5adfb0fbfd9f22f118d17c461fb65afe3c791b7dd443b799bc974": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.obj_mapsto:bf5928c2c4cc214cf856f68b5d789eee33be16f9197a2afd662fe73a652aafa7": {
+    "cjr.primitive_laws.obj_mapsto:242e6791111534aaefdeb4c6d5e22cf1dee91060fd34e0817ecb85f0ad8cbbed": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.raw_mapsto:461670be7db2e22cb8de47d5ba070239055482df7b11e32ffcd8c1b47e0b1ed8": {
+    "cjr.primitive_laws.raw_mapsto:643281b175dd44ea9ef7e4caf1cfa2a70d8cb4ff99a0bd6cfa4118375e54f50a": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.raw_mapsto_exclusive:cfc25f22518c3279e28fe9988e6cf4e3e14e131973032e8a2f7c7776a28a3491": {
+    "cjr.primitive_laws.raw_mapsto_exclusive:59c43661168ea4c1439c9b75c03506604fdbbff978b570f1277345b589cff0f8": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.stack_mapsto:4e6184dd0ff80958e08eed52e19c9cc5e49a537eebcaf9a9fa9c1bf565faef16": {
+    "cjr.primitive_laws.stack_mapsto:abcfbaa4604844e403ea1158e016591b36165a36bf3382c557db812748339dba": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.stack_mapsto_exclusive:7a7d549ed4df4c2819541b4bb0d5f6a6f2bfb612e7a24f6e028592b242afa26f": {
+    "cjr.primitive_laws.stack_mapsto_exclusive:89b2fed722089ab617f45003ae928e531a83bc869b5693f94b28dff0f4b8eb36": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_alloc:c8e835ad57852c9bf645cbc919c45d442f65017f4bc91112371d499770410688": {
+    "cjr.primitive_laws.wp_alloc:f298e6f907f9189d70f91ea1e2a6be7c17f5db8a18d433ba007a81a0a4069e0b": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_alloc_one:16b8040c419b012cb12eedba18c598d0a29334be6ec91d613bb8a28415dd7658": {
+    "cjr.primitive_laws.wp_alloc_one:5f950b7a1741784958bb8af756cbe17ab5bcae1414c6af5af5ad1a8317b73ab4": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_app:acafc54c572e8c3957578076f8118f2932639268223c585787c5da6ccfa5fe36": {
+    "cjr.primitive_laws.wp_app:fe8cc95c15218561aad6c2f5e7e1f7bbe86cfef954f635b33e04896677ee5da8": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_bind:bb703c83e2ef6d31de0de677f8085fd56f3519e1e7e8d5ff644ba363b841ff30": {
+    "cjr.primitive_laws.wp_bind:0c90bc30d0d8b7ec1083008a57f1975c200830c328a75c8f3073c4b744b861b9": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_binop:a2023994b6ef6f1a5fc2130d5e764541adc6f99ac4cf26e4e366728d2e91a699": {
+    "cjr.primitive_laws.wp_binop:73695209ea17c8aaa0225f19693bb21333c6dce4d0a55737ee1c66340f2b6be1": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_bitand:598771827ddd01357f3399924a1f31ba9e773df074e4375fb4e92d42479e87f6": {
+    "cjr.primitive_laws.wp_bitand:e10a4c6f74202e540eab427947c62e29cc086410f42341f489a79a325187e566": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -14553,7 +14553,7 @@
       ],
       "issues": []
     },
-    "cjr.primitive_laws.wp_bitxor:cfc830a2ce6e2c1929ccd0b0acd6284247253252c1593a872bf1205777f7f371": {
+    "cjr.primitive_laws.wp_bitxor:9a096e78ee2a8fbd7acfb2e5692d0989a6d652a26d35d730cb7065cf21601d1c": {
       "entries": [
         {
           "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
@@ -14641,7 +14641,7 @@
       ],
       "issues": []
     },
-    "cjr.primitive_laws.wp_div:c656748346523cce8308339ce3b958c79ede41d62eb02a9e17dde588a9935d8d": {
+    "cjr.primitive_laws.wp_div:ac6a3f748af9ec3cdd78be6b94a05247b8c8cc9a09cf06245c3d545a68f7fdb1": {
       "entries": [
         {
           "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
@@ -14685,35 +14685,35 @@
       ],
       "issues": []
     },
-    "cjr.primitive_laws.wp_field_load:382ba67c39805bac63c2194878ebef9940101a37f2ecdd5ab022981cee4bdc99": {
+    "cjr.primitive_laws.wp_field_load:8d5afb1b8967200655cc2a211b51881c98ce76c8ebffce5b46d7f9f8d728b37c": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_field_store:97f8578d12518cdda927c0dedfc55488c9bcc2f34d62123904978054e848b42b": {
+    "cjr.primitive_laws.wp_field_store:257b9c089de4bbf38ba84eee59e3d65357e826968d962a368e36144e03edfa31": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_free_one:21deb8042cc31a454fc3c637d3424e69dfca70c402e40537104161c1461c8805": {
+    "cjr.primitive_laws.wp_free_one:516b4843a5ce78e6dd8196ef043bfd05024fbd8a17113552a733992e1f8ee787": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_if_false:8c6e12b858eb6221246b3f855b87e17eb3a97fc7ce12ec5eec1c7507dfa9e688": {
+    "cjr.primitive_laws.wp_if_false:503a6203b757870eed3b993729be47304ced62f4418137b5f4448c828406f0e8": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_if_true:d16cf98c6f4e3f3b9b9fbba9e05ad72f9666c5b79bb9e20f5bb708b332b0110d": {
+    "cjr.primitive_laws.wp_if_true:f880f05ca71eeaa6871233531bbb625a68e135469dedf74c87023bef57b57bbf": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_let:549728d8fe8b6dde29f7f18d354e8e4ee66a1730731188db7339398e248d955f": {
+    "cjr.primitive_laws.wp_let:16c1a2f986af36ccf60a2036a944dc749b2dada88c856c2e87aa76d4a47f7466": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_load:b7ef22812b5fe4f259ee80a0adeedf220c6157424d437c222db3db7738c53e82": {
+    "cjr.primitive_laws.wp_load:4ecccafb0c59edcef341e75ceb78c0fc92f2d2512b2acd927fe9f8ca9d728c3c": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_mul:5280ecc7ec2aca8d5c4a6e5055a3c26dbf84cef1b8e9cb1dd3fd120c9cde070b": {
+    "cjr.primitive_laws.wp_mul:851e02b3c844735e3b97b7785e4964865e34d93efae0177372310650252b9e04": {
       "entries": [
         {
           "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
@@ -14817,59 +14817,59 @@
       ],
       "issues": []
     },
-    "cjr.primitive_laws.wp_new:4cb14ae3a2043821c829add64147fe59ae4b2c51465fe36a9cb09f625b5fccda": {
+    "cjr.primitive_laws.wp_new:e00321294bda6d54e0dd00229f70a1d21d4636d76160dcb0f7488f3fa5b190a3": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_offset:84dfee391f9d67445df69cb727614f40b450053378175b53da8cf6f198020261": {
+    "cjr.primitive_laws.wp_offset:9b78f5467c85ca27dd3164f9a318a578d1e67be74006e5c2707784bc596a355f": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_pure_step:9379b545c6c8c73f669c3ae404b441258983ebf985bb550dec1efe4d9577f212": {
+    "cjr.primitive_laws.wp_pure_step:9af1dd5db8971ff3dd79ee97a077487f576844996826f59cf28c0f3a88d38c11": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_rec:74ee1021fab553d69da22e21d5aa2fb6d6d07706f366d257d2e33802acfa526c": {
+    "cjr.primitive_laws.wp_rec:2327d5a66822b2587d5af5eaa14602b32cdf1d96fd18b249c6b7f91fd39a81f0": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_rem:7e0f06787dbed95f6e83f7299bb6219c46f973a621d43ba159b9171984afa681": {
+    "cjr.primitive_laws.wp_rem:5ec23cca17b6350e734bffbec15f2be7207c5be3a5147d8bda835763bf30c191": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_seq:0c3c7b76314ed145135f1b53f3061b9812987a08d2bfcd4c4c1a2d86edef35b4": {
+    "cjr.primitive_laws.wp_seq:925b58eb5fa3ed4ca50860b02016606d3dc84fc8e8ae44f926012ba95d5164f0": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_stack_assign:f6cd0ea742a87f61d98495f58f21ed209141c4760be93777ef967219b6681deb": {
+    "cjr.primitive_laws.wp_stack_assign:1fe89dcf128f88820c4856f953eeadd1bd941938dc8f657d13c9020b05eab4cb": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_stack_field:af02c83db9dfe3646262ccdfec5820ce256ec02e625a67910863089549ff4c48": {
+    "cjr.primitive_laws.wp_stack_field:bda919e1699dd1350484bee4aedeb54a5c2e7927563743b8850b0f895407dd3f": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_stack_load:753d2ab98c86edfcf9793e12fdfc18e3ef5d18ed53970f3b57d541fd0da7d223": {
+    "cjr.primitive_laws.wp_stack_load:32521c39dcb76dd00cbb612761fd293bd82f7c3e42da211c856695319b573404": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_store:bf287ddfac31af9b46434942da9f25dd4db3b2fc497f380955735c917adef20f": {
+    "cjr.primitive_laws.wp_store:a22c3c3a113632c63d983a34dc35b23602920182082dff6ea8c29292798140e6": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_struct_done:ac1c3570dcb6fe09cb1fc8ae3eb94a87aaef97362ac05a1e4275b746aaed1793": {
+    "cjr.primitive_laws.wp_struct_done:a0a0bbb9754540a3dc575994049e922899324c44d0f2d2287c989377b4da689d": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_struct_load:9b829e69694da893e706ac93cd7584c22f80f326db23800c84d90f4d7b756c27": {
+    "cjr.primitive_laws.wp_struct_load:811871bd33481aa2d9719efc91b52c19203834cd3191e333825057dca621a972": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_var_bind:01dc6cdefff8889990187213424056764657d2a8b57bbd59b15ee0b5b019e46d": {
+    "cjr.primitive_laws.wp_var_bind:795ae93a8627a8ced52728d04d782c73dde5a75b2a0f2930d06d89f6643a5c38": {
       "entries": [],
       "issues": []
     },
-    "cjr.primitive_laws.wp_while:2fe422eb80d3f10432f9cccae938be67354d007b52aae7ddb68d65153be7cda4": {
+    "cjr.primitive_laws.wp_while:0333ba488618a40aa838ad56904a5fa55af58d6d78b0e9d3c1b42dd275e19210": {
       "entries": [],
       "issues": []
     }
@@ -19923,9 +19923,16 @@
         "date": "2026-11-02T17:53:18Z",
         "prompts": [],
         "subject": "Revalidate proofs and refresh reviewed readable documentation"
+      },
+      {
+        "changes": [],
+        "commit": "acfa4a5fe711e5941d52fa9f00d68a652ce413bc",
+        "date": "2026-11-03T16:08:32Z",
+        "prompts": [],
+        "subject": "Improve readable graphs, Cangjie views and declaration history"
       }
     ],
-    "head": "04935c0cb8e7b63cf9dffc44e2aec8f2b88f6c50",
+    "head": "acfa4a5fe711e5941d52fa9f00d68a652ce413bc",
     "shallow": false
   },
   "version": 1

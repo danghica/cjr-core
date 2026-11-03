@@ -984,3 +984,9 @@ Acceptance requires three separate repositories with complete HTML documentation
 [2026-10-29T14:51:32+00:00]
 validate all the proofs and push the proof record and update the readmes 
 
+[2026-11-03T17:00:01+00:00]
+authenticator/docs/rocq/index.html has no main correctness contracts? 
+
+[2026-11-03T17:03:42+00:00]
+don't re-run proof validation, push everything to the repo
+

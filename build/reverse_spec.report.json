@@ -19,9 +19,14 @@
     "declarations": {
       "cjr.examples.list_rev.reverse_spec": {
         "depends_on": [],
+        "statement_depends_on": [],
         "issues": [
           "Project reference has no rendered declaration: cjr.examples.list_rev.call_reverse",
-          "Proof dependency coverage is incomplete: proof was not fully parsed or was aborted."
+          "Project reference has no rendered declaration: cjr.examples.list_rev.rev_body",
+          "Project reference has no rendered declaration: cjr.examples.list_rev.rev_loop",
+          "Project reference has no rendered declaration: cjr.examples.list_rev.rev_loop_at",
+          "Project reference has no rendered declaration: cjr.examples.list_rev.sld",
+          "Project reference has no rendered declaration: cjr.examples.list_rev.wp_rev_loop"
         ]
       }
     }
@@ -37,6 +42,8 @@
       }
     }
   },
+  "cangjie": {},
+  "correctness_contracts": {},
   "history": {
     "complete": false,
     "declarations": {
@@ -47,6 +54,15 @@
         ],
         "complete": false
       }
+    }
+  },
+  "rendering": {
+    "proof_validation": "not_run",
+    "proof_bodies_evaluated": false,
+    "preserved_available_explanations": 0,
+    "explanations_mode": "offline",
+    "sources": {
+      "example/list_rev/rocq/list_rev.v": "882c0e5991f2e651c03fc2822a4a8e1682ec55cd6100ac13dce70cd5a43add54"
     }
   }
 }
