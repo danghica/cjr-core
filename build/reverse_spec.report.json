@@ -36,5 +36,17 @@
         "description": null
       }
     }
+  },
+  "history": {
+    "complete": false,
+    "declarations": {
+      "cjr.examples.list_rev.reverse_spec": {
+        "entries": [],
+        "issues": [
+          "Earlier attribution is ambiguous because a replacement crosses declaration boundaries."
+        ],
+        "complete": false
+      }
+    }
   }
 }

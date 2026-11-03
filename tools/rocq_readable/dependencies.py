@@ -40,6 +40,8 @@ class Graph:
     issues: dict[str, list[str]]
     roots: list[str]
     source_issues: dict[str, list[str]] = field(default_factory=dict)
+    statement_edges: dict[str, list[str]] = field(default_factory=dict)
+    contracts: dict[str, dict] = field(default_factory=dict)
 
     @property
     def incomplete(self):
@@ -83,7 +85,7 @@ def root_entries(edges):
 def build_graph(sources, documents, resolved):
     owners = {d.identity: declaration.identity for source in sources
               for declaration in source.declarations for d in (declaration, *declaration.children)}
-    edges, issues = {}, {}
+    edges, issues, statement_edges = {}, {}, {}
     source_issues = {str(s.relative): ["Source errors may limit dependency coverage."] if s.errors else [] for s in sources}
     project_modules = {s.module for s in sources}
     for source in sources:
@@ -150,5 +152,9 @@ def build_graph(sources, documents, resolved):
             if source.errors:
                 warnings.add("Source errors may limit dependency coverage.")
             edges[decl.identity] = sorted(found)
+            statement_edges[decl.identity] = sorted({owners[t.identity] for _, tokens in document.lines()
+                for t in tokens if t.identity in owners and not t.local and not t.anchor} & found)
             issues[decl.identity] = sorted(warnings)
-    return Graph(edges, issues, root_entries(edges), source_issues)
+    from .contracts import classify_contracts
+    contracts = classify_contracts(sources, documents, resolved, statement_edges)
+    return Graph(edges, issues, root_entries(edges), source_issues, statement_edges, contracts)

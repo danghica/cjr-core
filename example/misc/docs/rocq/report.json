@@ -489,5 +489,823 @@
         "description": null
       }
     }
+  },
+  "history": {
+    "complete": true,
+    "declarations": {
+      "cjr.examples.arith.sum_one": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.sum_one_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.sum_one_adequate": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.remainder_signs": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.remainder_zero_divisor": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.remainder_noninteger": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.bitwise_signed_cases": {
+        "entries": [
+          {
+            "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
+            "date": "2026-10-14T06:42:55+01:00",
+            "prompts": [
+              {
+                "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
+                "timestamp": "2026-10-13T06:00:47+00:00"
+              },
+              {
+                "text": "whats the rocq cjr syntax for this fragment? ",
+                "timestamp": "2026-10-13T06:03:00+00:00"
+              },
+              {
+                "text": "does cjr need a model of garbage collection?",
+                "timestamp": "2026-10-13T06:09:10+00:00"
+              },
+              {
+                "text": "does cangjie have byte-level layout",
+                "timestamp": "2026-10-13T06:09:56+00:00"
+              },
+              {
+                "text": "what about the coq checker flags, where are they defined?",
+                "timestamp": "2026-10-13T06:14:40+00:00"
+              },
+              {
+                "text": "what is -q ?",
+                "timestamp": "2026-10-13T06:16:16+00:00"
+              },
+              {
+                "text": "explain thiese flags: ",
+                "timestamp": "2026-10-13T06:16:55+00:00"
+              },
+              {
+                "text": "what is -arg -w",
+                "timestamp": "2026-10-13T06:18:54+00:00"
+              },
+              {
+                "text": "what is verify_assumptions.v",
+                "timestamp": "2026-10-13T06:20:03+00:00"
+              },
+              {
+                "text": "refresh the extracted cell.html definitions including the LLM generated explanations. dont do anything else",
+                "timestamp": "2026-10-13T07:01:43+00:00"
+              },
+              {
+                "text": "write this in algebraic notation: Lemma cons_then_tail_spec (x : Z) xs (p : val_cjr) :\n    is_list xs p -∗\n    WP cons_then_tail x p {{ v, ⌜ v = p ⌝ ∗ is_list xs v }}.",
+                "timestamp": "2026-10-13T07:15:23+00:00"
+              },
+              {
+                "text": "what file is it in? ",
+                "timestamp": "2026-10-13T07:24:28+00:00"
+              },
+              {
+                "text": "how about the rocq definition fo the data strcuture",
+                "timestamp": "2026-10-13T07:24:50+00:00"
+              },
+              {
+                "text": "what is the native implementation of quadtrees used for the benchmarks?",
+                "timestamp": "2026-10-13T07:59:35+00:00"
+              },
+              {
+                "text": "PLEASE IMPLEMENT THIS PLAN:\n# Verified AES-IGE with proved algebraic properties\n\n## Summary\n\nCreate `example/aes_ige` containing AES-128/192/256 encryption and decryption, verified IGE processing over separate buffers, extracted Cangjie, tests, benchmarks, and an offline report. Prove both implementation correctness and the key algebraic properties of the specification.\n\n## Implementation and interfaces\n\n- Model AES according to FIPS 197, using byte-valued integers, column-major state layout, concrete key expansion, and 10/12/14-round cipher loops.\n- Add integer XOR and bitwise AND primitives to CJR, including semantics, WP rules, notation, extraction support, and correspondence tests. Use addition and masking for byte doubling.\n- Implement the AES transformations and their inverses. Prove the S-box tables agree with the finite-field specification.\n- Expose key expansion into a caller-owned 240-byte schedule buffer, returning the round count or zero for invalid key length. Provide block encryption/decryption and IGE encryption/decryption using reusable caller-owned workspace.\n- Require disjoint input/output, IV, schedule, and workspace buffers. Preserve input and schedule. Reject invalid round counts and negative or non-block-aligned message lengths before modifying output or IV.\n- Use a mutable 32-byte IV ordered as previous ciphertext followed by previous plaintext. Empty input succeeds and preserves the IV. Exclude padding, in-place operation, and bidirectional IGE.\n\n## Specification and algebraic proofs\n\nState and prove these properties independently of the embedded implementation, for every supported key size and valid input:\n\n- **AES inverse laws:** `decrypt(k, encrypt(k, b)) = b` and `encrypt(k, decrypt(k, b)) = b`.\n- **AES bijectivity:** derive injectivity and surjectivity of encryption and decryption from the inverse laws.\n- **Transformation inverse laws:** prove both compositions for SubBytes/InvSubBytes, ShiftRows/InvShiftRows, and MixColumns/InvMixColumns. Prove applying AddRoundKey twice with the same round key is identity.\n- **Byte-XOR laws:** prove associativity, commutativity, zero identity, self-cancellation, and byte-range closure, supporting AES and IGE cancellation arguments.\n- **IGE inverse laws:** encryption followed by decryption, and decryption followed by encryption, recover the original message when both operations start from the same initial IV. Prove that the corresponding final IVs agree.\n- **IGE bijectivity:** for a fixed key, initial IV, and block count, derive injectivity and surjectivity on messages of that length.\n- **Length and range preservation:** AES preserves block size; IGE preserves message length; outputs and final IV remain byte-valued.\n- **Empty-message identity:** both IGE directions return the empty message and unchanged IV.\n- **Chunk composition:** processing `xs ++ ys` equals processing `xs`, then `ys` with the returned IV, for both encryption and decryption. Prove equality of concatenated outputs and final IV.\n\nDefine pure IGE operations as returning `(output, finalIV)` so the stateful laws are explicit. Round-trip laws reset to the original IV before the inverse operation; they do not reuse the mutated final IV.\n\n## Implementation proofs and integration\n\n- Separate the mathematical model, embedded programs, and proofs within the example.\n- Prove Iris refinement contracts for helpers, key expansion, AES blocks, and complete IGE loops, including ownership, bounds, preservation, and IV updates.\n- Derive implementation-level round-trip and chunk-composition contracts from refinement and the pure algebraic theorems.\n- Use concrete AES throughout; introduce no admissions or assumed cipher correctness.\n- Integrate build load paths, extraction, test/report dispatch, and the examples index. Audit the public correctness contracts and algebraic theorems with `Print Assumptions` and kernel checks.\n\n## Validation and report\n\n- Test AES known-answer vectors for every key size, OpenSSL IGE vectors, and independently generated AES-192/256 IGE fixtures with recorded provenance.\n- Test both inverse compositions, chunk composition, empty and multi-block messages, high-bit bytes, final IV equality, rejected lengths, and memory preservation.\n- Run full `make verify`, runtime regression suites, extraction checks, and report link checks. Prove machine-range bounds for AES arithmetic and indexing.\n- Benchmark encryption/decryption at 16 bytes, 1 KiB, and 64 KiB for every key size; measure key expansion separately. Use three processes, seven samples per process, warm-up, and checked checksums.\n- Produce the existing-style offline report with rendered specifications, dependency diagrams, proof narrative, test provenance, and benchmark charts. Give each algebraic law its statement, assumptions, proof explanation, and implementation consequence.\n- State that the verified guarantees cover functional correctness and memory safety; constant-time behavior and cryptographic security proofs remain outside scope.\n- Preserve existing prompt-log changes and resume exact prompt logging when implementation mode begins.",
+                "timestamp": "2026-10-14T02:24:37+00:00"
+              },
+              {
+                "text": "do it",
+                "timestamp": "2026-10-14T04:01:03+00:00"
+              },
+              {
+                "text": "why is openssl so much faster? ",
+                "timestamp": "2026-10-14T05:22:21+00:00"
+              },
+              {
+                "text": "add this explanations to aes_ige/benchmark/results/report.html and note them as possible causes not definitive",
+                "timestamp": "2026-10-14T05:24:32+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-14T05:26:10+00:00"
+              }
+            ],
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.bitwise_noninteger": {
+        "entries": [
+          {
+            "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
+            "date": "2026-10-14T06:42:55+01:00",
+            "prompts": [
+              {
+                "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
+                "timestamp": "2026-10-13T06:00:47+00:00"
+              },
+              {
+                "text": "whats the rocq cjr syntax for this fragment? ",
+                "timestamp": "2026-10-13T06:03:00+00:00"
+              },
+              {
+                "text": "does cjr need a model of garbage collection?",
+                "timestamp": "2026-10-13T06:09:10+00:00"
+              },
+              {
+                "text": "does cangjie have byte-level layout",
+                "timestamp": "2026-10-13T06:09:56+00:00"
+              },
+              {
+                "text": "what about the coq checker flags, where are they defined?",
+                "timestamp": "2026-10-13T06:14:40+00:00"
+              },
+              {
+                "text": "what is -q ?",
+                "timestamp": "2026-10-13T06:16:16+00:00"
+              },
+              {
+                "text": "explain thiese flags: ",
+                "timestamp": "2026-10-13T06:16:55+00:00"
+              },
+              {
+                "text": "what is -arg -w",
+                "timestamp": "2026-10-13T06:18:54+00:00"
+              },
+              {
+                "text": "what is verify_assumptions.v",
+                "timestamp": "2026-10-13T06:20:03+00:00"
+              },
+              {
+                "text": "refresh the extracted cell.html definitions including the LLM generated explanations. dont do anything else",
+                "timestamp": "2026-10-13T07:01:43+00:00"
+              },
+              {
+                "text": "write this in algebraic notation: Lemma cons_then_tail_spec (x : Z) xs (p : val_cjr) :\n    is_list xs p -∗\n    WP cons_then_tail x p {{ v, ⌜ v = p ⌝ ∗ is_list xs v }}.",
+                "timestamp": "2026-10-13T07:15:23+00:00"
+              },
+              {
+                "text": "what file is it in? ",
+                "timestamp": "2026-10-13T07:24:28+00:00"
+              },
+              {
+                "text": "how about the rocq definition fo the data strcuture",
+                "timestamp": "2026-10-13T07:24:50+00:00"
+              },
+              {
+                "text": "what is the native implementation of quadtrees used for the benchmarks?",
+                "timestamp": "2026-10-13T07:59:35+00:00"
+              },
+              {
+                "text": "PLEASE IMPLEMENT THIS PLAN:\n# Verified AES-IGE with proved algebraic properties\n\n## Summary\n\nCreate `example/aes_ige` containing AES-128/192/256 encryption and decryption, verified IGE processing over separate buffers, extracted Cangjie, tests, benchmarks, and an offline report. Prove both implementation correctness and the key algebraic properties of the specification.\n\n## Implementation and interfaces\n\n- Model AES according to FIPS 197, using byte-valued integers, column-major state layout, concrete key expansion, and 10/12/14-round cipher loops.\n- Add integer XOR and bitwise AND primitives to CJR, including semantics, WP rules, notation, extraction support, and correspondence tests. Use addition and masking for byte doubling.\n- Implement the AES transformations and their inverses. Prove the S-box tables agree with the finite-field specification.\n- Expose key expansion into a caller-owned 240-byte schedule buffer, returning the round count or zero for invalid key length. Provide block encryption/decryption and IGE encryption/decryption using reusable caller-owned workspace.\n- Require disjoint input/output, IV, schedule, and workspace buffers. Preserve input and schedule. Reject invalid round counts and negative or non-block-aligned message lengths before modifying output or IV.\n- Use a mutable 32-byte IV ordered as previous ciphertext followed by previous plaintext. Empty input succeeds and preserves the IV. Exclude padding, in-place operation, and bidirectional IGE.\n\n## Specification and algebraic proofs\n\nState and prove these properties independently of the embedded implementation, for every supported key size and valid input:\n\n- **AES inverse laws:** `decrypt(k, encrypt(k, b)) = b` and `encrypt(k, decrypt(k, b)) = b`.\n- **AES bijectivity:** derive injectivity and surjectivity of encryption and decryption from the inverse laws.\n- **Transformation inverse laws:** prove both compositions for SubBytes/InvSubBytes, ShiftRows/InvShiftRows, and MixColumns/InvMixColumns. Prove applying AddRoundKey twice with the same round key is identity.\n- **Byte-XOR laws:** prove associativity, commutativity, zero identity, self-cancellation, and byte-range closure, supporting AES and IGE cancellation arguments.\n- **IGE inverse laws:** encryption followed by decryption, and decryption followed by encryption, recover the original message when both operations start from the same initial IV. Prove that the corresponding final IVs agree.\n- **IGE bijectivity:** for a fixed key, initial IV, and block count, derive injectivity and surjectivity on messages of that length.\n- **Length and range preservation:** AES preserves block size; IGE preserves message length; outputs and final IV remain byte-valued.\n- **Empty-message identity:** both IGE directions return the empty message and unchanged IV.\n- **Chunk composition:** processing `xs ++ ys` equals processing `xs`, then `ys` with the returned IV, for both encryption and decryption. Prove equality of concatenated outputs and final IV.\n\nDefine pure IGE operations as returning `(output, finalIV)` so the stateful laws are explicit. Round-trip laws reset to the original IV before the inverse operation; they do not reuse the mutated final IV.\n\n## Implementation proofs and integration\n\n- Separate the mathematical model, embedded programs, and proofs within the example.\n- Prove Iris refinement contracts for helpers, key expansion, AES blocks, and complete IGE loops, including ownership, bounds, preservation, and IV updates.\n- Derive implementation-level round-trip and chunk-composition contracts from refinement and the pure algebraic theorems.\n- Use concrete AES throughout; introduce no admissions or assumed cipher correctness.\n- Integrate build load paths, extraction, test/report dispatch, and the examples index. Audit the public correctness contracts and algebraic theorems with `Print Assumptions` and kernel checks.\n\n## Validation and report\n\n- Test AES known-answer vectors for every key size, OpenSSL IGE vectors, and independently generated AES-192/256 IGE fixtures with recorded provenance.\n- Test both inverse compositions, chunk composition, empty and multi-block messages, high-bit bytes, final IV equality, rejected lengths, and memory preservation.\n- Run full `make verify`, runtime regression suites, extraction checks, and report link checks. Prove machine-range bounds for AES arithmetic and indexing.\n- Benchmark encryption/decryption at 16 bytes, 1 KiB, and 64 KiB for every key size; measure key expansion separately. Use three processes, seven samples per process, warm-up, and checked checksums.\n- Produce the existing-style offline report with rendered specifications, dependency diagrams, proof narrative, test provenance, and benchmark charts. Give each algebraic law its statement, assumptions, proof explanation, and implementation consequence.\n- State that the verified guarantees cover functional correctness and memory safety; constant-time behavior and cryptographic security proofs remain outside scope.\n- Preserve existing prompt-log changes and resume exact prompt logging when implementation mode begins.",
+                "timestamp": "2026-10-14T02:24:37+00:00"
+              },
+              {
+                "text": "do it",
+                "timestamp": "2026-10-14T04:01:03+00:00"
+              },
+              {
+                "text": "why is openssl so much faster? ",
+                "timestamp": "2026-10-14T05:22:21+00:00"
+              },
+              {
+                "text": "add this explanations to aes_ige/benchmark/results/report.html and note them as possible causes not definitive",
+                "timestamp": "2026-10-14T05:24:32+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-14T05:26:10+00:00"
+              }
+            ],
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.multiply_body": {
+        "entries": [
+          {
+            "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
+            "date": "2026-10-16T08:36:57+01:00",
+            "prompts": [
+              {
+                "text": "the extracted code to rocq ration is strangely low. why? ",
+                "timestamp": "2026-10-15T08:01:51+00:00"
+              },
+              {
+                "text": "what definitions are relvant for s-box functions? ",
+                "timestamp": "2026-10-15T08:04:01+00:00"
+              },
+              {
+                "text": "what rocq file contains the code extracted into the s-box cangjie function? ",
+                "timestamp": "2026-10-15T08:04:50+00:00"
+              },
+              {
+                "text": "what is the cangjie flie? ",
+                "timestamp": "2026-10-15T08:06:42+00:00"
+              },
+              {
+                "text": "is aesSbox extracted by the standard Galina script or is it a one-off?",
+                "timestamp": "2026-10-15T08:07:58+00:00"
+              },
+              {
+                "text": "what is a sbox_table? ",
+                "timestamp": "2026-10-15T08:08:52+00:00"
+              },
+              {
+                "text": "why is it hardcoded? ",
+                "timestamp": "2026-10-15T08:09:36+00:00"
+              },
+              {
+                "text": "'same fixed substitution' for all implementations ? ",
+                "timestamp": "2026-10-15T08:10:04+00:00"
+              },
+              {
+                "text": "what other popular languages other than cangjie can cjr be extracted as? ",
+                "timestamp": "2026-10-15T08:13:42+00:00"
+              },
+              {
+                "text": "when was the four color theorem and feith-0thomson proved in coq?",
+                "timestamp": "2026-10-15T08:20:36+00:00"
+              },
+              {
+                "text": "when did compcert start? ",
+                "timestamp": "2026-10-15T08:21:24+00:00"
+              },
+              {
+                "text": "does the adequacy result prove no memory leaks?",
+                "timestamp": "2026-10-15T08:24:22+00:00"
+              },
+              {
+                "text": "can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)",
+                "timestamp": "2026-10-15T09:15:03+00:00"
+              },
+              {
+                "text": "how does it compare to cjr? ",
+                "timestamp": "2026-10-15T09:17:45+00:00"
+              },
+              {
+                "text": "do cjr arithmetic operations deal with overflow and underflow? ",
+                "timestamp": "2026-10-16T02:21:30+00:00"
+              },
+              {
+                "text": "add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. ",
+                "timestamp": "2026-10-16T02:36:18+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.\",\"annotation\":\"explain this\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":170,\"endOffset\":243}}]\n</response-annotations>\n\n## My request:\nexplain this",
+                "timestamp": "2026-10-16T05:37:11+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Capacity-spaced lookups: 38–658× faster.\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":130,\"endOffset\":170}}]\n</response-annotations>\n\n## My request:\nexplain ",
+                "timestamp": "2026-10-16T05:39:35+00:00"
+              },
+              {
+                "text": "explain **Hashmap_Build_Scan data in the benchmark report**\\",
+                "timestamp": "2026-10-16T05:40:44+00:00"
+              },
+              {
+                "text": "it is suspicious that the data points for cjr and std are identical. justify",
+                "timestamp": "2026-10-16T05:43:41+00:00"
+              },
+              {
+                "text": "refresh all the documentation (pdf report and readmes)",
+                "timestamp": "2026-10-16T05:45:48+00:00"
+              },
+              {
+                "text": "by looking at the timestamps on the coq files and the verification log, is the verification log to date? ",
+                "timestamp": "2026-10-16T07:29:35+00:00"
+              },
+              {
+                "text": "push to github without rerunning the proof verification script",
+                "timestamp": "2026-10-16T07:36:26+00:00"
+              }
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.multiplication_cases": {
+        "entries": [
+          {
+            "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
+            "date": "2026-10-16T08:36:57+01:00",
+            "prompts": [
+              {
+                "text": "the extracted code to rocq ration is strangely low. why? ",
+                "timestamp": "2026-10-15T08:01:51+00:00"
+              },
+              {
+                "text": "what definitions are relvant for s-box functions? ",
+                "timestamp": "2026-10-15T08:04:01+00:00"
+              },
+              {
+                "text": "what rocq file contains the code extracted into the s-box cangjie function? ",
+                "timestamp": "2026-10-15T08:04:50+00:00"
+              },
+              {
+                "text": "what is the cangjie flie? ",
+                "timestamp": "2026-10-15T08:06:42+00:00"
+              },
+              {
+                "text": "is aesSbox extracted by the standard Galina script or is it a one-off?",
+                "timestamp": "2026-10-15T08:07:58+00:00"
+              },
+              {
+                "text": "what is a sbox_table? ",
+                "timestamp": "2026-10-15T08:08:52+00:00"
+              },
+              {
+                "text": "why is it hardcoded? ",
+                "timestamp": "2026-10-15T08:09:36+00:00"
+              },
+              {
+                "text": "'same fixed substitution' for all implementations ? ",
+                "timestamp": "2026-10-15T08:10:04+00:00"
+              },
+              {
+                "text": "what other popular languages other than cangjie can cjr be extracted as? ",
+                "timestamp": "2026-10-15T08:13:42+00:00"
+              },
+              {
+                "text": "when was the four color theorem and feith-0thomson proved in coq?",
+                "timestamp": "2026-10-15T08:20:36+00:00"
+              },
+              {
+                "text": "when did compcert start? ",
+                "timestamp": "2026-10-15T08:21:24+00:00"
+              },
+              {
+                "text": "does the adequacy result prove no memory leaks?",
+                "timestamp": "2026-10-15T08:24:22+00:00"
+              },
+              {
+                "text": "can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)",
+                "timestamp": "2026-10-15T09:15:03+00:00"
+              },
+              {
+                "text": "how does it compare to cjr? ",
+                "timestamp": "2026-10-15T09:17:45+00:00"
+              },
+              {
+                "text": "do cjr arithmetic operations deal with overflow and underflow? ",
+                "timestamp": "2026-10-16T02:21:30+00:00"
+              },
+              {
+                "text": "add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. ",
+                "timestamp": "2026-10-16T02:36:18+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.\",\"annotation\":\"explain this\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":170,\"endOffset\":243}}]\n</response-annotations>\n\n## My request:\nexplain this",
+                "timestamp": "2026-10-16T05:37:11+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Capacity-spaced lookups: 38–658× faster.\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":130,\"endOffset\":170}}]\n</response-annotations>\n\n## My request:\nexplain ",
+                "timestamp": "2026-10-16T05:39:35+00:00"
+              },
+              {
+                "text": "explain **Hashmap_Build_Scan data in the benchmark report**\\",
+                "timestamp": "2026-10-16T05:40:44+00:00"
+              },
+              {
+                "text": "it is suspicious that the data points for cjr and std are identical. justify",
+                "timestamp": "2026-10-16T05:43:41+00:00"
+              },
+              {
+                "text": "refresh all the documentation (pdf report and readmes)",
+                "timestamp": "2026-10-16T05:45:48+00:00"
+              },
+              {
+                "text": "by looking at the timestamps on the coq files and the verification log, is the verification log to date? ",
+                "timestamp": "2026-10-16T07:29:35+00:00"
+              },
+              {
+                "text": "push to github without rerunning the proof verification script",
+                "timestamp": "2026-10-16T07:36:26+00:00"
+              }
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.multiplication_noninteger": {
+        "entries": [
+          {
+            "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
+            "date": "2026-10-16T08:36:57+01:00",
+            "prompts": [
+              {
+                "text": "the extracted code to rocq ration is strangely low. why? ",
+                "timestamp": "2026-10-15T08:01:51+00:00"
+              },
+              {
+                "text": "what definitions are relvant for s-box functions? ",
+                "timestamp": "2026-10-15T08:04:01+00:00"
+              },
+              {
+                "text": "what rocq file contains the code extracted into the s-box cangjie function? ",
+                "timestamp": "2026-10-15T08:04:50+00:00"
+              },
+              {
+                "text": "what is the cangjie flie? ",
+                "timestamp": "2026-10-15T08:06:42+00:00"
+              },
+              {
+                "text": "is aesSbox extracted by the standard Galina script or is it a one-off?",
+                "timestamp": "2026-10-15T08:07:58+00:00"
+              },
+              {
+                "text": "what is a sbox_table? ",
+                "timestamp": "2026-10-15T08:08:52+00:00"
+              },
+              {
+                "text": "why is it hardcoded? ",
+                "timestamp": "2026-10-15T08:09:36+00:00"
+              },
+              {
+                "text": "'same fixed substitution' for all implementations ? ",
+                "timestamp": "2026-10-15T08:10:04+00:00"
+              },
+              {
+                "text": "what other popular languages other than cangjie can cjr be extracted as? ",
+                "timestamp": "2026-10-15T08:13:42+00:00"
+              },
+              {
+                "text": "when was the four color theorem and feith-0thomson proved in coq?",
+                "timestamp": "2026-10-15T08:20:36+00:00"
+              },
+              {
+                "text": "when did compcert start? ",
+                "timestamp": "2026-10-15T08:21:24+00:00"
+              },
+              {
+                "text": "does the adequacy result prove no memory leaks?",
+                "timestamp": "2026-10-15T08:24:22+00:00"
+              },
+              {
+                "text": "can you find an implementation of aes  here [https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto](https://github.com/CJPLUK/Telegram_Cangjie/tree/main/Telegram_Cangjie/entry/src/main/cangjie/core/mtproto)",
+                "timestamp": "2026-10-15T09:15:03+00:00"
+              },
+              {
+                "text": "how does it compare to cjr? ",
+                "timestamp": "2026-10-15T09:17:45+00:00"
+              },
+              {
+                "text": "do cjr arithmetic operations deal with overflow and underflow? ",
+                "timestamp": "2026-10-16T02:21:30+00:00"
+              },
+              {
+                "text": "add integer multiplication to cjr and use it to improve performance of hashmaps. rerun the benchmarks. ",
+                "timestamp": "2026-10-16T02:36:18+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Ordinary hits/builds: 10–37% slower; larger-map misses roughly 2× slower.\",\"annotation\":\"explain this\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":170,\"endOffset\":243}}]\n</response-annotations>\n\n## My request:\nexplain this",
+                "timestamp": "2026-10-16T05:37:11+00:00"
+              },
+              {
+                "text": "\n# Response annotations:\nEach item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index=\"N\"}`, where N is its one-based array position (for example, `:codex-annotation{index=\"1\"}`). Do not use unstructured annotation labels.\n<response-annotations>\n[{\"text\":\"Capacity-spaced lookups: 38–658× faster.\",\"source\":{\"messageId\":\"msg_0fc3b472e4552312016ad1a6e3f9c48191b3ea920880bdf422\",\"startOffset\":130,\"endOffset\":170}}]\n</response-annotations>\n\n## My request:\nexplain ",
+                "timestamp": "2026-10-16T05:39:35+00:00"
+              },
+              {
+                "text": "explain **Hashmap_Build_Scan data in the benchmark report**\\",
+                "timestamp": "2026-10-16T05:40:44+00:00"
+              },
+              {
+                "text": "it is suspicious that the data points for cjr and std are identical. justify",
+                "timestamp": "2026-10-16T05:43:41+00:00"
+              },
+              {
+                "text": "refresh all the documentation (pdf report and readmes)",
+                "timestamp": "2026-10-16T05:45:48+00:00"
+              },
+              {
+                "text": "by looking at the timestamps on the coq files and the verification log, is the verification log to date? ",
+                "timestamp": "2026-10-16T07:29:35+00:00"
+              },
+              {
+                "text": "push to github without rerunning the proof verification script",
+                "timestamp": "2026-10-16T07:36:26+00:00"
+              }
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.division_signs": {
+        "entries": [
+          {
+            "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
+            "date": "2026-10-27T12:52:40Z",
+            "prompts": [
+              {
+                "text": "create a plan first",
+                "timestamp": "2026-10-27T09:16:05+00:00"
+              },
+              {
+                "text": "open the file with the plan",
+                "timestamp": "2026-10-27T09:18:59+00:00"
+              },
+              {
+                "text": "execute up to milestone 2. do not go beyond milestone 2. ",
+                "timestamp": "2026-10-27T09:33:20+00:00"
+              },
+              {
+                "text": "process the authenticator rocq files with rocq-readable",
+                "timestamp": "2026-10-27T11:35:22+00:00"
+              },
+              {
+                "text": "process the rocq files with the rocq-readable tool ",
+                "timestamp": "2026-10-27T11:36:25+00:00"
+              },
+              {
+                "text": "why did codex explanations fail? identify and fix the problem? ",
+                "timestamp": "2026-10-27T11:41:15+00:00"
+              },
+              {
+                "text": "Allow sending source to Codex",
+                "timestamp": "2026-10-27T11:42:14+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-27T12:51:55+00:00"
+              }
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.division_zero": {
+        "entries": [
+          {
+            "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
+            "date": "2026-10-27T12:52:40Z",
+            "prompts": [
+              {
+                "text": "create a plan first",
+                "timestamp": "2026-10-27T09:16:05+00:00"
+              },
+              {
+                "text": "open the file with the plan",
+                "timestamp": "2026-10-27T09:18:59+00:00"
+              },
+              {
+                "text": "execute up to milestone 2. do not go beyond milestone 2. ",
+                "timestamp": "2026-10-27T09:33:20+00:00"
+              },
+              {
+                "text": "process the authenticator rocq files with rocq-readable",
+                "timestamp": "2026-10-27T11:35:22+00:00"
+              },
+              {
+                "text": "process the rocq files with the rocq-readable tool ",
+                "timestamp": "2026-10-27T11:36:25+00:00"
+              },
+              {
+                "text": "why did codex explanations fail? identify and fix the problem? ",
+                "timestamp": "2026-10-27T11:41:15+00:00"
+              },
+              {
+                "text": "Allow sending source to Codex",
+                "timestamp": "2026-10-27T11:42:14+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-27T12:51:55+00:00"
+              }
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.division_noninteger": {
+        "entries": [
+          {
+            "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
+            "date": "2026-10-27T12:52:40Z",
+            "prompts": [
+              {
+                "text": "create a plan first",
+                "timestamp": "2026-10-27T09:16:05+00:00"
+              },
+              {
+                "text": "open the file with the plan",
+                "timestamp": "2026-10-27T09:18:59+00:00"
+              },
+              {
+                "text": "execute up to milestone 2. do not go beyond milestone 2. ",
+                "timestamp": "2026-10-27T09:33:20+00:00"
+              },
+              {
+                "text": "process the authenticator rocq files with rocq-readable",
+                "timestamp": "2026-10-27T11:35:22+00:00"
+              },
+              {
+                "text": "process the rocq files with the rocq-readable tool ",
+                "timestamp": "2026-10-27T11:36:25+00:00"
+              },
+              {
+                "text": "why did codex explanations fail? identify and fix the problem? ",
+                "timestamp": "2026-10-27T11:41:15+00:00"
+              },
+              {
+                "text": "Allow sending source to Codex",
+                "timestamp": "2026-10-27T11:42:14+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-27T12:51:55+00:00"
+              }
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.arith.divide_body": {
+        "entries": [
+          {
+            "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
+            "date": "2026-10-27T12:52:40Z",
+            "prompts": [
+              {
+                "text": "create a plan first",
+                "timestamp": "2026-10-27T09:16:05+00:00"
+              },
+              {
+                "text": "open the file with the plan",
+                "timestamp": "2026-10-27T09:18:59+00:00"
+              },
+              {
+                "text": "execute up to milestone 2. do not go beyond milestone 2. ",
+                "timestamp": "2026-10-27T09:33:20+00:00"
+              },
+              {
+                "text": "process the authenticator rocq files with rocq-readable",
+                "timestamp": "2026-10-27T11:35:22+00:00"
+              },
+              {
+                "text": "process the rocq files with the rocq-readable tool ",
+                "timestamp": "2026-10-27T11:36:25+00:00"
+              },
+              {
+                "text": "why did codex explanations fail? identify and fix the problem? ",
+                "timestamp": "2026-10-27T11:41:15+00:00"
+              },
+              {
+                "text": "Allow sending source to Codex",
+                "timestamp": "2026-10-27T11:42:14+00:00"
+              },
+              {
+                "text": "push to github",
+                "timestamp": "2026-10-27T12:51:55+00:00"
+              }
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
+          }
+        ],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.cell.cell": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.cell.cell_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.cell.cell_adequate": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.class_upd.class_bump": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.class_upd.class_bump_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.class_upd.class_bump_adequate": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.frame_call.write_call": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.frame_call.write_call_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.struct_upd.bump": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.struct_upd.bump_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.struct_upd.bump_keep": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.struct_upd.bump_keep_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.struct_upd.bump_adequate": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.sum_block.sum_at": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.sum_block.sum_at_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.swap.swap_at": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.swap.swap_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.swap.swap_aliased": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.vtable.inc_body": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.vtable.vtable_prog": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.vtable.vtable_prog_wp": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      },
+      "cjr.examples.vtable.vtable_adequate": {
+        "entries": [],
+        "issues": [],
+        "complete": true
+      }
+    }
   }
 }

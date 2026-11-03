@@ -242,6 +242,23 @@ class DependencyAndExplanationTests(unittest.TestCase):
         self.assertEqual(data["P.A.b"]["name"], "b")
         self.assertEqual(data["P.A.b"]["kind"], "lemma")
 
+    def test_graphs_embed_the_same_explanations_as_declaration_articles(self):
+        from tools.rocq_readable.html import index, page
+        output = self.root / "html"
+        current = output / "A.html"
+        identity = "P.A.a"
+        text = '</script><img src=x onerror="alert(1)"> & explanation'
+        explanations = {identity: {"status": "available", "description": text, "reason": ""}}
+        symbols = {identity: (current, anchor(identity))}
+        pages = [index(self.sources, {self.source.path: current}, output, self.graph, explanations),
+                 page(self.source, self.documents[self.source.path], current, output, symbols, [],
+                      graph=self.graph, explanations=explanations)]
+        for body in pages:
+            data = json.loads(HTMLInventory(body).dependency_data)
+            self.assertEqual(data[identity]["explanation"], explanations[identity])
+            self.assertNotIn(text, body)
+            self.assertNotIn("<img", body)
+
     def test_diagram_labels_cannot_break_out_of_embedded_json(self):
         from tools.rocq_readable.html import index
         label = '</script><img src=x onerror="alert(1)">'
@@ -418,6 +435,9 @@ class DependencyAndExplanationTests(unittest.TestCase):
             self.assertEqual(first, {p.name: p.read_bytes() for p in output.iterdir()})
             self.assertEqual(model.call_count, 1)
         self.assertIn("&lt;script&gt;", (output / "A.html").read_text())
+        for name in ("A.html", "index.html"):
+            data = json.loads(HTMLInventory((output / name).read_text()).dependency_data)
+            self.assertEqual(data["P.A.a"]["explanation"]["description"], "<script>alert('x')</script> & text")
         audit_links(output)
 
     def test_cli_returns_failure_after_rendering_failed_explanations(self):

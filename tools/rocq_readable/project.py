@@ -101,6 +101,7 @@ class Source:
     errors: list[str] = field(default_factory=list)
     resolution_status: dict[int, str] = field(default_factory=dict)
     arrow_sorts: dict[int, str] = field(default_factory=dict)
+    cangjie: dict[str, dict] = field(default_factory=dict)
 
     @classmethod
     def load(cls, path, root):

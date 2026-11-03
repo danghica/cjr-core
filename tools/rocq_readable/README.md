@@ -38,6 +38,32 @@ rendering produces a standalone HTML file with embedded CSS and a sibling
 
 ## Dependencies and English explanations
 
+The **Main correctness contracts** graph view highlights confirmed contracts in
+gold, representation predicates in teal, algorithms in green and specifications
+in blue. It follows statement dependencies between the contracts, named CJR
+operations, representation predicates and mathematical specifications. Full proof
+dependencies remain available in the other views. Project overviews open in this
+view when confirmed contracts are present; individual file pages retain their
+all-declarations view. Switching declaration views reuses the same fixed layout.
+The focused contract view fits and shows its complete selected bridge; the full
+declaration view continues to reveal lower-ranked nodes as you zoom in.
+
+Candidate detection examines WP statements, recognises named implementation
+calls, and follows definition/representation references from postconditions into
+`spec/` modules. It never uses hidden proof dependencies as evidence of a bridge.
+Candidates become main contracts through the `main_correctness_contracts` list
+of qualified identities in the invocation root's `project.config.json`.
+Quadtree explicitly selects its creation, insertion, membership and range-query
+contracts. Candidates without that annotation keep their ordinary rank.
+The report's `correctness_contracts` section records the detected operations,
+specifications, representation predicates and selection source.
+
+Confirmed contracts receive an equal display rank above every ordinary node,
+so they appear at the first zoom tier with the largest circles and labels. Files
+containing them receive the same priority in file overviews. Raw node PageRank is
+retained separately, and edge PageRank is unchanged. The remaining nodes retain
+their relative importance. Contract declarations also carry a gold badge.
+
 The homepage presents expandable, indented bullets: each entry links to its
 rendered declaration, and its children are declarations it depends on. Shared
 dependencies appear under every parent. Roots are declarations with no
@@ -54,7 +80,49 @@ diagram; arrowheads point toward dependencies, including recursive links.
 Node colors distinguish specifications, algorithms, proofs, and other sources.
 Click nodes to open documentation. Drag the background to pan and use the
 zoom buttons, mouse wheel, or keyboard controls to explore larger graphs.
-Diagram coverage matches the hierarchy, including its resolution notices.
+**Full screen** expands the graph and its controls; use **Exit full screen**
+or Escape to return. Embedded browsers that disable native fullscreen expand
+the graph within the window instead. The current view, zoom tier, center,
+and fixed layout are preserved.
+Circle area is proportional to node rank (maximum radius 14 screen pixels),
+and edge thickness maps PageRank scores linearly from 1.5 screen pixels for the
+lowest score to 5 for the highest. Equal scores retain the 5-pixel width.
+Circle sizes, line widths, and arrowheads are invariant under zoom
+and resizing; their scale is based on the full graph, including focused views.
+Arrows track the current circle boundaries.
+
+The layout uses circular nodes with external labels and remains fixed while
+zooming or searching. Label text uses an 11–20 pixel linear importance scale
+and compensates for camera zoom, so higher-ranked nodes retain larger labels
+at every zoom level. Arrows meet circle boundaries; category colors and
+clickable node labels are preserved. Labels have a fixed anchor below their circle and no connector lines.
+When labels overlap, the lower-ranked label is hidden while its circle stays
+visible; ties use qualified identity for deterministic ordering. Hovering over any circle or focusing its link temporarily shows its label
+and saved AI-generated explanation in an opaque white box. The text wraps
+and can be scrolled; moving into the box keeps it open for reading. Moving
+away restores the usual visibility rule. The box switches sides or scrolls in a
+smaller space near graph boundaries, always leaving its own node unobstructed.
+An explicit Open declaration link opens the same destination as the node; the
+rest of the explanation remains selectable and scrollable. File overview boxes
+instead offer Open file. The box also stays open while its link has keyboard
+focus. Missing explanations are explicitly
+marked unavailable; file-group nodes direct readers to individual declarations.
+Explanations are embedded in the page, so hovering works offline and does not
+start generation or make network requests.
+Importance comes from PageRank on the directed line graph of reversed dependency
+edges, favoring top-level results. Edge scores are projected onto their destination
+nodes with a uniform baseline. Important nodes are placed and fixed first; later
+nodes settle around them using edge importance as attraction weights.
+
+Graphs with at most 24 nodes show everything. Larger graphs reveal cumulative
+importance tiers targeting 24, 48, 96, and successively doubled counts, retaining
+equal scores together. Each 1.6× zoom increase reveals another tier. Node and edge
+thresholds are independent: a sufficiently important arrow is drawn whenever at
+least one endpoint is visible, even if the other node is hidden. Counts show the
+visible and total nodes and links. Fit returns to the overview. A focused search
+shows the selected declaration and its immediate neighborhood without importance
+filtering, using their original coordinates. Diagram coverage matches the
+hierarchy, including its resolution notices.
 
 Each source page also begins with a graph of dependencies among its own
 declarations and lemmas. Nodes jump to the entries below; search, focused
@@ -172,7 +240,23 @@ that spelling and the coverage report records an unclassified arrow. These
 queries do not modify the source or the document's proof state. Consuming
 implication remains a separate construct.
 
-Resolved CJR expression/value constructors render recursively as Cangjie surface
+Definitions with an evaluable CJR expression, value, literal, class declaration,
+function or program now show Cangjie produced by the actual Gallina printer in
+`tools/extraction/rocq/cj_print.v`. Isolated Rocq queries evaluate that printer;
+there is no second implementation of its output rules. Expression-valued helper
+arguments are represented by named CJR variables. Complete programs retain the
+printer's class layouts, signatures and function bodies. When all selected source
+modules have matching fresh compiled artifacts, the renderer also shares their
+program metadata with individual definitions; a body belonging to a registered
+function is displayed as that function. Ambiguous program contexts are not chosen.
+Edited or uncompiled sources use their live Rocq document instead of old binaries.
+The original Rocq structure and proof-free declaration remain expandable below
+the Cangjie view. The `cangjie` section of `report.json` records available output
+and explicit printer limitations. Symbolic non-expression arguments and printer
+constructs that need unavailable metadata retain the ordinary view with a notice.
+These presentation queries do not change sources or generate new AI explanations.
+
+Within the ordinary Rocq structure, resolved CJR expression/value constructors render recursively as Cangjie surface
 syntax: literals, identifiers, calls, operators, `let`/`var`, assignments,
 sequences, anonymous closures, `if`/`while`, and unsafe pointer operations.
 Literal string identifiers and optional binders receive contextual treatment;
@@ -190,7 +274,7 @@ grammar key and every substitution slot. Unsupported AST forms retain a marked
 original-source fragment. Every declaration has an expandable proof-free source
 excerpt. Original-source displays retain Rocq syntax and its original brackets.
 
-Rendering does not unfold predicates, simplify terms, erase technical premises,
+Outside the evaluated CJR printer view, rendering does not unfold predicates, simplify terms, erase technical premises,
 or certify a user's interpretation. The output is an auditable presentation,
 not a formally verified translation or a replacement for proof checking.
 
@@ -285,3 +369,55 @@ representative CJR contracts. The renderer is optional and does not change the
 existing proof verification targets.
 
 To render a selected source set while retaining project load paths, use `build --sources FILE_OR_DIRECTORY ... --output OUTPUT`. Example Makefiles use this to render compiled declarations while keeping scratch proof fragments as source assets. Repository examples now live under `example/<name>/`; each owns its rendered output in `docs/rocq/`.
+
+## Prompt history
+
+Every declaration has a **History** disclosure, closed by default. It contains
+separate disclosures for each prompt, also closed by default and labelled with
+their number within the commit and recording timestamp. These show
+the complete timestamped prompts newly recorded in commits whose source diffs
+touched that declaration or its proof. All prompts from each matching commit
+are included: this is evidence of commit co-occurrence, not a claim that every
+prompt directly concerns the declaration. Entries are newest first. A rename
+without source edits carries the earlier history forward without adding an
+entry. First-parent merge diffs attribute merged prompts once, at the merge.
+
+History traces zero-context diffs backwards through line shifts and file
+renames, including commits without prompts. It stops at introductions or
+ambiguous replacements crossing declaration boundaries. Missing/shallow history,
+ambiguous mappings, and uncommitted definitions are identified as incomplete;
+an empty complete history says **No recorded prompts found**. Uncommitted
+prompt-log entries are never attributed to committed changes.
+
+The separate, versioned cache defaults to the owning repository's
+`build/prompt-history.json`, including builds launched in an example directory.
+Keep this file with generated documentation. Unchanged builds reuse extracted
+Git evidence and declaration associations; new commits extend the cache and
+rewritten history rebuilds affected entries. `--history-cache FILE.json` chooses
+another location. Explanation caches, rendering rules, and existing explanation
+text are independent of this cache.
+
+Split CJR repositories import their earlier history using `repository.json`'s
+checkpoint and the original checkout's `migration-manifest.json`. The parent
+directory is searched by default; `--history-repository /path/to/cjr` selects a
+different original checkout. Copied prompt-log baselines are not attributed as
+new prompts. Once populated, the cache preserves this imported evidence for
+standalone child checkouts. Deleting the cache forces extraction again; the
+original checkout is then required to recover pre-split history.
+
+To add or refresh history in **existing HTML without rerendering explanations,
+changing explanation caches, or invoking Rocq**, run from the original build's
+project directory:
+
+```sh
+python3 -m tools.rocq_readable refresh-history --output generated/spec-html
+# From an example directory, with the shared tools on PYTHONPATH:
+python3 -m tools.rocq_readable refresh-history --output docs/rocq
+# A previously rendered standalone declaration:
+python3 -m tools.rocq_readable refresh-history --output build/selected.html
+```
+
+This only replaces History panels and the `history` field of `report.json`.
+Saved excerpts must match the current source uniquely; otherwise the panel
+requests a normal rebuild instead of guessing. Regular `build` and `render`
+also generate history, using the parser's full declaration and proof locations.

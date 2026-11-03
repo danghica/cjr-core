@@ -14,6 +14,7 @@ from .backend import Backend, BackendError
 from .dictionary import Dictionary, DictionaryError
 from .dependencies import build_graph, declaration_terms, reference_nodes
 from .explanations import Options, explain
+from .history import collect as collect_history, repository, validate_cache_path
 from .html import CSS, index, inventory, page, shell
 from .layout import anchor, render_html
 from .project import Glob, Source, configuration, discover, inside
@@ -74,6 +75,8 @@ def prepare(paths, root, timeout, selected=None):
                 declarations(source, document)
                 from .semantics import classify_arrows
                 classify_arrows(backend, source)
+                from .gallina import render_source
+                render_source(backend, source)
                 errors = [d for d in diagnostics if d.get("severity") == 1]
                 source.errors.extend(f"line {d['range']['start']['line'] + 1}: {d['message']}" for d in errors[:8])
                 if len(errors) > 8:
@@ -84,6 +87,8 @@ def prepare(paths, root, timeout, selected=None):
         except (BackendError, ValueError, KeyError, IndexError) as exc:
             source.errors.append(str(exc))
             print(f"  error: {exc}", file=sys.stderr)
+    from .gallina import render_compiled
+    render_compiled(sources, timeout)
     return sources, resolutions
 
 
@@ -184,7 +189,8 @@ class Coverage(dict):
     explanation_failures = 0
 
 
-def generate(sources, resolutions, dictionary, output, single=None, learn=False, explanation_options=None):
+def generate(sources, resolutions, dictionary, output, single=None, learn=False, explanation_options=None,
+             history_cache=None, history_repository=None):
     options = replace(explanation_options) if explanation_options else Options()
     options.validate()
     if options.cache is None:
@@ -192,6 +198,12 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
     report_path = single.with_suffix(".report.json") if single else output / "report.json"
     if options.cache.suffix != ".json" or options.cache.resolve() in (report_path.resolve(), dictionary.path.resolve()):
         raise ValueError("explanation cache must be a separate .json file, not the report or rendering dictionary")
+    history_cache = history_cache or repository(sources[0].root) / "build/prompt-history.json"
+    protected = {options.cache.resolve(), report_path.resolve(), dictionary.path.resolve(),
+                 *(s.path.resolve() for s in sources)}
+    if history_cache.suffix != ".json" or history_cache.resolve() in protected or history_cache.name.endswith("explanations.json"):
+        raise ValueError("history cache must be a separate .json file, not an explanation cache, report, dictionary, or source")
+    validate_cache_path(history_cache)
     known = identities(sources)
     resolved = resolved_identities(resolutions, sources)
     outputs = {s.path: single if single else output / s.relative.with_suffix(".html") for s in sources}
@@ -223,6 +235,7 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
         documents, coverage = render()
     graph = build_graph(sources, documents, resolved)
     explanations = explain(sources, documents, graph, options)
+    history = collect_history(sources, history_cache, history_repository)
     coverage.explanation_failures = sum(e["status"] == "failed" for e in explanations.values())
     output.mkdir(parents=True, exist_ok=True)
     if not single:
@@ -231,17 +244,20 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
         target = outputs[source.path]
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(page(source, documents[source.path], target, output, symbols, coverage[source.path],
-                               standalone=bool(single), graph=graph, explanations=explanations))
+                               standalone=bool(single), graph=graph, explanations=explanations, history=history))
     if not single:
-        (output / "index.html").write_text(index(sources, outputs, output, graph))
+        (output / "index.html").write_text(index(sources, outputs, output, graph, explanations))
         (output / "declarations.html").write_text(inventory(sources, outputs, output))
     report = {"version": 1, "files": [{"file": str(s.relative), "errors": s.errors,
                 "unsupported": sorted(set(coverage[s.path])), "declarations": len(s.declarations)} for s in sources]}
     report["dependencies"] = {"complete": not graph.incomplete, "roots": graph.roots,
                                "source_issues": graph.source_issues,
-                               "declarations": {i: {"depends_on": graph.edges[i], "issues": graph.issues[i]} for i in sorted(graph.edges)}}
+                               "declarations": {i: {"depends_on": graph.edges[i], "statement_depends_on": graph.statement_edges.get(i, []), "issues": graph.issues[i]} for i in sorted(graph.edges)}}
     report["explanations"] = {"model_selection": options.model or "CLI configured model",
                               "failures": coverage.explanation_failures, "declarations": explanations}
+    report["cangjie"] = {identity: record for source in sources for identity, record in source.cangjie.items()}
+    report["correctness_contracts"] = graph.contracts
+    report["history"] = {"complete": all(r["complete"] for r in history.values()), "declarations": history}
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     return coverage
 
@@ -249,6 +265,10 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Render proof-free Rocq specifications as linked, offline HTML")
     commands = parser.add_subparsers(dest="command", required=True)
+    refresh = commands.add_parser("refresh-history", help="update history in saved HTML, preserving explanations and rendered content")
+    refresh.add_argument("--output", type=Path, required=True, help="existing documentation directory or single .html file")
+    refresh.add_argument("--history-cache", type=Path)
+    refresh.add_argument("--history-repository", type=Path)
     for name in ("build", "render"):
         command = commands.add_parser(name)
         if name == "render":
@@ -268,9 +288,21 @@ def main(argv=None):
         command.add_argument("--llm-model", help="Codex model override; default uses CLI configuration")
         command.add_argument("--llm-timeout", type=float, default=120, help="explanation request timeout in seconds")
         command.add_argument("--explanation-cache", type=Path, help="versioned JSON explanation cache path")
+        command.add_argument("--history-cache", type=Path, help="separate Git prompt-history JSON cache (default: repository build/prompt-history.json)")
+        command.add_argument("--history-repository", type=Path, help="original CJR checkout containing migration-manifest.json and pre-split Git history")
     args = parser.parse_args(argv)
     root = Path.cwd().resolve()
     destination = args.output.resolve()
+    if args.command == "refresh-history":
+        from .refresh_history import refresh as refresh_saved_history
+        try:
+            history = refresh_saved_history(root, destination, args.history_cache, args.history_repository)
+            incomplete = sum(not r["complete"] for r in history.values())
+            print(f"Refreshed history for {len(history)} declarations ({incomplete} incomplete); existing explanations preserved")
+            return 0
+        except (OSError, ValueError) as exc:
+            print(f"rocq-readable: {exc}", file=sys.stderr)
+            return 1
     output = destination if args.command == "build" else destination.parent
     try:
         if not math.isfinite(args.timeout) or args.timeout <= 0:
@@ -316,7 +348,9 @@ def main(argv=None):
             sources[0].declarations = candidates
         coverage = generate(sources, resolutions, dictionary, output,
                             single=destination if args.command == "render" else None, learn=args.learn,
-                            explanation_options=options)
+                            explanation_options=options,
+                            history_cache=args.history_cache.resolve() if args.history_cache else None,
+                            history_repository=args.history_repository.resolve() if args.history_repository else None)
         errors = sum(bool(s.errors) for s in sources)
         unsupported = sum(len(c) for c in coverage.values())
         result = destination if args.command == "render" else output / "index.html"

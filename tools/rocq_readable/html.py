@@ -9,6 +9,7 @@ from urllib.parse import quote
 
 from .layout import Token, anchor, render_html, tokens_html
 from .diagram import CSS as GRAPH_CSS, SCRIPT as GRAPH_SCRIPT, panel as graph_panel
+from .history import panel as history_panel
 
 
 def source_excerpt(source, decl, document, current, symbols):
@@ -82,7 +83,7 @@ def declaration_link(identity, current, symbols):
     return f'<a href="{relative(target, current)}#{target_anchor}">{html.escape(identity)}</a>'
 
 
-def diagram_data(sources, current, symbols, graph):
+def diagram_data(sources, current, symbols, graph, explanations=None):
     included = {d.identity for s in sources for d in s.declarations}
     nodes = {}
     for source in sources:
@@ -91,16 +92,20 @@ def diagram_data(sources, current, symbols, graph):
             destination = '' if target == current else relative(target, current)
             nodes[decl.identity] = {"label": decl.identity, "name": decl.name, "kind": decl.kind,
                 "file": str(source.relative), "href": destination + '#' + target_anchor,
-                "dependencies": [i for i in graph.edges[decl.identity] if i in included]}
+                "dependencies": [i for i in graph.edges[decl.identity] if i in included],
+                "statement_dependencies": [i for i in graph.statement_edges.get(decl.identity, []) if i in included],
+                "main_contract": bool(graph.contracts.get(decl.identity, {}).get("main")),
+                "contract": graph.contracts.get(decl.identity),
+                "explanation": (explanations or {}).get(decl.identity, {})}
     encoded = json.dumps(nodes, ensure_ascii=True, sort_keys=True).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
     return '<script id="dependency-data" type="application/json">' + encoded + '</script>'
 
 
-def file_diagram(source, current, symbols, graph):
-    return graph_panel(local=True) + diagram_data([source], current, symbols, graph) + GRAPH_SCRIPT
+def file_diagram(source, current, symbols, graph, explanations=None):
+    return graph_panel(local=True) + diagram_data([source], current, symbols, graph, explanations) + GRAPH_SCRIPT
 
 
-def page(source, documents, current, output, symbols, coverage, standalone=False, graph=None, explanations=None):
+def page(source, documents, current, output, symbols, coverage, standalone=False, graph=None, explanations=None, history=None):
     declarations = source.declarations
     project_nav = '' if standalone else navigation(current, output)
     body = f'''<header><div class="eyebrow">Rocq Readable · specification reference</div>
@@ -110,7 +115,7 @@ def page(source, documents, current, output, symbols, coverage, standalone=False
 WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
 Rendering rules are presentation choices reviewed by their authors.</p></header>'''
     if graph:
-        body += file_diagram(source, current, symbols, graph)
+        body += file_diagram(source, current, symbols, graph, explanations)
     if source.errors:
         body += '<section class="panel error"><h2>Source errors</h2><ul>' + ''.join('<li>' + html.escape(e) + '</li>' for e in source.errors) + '</ul></section>'
     if coverage:
@@ -120,19 +125,30 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
         if decl.section:
             body += ' · ' + html.escape(decl.section)
         body += '</p>'
+        if graph and graph.contracts.get(decl.identity, {}).get('main'):
+            body += '<p class="main-contract-badge">Main correctness contract</p>'
         explanation = (explanations or {}).get(decl.identity, {})
         body += '<div class="explanation-label">AI-generated explanation</div>'
         if explanation.get("description"):
             body += '<p class="explanation">' + html.escape(explanation["description"]) + '</p>'
         else:
             body += '<p class="notice">Explanation unavailable: ' + html.escape(explanation.get("reason") or "No explanation was generated.") + '</p>'
-        body += '<pre class="pseudocode">' + render_html(document, current, symbols) + '</pre>'
+        cangjie = source.cangjie.get(decl.identity, {})
+        if cangjie.get("status") == "available":
+            body += '<div class="explanation-label">Cangjie · Gallina printer</div>'
+            body += '<pre class="cangjie"><code class="language-cangjie">' + html.escape(cangjie["text"]) + '</code></pre>'
+            body += '<details><summary>Rocq structure</summary><pre class="pseudocode">' + render_html(document, current, symbols) + '</pre></details>'
+        else:
+            if cangjie.get("reason"):
+                body += '<p class="notice">Cangjie unavailable: ' + html.escape(cangjie["reason"]) + '</p>'
+            body += '<pre class="pseudocode">' + render_html(document, current, symbols) + '</pre>'
         if graph:
             body += '<section aria-label="Direct dependencies"><h3>Depends on</h3>'
             body += '<ul>' + dependency_links(graph.edges[decl.identity], current, symbols) + '</ul>' if graph.edges[decl.identity] else '<p class="meta">No resolved project dependencies.</p>'
             body += ''.join('<p class="notice">' + html.escape(issue) + '</p>' for issue in graph.issues[decl.identity])
             body += '</section>'
-        body += '<details><summary>Original declaration (proof-free)</summary><pre>' + source_excerpt(source, decl, document, current, symbols) + '</pre></details></article>'
+        body += '<details><summary>Original declaration (proof-free)</summary><pre>' + source_excerpt(source, decl, document, current, symbols) + '</pre></details>'
+        body += history_panel((history or {}).get(decl.identity)) + '</article>'
     return shell(str(source.relative), body, current, output, standalone)
 
 
@@ -174,7 +190,7 @@ TREE_SCRIPT = """<script>
 </script>"""
 
 
-def index(sources, outputs, output, graph=None):
+def index(sources, outputs, output, graph=None, explanations=None):
     current = output / "index.html"
     count = sum(len(s.declarations) for s in sources)
     body = f'''<header><div class="eyebrow">Rocq Readable</div><h1>Project specifications</h1>
@@ -196,7 +212,7 @@ def index(sources, outputs, output, graph=None):
             else:
                 body += '<li>' + link + '</li>'
         body += '</ul><noscript><p>Enable JavaScript to expand the hierarchy. Every declaration page also lists direct dependencies.</p></noscript></section>'
-        body += diagram_data(sources, current, targets, graph) + TREE_SCRIPT + GRAPH_SCRIPT
+        body += diagram_data(sources, current, targets, graph, explanations) + TREE_SCRIPT + GRAPH_SCRIPT
     body += '<section class="panel"><h2>Source files</h2><ul class="files">'
     for source in sources:
         target = outputs[source.path]
