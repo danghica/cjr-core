@@ -4,10 +4,7 @@
     {
       "file": "rocq/arith.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
-        "unmapped notation - _"
-      ],
+      "unsupported": [],
       "declarations": 15
     },
     {
@@ -19,57 +16,37 @@
     {
       "file": "rocq/class_upd.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR FieldLoad [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR FieldStore [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR New [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 3
     },
     {
       "file": "rocq/frame_call.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 2
     },
     {
       "file": "rocq/struct_upd.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR StructStore [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR StructV [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 5
     },
     {
       "file": "rocq/sum_block.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 2
     },
     {
       "file": "rocq/swap.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR LitPtr [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 3
     },
     {
       "file": "rocq/vtable.v",
       "errors": [],
-      "unsupported": [
-        "Cangjie unavailable: CJR FieldLoad [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR FieldStore [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR New [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR Struct [requires runtime or layout metadata]",
-        "Cangjie unavailable: CJR StructLoad [requires runtime or layout metadata]"
-      ],
+      "unsupported": [],
       "declarations": 4
     }
   ],
@@ -559,6 +536,194 @@
       }
     }
   },
+  "term_view": "elaborated",
+  "elaboration": {
+    "cjr.examples.arith.sum_one": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.sum_one_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.sum_one_adequate": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.remainder_signs": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.remainder_zero_divisor": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.remainder_noninteger": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.bitwise_signed_cases": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.bitwise_noninteger": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.multiply_body": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.multiplication_cases": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.multiplication_noninteger": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.division_signs": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.division_zero": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.division_noninteger": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.arith.divide_body": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.cell.cell": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.cell.cell_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.cell.cell_adequate": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.class_upd.class_bump": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.class_upd.class_bump_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.class_upd.class_bump_adequate": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.frame_call.write_call": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.frame_call.write_call_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.struct_upd.bump": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.struct_upd.bump_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.struct_upd.bump_keep": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.struct_upd.bump_keep_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.struct_upd.bump_adequate": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.sum_block.sum_at": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.sum_block.sum_at_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.swap.swap_at": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.swap.swap_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.swap.swap_aliased": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.vtable.inc_body": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.vtable.vtable_prog": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.vtable.vtable_prog_wp": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    },
+    "cjr.examples.vtable.vtable_adequate": {
+      "status": "available",
+      "reason": "",
+      "unsupported": []
+    }
+  },
   "cangjie": {
     "cjr.examples.arith.sum_one": {
       "status": "available",
@@ -648,7 +813,6 @@
           {
             "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
             "date": "2026-10-14T06:42:55+01:00",
-            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks",
             "prompts": [
               {
                 "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
@@ -726,7 +890,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-14T05:26:10+00:00"
               }
-            ]
+            ],
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
           }
         ],
         "issues": [],
@@ -737,7 +902,6 @@
           {
             "commit": "7753f7f670dc8f97d4657f06d8bdfb1546b58d15",
             "date": "2026-10-14T06:42:55+01:00",
-            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks",
             "prompts": [
               {
                 "text": "is this correct cangjie: let frozen = 1\nvar n = 3\nwhile (0 < n) {\n    n = n - 1\n}\nif (n <= 0) { 0 } else { n }\n",
@@ -815,7 +979,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-14T05:26:10+00:00"
               }
-            ]
+            ],
+            "subject": "Add AES-IGE specification, kernel proofs and OpenSSL benchmarks"
           }
         ],
         "issues": [],
@@ -826,7 +991,6 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
-            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -920,7 +1084,8 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ]
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
           }
         ],
         "issues": [],
@@ -931,7 +1096,6 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
-            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -1025,7 +1189,8 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ]
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
           }
         ],
         "issues": [],
@@ -1036,7 +1201,6 @@
           {
             "commit": "833ab1c62aa7a9932f38aa5c298128e362bc2d8e",
             "date": "2026-10-16T08:36:57+01:00",
-            "subject": "Add integer multiplication and improve hashmap hashing",
             "prompts": [
               {
                 "text": "the extracted code to rocq ration is strangely low. why? ",
@@ -1130,7 +1294,8 @@
                 "text": "push to github without rerunning the proof verification script",
                 "timestamp": "2026-10-16T07:36:26+00:00"
               }
-            ]
+            ],
+            "subject": "Add integer multiplication and improve hashmap hashing"
           }
         ],
         "issues": [],
@@ -1141,7 +1306,6 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
-            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1175,7 +1339,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ]
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
           }
         ],
         "issues": [],
@@ -1186,7 +1351,6 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
-            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1220,7 +1384,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ]
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
           }
         ],
         "issues": [],
@@ -1231,7 +1396,6 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
-            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1265,7 +1429,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ]
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
           }
         ],
         "issues": [],
@@ -1276,7 +1441,6 @@
           {
             "commit": "f2d82fd2bf1bfc0919f8dfbd56d5fe3903985c83",
             "date": "2026-10-27T12:52:40Z",
-            "subject": "Add authenticator core and readable Rocq documentation",
             "prompts": [
               {
                 "text": "create a plan first",
@@ -1310,7 +1474,8 @@
                 "text": "push to github",
                 "timestamp": "2026-10-27T12:51:55+00:00"
               }
-            ]
+            ],
+            "subject": "Add authenticator core and readable Rocq documentation"
           }
         ],
         "issues": [],
@@ -1426,22 +1591,6 @@
         "issues": [],
         "complete": true
       }
-    }
-  },
-  "rendering": {
-    "proof_validation": "not_run",
-    "proof_bodies_evaluated": false,
-    "preserved_available_explanations": 0,
-    "explanations_mode": "offline",
-    "sources": {
-      "rocq/arith.v": "613d927e3780bf42709962c00c72422175d72e002a93e47e3777cd1354991dad",
-      "rocq/cell.v": "c0471d220cde7e67e9a17df1f50da2bbf3dfc03ebf86c8706adaca0cc59626a8",
-      "rocq/class_upd.v": "78217b10e216b98b5df4fc1283a8d3f2392463d91110a90bbe33e503e9ed8dae",
-      "rocq/frame_call.v": "eb2361055f07c5ed1b4c8ddf42ba09a9add69c280de9431da9658aa5572efeee",
-      "rocq/struct_upd.v": "5da41e2996d3421079e906ec23c7d5274f0e589cb6a0c3b7e53b66b2147158b6",
-      "rocq/sum_block.v": "3305634fc23a7b5e7d2837754b7c7b339e945f1ac74c0c40ff3dbec1aa9fb8d0",
-      "rocq/swap.v": "2012bf271ea7f862463047da89e354706193e51e5817028ed40dcfc7cfb28fe4",
-      "rocq/vtable.v": "0859be5e2b6297f465541b440fbf044b7567799e69a19f52ec27dc4039217735"
     }
   }
 }

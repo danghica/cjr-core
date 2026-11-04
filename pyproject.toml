@@ -13,7 +13,8 @@ dependencies = []
 rocq-readable = "tools.rocq_readable.cli:main"
 
 [tool.setuptools]
-packages = ["tools.rocq_readable"]
+packages = ["tools.rocq_readable", "tools.rocq_readable.plugin"]
 
 [tool.setuptools.package-data]
 "tools.rocq_readable" = ["renderings.json"]
+"tools.rocq_readable.plugin" = ["export.mlg"]

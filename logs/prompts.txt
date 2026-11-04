@@ -990,3 +990,83 @@ authenticator/docs/rocq/index.html has no main correctness contracts?
 [2026-11-03T17:03:42+00:00]
 don't re-run proof validation, push everything to the repo
 
+[2026-11-04T10:11:56+00:00]
+build plan
+
+[2026-11-04T10:50:24+00:00]
+In the output: `owns_raw(l, v)` should be rended it as 'owns l ↦ v'\
+**`owns_stack(l, v)`** should be rendered 'owns slot `l` ↦ `v`'\
+**`owns_object_field(o, i, v)`** should be rendered 'owns field `i` of  `o`'\
+**`owns_block(l, n)`** should be rendered  'owns block `l` of length `n`'
+
+[2026-11-04T10:57:16+00:00]
+# Response annotations:
+Each item contains text selected from an earlier Codex response and may include a user comment. Treat items as Annotation 1, Annotation 2, and so on in array order. Use every selection as context and address every comment. For every annotation you address, include its inline directive `:codex-annotation{index="N"}`, where N is its one-based array position (for example, `:codex-annotation{index="1"}`). Do not use unstructured annotation labels.
+<response-annotations>
+[{"text":"A clearer rendering would be: invariant access: unrestricted.","source":{"messageId":"msg_065ab6b495597e16016aeb0ef6de1487d28795923445a11b19","startOffset":431,"endOffset":492}},{"text":"A clearer rendering would be safety: cannot get stuck.","source":{"messageId":"msg_065ab6b495597e16016aeb0f32dfcc87d2a4370beae1bda9d1","startOffset":392,"endOffset":446}}]
+</response-annotations>
+
+## My request:
+use these renderings
+
+[2026-11-04T11:25:17+00:00]
+PLEASE IMPLEMENT THIS PLAN:
+# Further readable Rocq and Iris syntax
+
+## Summary
+
+Apply all five improvements to `rocq-readable`, including related object and struct operations. Keep parameters before lemma statements, retain two-space indentation, and preserve existing AI explanations and caches.
+
+## Lemmas, postconditions and types
+
+- Remove the top-level `type:` wrapper from lemmas, theorems, corollaries, propositions, facts and remarks. Keep parameters and context first, followed directly by the statement at the same indentation level. Definitions retain their type information.
+- Render WP and TWP postcondition lambdas as `on return v:`, followed by the guarantee. Preserve binder links and put inferred binder types in expandable details. Ordinary function expressions continue to use `function`.
+- Apply the same contextual treatment to adequacy postconditions. When the final-state argument is used, display `on return v, in state σ:`; retain an unused state argument in technical details.
+- Display resolved CJR value and state types as `CJR value` and `CJR state`, including Iris’s `val(cjr_lang)` and `state(cjr_lang)` projections. Match qualified identities and the exact language argument, leaving other languages unchanged.
+
+## Program syntax
+
+Add a contextual renderer for resolved CJR constructs instead of applying generic templates to their internal arguments.
+
+- Show literal CJR variable names as identifiers, preserving quoted strings when they are actual data. Track CJR bindings separately from Rocq binders, preserving scope, shadowing and navigation links.
+- Render pointer literals as `pointer(p)` and calls as `f(pointer(p))`. Use `load at p`, `store v at p`, `allocate(n)`, `free(p)` and `pointer_offset(p, i)` for basic memory operations.
+- Render local functions and bindings as:
+
+  ```text
+  let f = function(x):
+    store 9 at x
+  ```
+
+- Hide `Some` around literal binding names and omit an absent recursive self-name. Render named recursive functions as `recursive function self(x):`. Use `_` for unnamed arguments; an unnamed let evaluates its initializer without inventing a variable.
+- Render object and struct forms consistently:
+  - Construction: `struct(a, b)` and `new object(a, b)`.
+  - Reads: `field(o, i)` and `item(s, i)`.
+  - Updates: `store v in field(o, i)` and `store v in item(s, i)`.
+  - Literal references: `object(o)` and `slot(l)`.
+- Preserve numerical field indices and evaluation order. Combine concrete constructor lists in their existing order; retain separate labelled arguments for symbolic lists. Do not invent class names, field names or layout metadata.
+- Keep symbolic binders or unsupported forms explicit with all arguments and a specific limitation notice.
+
+## Implementation and compatibility
+
+- Put contextual program rendering in a shared display module, used by the elaborated renderer and by the parsed-source display where resolution is available.
+- Apply these changes only to display documents. Leave the legacy documents used for explanation generation, cache keys and dependency discovery unchanged.
+- Retain original source and complete elaborated terms, including hidden types, binders and constructor arguments.
+- Keep explicitly selected custom dictionary rules ahead of built-in display rules.
+- Keep the evaluated Gallina-to-Cangjie printer unchanged; the simplified syntax belongs to the readable Rocq/Iris view.
+- No CLI or exporter-protocol changes are required. Document that the readable program syntax is explanatory pseudocode.
+
+## Validation and delivery
+
+- Check heading removal for mathematical and program-correctness lemmas while preserving parameter order.
+- Test named, anonymous and state-dependent postconditions; ordinary functions must retain `function`.
+- Test exact CJR type aliases without renaming unrelated `val` or `state` types.
+- Exercise pointer calls, nested bindings, recursive functions, shadowing, unusual names, genuine strings, symbolic binders, and object/struct operations.
+- Verify `frame_call`, `class_upd` and `vtable` show the intended syntax without misleading metadata notices for supported constructs.
+- Run renderer tests, confirm explanation-cache reuse byte-for-byte, regenerate Core documentation offline, and audit declaration and binder links. Do not rerun proof verification solely for these presentation changes.
+
+[2026-11-04T14:01:47+00:00]
+for indenting the first character should be │ and the second a space
+
+[2026-11-04T14:05:38+00:00]
+do not rerun proof validation. push everything to github.
+

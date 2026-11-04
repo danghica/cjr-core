@@ -42,8 +42,8 @@ def validate(rule):
             raise DictionaryError(str(exc)) from exc
         if sorted(placeholders) != list(range(arity)):
             raise DictionaryError("template must contain each numbered slot exactly once")
-        if any((len(line) - len(line.lstrip(" "))) % 4 for line in text.splitlines()):
-            raise DictionaryError("template indentation must use multiples of four spaces")
+        if any((len(line) - len(line.lstrip(" "))) % 2 for line in text.splitlines()):
+            raise DictionaryError("template indentation must use multiples of two spaces")
     return {**rule, "layout": rule.get("layout", "call"), "slots": slots}
 
 
@@ -55,6 +55,7 @@ class Dictionary:
     def __init__(self, path: Path):
         self.path = path
         self.rules = []
+        self.display_overrides = set()
         if path.exists():
             try:
                 data = json.loads(path.read_text())
@@ -82,10 +83,12 @@ class Dictionary:
     def apply(self, rule, original: Token, children, proposition=False):
         label = Token(rule["label"], identity=original.identity, local=original.local)
         template = rule.get("template") if rule.get("when") != "proposition" or proposition else None
-        return Doc(label, [children[i] for i in rule["slots"]], block=rule["layout"] == "block", template=template)
+        unit = 2 if template and any((len(line) - len(line.lstrip(" "))) % 4 for line in template.splitlines()) else 4
+        return Doc(label, [children[i] for i in rule["slots"]], block=rule["layout"] == "block", template=template, template_indent=unit)
 
     def replace(self, rule):
         rule = validate(rule)
+        self.display_overrides.add(selector(rule))
         self.rules = [old for old in self.rules if selector(old) != selector(rule)] + [rule]
 
     def remove(self, rule):

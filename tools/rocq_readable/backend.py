@@ -28,7 +28,7 @@ def executable() -> str:
 
 
 class Backend:
-    def __init__(self, workspace: Path, timeout: float = 600, binary: str | None = None):
+    def __init__(self, workspace: Path, timeout: float = 600, binary: str | None = None, plugin_path: Path | None = None):
         self.workspace = workspace
         self.timeout = timeout
         self.sequence = 0
@@ -47,8 +47,14 @@ class Backend:
             raise BackendError(f"unsupported coq-lsp version {version!r}; require 0.2.5+8.20")
         env = os.environ.copy()
         env["PATH"] = str(Path(binary).parent) + os.pathsep + env.get("PATH", "")
+        if plugin_path:
+            env["OCAMLPATH"] = str(plugin_path) + os.pathsep + env.get("OCAMLPATH", "")
         try:
-            self.process = subprocess.Popen([binary], cwd=workspace, env=env,
+            command = [binary]
+            if plugin_path:
+                command += ["--load-path=" + str(plugin_path / "rocq-readable") + ",RocqReadable",
+                            "--require-import-from=RocqReadable,ReadablePlugin"]
+            self.process = subprocess.Popen(command, cwd=workspace, env=env,
                                             stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                             stderr=self.stderr)
         except OSError as exc:

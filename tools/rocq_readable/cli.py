@@ -42,7 +42,14 @@ def resolve_missing(backend, source):
         prefix = source.text.encode()[:loc["bp"]].decode()
         lines = prefix.split("\n")
         position = {"line": len(lines) - 1, "character": len(lines[-1].encode("utf-16-le")) // 2}
-        location = backend.request("textDocument/definition", {"textDocument": {"uri": source.path.as_uri()}, "position": position})
+        try:
+            location = backend.request("textDocument/definition", {"textDocument": {"uri": source.path.as_uri()}, "position": position})
+        except BackendError as exc:
+            # An external library may have compiled objects but no navigable
+            # source. That limits links, not the declaration's elaboration.
+            if "library not found" in str(exc):
+                continue
+            raise
         if isinstance(location, list):
             location = location[0] if len(location) == 1 else None
         if location and "uri" in location:
@@ -55,7 +62,15 @@ def resolve_missing(backend, source):
     return result
 
 
-def prepare(paths, root, timeout, selected=None):
+def prepare(paths, root, timeout, selected=None, term_view="elaborated"):
+    plugin_path, plugin_error = None, None
+    if term_view == "elaborated":
+        from .plugin.build import build
+        import subprocess
+        try:
+            plugin_path = build()
+        except (OSError, RuntimeError, subprocess.SubprocessError) as exc:
+            plugin_error = "Rocq term exporter unavailable: " + str(exc)
     sources, resolutions = [], {}
     from .gallina import fresh, render_compiled, render_source
     try:
@@ -76,11 +91,24 @@ def prepare(paths, root, timeout, selected=None):
         print(f"Parsing {source.relative}", file=sys.stderr, flush=True)
         workspace = configuration(path, root).parent
         try:
-            with Backend(workspace, timeout) as backend:
+            with Backend(workspace, timeout, plugin_path=plugin_path if not selected else None) as backend:
                 document, diagnostics = backend.document(path, source.text, selected=selected, model=source)
                 declarations(source, document)
                 from .semantics import classify_arrows
                 classify_arrows(backend, source)
+                if term_view == "elaborated":
+                    from .elaboration import export
+                    if selected and plugin_path:
+                        # The backend's synthetic startup Require has a ghost
+                        # source range that interferes with ast_at_pos selection.
+                        # Parse selection without it, then elaborate only the
+                        # selected prefix in a separate initialized document.
+                        stop = max(d.source_start + len(d.source.encode()) for d in source.declarations)
+                        with Backend(workspace, timeout, plugin_path=plugin_path) as terms_backend:
+                            terms_backend.document(path, source.text.encode()[:stop].decode(), model=source)
+                            export(terms_backend, source)
+                    else:
+                        export(backend, source, plugin_error)
                 # Prefer program-aware compiled printing when possible. An
                 # empty environment can inline large shared helpers repeatedly
                 # (notably AES substitution tables) before the contextual pass.
@@ -198,7 +226,9 @@ class Coverage(dict):
 
 
 def generate(sources, resolutions, dictionary, output, single=None, learn=False, explanation_options=None,
-             history_cache=None, history_repository=None):
+             history_cache=None, history_repository=None, term_view="elaborated"):
+    if term_view not in ("elaborated", "source"):
+        raise ValueError("term_view must be elaborated or source")
     options = replace(explanation_options) if explanation_options else Options()
     options.validate()
     if options.cache is None:
@@ -233,7 +263,9 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
         documents, coverage = {}, Coverage()
         for source in sources:
             adapter = Adapter(source, dictionary, known, resolved.get(source.path))
-            documents[source.path] = [adapter.declaration(d) for d in source.declarations]
+            documents[source.path] = []
+            for decl in source.declarations:
+                documents[source.path].append(adapter.declaration(decl))
             coverage[source.path] = adapter.coverage
             encounters.update(adapter.encounters)
         return documents, coverage
@@ -243,6 +275,53 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
         documents, coverage = render()
     graph = build_graph(sources, documents, resolved)
     explanations = explain(sources, documents, graph, options)
+    # Explanation inputs and dependency discovery deliberately remain on the
+    # unchanged legacy documents above. Display changes must not alter caches.
+    from .ownership import skin
+    source_details = {}
+    display_source_documents = {}
+    display_coverage = {}
+    from .display import DisplayAdapter
+    for source in sources:
+        display_adapter = DisplayAdapter(source, dictionary, known, resolved.get(source.path))
+        display_source_documents[source.path] = []
+        for decl, doc in zip(source.declarations, documents[source.path]):
+            details = []
+            start = len(display_adapter.coverage)
+            display = display_adapter.declaration(decl)
+            display_coverage[decl.identity] = display_adapter.coverage[start:]
+            display_source_documents[source.path].append(skin(display, details))
+            details.extend(display_adapter.details)
+            source_details[decl.identity] = details
+        coverage[source.path] = display_adapter.coverage
+    display_documents = display_source_documents
+    elaboration_details = {}
+    if term_view == "elaborated":
+        from .terms import Renderer, block
+        display_documents = {}
+        for source in sources:
+            coverage[source.path] = []
+            rendered = []
+            for decl, legacy in zip(source.declarations, documents[source.path]):
+                record = source.elaborated.setdefault(decl.identity, {
+                    "status": "unavailable", "reason": "No elaborated term was exported.", "unsupported": []})
+                if record["status"] == "available":
+                    renderer = Renderer(decl, dictionary)
+                    try:
+                        document = renderer.document(record)
+                        record["unsupported"] = sorted(set(renderer.unsupported))
+                        elaboration_details[decl.identity] = block("parameters, instances and stored field values", renderer.hidden)
+                        rendered.append(document)
+                    except (KeyError, ValueError, TypeError, IndexError) as exc:
+                        record.update(status="unavailable", reason="Unsupported elaborated term: " + str(exc))
+                        rendered.append(display_source_documents[source.path][len(rendered)])
+                else:
+                    rendered.append(display_source_documents[source.path][len(rendered)])
+                if record["status"] != "available":
+                    record["unsupported"] = display_coverage.get(decl.identity, [])
+                    coverage[source.path].append("elaboration unavailable: " + decl.identity)
+                coverage[source.path].extend(record.get("unsupported", []))
+            display_documents[source.path] = rendered
     history = collect_history(sources, history_cache, history_repository)
     coverage.explanation_failures = sum(e["status"] == "failed" for e in explanations.values())
     output.mkdir(parents=True, exist_ok=True)
@@ -251,8 +330,10 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
     for source in sources:
         target = outputs[source.path]
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(page(source, documents[source.path], target, output, symbols, coverage[source.path],
-                               standalone=bool(single), graph=graph, explanations=explanations, history=history))
+        target.write_text(page(source, display_documents[source.path], target, output, symbols, coverage[source.path],
+                               standalone=bool(single), graph=graph, explanations=explanations, history=history,
+                               term_view=term_view, elaboration_details=elaboration_details,
+                               source_documents=display_source_documents[source.path], ownership_details=source_details))
     if not single:
         (output / "index.html").write_text(index(sources, outputs, output, graph, explanations))
         (output / "declarations.html").write_text(inventory(sources, outputs, output))
@@ -263,6 +344,9 @@ def generate(sources, resolutions, dictionary, output, single=None, learn=False,
                                "declarations": {i: {"depends_on": graph.edges[i], "statement_depends_on": graph.statement_edges.get(i, []), "issues": graph.issues[i]} for i in sorted(graph.edges)}}
     report["explanations"] = {"model_selection": options.model or "CLI configured model",
                               "failures": coverage.explanation_failures, "declarations": explanations}
+    report["term_view"] = term_view
+    report["elaboration"] = {identity: {k: v for k, v in record.items() if k not in ("term", "children")}
+                             for source in sources for identity, record in source.elaborated.items()}
     report["cangjie"] = {identity: record for source in sources for identity, record in source.cangjie.items()}
     report["correctness_contracts"] = graph.contracts
     report["history"] = {"complete": all(r["complete"] for r in history.values()), "declarations": history}
@@ -289,6 +373,8 @@ def main(argv=None):
                              required=name == "render")
         command.add_argument("--dictionary", type=Path, default=DEFAULT_DICTIONARY)
         command.add_argument("--learn", action="store_true")
+        command.add_argument("--term-view", choices=("elaborated", "source"), default="elaborated",
+                             help="Rocq-elaborated skin (default) or legacy parsed source rendering")
         command.add_argument("--strict", action="store_true")
         command.add_argument("--timeout", type=float, default=600, help="backend request timeout in seconds")
         command.add_argument("--explanations", choices=("auto", "offline"), default="auto",
@@ -347,7 +433,7 @@ def main(argv=None):
         if not paths:
             raise ValueError("no Rocq .v sources found beneath the current directory")
         sources, resolutions = prepare(paths, root, args.timeout,
-                                       selected=args.name if args.command == "render" else None)
+                                       selected=args.name if args.command == "render" else None, term_view=args.term_view)
         if args.command == "render":
             candidates = [d for d in sources[0].declarations if d.identity == args.name or d.name == args.name]
             if len(candidates) != 1:
@@ -358,7 +444,8 @@ def main(argv=None):
                             single=destination if args.command == "render" else None, learn=args.learn,
                             explanation_options=options,
                             history_cache=args.history_cache.resolve() if args.history_cache else None,
-                            history_repository=args.history_repository.resolve() if args.history_repository else None)
+                            history_repository=args.history_repository.resolve() if args.history_repository else None,
+                            term_view=args.term_view)
         errors = sum(bool(s.errors) for s in sources)
         unsupported = sum(len(c) for c in coverage.values())
         result = destination if args.command == "render" else output / "index.html"

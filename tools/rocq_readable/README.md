@@ -36,6 +36,87 @@ a `.source.html` suffix. Individual
 rendering produces a standalone HTML file with embedded CSS and a sibling
 `.report.json`; it does not overwrite an unrelated index or stylesheet.
 
+## Elaborated Rocq and Iris skin
+
+The default `--term-view elaborated` view uses Rocq-resolved terms and inferred
+parameter types. Core Gallina uses `every`, `exists`, `function`, `let`, and
+`match`; Iris distinguishes `resource promise`, `separately`, `both`, `pure`,
+`persistent`, `later`, entailment and updates. A direct chain of resource
+promises ending in WP becomes `requires`, `execute`, and `ensures` blocks,
+inside its original logical context. Masks, stuckness and postcondition binders
+remain visible. The standard full mask displays as `invariant access: unrestricted`,
+and `NotStuck` displays as `safety: cannot get stuck`. Restricted or symbolic
+masks and other stuckness arguments retain their explicit forms; exact resolved
+arguments remain in elaboration details. WP means partial correctness; TWP is labelled total correctness.
+Unrecognized operations stay linked calls, without unfolding user predicates.
+
+Ownership displays as `owns l ↦ v`, `owns slot l ↦ v`,
+`owns field i of o`, and `owns block l of length n`. The field form puts its
+stored value in expandable details; the full resolved term and original source
+retain that value. This display-only wording also applies to the parsed source
+view without changing the documents used for explanation cache keys.
+
+Each indentation level displays as `│ ` (a vertical line followed by a space).
+These two-character guides determine scope in generated readable output;
+original source, evaluated Cangjie and explanation inputs keep their whitespace.
+Lemmas and related assertions put parameters and context first, then show the
+statement directly, without a `type:` heading. Definitions keep their types.
+WP and TWP guarantees use `on return v:`; adequacy guarantees add
+`, in state σ` when the final state is used. Inferred postcondition binder types
+remain in expandable details. Ordinary Gallina lambdas still use `function`.
+Resolved CJR types, including Iris projections for exactly `cjr_lang`, display
+as `CJR value` and `CJR state`; types for other languages retain their names.
+
+CJR expressions use explanatory pseudocode rather than their constructor
+representation. For example:
+
+```text
+let f = function(x):
+  store 9 at x
+f(pointer(p))
+```
+
+Literal variable names become scoped identifiers, while string data stays
+quoted. Recursive functions retain their self-name; anonymous arguments use
+`_`. Memory operations include `load at p`, `store v at p`, `allocate(n)`,
+`free(p)` and `pointer_offset(p, i)`. Objects and structs use `new object(a, b)`,
+`struct(a, b)`, `field(o, i)` and `item(s, i)`, with updates such as
+`store v in field(o, i)`. Concrete constructor lists retain their evaluation
+order. Symbolic lists retain labelled arguments, and unsupported binding forms
+retain all arguments with a specific limitation notice. These display rules
+do not infer class names, field names or layout metadata. Explicitly selected
+custom dictionary rules take precedence over built-in display rules.
+
+Implicit parameters and typeclass instances are expandable. Complete resolved
+term data retains all arguments, projection instances, inferred types and
+universes. Parsed source structure and original proof-free declarations remain
+available; original-source excerpts are unchanged. Evaluated Cangjie output
+continues to use the Gallina printer.
+
+`--term-view source` selects the parsed-source display, which shares the CJR
+syntax rules wherever resolution is available. AI-generated
+explanations always use the unchanged legacy rendering as their input, including its
+original whitespace. This migration changes neither explanation prompts nor
+cache format or keys, and reuses existing explanation caches without regeneration.
+
+The elaborated view needs a small OCaml plugin for Coq 8.20.x. It is built
+locally on first use, or explicitly with `make readable-plugin`. The active
+opam switch must provide `coqpp`, `ocamlfind`, `ocamlopt`, the Coq development
+libraries and `yojson`. Build artifacts live in `build/readable-plugin` in a
+checkout, or a temporary cache for an installed Python package. Nothing is
+installed into the opam switch. Packaged Python distributions include the plugin
+source. Rebuilds follow exporter/compiler fingerprints and use a process lock.
+
+Exporter queries run in isolated states at each live declaration, respecting
+section context and edited source. Standalone theorem rendering elaborates the
+signature before the proof. The version-1 JSON protocol describes resolved term
+nodes, local binder indices, context, argument implicitness, universes and
+constructor/field signatures; it never exports theorem proofs. Export size and
+depth are bounded. Unknown terms, unavailable plugins and failed queries retain
+an explicitly labelled source fallback. `report.json` records the chosen view
+and per-declaration elaboration status and limitations. `--strict` treats
+fallbacks and unsupported elaborated forms as incomplete coverage.
+
 ## Dependencies and English explanations
 
 The **Main correctness contracts** graph view highlights confirmed contracts in
@@ -227,7 +308,7 @@ ASCII declaration anchors.
 
 ## Scope and logical fidelity
 
-Four-space indentation determines multiline scope; colons introduce blocks and
+Two-character `│ ` indentation guides determine multiline scope; colons introduce blocks and
 dedentation closes them. Multiline calls have no enclosing parentheses. Scope
 brackets appear only when the whole expression fits on a single line. Brackets
 inside data literals retain their data meaning. HTML preserves whitespace and
@@ -306,8 +387,9 @@ The JSON root has exactly `version: 1` and a `rules` array. Each rule has:
 - Optional `template`: plain text with numbered placeholders, e.g. `{0}={1}`
   or `IF {0} THEN {1}`. Numbers address children after the `slots` permutation.
   Every slot must appear exactly once. Escape literal braces as `{{` and `}}`.
-  Newlines are supported; indentation uses multiples of four spaces relative
-  to the containing document. Place a multiline child on its own template line
+  Newlines are supported; indentation uses multiples of two spaces relative
+  to the containing document. Existing four-space templates remain compatible
+  and display with two spaces per level. Place a multiline child on its own template line
   to retain that indentation. Nested custom expressions are parenthesized to
   preserve grouping. `layout: block` forces multiline layout.
 - Optional `when: proposition`: activates the template only for an arrow

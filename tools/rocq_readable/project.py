@@ -103,6 +103,8 @@ class Source:
     arrow_sorts: dict[int, str] = field(default_factory=dict)
     cangjie: dict[str, dict] = field(default_factory=dict)
 
+    elaborated: dict[str, dict] = field(default_factory=dict)
+
     @classmethod
     def load(cls, path, root):
         data = path.read_bytes()

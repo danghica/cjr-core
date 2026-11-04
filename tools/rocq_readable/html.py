@@ -31,6 +31,17 @@ def source_excerpt(source, decl, document, current, symbols):
     return tokens_html(tokens, current, symbols)
 
 
+TERM_SCRIPT = """<script>
+document.addEventListener('toggle', event => {
+  if (!event.target.matches('details.resolved-data') || !event.target.open) return;
+  const pre = event.target.querySelector('pre');
+  if (pre.dataset.formatted) return;
+  pre.textContent = JSON.stringify(JSON.parse(pre.textContent), null, 2);
+  pre.dataset.formatted = 'true';
+}, true);
+</script>"""
+
+
 CSS = """/* Offline, indentation-preserving specification pages. */
 :root { color-scheme: light; font-family: system-ui, sans-serif; color: #203044; background: #f3f5f7; }
 body { margin: 0; overflow-wrap: anywhere; } main { max-width: 1080px; margin: auto; padding: 36px 24px 72px; }
@@ -105,13 +116,13 @@ def file_diagram(source, current, symbols, graph, explanations=None):
     return graph_panel(local=True) + diagram_data([source], current, symbols, graph, explanations) + GRAPH_SCRIPT
 
 
-def page(source, documents, current, output, symbols, coverage, standalone=False, graph=None, explanations=None, history=None):
+def page(source, documents, current, output, symbols, coverage, standalone=False, graph=None, explanations=None, history=None, term_view="source", elaboration_details=None, source_documents=None, ownership_details=None):
     declarations = source.declarations
     project_nav = '' if standalone else navigation(current, output)
     body = f'''<header><div class="eyebrow">Rocq Readable · specification reference</div>
 {project_nav}
 <h1>{html.escape(str(source.relative))}</h1><p class="meta">{len(declarations)} declarations · proofs omitted</p>
-<p class="notice">Indentation determines multiline scope. Brackets delimit scope only within a line.
+<p class="notice">Each │ followed by a space marks one indentation level and determines multiline scope. Brackets delimit scope only within a line.
 WP contracts express partial correctness, without a termination guarantee. Unlinked names may belong to external libraries or remain unresolved.
 Rendering rules are presentation choices reviewed by their authors.</p></header>'''
     if graph:
@@ -120,7 +131,8 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
         body += '<section class="panel error"><h2>Source errors</h2><ul>' + ''.join('<li>' + html.escape(e) + '</li>' for e in source.errors) + '</ul></section>'
     if coverage:
         body += f'<p class="notice">Incomplete rendering: {len(coverage)} unsupported or unmapped constructs. Original syntax is retained where needed.</p>'
-    for decl, document in zip(declarations, documents):
+    for number, (decl, document) in enumerate(zip(declarations, documents)):
+        source_document = source_documents[number] if source_documents else document
         body += f'<article id="{anchor(decl.identity)}"><h2>{html.escape(decl.name)}</h2><p class="meta">{html.escape(decl.identity)}'
         if decl.section:
             body += ' · ' + html.escape(decl.section)
@@ -133,6 +145,12 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
             body += '<p class="explanation">' + html.escape(explanation["description"]) + '</p>'
         else:
             body += '<p class="notice">Explanation unavailable: ' + html.escape(explanation.get("reason") or "No explanation was generated.") + '</p>'
+        elaborated = source.elaborated.get(decl.identity, {})
+        if term_view == "elaborated":
+            if elaborated.get("status") == "available":
+                body += '<div class="explanation-label">Rocq and Iris · elaborated terms</div>'
+            else:
+                body += '<p class="notice">Source-view fallback: ' + html.escape(elaborated.get("reason") or "Elaboration unavailable.") + '</p>'
         cangjie = source.cangjie.get(decl.identity, {})
         if cangjie.get("status") == "available":
             body += '<div class="explanation-label">Cangjie · Gallina printer</div>'
@@ -142,14 +160,25 @@ Rendering rules are presentation choices reviewed by their authors.</p></header>
             if cangjie.get("reason"):
                 body += '<p class="notice">Cangjie unavailable: ' + html.escape(cangjie["reason"]) + '</p>'
             body += '<pre class="pseudocode">' + render_html(document, current, symbols) + '</pre>'
+        if term_view == "elaborated" and elaborated.get("status") == "available":
+            body += '<details><summary>Parsed source structure</summary><pre>' + render_html(source_document, current, symbols) + '</pre></details>'
+            body += '<details class="elaboration"><summary>Elaboration details · implicit arguments, instances, universes and field values</summary>'
+            hidden = (elaboration_details or {}).get(decl.identity)
+            if hidden and hidden.children:
+                body += '<pre>' + render_html(hidden, current, symbols) + '</pre>'
+            body += '<details class="resolved-data"><summary>Complete resolved term data (all arguments)</summary><pre>' + html.escape(json.dumps(
+                {k: v for k, v in elaborated.items() if k in ("term", "children")}, ensure_ascii=False, separators=(",", ":"))) + '</pre></details></details>'
+        if (term_view == "source" or elaborated.get("status") != "available") and (ownership_details or {}).get(decl.identity):
+            body += '<details><summary>Stored field values</summary><pre>' + '\n'.join(
+                render_html(detail, current, symbols) for detail in ownership_details[decl.identity]) + '</pre></details>'
         if graph:
             body += '<section aria-label="Direct dependencies"><h3>Depends on</h3>'
             body += '<ul>' + dependency_links(graph.edges[decl.identity], current, symbols) + '</ul>' if graph.edges[decl.identity] else '<p class="meta">No resolved project dependencies.</p>'
             body += ''.join('<p class="notice">' + html.escape(issue) + '</p>' for issue in graph.issues[decl.identity])
             body += '</section>'
-        body += '<details><summary>Original declaration (proof-free)</summary><pre>' + source_excerpt(source, decl, document, current, symbols) + '</pre></details>'
+        body += '<details><summary>Original declaration (proof-free)</summary><pre>' + source_excerpt(source, decl, source_document, current, symbols) + '</pre></details>'
         body += history_panel((history or {}).get(decl.identity)) + '</article>'
-    return shell(str(source.relative), body, current, output, standalone)
+    return shell(str(source.relative), body + TERM_SCRIPT, current, output, standalone)
 
 
 TREE_SCRIPT = """<script>

@@ -39,6 +39,9 @@ class Doc:
     block: bool = False
     raw: bool = False
     template: str | None = None
+    template_indent: int = 4
+    plain_indent: int = 4
+    atomic: bool = False
 
     def literal(self, text):
         return Token(text, identity=self.label.identity, local=self.label.local)
@@ -52,6 +55,8 @@ class Doc:
         return tokens
 
     def compound(self):
+        if self.atomic:
+            return False
         if self.template is None:
             return False
         parts = template_parts(self.template)
@@ -88,15 +93,16 @@ class Doc:
             tokens.extend(part)
         return [*tokens, Token(")")]
 
-    def lines(self, indent=0, width=92):
+    def lines(self, indent=0, width=92, indent_size=None):
+        indent_size = self.plain_indent if indent_size is None else indent_size
         inline = self.inline()
-        if inline is not None and indent * 4 + sum(len(t.text) for t in inline) <= width:
+        if inline is not None and indent * indent_size + sum(len(t.text) for t in inline) <= width:
             return [(indent, inline)]
         if self.template is not None:
             lines = []
             for text in self.template.split("\n"):
                 spaces = len(text) - len(text.lstrip(" "))
-                level = indent + spaces // 4
+                level = indent + spaces // self.template_indent
                 pending = []
                 parts = template_parts(text[spaces:])
                 for part in parts:
@@ -105,7 +111,7 @@ class Doc:
                         continue
                     child = self.children[part]
                     tokens = child.inline() if len(parts) == 1 else self.argument(child)
-                    if not self.block and tokens is not None and (level * 4 + sum(len(t.text) for t in pending + tokens) <= width):
+                    if not self.block and tokens is not None and (level * indent_size + sum(len(t.text) for t in pending + tokens) <= width):
                         pending.extend(tokens)
                     else:
                         if pending:
@@ -113,10 +119,10 @@ class Doc:
                         child_level = level + 1 if pending or self.block else level
                         if len(parts) > 1 and child.compound():
                             lines.append((child_level, [Token("(")]))
-                            lines.extend(child.lines(child_level + 1, width))
+                            lines.extend(child.lines(child_level + 1, width, indent_size))
                             lines.append((child_level, [Token(")")]))
                         else:
-                            lines.extend(child.lines(child_level, width))
+                            lines.extend(child.lines(child_level, width, indent_size))
                         pending = []
                 if pending or not text:
                     lines.append((level, pending))
@@ -127,10 +133,13 @@ class Doc:
             # A long identifier or literal is a single unbreakable token.
             return [(indent, [self.label])]
         return [(indent, [self.label, Token(":")]),
-                *(line for child in self.children for line in child.lines(indent + 1, width))]
+                *(line for child in self.children for line in child.lines(indent + 1, width, indent_size))]
 
-    def plain(self):
-        return "\n".join("    " * level + "".join(t.text for t in tokens) for level, tokens in self.lines())
+    def plain(self, indent_size=None):
+        indent_size = self.plain_indent if indent_size is None else indent_size
+        # Four spaces remain the legacy explanation-cache input contract.
+        return "\n".join(" " * indent_size * level + "".join(t.text for t in tokens)
+                         for level, tokens in self.lines(indent_size=indent_size))
 
 
 def leaf(text, **kwargs):
@@ -164,5 +173,5 @@ def tokens_html(tokens, current: Path, symbols: dict[str, tuple[Path, str]]):
 
 
 def render_html(doc: Doc, current, symbols):
-    return "\n".join("    " * level + tokens_html(tokens, current, symbols)
-                     for level, tokens in doc.lines())
+    return "\n".join("│ " * level + tokens_html(tokens, current, symbols).rstrip()
+                     for level, tokens in doc.lines(indent_size=2))

@@ -28,3 +28,5 @@ example/authenticator/build/frontend/
 /CoqMakefile
 /CoqMakefile.conf
 /.CoqMakefile.d
+
+/build/readable-plugin/

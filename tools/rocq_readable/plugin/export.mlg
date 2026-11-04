@@ -1,0 +1,133 @@
+DECLARE PLUGIN "rocq-readable.export"
+
+{
+open Names
+open Stdarg
+open Pcoq.Prim
+open Pcoq.Constr
+let str s = `String s
+let obj tag fields = `Assoc (("tag", str tag) :: fields)
+let pp p = Pp.string_of_ppcmds p
+let name = function Name.Name n -> Id.to_string n | Name.Anonymous -> "_"
+let global_name g = Libnames.string_of_path (Nametab.path_of_global g)
+let global_of = function
+  | Constr.Const (c, _) -> Some (GlobRef.ConstRef c)
+  | Constr.Ind (i, _) -> Some (GlobRef.IndRef i)
+  | Constr.Construct (c, _) -> Some (GlobRef.ConstructRef c)
+  | Constr.Var n -> Some (GlobRef.VarRef n)
+  | _ -> None
+let type_of env sigma t =
+  EConstr.to_constr ~abort_on_undefined_evars:false sigma (Retyping.get_type_of env sigma (EConstr.of_constr t))
+let is_prop env sigma t =
+  try match EConstr.kind sigma (Reductionops.whd_all env sigma (EConstr.of_constr (type_of env sigma t))) with
+    | Constr.Sort s -> Sorts.is_prop (EConstr.ESorts.kind sigma s) | _ -> false
+  with _ -> false
+let is_class env sigma t =
+  try Typeclasses.is_class_type sigma (EConstr.of_constr t) with _ -> false
+let universe u = str (pp (UVars.Instance.pr (fun q -> Pp.str (Sorts.QVar.to_string q)) Univ.Level.pr u))
+
+let serialize env sigma root =
+  let remaining = ref 60000 in
+  let rec term depth env t =
+    decr remaining;
+    if !remaining < 0 || depth > 250 then
+      CErrors.user_err (Pp.str "Readable export exceeds term size/depth limit");
+    let sub = term (depth + 1) env in
+    let reference g u = obj "ref" ["identity", str (global_name g); "universes", universe u] in
+    let binder tag na ty body extra =
+      let decl = Context.Rel.Declaration.LocalAssum (na, ty) in
+      obj tag (["name", str (name na.Context.binder_name); "type", sub ty;
+                "class", `Bool (is_class env sigma ty);
+                "body", term (depth + 1) (Environ.push_rel decl env) body] @ extra)
+    in
+    match Constr.kind t with
+    | Constr.Rel i -> obj "rel" ["index", `Int i]
+    | Constr.Var n -> obj "var" ["name", str (Id.to_string n)]
+    | Constr.Const (c,u) -> reference (GlobRef.ConstRef c) u
+    | Constr.Ind (i,u) -> reference (GlobRef.IndRef i) u
+    | Constr.Construct (c,u) -> reference (GlobRef.ConstructRef c) u
+    | Constr.Sort s -> obj "sort" ["text", str (pp (Sorts.debug_print s))]
+    | Constr.Prod (na,ty,b) -> binder "product" na ty b ["proposition", `Bool (is_prop env sigma t); "premise_proposition", `Bool (is_prop env sigma ty)]
+    | Constr.Lambda (na,ty,b) -> binder "lambda" na ty b []
+    | Constr.LetIn (na,v,ty,b) ->
+      let decl = Context.Rel.Declaration.LocalDef (na,v,ty) in
+      obj "let" ["name", str (name na.Context.binder_name); "value", sub v; "type", sub ty;
+                  "body", term (depth + 1) (Environ.push_rel decl env) b]
+    | Constr.Cast (v,_,ty) -> obj "cast" ["value", sub v; "type", sub ty]
+    | Constr.App (f,args) ->
+      let impls = match global_of (Constr.kind f) with
+        | Some g -> (try Impargs.select_impargs_size (Array.length args) (Impargs.implicits_of_global g) with _ -> [])
+        | None -> [] in
+      let implicit i = i < List.length impls && Impargs.is_status_implicit (List.nth impls i) in
+      obj "app" ["head", sub f; "arguments", `List (Array.to_list (Array.mapi
+        (fun i a -> `Assoc ["implicit", `Bool (implicit i); "term", sub a]) args))]
+    | Constr.Proj (p,_,v) -> obj "projection" ["identity", str (global_name (GlobRef.ConstRef (Projection.constant p))); "value", sub v]
+    | Constr.Case (ci,u,params,p,iv,c,bs) ->
+      let _,pred,inv,scrut,branches = Inductive.expand_case env (ci,u,params,p,iv,c,bs) in
+      let indices = match inv with Constr.NoInvert -> [] | Constr.CaseInvert {indices} -> Array.to_list indices in
+      obj "match" ["inductive", str (global_name (GlobRef.IndRef ci.Constr.ci_ind));
+        "universes", universe u; "parameters", `List (List.map sub (Array.to_list params));
+        "return", sub (fst pred); "scrutinee", sub scrut; "indices", `List (List.map sub indices);
+        "branches", `List (Array.to_list (Array.mapi (fun i b ->
+          `Assoc ["constructor", str (global_name (GlobRef.ConstructRef (ci.Constr.ci_ind,i+1))); "body", sub b]) branches))]
+    | Constr.Fix ((indices,selected),(names,types,bodies)) -> recursive "fix" depth env names types bodies selected (Array.to_list indices)
+    | Constr.CoFix (selected,(names,types,bodies)) -> recursive "cofix" depth env names types bodies selected []
+    | Constr.Int i -> obj "literal" ["text", str (Uint63.to_string i)]
+    | Constr.Float f -> obj "literal" ["text", str (Float64.to_string f)]
+    | Constr.String s -> obj "literal" ["text", str (Yojson.Safe.to_string (str (Pstring.to_string s)))]
+    | Constr.Array (u,vs,d,ty) -> obj "array" ["universes", universe u; "values", `List (Array.to_list (Array.map sub vs)); "default", sub d; "type", sub ty]
+    | Constr.Evar (id,args) -> obj "unresolved" ["text", str (pp (Printer.pr_constr_env env sigma t)); "arguments", `List (List.map (function None -> `Null | Some a -> sub a) (SList.to_list args))]
+    | Constr.Meta n -> obj "unresolved" ["text", str ("meta " ^ string_of_int n)]
+  and recursive tag depth env names types bodies selected indices =
+    let inner = ref env in
+    Array.iteri (fun i na -> inner := Environ.push_rel (Context.Rel.Declaration.LocalAssum (na,types.(i))) !inner) names;
+    obj tag ["selected", `Int selected; "decreasing", `List (List.map (fun i -> `Int i) indices);
+      "definitions", `List (Array.to_list (Array.mapi (fun i na -> `Assoc ["name",str (name na.Context.binder_name);
+        "type", term (depth+1) env types.(i); "body",term (depth+1) !inner bodies.(i)]) names))]
+  in term 0 env root
+
+let emit env sigma implicits ty body =
+  let rec mark i = function
+    | `Assoc fields when List.assoc_opt "tag" fields = Some (str "product") ->
+      let implicit = i < List.length implicits && List.nth implicits i in
+      `Assoc (("implicit", `Bool implicit) :: List.map (fun (k,v) -> k, if k = "body" then mark (i+1) v else v) fields)
+    | t -> t in
+  let context = List.rev (Environ.named_context env) |> List.map (fun d ->
+    let open Context.Named.Declaration in
+    let n = get_id d and t = get_type d in
+    `Assoc ["name", str (Id.to_string n); "type", serialize env sigma t;
+            "class", `Bool (is_class env sigma t);
+            "value", (match get_value d with None -> `Null | Some v -> serialize env sigma v)]) in
+  let json = `Assoc ["version", `Int 1; "type", mark 0 (serialize env sigma ty);
+    "body", (match body with None -> `Null | Some b -> serialize env sigma b);
+    "context", `List context] in
+  Feedback.msg_notice (Pp.str ("ROCQ-READABLE-JSON:" ^ Yojson.Safe.to_string json))
+
+let export_type c =
+  let env = Global.env () in
+  let sigma,(t,manual) = Constrintern.interp_type_evars_impls env (Evd.from_env env) c in
+  let implicits = List.map (fun a -> a.CAst.v <> None) manual in
+  emit env sigma implicits (EConstr.to_constr ~abort_on_undefined_evars:false sigma t) None
+
+let export_global include_body q =
+  let env = Global.env () in
+  let g = Nametab.global q in
+  let sigma,t = EConstr.fresh_global env (Evd.from_env env) g in
+  let t = EConstr.to_constr sigma t in
+  let ty = type_of env sigma t in
+  let body = if include_body then match Constr.kind t with
+    | Constr.Const (c,u) -> Some (Environ.constant_value_in env (c,u))
+    | _ -> None else None in
+  let implicits = try List.map Impargs.is_status_implicit (Impargs.select_impargs_size 0 (Impargs.implicits_of_global g)) with _ -> [] in
+  emit env sigma implicits ty body
+}
+
+VERNAC COMMAND EXTEND ReadableType CLASSIFIED AS QUERY
+| [ "Readable" "Type" constr(c) ] -> { export_type c }
+END
+VERNAC COMMAND EXTEND ReadableSignature CLASSIFIED AS QUERY
+| [ "Readable" "Signature" reference(q) ] -> { export_global false q }
+END
+VERNAC COMMAND EXTEND ReadableDefinition CLASSIFIED AS QUERY
+| [ "Readable" "Definition" reference(q) ] -> { export_global true q }
+END

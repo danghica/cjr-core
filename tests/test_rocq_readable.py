@@ -171,6 +171,10 @@ class FilesystemAndRules(unittest.TestCase):
         self.assertTrue(long_call.startswith("f:\n    "))
         self.assertNotIn("(", long_call)
         self.assertTrue(anchor("A.Σ").isascii())
+        from tools.rocq_readable.layout import render_html
+        self.assertEqual(render_html(document, Path('/tmp/a.html'), {}),
+                         'forall:\n│ body:\n│ │ x')
+        self.assertEqual(document.plain(), 'forall:\n    body:\n        x')
 
     def test_html_escapes_source_and_template_labels(self):
         from tools.rocq_readable.layout import render_html
@@ -630,7 +634,7 @@ Definition field (b : A.box) := A.item b.
             os.chdir(self.root)
             with redirect_stderr(io.StringIO()), redirect_stdout(io.StringIO()):
                 status = main(["render", "A.v", "--name", "law", "--output", "standalone/law.html",
-                               "--dictionary", str(rules), "--strict", "--explanations", "offline"])
+                               "--dictionary", str(rules), "--strict", "--term-view", "source", "--explanations", "offline"])
                 ambiguous = main(["render", "A.v", "--name", "value", "--output", "standalone/ambiguous.html", "--explanations", "offline"])
             self.assertEqual(status, 1)
             self.assertEqual(ambiguous, 1)
@@ -668,25 +672,26 @@ Definition field (b : A.box) := A.item b.
 
     def test_cjr_contracts_and_definition_vocabulary(self):
         dictionary = Dictionary(DEFAULT_DICTIONARY)
-        models = []
         for file, selected, expected in [("swap", "swap_wp", "consuming_implies"),
                                           ("list", "is_list", "exists"),
                                           ("array", "array_cells", "separately_for_each_index_and_item"),
                                           ("most_frequent", "most_frequent_spec", "forall")]:
             group = "misc" if file == "swap" else file
-            path = ROOT / f"example/{group}/rocq/{file}.v"
+            checkout = ROOT if file == "swap" else ROOT.parent / "cjr-collections"
+            if not checkout.is_dir():
+                continue  # Optional sibling checkout; Core remains standalone.
+            path = checkout / f"example/{group}/rocq/{file}.v"
             with redirect_stderr(io.StringIO()):
-                sources, resolutions = prepare([path], ROOT, 60, selected=selected)
+                sources, resolutions = prepare([path], checkout, 60, selected=selected)
             self.assertEqual(sources[0].errors, [], file)
-            models.extend(sources)
             declaration = next(d for d in sources[0].declarations if d.name == selected)
             adapter = Adapter(sources[0], dictionary, {d.identity for d in sources[0].declarations})
             document = adapter.declaration(declaration)
             self.assertIn(expected, document.plain())
             self.assertNotIn("Proof.", declaration.source)
-        output = self.root / "cjr-html"
-        generate(models, {}, dictionary, output)
-        audit_links(output)
+            output = self.root / "cjr-html" / file
+            generate(sources, resolutions, dictionary, output, history_cache=output / "history.json")
+            audit_links(output)
 
 
 class CustomSyntaxTests(unittest.TestCase):
@@ -807,7 +812,7 @@ Definition allocation (n : expr) : expr := Seq (Free (Alloc n)) (Offset n n).
             html = (output / "Syntax.html").read_text()
             self.assertIn("Original declaration", html)
             self.assertIn("VarBind", html)
-            self.assertIn("cangjie-binder", html)
+            self.assertIn('href="#' + anchor("SyntaxTest.Syntax.lambda_code") + "-program-", html)
             audit_links(output)
             source.arrow_sorts.clear()
             adapter = Adapter(source, Dictionary(DEFAULT_DICTIONARY), set())

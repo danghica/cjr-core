@@ -1,4 +1,4 @@
-make verify started: 2026-11-03T11:04:57.962825+00:00
+make verify started: 2026-11-04T10:21:38.464604+00:00
 Command: /Users/danghica/.opam/default/bin/coq_makefile -f _CoqProject -o CoqMakefile
 Command: make -f CoqMakefile -j2
 make[2]: Nothing to be done for `real-all'.
@@ -38,4 +38,4 @@ Closed under the global context
 Closed under the global context
 Closed under the global context
 Closed under the global context
-make verify finished: 2026-11-03T11:05:30.245670+00:00 (exit status 0)
+make verify finished: 2026-11-04T10:22:11.983342+00:00 (exit status 0)
