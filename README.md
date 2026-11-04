@@ -6,6 +6,31 @@ Open [HTML documentation](docs/index.html) or the [tutorial PDF](paper/tutorial.
 
 ## Setup
 
+For setup with Codex, open the clone and ask **“Set up this repository”** or use
+`$cjr-setup`. The repository's [setup skill](.agents/skills/cjr-setup/SKILL.md)
+installs missing development dependencies and checks proofs, runtime tests,
+readable specifications, and tutorial compilation. Cloning alone does not run
+installers. The skill reuses compatible tools and records any blocked steps.
+
+Use `$cjr-spec-core` to describe an application core, check its hexagonal
+architecture boundary, optionally add algebraic validation properties, and
+produce a specification plan. Implementation of that plan requires the
+`cjr-build-core` skill. See the
+[core specification skill](.agents/skills/cjr-spec-core/SKILL.md).
+
+Use `$cjr-build-core` to implement that plan with Iris specifications, CJR
+implementation and Rocq proofs in `work/specs`, extracted Cangjie in
+`work/code`, executed tests and benchmarks in `work/code/test`, and HTML plus
+concise project documentation in `work/docs`. The command line interface lives
+in `work/CLI`, with its executable in `bin` and its HTML command reference and
+hexagonal architecture diagram in `doc`. See the
+[core build skill](.agents/skills/cjr-build-core/SKILL.md).
+
+Use `$cjr-commit` to run all repository and workspace tests, verify the Rocq
+proofs, and commit sources and documentation together with fresh logs and
+validation records. It commits only after the required checks pass and does
+not push. See the [verified commit skill](.agents/skills/cjr-commit/SKILL.md).
+
 Use Python 3.10+, Cangjie 1.0.5, and pdfLaTeX. Proof work additionally needs Coq 8.20.1, stdpp 1.12.0, Iris 4.4.0 and coq-lsp 0.2.5+8.20 for readable specification regeneration. `CJC`, `CANGJIE_HOME`, and `SDKROOT` override the native toolchain.
 
 Dependencies are pinned in dependencies.lock.json. Place checkouts alongside this repository or set `CJR_CORE_DIR` and `CJR_COLLECTIONS_DIR`. `make dependencies` checks versions and generates Rocq load paths. Public repository: [danghica/cjr-core](https://github.com/danghica/cjr-core).

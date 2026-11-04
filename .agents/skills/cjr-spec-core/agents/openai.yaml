@@ -1,0 +1,4 @@
+interface:
+  display_name: "CJR core specification"
+  short_description: "Validate a hexagonal core prompt and produce a plan"
+  default_prompt: "Use $cjr-spec-core to help me describe my application core, consider algebraic validation properties, and produce a plan for cjr-build-core."

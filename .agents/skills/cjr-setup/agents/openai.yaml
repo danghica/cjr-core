@@ -1,0 +1,4 @@
+interface:
+  display_name: "CJR setup"
+  short_description: "Install and verify CJR development dependencies"
+  default_prompt: "Use $cjr-setup to create the working directories, install the missing dependencies for this CJR checkout, and verify the environment."

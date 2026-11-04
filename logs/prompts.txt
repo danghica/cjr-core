@@ -1070,3 +1070,33 @@ for indenting the first character should be │ and the second a space
 [2026-11-04T14:05:38+00:00]
 do not rerun proof validation. push everything to github.
 
+[2026-11-04T15:12:44+00:00]
+examine the cjr-core repository and see if it includes any garbage or useless files
+
+[2026-11-04T15:14:39+00:00]
+clean the candidates
+
+[2026-11-04T15:18:05+00:00]
+the first one: when someone clones cjr-core it will install all the required dependencies such as lean and iris and anything else that is required
+
+[2026-11-04T15:26:29+00:00]
+update the cjr-setup skill so that it creates the following working directories all under a new directory called work: prompts, specs, code, docs, pdf
+
+[2026-11-04T15:44:43+00:00]
+another skill called cjr-spec-core will read a prompt and generate a plan. the user will be asked: "describe the core of the app you want built. remember that this platform uses the hexagonal (aka p&a) architecture so the core must not include any explicit system interactions." in response first read the prompt and if it does not describe a hexagonal core ask the user to reformulate. if it is acceptable as a hexagonal core examine it and see whether it includes any validation of the specification expressed as algebraic properties of the specification. if not, tell the user "it is useful to include in your specification validation (algebraic) properties of the specification. would you like to?" and if the user says yes, read them and append them to the previous prompt. re-examine the prompt to make sure it is a valid hexagonal core and if it is not refer back to the user for help. if it is valid generate a plan and present it to the user. the plan cannot be implemented directly but it will require the cjr-build skill to be described later. 
+
+[2026-11-04T15:53:09+00:00]
+define the skill cjr-build-core as follows: using the plan created by cjr-spec-core build the following: the cjr iris specification, the cjr implementation, the rocq proofs of correctness (all in the work/specs directory); extract the cangjie code (in the work/code directory); create and run benchmarks and tests in the work/code/test directory; run rocq-readable to create the html documentations (in the work/docs directory); and write a markdown documentation explaining in a readable, technical, and concise fashion the project with the following sections 1) prompt, 2) specifications, 3) code, 4) benchmarks and tests. 
+
+[2026-11-04T15:59:11+00:00]
+update the cjr-build-core skill: create a directory called CLI in which you will create a command line interface for the core. each top level function will correspond to an appropriately named command with arguments corresponding to the function arguments. a command called 'help' will list all the available commands, the arguments of the comands, the outputs and the side-effects. the CLI directory will have a bin sub-directory in which the executable will be stored. the cli directory will also have a doc subtirectory in which a html file will document the cli (similar tot he help command) and will also include a diagrammatic rendering of the hexagonal architecture clearly identifying the core, the bridge, and the ports and adaptors. 
+
+[2026-11-04T16:02:39+00:00]
+define a skill cjr-commit which will run all the tests, verify all the proofs and commit lean files, cangjie files, and documentations to the repository. 
+
+[2026-11-04T16:03:23+00:00]
+define a skill cjr-commit which will run all the tests, verify all the proofs and commit rocq files, cangjie files, and documentations to the repository along with the evidence tests and proofs are ok.
+
+[2026-11-04T16:07:05+00:00]
+commit everything to github, no need to run proof validation
+
