@@ -1,4 +1,4 @@
 interface:
   display_name: "CJR verified commit"
   short_description: "Run tests and proof checks, then commit with evidence"
-  default_prompt: "Use $cjr-commit to run all tests, verify all proofs, and commit the CJR sources and documentation together with fresh validation evidence."
+  default_prompt: "Use $cjr-commit to save all prompts and project descriptions and plans under work/prompts, run all tests, verify all proofs, and commit the saved inputs, CJR sources, documentation, and validation evidence."

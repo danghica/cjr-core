@@ -1,6 +1,6 @@
 ---
 name: cjr-commit
-description: Run all CJR repository and application-workspace tests, verify all Rocq proofs, and commit Rocq and Cangjie sources, documentation, and fresh test and proof evidence. Use when a contributor asks to validate and commit CJR work; do not use merely to define or edit this skill.
+description: Save prompts and project descriptions and plans under work/prompts, run all CJR repository and workspace tests, verify all Rocq proofs, and commit the saved project inputs, Rocq and Cangjie sources, documentation, and fresh validation evidence. Use when a contributor asks to validate and commit CJR work; do not use merely to define or edit this skill.
 ---
 
 # Validate and commit CJR work
@@ -31,6 +31,32 @@ workspace, including untracked sources intended for the commit. In particular,
 the existing root build adapters do not automatically include `work/specs`,
 `work/code/test`, or the CLI. Use the workspace runners and inventory, not just
 the root Makefile, to establish complete coverage.
+
+## Save prompts and projects in work/prompts
+
+Before staging, create or reuse `work/prompts` and save all available prompts
+and project descriptions, definitions, and plans for the projects being
+committed. Preserve the original prompt text, appended algebraic properties,
+revisions, and the accepted plan; do not rely on conversation context alone.
+Use `prompt.md` and `plan.md` for an existing single-project workspace, preserving
+its established filenames. For multiple projects, use distinct named
+subdirectories under `work/prompts` so that one project's inputs cannot
+overwrite another's. Retain earlier project records and revisions.
+
+Include a current verbatim copy of `logs/prompts.txt` as
+`work/prompts/prompts.txt`, while keeping the original repository log too.
+Copy other supplied project-input files into the appropriate project directory
+and record their origin. Do not invent unavailable historical prompts or
+reconstruct their recording times. If required project inputs are missing,
+identify what is missing before claiming they have all been saved.
+
+Maintain `work/prompts/projects.md` as an index of the saved projects, linking
+each to its prompt, properties, plan, and existing implementation and
+documentation locations. This preserves project inputs under `work/prompts`;
+generated sources and documentation retain their established workspace paths.
+Include every saved prompt, project record, revision, plan, and index in the
+commit, including newly created files. Verify that the files exist on disk and
+are tracked in the staged snapshot rather than excluded by an ignore rule.
 
 ## Run all tests and verify all proofs
 
@@ -92,6 +118,8 @@ Create `build/commit-validation.json` summarizing the validation, with:
   and assumption-audit results.
 - SHA-256 fingerprints of the verified Rocq sources, tested Cangjie sources,
   CLI/bridge sources, test harnesses, and relevant build/configuration inputs.
+- The saved prompt and project-input inventory under `work/prompts`, with
+  fingerprints identifying the inputs included in this commit.
 - Relative paths and hashes for the supporting test and proof logs and reports.
 - An overall result that is successful only when every required check passed;
   explain any genuine not-applicable entries.
@@ -107,8 +135,8 @@ extraction is covered by the core's Rocq proof.
 Review the final diff and explicitly stage the intended Rocq (`.v`) and
 Cangjie (`.cj`) files, supporting build/configuration and extraction files,
 test and benchmark harnesses, and documentation (Markdown, generated HTML,
-styles, diagrams, and existing project PDF outputs where relevant). Include
-the accepted prompt and plan when they are project inputs. Include the prompt
+styles, diagrams, and existing project PDF outputs where relevant). Explicitly
+stage all saved prompts and project records under `work/prompts`. Include the prompt
 log, `build/verify.log`, proof records, fresh test results, and validation
 manifest in the same commit as the sources they describe.
 
@@ -121,7 +149,9 @@ deliberately tracked distributable CLI executable.
 
 Inspect the staged diff and file list, ensuring that the staged source and
 configuration bytes match the validated fingerprints and that all linked
-evidence is included. If staged inputs differ, rerun the checks affected by
+evidence is included. Confirm that the `work/prompts` inventory is complete in
+the staged snapshot and its prompt-log copy matches `logs/prompts.txt`. If
+staged inputs differ, rerun the checks affected by
 those differences and refresh the evidence before committing. Do not reset or
 overwrite unrelated staged changes to achieve this.
 
@@ -133,6 +163,7 @@ If identity or signing prevents the commit, report the exact remaining step
 and preserve the staged work.
 
 Confirm the created commit contains the intended sources, documentation,
+all saved prompts and project records under `work/prompts`, the original
 prompt log, verification log, and supporting evidence. Report the commit hash,
 the passed checks, evidence locations, and any remaining unrelated worktree
 changes. Do not claim a commit succeeded unless Git confirms it.

@@ -1,64 +1,36 @@
 {
-  "started_utc": "2026-11-04T16:07:41.374945+00:00",
-  "finished_utc": "2026-11-04T16:07:42.836657+00:00",
-  "scope": "Skill definitions, README, prompt logs, and stale artifact cleanup; no application source changes.",
+  "started_utc": "2026-11-05T13:04:53.172071+00:00",
+  "finished_utc": "2026-11-05T13:04:54.644144+00:00",
+  "scope": "Update cjr-commit to archive and commit prompts and project inputs; archive current prompt history.",
   "checks": [
     {
       "name": "skill-checks",
-      "command": [
-        "ruby",
-        "/tmp/cjr-skill-check.rb"
-      ],
       "exit_status": 0,
       "evidence": "build/commit-evidence/skill-checks.txt",
-      "evidence_sha256": "c199f2e682c8140262cef99b4d042f32295fa914878adb59b18fea07c9a673d9"
+      "evidence_sha256": "c3c3793efb6da5f1db772c0981b426ded6726d9ab95370562ccd8cc91566e80c"
     },
     {
       "name": "html-links",
-      "command": [
-        "/opt/homebrew/opt/python@3.14/bin/python3.14",
-        "-m",
-        "tools.project_tools.link_audit",
-        "."
-      ],
       "exit_status": 0,
       "evidence": "build/commit-evidence/html-links.txt",
       "evidence_sha256": "75b4903786ff1f63f63e9633e9f95f0779afd2a94afd6d9b6e67f04bf2634a0c"
-    },
-    {
-      "name": "readme-diff",
-      "command": [
-        "git",
-        "diff",
-        "--check",
-        "--",
-        "README.md"
-      ],
-      "exit_status": 0,
-      "evidence": "build/commit-evidence/readme-diff.txt",
-      "evidence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
   "proof_validation": {
     "status": "skipped_by_user_request",
-    "instruction": "commit everything to github, no need to run proof validation",
+    "instruction": "dont run proof check. push.",
     "historical_log": "build/verify.log",
     "historical_log_sha256": "129f1ed6d7758775bdcf92689cfa17a6e5ccf8e6f072edbe30b9b71181c063f7"
   },
   "test_suites": {
     "status": "not_run",
-    "reason": "Documentation, skill definitions, and removal of unused artifacts only; focused format and link checks performed."
+    "reason": "Skill and prompt-archive changes only; focused metadata and documentation-link checks performed."
   },
   "inputs_sha256": {
-    "README.md": "8cd5104e31666527ed2aefb266d57a7ce14dbe4185d235c7e65fbde80e7beed0",
-    ".agents/skills/cjr-spec-core/SKILL.md": "5ea87c74bef3ff4b806b87ca933acec7529fa0300a12961ca92551023b5db467",
-    ".agents/skills/cjr-setup/SKILL.md": "c51e22bcf6a00d7e2ba351c6494bd1a7254b7d58e33284ec5ee3113f5ef984c3",
-    ".agents/skills/cjr-build-core/SKILL.md": "021012c402da55d29a4684f397c11498f731480c20236c1d63da823ee66afb98",
-    ".agents/skills/cjr-commit/SKILL.md": "4952f3d8cf2a32aa048cc05201e43d4d6d19b3e92992015a7e0d0b61a0ac7def",
-    ".agents/skills/cjr-commit/agents/openai.yaml": "dd09db20ac96532e973a4f6547a9ffff3f809e250b0cd78fb9dd80d5ef6b4644",
-    ".agents/skills/cjr-build-core/agents/openai.yaml": "fb26604f79de952e964c64605409957af034ad976f2dba8774c9af629522966f",
-    ".agents/skills/cjr-setup/agents/openai.yaml": "9f8334a675aec7b4b3b7e7d7b88318e396a83abed060bf070ff11d8030e9e519",
-    ".agents/skills/cjr-spec-core/agents/openai.yaml": "7ed1b39d47c7273997f0bba8dfee38215ba599d553daa0ccf561153ebb36efd6"
+    ".agents/skills/cjr-commit/SKILL.md": "051510c8c4fe06263aa008b40ba8a016b434e9731cb02db9a9ee22dffc6c6972",
+    ".agents/skills/cjr-commit/agents/openai.yaml": "a417732f14fd19c314b989fe27e98a55a1ae126151ceb06ef55a9fa5970df60c",
+    "work/prompts/prompts.txt": "e84ef6088856ca33a91ab7edc7ad0338b0a65d281c168307c52d579d47ec09b3",
+    "work/prompts/projects.md": "a1239c2723da9090a8f64dbc74b70f98c6c2329553600627f97e1d6b42b7f71c"
   },
   "overall_status": "passed_scoped_checks_proof_validation_skipped"
 }

@@ -1,4 +1,4 @@
-PASS cjr-build-core: YAML, metadata, and README link
-PASS cjr-commit: YAML, metadata, and README link
-PASS cjr-setup: YAML, metadata, and README link
-PASS cjr-spec-core: YAML, metadata, and README link
+PASS cjr-build-core
+PASS cjr-commit
+PASS cjr-setup
+PASS cjr-spec-core
